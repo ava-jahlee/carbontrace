@@ -1,0 +1,26 @@
+{
+  "source": "C:\\Workspace\\My\\온실가스\\GHGCalc_V0m_lja.xlsm",
+  "sheets": [
+    {
+      "name": "Main",
+      "file": "sheet_Main.json",
+      "rows": 43,
+      "cols": 17,
+      "cols_letter": "Q"
+    },
+    {
+      "name": "_Law&GL22",
+      "file": "sheet__Law&GL22.json",
+      "rows": 125,
+      "cols": 23,
+      "cols_letter": "W"
+    },
+    {
+      "name": "_Supplier",
+      "file": "sheet__Supplier.json",
+      "rows": 21,
+      "cols": 9,
+      "cols_letter": "I"
+    }
+  ]
+}

@@ -1,0 +1,1247 @@
+{
+  "name": "Main",
+  "max_row": 43,
+  "max_col": 17,
+  "max_col_letter": "Q",
+  "merged": [
+    "F32:F36",
+    "F21:F22",
+    "P9:Q10",
+    "B18:B23",
+    "E4:E5",
+    "B32:B36",
+    "G13:G15",
+    "B11:B12",
+    "B13:B17",
+    "E6:E7",
+    "B24:B26",
+    "P11:Q11",
+    "B41:B43",
+    "B37:B40",
+    "E2:E3",
+    "B30:B31"
+  ],
+  "rows": [
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      {
+        "v": "― 건축물 온실가스 계산기 ― "
+      },
+      null,
+      null,
+      {
+        "v": "유형"
+      },
+      {
+        "v": "분야"
+      },
+      {
+        "v": "부문"
+      },
+      {
+        "v": "세부"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      {
+        "v": "※ 설명"
+      },
+      {
+        "v": " 드롭 다운으로 항목 선택"
+      },
+      null,
+      null,
+      {
+        "v": "1A. 에너지"
+      },
+      {
+        "v": "1A4. 기타"
+      },
+      {
+        "v": "주거용"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": " 값 작성 (※단위 확인 필수)"
+      },
+      null,
+      {
+        "v": "규모"
+      },
+      {
+        "v": "시설규모"
+      },
+      {
+        "v": "연간 \nGHG 배출량"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "v": "A",
+        "f": "=IF(AND('_Law&GL22'!B109<=Main!G5,'_Law&GL22'!C109>Main!G5),\"A\",IF(AND('_Law&GL22'!B110<=Main!G5,'_Law&GL22'!C110>Main!G5),\"B\", \"C\"))"
+      },
+      {
+        "v": 1
+      },
+      {
+        "v": "만ton/yr"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      {
+        "v": "국가 고유값\n기준년도"
+      },
+      {
+        "v": "배출계수"
+      },
+      {
+        "v": "열량계수"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "v": "국가고유(17년)"
+      },
+      {
+        "v": "국가고유(17년)"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      {
+        "v": "Scope 1 : 연료 연소에 의한 직접 배출량"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "v": "온실가스 배출량 산정 항목"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "v": "∑tCO2eq"
+      },
+      null
+    ],
+    [
+      null,
+      {
+        "v": "온실가스 배출량[tGHG] = 사용량연료·열량계수연료·배출계수열량,GHG·산화계수연료"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      {
+        "v": "연료 정보"
+      },
+      {
+        "v": "연료"
+      },
+      {
+        "v": "GHG 종류"
+      },
+      {
+        "v": "연료 상태"
+      },
+      {
+        "v": "연료 사용량"
+      },
+      {
+        "v": "단위"
+      },
+      null,
+      null,
+      {
+        "v": "연료"
+      },
+      {
+        "v": " GHG 종류"
+      },
+      {
+        "v": "연료 상태"
+      },
+      {
+        "v": "연료 사용량"
+      },
+      {
+        "v": "tGHG"
+      },
+      {
+        "v": "tCO2eq"
+      },
+      {
+        "v": 0,
+        "f": "=SUM(O:O)"
+      },
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "아역청탄 (하위 유연탄)"
+      },
+      {
+        "v": "CO2"
+      },
+      {
+        "v": "Default"
+      },
+      {
+        "v": 1
+      },
+      {
+        "v": "ton-연료\n천m3-연료"
+      },
+      {
+        "v": "kL-연료\nMWh"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      {
+        "v": "매개변수 \nTier 선택"
+      },
+      {
+        "v": " 매개변수 기준"
+      },
+      {
+        "v": "열량계수연료"
+      },
+      {
+        "v": "배출계수열량,GHG"
+      },
+      {
+        "v": "CO2 산화계수"
+      },
+      {
+        "v": " * 배출계수 Tier = 산화계수 Tier"
+      },
+      {
+        "v": "GWP"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "최소 Tier"
+      },
+      {
+        "v": "T2",
+        "f": "=IF($F$5=\"A\", \"T2\", IF($F$5=\"B\", \"T2\", \"T3\"))"
+      },
+      {
+        "v": "T1",
+        "f": "=IF($F$5=\"A\", \"T1\", IF($F$5=\"B\", \"T2\", \"T3\"))"
+      },
+      {
+        "v": "T1",
+        "f": "=IF($F$5=\"A\", \"T1\", IF($F$5=\"B\", \"T2\", \"T3\"))"
+      },
+      null,
+      {
+        "v": 1,
+        "f": "=VLOOKUP($D$12,'_Law&GL22'!$K$24:$L$26,2,0)"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "적용 Tier"
+      },
+      {
+        "v": "T1"
+      },
+      {
+        "v": "T2"
+      },
+      {
+        "v": "T2",
+        "f": "=E15"
+      },
+      null,
+      {
+        "v": 1,
+        "f": "=VLOOKUP($D$12,'_Law&GL22'!$K$24:$L$26,2,0)"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "사용자 입력"
+      },
+      null,
+      null,
+      null,
+      {
+        "v": "고체",
+        "f": "=IF(E12=\"Default\",VLOOKUP(C12,'_Law&GL22'!B36:U103,19,0), E12)"
+      },
+      {
+        "v": 1,
+        "f": "=VLOOKUP($D$12,'_Law&GL22'!$K$24:$L$26,2,0)"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "단위"
+      },
+      {
+        "v": "MJ/kg-연료"
+      },
+      {
+        "v": "kgGHG/TJ-연료"
+      },
+      {
+        "v": "-"
+      },
+      {
+        "v": "-"
+      },
+      {
+        "v": "-"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      {
+        "v": "배출량 계산"
+      },
+      {
+        "v": "매개변수값"
+      },
+      {
+        "v": "열량계수연료"
+      },
+      {
+        "v": "배출계수열량,GHG"
+      },
+      {
+        "v": "산화계수"
+      },
+      {
+        "v": "Calc."
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "선택 Tier"
+      },
+      {
+        "v": "T1",
+        "f": "=D15"
+      },
+      {
+        "v": "T2",
+        "f": "=E15"
+      },
+      {
+        "v": "T2",
+        "f": "=F15"
+      },
+      {
+        "v": "배출량"
+      },
+      {
+        "v": "이산화탄소 환산톤"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "CO2"
+      },
+      {
+        "v": 18.9,
+        "f": "=IF($D$19=\"T3\", $D$16, VLOOKUP(Main!$C$12,'_Law&GL22'!$B$35:$U$100,IF(Main!$D$19=\"T1\",14,IF($D$19=\"T2\",16)),0))"
+      },
+      {
+        "v": 97049.33333333333,
+        "f": "=IF($E$19=\"T3\", $E$16, VLOOKUP(Main!$C$12,'_Law&GL22'!$B$35:$U$100,IF(Main!$E$19=\"T1\",3,IF($E$19=\"T2\",9)),0))"
+      },
+      {
+        "v": 0.98,
+        "f": "=IF(C12=\"전기(발전단)\", 1, IF(G16=\"고체\",IF(F15=\"T3\",F16,VLOOKUP(G16,'_Law&GL22'!L14:O16,IF(Main!F15=\"T1\",2,3),0)),VLOOKUP(Main!G16,'_Law&GL22'!L14:O16,IF(Main!F15=\"T1\",2,IF(Main!F15=\"T2\",3,IF(Main!F15=\"T3\",4))),0)))"
+      },
+      {
+        "v": 1.7975477519999998,
+        "f": "=PRODUCT(0.000001,IF(ISNONTEXT(D20),D20,\"-\"),IF(ISNONTEXT(E20),E20,\"-\"),IF(ISNONTEXT(F20),F20,\"-\"),F12)"
+      },
+      {
+        "v": 1.7975477519999998,
+        "f": "=G20*'_Law&GL22'!L24"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "CH4"
+      },
+      {
+        "v": 18.9,
+        "f": "=IF($D$19=\"T3\", $D$16, VLOOKUP(Main!$C$12,'_Law&GL22'!$B$35:$U$100,IF(Main!$D$19=\"T1\",14,IF($D$19=\"T2\",16)),0))"
+      },
+      {
+        "v": 300,
+        "f": "=IF($E$19=\"T3\", $E$16, VLOOKUP(Main!$C$12,'_Law&GL22'!$B$35:$U$100,IF(Main!$E$19=\"T1\",4,IF($E$19=\"T2\",10)),0))"
+      },
+      null,
+      {
+        "v": 0.00567,
+        "f": "=PRODUCT(0.000001,IF(ISNONTEXT(D21),D21,\"-\"), IF(ISNONTEXT(E21),E21,\"-\"), F12)"
+      },
+      {
+        "v": 0.11907,
+        "f": "=G21*'_Law&GL22'!L25"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "N2O"
+      },
+      {
+        "v": 18.9,
+        "f": "=IF($D$19=\"T3\", $D$16, VLOOKUP(Main!$C$12,'_Law&GL22'!$B$35:$U$100,IF(Main!$D$19=\"T1\",14,IF($D$19=\"T2\",16)),0))"
+      },
+      {
+        "v": 1.4,
+        "f": "=IF($E$19=\"T3\", $E$16, VLOOKUP(Main!$C$12,'_Law&GL22'!$B$35:$U$100,IF(Main!$E$19=\"T1\",5,IF($E$19=\"T2\",11)),0))"
+      },
+      null,
+      {
+        "v": 2.6459999999999997e-05,
+        "f": "=PRODUCT(0.000001,IF(ISNONTEXT(D22),D22,\"-\"), IF(ISNONTEXT(E22),E22,\"-\"), F12)"
+      },
+      {
+        "v": 0.008202599999999999,
+        "f": "=G22*'_Law&GL22'!L26"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "단위"
+      },
+      {
+        "v": "MJ/kg-연료"
+      },
+      {
+        "v": "kgGHG/TJ-연료"
+      },
+      {
+        "v": "-"
+      },
+      {
+        "v": "tGHG"
+      },
+      {
+        "v": "tCO2eq"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      {
+        "v": "tGHG, tCO2eq,\n∑tCO2eq"
+      },
+      {
+        "v": "Sol."
+      },
+      {
+        "v": "CO2 배출량",
+        "f": "=_xlfn.CONCAT(_xlfn.VALUETOTEXT($D$12), \" 배출량\")"
+      },
+      {
+        "v": "이산화탄소 환산톤"
+      },
+      null,
+      {
+        "v": "∑이산화탄소 환산톤"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "배출량"
+      },
+      {
+        "v": 1.7975477519999998,
+        "f": "=VLOOKUP($D$12, $C$20:$H$22, 5,0)"
+      },
+      {
+        "v": 1.7975477519999998,
+        "f": "=VLOOKUP($D$12, $C$20:$H$22, 6,0)"
+      },
+      null,
+      {
+        "v": 1.9248203519999998,
+        "f": "=SUM($H$20:$H$22)"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "단위"
+      },
+      {
+        "v": "tGHG"
+      },
+      {
+        "v": "tCO2eq"
+      },
+      null,
+      {
+        "v": "∑tCO2eq"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      {
+        "v": "Scope 2 : 외부에서 공급된 전기/열에 의한 간접 배출량"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      {
+        "v": "온실가스 배출량[tGHG] = 사용량연료·배출계수열량"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      {
+        "v": "전기/열 정보"
+      },
+      {
+        "v": "연료"
+      },
+      {
+        "v": "GHG 종류"
+      },
+      {
+        "v": "연료 사용량"
+      },
+      {
+        "v": "단위"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "열병합"
+      },
+      {
+        "v": "CO2"
+      },
+      {
+        "v": 1
+      },
+      {
+        "v": "MWh\nTJ"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      {
+        "v": "매개변수 \nTier 선택"
+      },
+      {
+        "v": " 매개변수 기준"
+      },
+      {
+        "v": "전력배출계수열량,GHG"
+      },
+      {
+        "v": "열배출계수열량,GHG"
+      },
+      {
+        "v": "지역난방\n매개변수"
+      },
+      {
+        "v": "지역"
+      },
+      {
+        "v": "계획기간"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "최소 Tier"
+      },
+      {
+        "v": "-",
+        "f": "=IF(C31=\"전기(소비단)\", \"T2\", \"-\")"
+      },
+      {
+        "v": "T3",
+        "f": "=IF(C31=\"전기(소비단)\", \"-\", \"T3\")"
+      },
+      null,
+      {
+        "v": "수도권지사"
+      },
+      {
+        "v": "4기"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "적용 Tier"
+      },
+      {
+        "v": "-",
+        "f": "=D33"
+      },
+      {
+        "v": "T3 (한국지역난방공사)"
+      },
+      null,
+      {
+        "v": "CO2"
+      },
+      {
+        "v": 35991,
+        "f": "=IF(H33=\"3기\",VLOOKUP(Main!G33,_Supplier!B6:E21,2,0),VLOOKUP(G33,_Supplier!B14:E21,2,0))"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "사용자 입력"
+      },
+      null,
+      null,
+      null,
+      {
+        "v": "CH4"
+      },
+      {
+        "v": 0.6519,
+        "f": "=IF(H33=\"3기\",VLOOKUP(Main!G33,_Supplier!B6:E21,3,0),VLOOKUP(G33,_Supplier!B14:E21,3,0))"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "단위"
+      },
+      {
+        "v": "kgGHG/MWh"
+      },
+      {
+        "v": "kgGHG/TJ"
+      },
+      null,
+      {
+        "v": "N2O"
+      },
+      {
+        "v": 0.0661,
+        "f": "=IF(H33=\"3기\",VLOOKUP(Main!G33,_Supplier!B6:E21,4,0),VLOOKUP(G33,_Supplier!B14:E21,4,0))"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      {
+        "v": "배출량 계산"
+      },
+      {
+        "v": "매개변수값"
+      },
+      {
+        "v": "전력배출계수열량,GHG"
+      },
+      {
+        "v": "열배출계수열량,GHG"
+      },
+      {
+        "v": "GWP"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "선택 Tier"
+      },
+      {
+        "v": "-",
+        "f": "=D34"
+      },
+      {
+        "v": "T3 (한국지역난방공사)",
+        "f": "=IF(E33=\"-\", \"-\", E34)"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "CO2",
+        "f": "=D31"
+      },
+      {
+        "v": "-",
+        "f": "=IF($C$31=\"전기(소비단)\", VLOOKUP($C$31, '_Law&GL22'!$B$100:$U$103, IF($C$39=\"CO2\", 9, IF($C$39=\"CH4\", 10, IF($C$39=\"N2O\",11))), 0), \"-\")"
+      },
+      {
+        "v": 35991,
+        "f": "=IF(E38=\"-\",\"-\",IF(E38=\"T2\",VLOOKUP(C31,'_Law&GL22'!B100:U103,IF(Main!C39=\"CO2\",9,IF(Main!C39=\"CH4\",10,IF(Main!C39=\"N2O\",11))),0),IF(E38=\"T3\",E35,VLOOKUP(C39,G34:H36,2,0))))"
+      },
+      {
+        "v": 1,
+        "f": "=VLOOKUP(C39,'_Law&GL22'!K24:L26,2,0)"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "단위"
+      },
+      {
+        "v": "kgGHG/MWh"
+      },
+      {
+        "v": "kgGHG/TJ"
+      },
+      {
+        "v": "-"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      {
+        "v": "tGHG 및 tCO2eq"
+      },
+      {
+        "v": "Sol."
+      },
+      {
+        "v": "배출량"
+      },
+      {
+        "v": "이산화탄소 환산톤"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "배출량"
+      },
+      {
+        "v": 35.991,
+        "f": "=IF(C31=\"전기(소비단)\", PRODUCT(E31,D39, 0.001), PRODUCT(E31, E39,0.001))"
+      },
+      {
+        "v": 35.991,
+        "f": "=D42*F39"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      {
+        "v": "단위"
+      },
+      {
+        "v": "tGHG"
+      },
+      {
+        "v": "tCO2eq"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  ]
+}
