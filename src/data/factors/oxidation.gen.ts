@@ -1,55 +1,49 @@
 /**
- * carbontrace — Scope 1 계수 데이터
- * 생성: scripts/build_scope1_data.py
- * 원본: C:\Workspace\My\온실가스\GHGCalc_V0m_lja.xlsm
+ * carbontrace — Scope 1 계수 데이터.  자동 생성 파일.
+ * 원본 파이프라인: scripts/build_scope1_data.py  (C:\Workspace\My\온실가스\GHGCalc_V0m_lja.xlsm)
  *
- * 이 파일은 자동 생성됩니다. 직접 편집하지 마세요.
- * 원본 값이 바뀌면 xlsm 을 갱신하고 스크립트를 재실행하세요.
+ * 이 파일을 직접 편집하지 마세요.
+ * primary source (원문서 카탈로그) 는 src/data/sources.ts 참조.
  */
 
-import type { Fuel, OxidationTable, GwpTables } from "./types";
+import type { OxidationTable } from "./types";
+import { IPCC_2006_VOL2_CH2, KETS_ANNEX_6 } from "@/data/sources";
 
 export const OXIDATION: OxidationTable = {
   "고체": {
     "t1": {
       "value": 1.0,
       "unit": "-",
-      "sourceCell": "_Law&GL22!M14",
-      "sourceDoc": "온실가스 배출권거래제 지침 [별첨6]"
+      "primarySource": IPCC_2006_VOL2_CH2
     },
     "t2": {
       "value": 0.98,
       "unit": "-",
-      "sourceCell": "_Law&GL22!N14",
-      "sourceDoc": "온실가스 배출권거래제 지침 [별첨6]"
+      "primarySource": KETS_ANNEX_6
     }
   },
   "액체": {
     "t1": {
       "value": 1.0,
       "unit": "-",
-      "sourceCell": "_Law&GL22!M15",
-      "sourceDoc": "온실가스 배출권거래제 지침 [별첨6]"
+      "primarySource": IPCC_2006_VOL2_CH2
     },
     "t2": {
       "value": 0.99,
       "unit": "-",
-      "sourceCell": "_Law&GL22!N15",
-      "sourceDoc": "온실가스 배출권거래제 지침 [별첨6]"
+      "primarySource": KETS_ANNEX_6
     }
   },
   "기체": {
     "t1": {
       "value": 1.0,
       "unit": "-",
-      "sourceCell": "_Law&GL22!M16",
-      "sourceDoc": "온실가스 배출권거래제 지침 [별첨6]"
+      "primarySource": IPCC_2006_VOL2_CH2
     },
     "t2": {
       "value": 0.995,
       "unit": "-",
-      "sourceCell": "_Law&GL22!N16",
-      "sourceDoc": "온실가스 배출권거래제 지침 [별첨6]"
+      "primarySource": KETS_ANNEX_6
     }
   }
 };

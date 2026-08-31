@@ -6,7 +6,7 @@
  * UI 의 <Cell /> 이 이 근거를 그대로 열어 보여 준다.
  */
 
-import type { Measurement, MaybeMeasurement } from "@/data/factors/types";
+import type { Measurement } from "@/data/factors/types";
 
 /**
  * 계산된 값 한 조각.
@@ -30,7 +30,7 @@ export type CalculatedInput =
       kind: "measurement";
       /** 수식 안에서의 역할 이름. 예: "열량계수 (T1, 순발열량)". */
       label: string;
-      /** Measurement 자체 (value + unit + sourceCell + sourceDoc). */
+      /** Measurement 자체 (value + unit + primarySource). */
       measurement: Measurement;
     }
   | {

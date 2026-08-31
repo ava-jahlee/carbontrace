@@ -19,9 +19,14 @@ export default function Home() {
           이 도구의 진짜 지향은 <b>감사 가능성 (auditability)</b> 에 있다.
         </p>
         <p>
-          결과 셀 옆의 <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-neutral-300 text-[10px] text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">i</span> 를
-          누르면, 그 값이 어떤 수식에서, 어떤 계수를 대입해, 어느 원본 셀에서 조회해 나왔는지가 열린다.
-          파생값은 다시 파고들 수 있다. 엑셀에서 셀을 클릭하면 수식이 보이는 감사성을 웹에서 그대로.
+          결과 값 옆의{" "}
+          <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-neutral-300 text-[10px] text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
+            i
+          </span>{" "}
+          를 누르면, 그 값이 어떤 수식에서, 어떤 계수를 대입해 나왔는지,
+          그리고 각 계수가 <b>어느 원문서 (IPCC PDF · GIR 공식자료 · K-ETS 지침 등)</b> 에서 왔는지가 열린다.
+          링크를 눌러 원문서로 바로 이동해 값을 재확인할 수 있다.
+          파생값은 다시 파고들 수 있어, 엑셀에서 셀을 클릭하면 수식이 보이는 감사성을 웹에서 그대로 재현한다.
         </p>
       </section>
 
@@ -43,7 +48,7 @@ export default function Home() {
       </div>
 
       <footer className="mt-16 border-t border-neutral-200 pt-6 text-xs text-neutral-500 dark:border-neutral-800">
-        원본: <code className="font-mono">GHGCalc_V0m_lja.xlsm</code> · 재현 신뢰:  Vitest 파리티 6/6 PASS
+        원본: <code className="font-mono">GHGCalc_V0m_lja.xlsm</code> · 재현 신뢰:  Vitest 파리티 8/8 PASS
       </footer>
     </main>
   );

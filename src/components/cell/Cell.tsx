@@ -4,19 +4,23 @@
  * <Cell />  — carbontrace 의 시그니처 컴포넌트.
  *
  * 값 하나를 표시하되, 그 값이 왜 그 값인지의 근거를 팝오버로 완전히 열어 보여 준다.
- * 원본 엑셀에서 셀을 클릭하면 수식이 보이는 감사성을, 웹에서 재현.
+ *
+ * 핵심 원칙:
+ *   근거 = 진짜 원문서 (primarySource). IPCC PDF, GIR 공식 자료, K-ETS 지침 등.
+ *   감사자는 팝오버의 문서 링크를 눌러 원문서로 바로 이동해 값을 재확인할 수 있어야 한다.
  *
  * 표시 규칙:
  *   1. value 를 굵게 + 단위 병기
- *   2. 오른쪽 작은 정보 표식 (⌕). 클릭 → 팝오버 열림
+ *   2. 오른쪽 작은 정보 표식 (i). 클릭 → 팝오버 열림
  *   3. 팝오버 내용:
  *      - formula (수식 문자열)
- *      - inputs 각각을 label / value / unit / source 로 나열
+ *      - inputs 각각을 label / value / unit / primary source 로 나열
  *      - derived 인자는 접혀 있고, 눌러서 하위 근거를 재귀적으로 열 수 있음
  */
 
 import { useState } from "react";
 import type { Calculated, CalculatedInput } from "@/lib/calc/types";
+import type { PrimarySource, SourceMaturity } from "@/data/sources";
 
 export interface CellProps {
   /** 표시할 계산 결과. null 이면 "-" 표기. */
@@ -85,7 +89,7 @@ export function Cell({ calculated, digits = 4, label, size = "md", emphasis = fa
       {open && (
         <div
           role="dialog"
-          className="absolute left-0 top-full z-30 mt-2 w-[min(28rem,calc(100vw-2rem))] rounded-lg border border-neutral-300 bg-white p-3 text-left text-sm shadow-xl dark:border-neutral-700 dark:bg-neutral-900"
+          className="absolute left-0 top-full z-30 mt-2 w-[min(32rem,calc(100vw-2rem))] rounded-lg border border-neutral-300 bg-white p-3 text-left text-sm shadow-xl dark:border-neutral-700 dark:bg-neutral-900"
         >
           <ProvenanceBody calculated={calculated} />
           <div className="mt-3 flex justify-end">
@@ -190,17 +194,8 @@ function InputRow({ input }: { input: CalculatedInput }) {
         <span className="text-[10px] text-neutral-500">{unit}</span>
       </div>
       {input.kind === "measurement" && (
-        <div className="mt-1 space-y-0.5 text-[11px] text-neutral-600 dark:text-neutral-400">
-          <div>
-            <span className="text-neutral-400">셀 </span>
-            <span className="font-mono text-neutral-700 dark:text-neutral-300">
-              {input.measurement.sourceCell}
-            </span>
-          </div>
-          <div>
-            <span className="text-neutral-400">근거 </span>
-            <span>{input.measurement.sourceDoc}</span>
-          </div>
+        <div className="mt-2">
+          <PrimarySourceCard ps={input.measurement.primarySource} />
         </div>
       )}
       {input.kind === "user" && input.note && (
@@ -226,6 +221,94 @@ function InputRow({ input }: { input: CalculatedInput }) {
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// PrimarySource 카드 — 감사자가 원문서로 역추적하는 진입점.
+// ─────────────────────────────────────────────────────────────
+
+function MaturityBadge({ maturity }: { maturity: SourceMaturity }) {
+  const label =
+    maturity === "verified"
+      ? "확정"
+      : maturity === "documented"
+        ? "문서화"
+        : maturity === "asserted"
+          ? "주장 (조사 예정)"
+          : "미조사";
+  const cls =
+    maturity === "verified"
+      ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-700"
+      : maturity === "documented"
+        ? "bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-900/30 dark:text-sky-300 dark:border-sky-700"
+        : maturity === "asserted"
+          ? "bg-amber-50 text-amber-800 border-amber-300 dark:bg-amber-900/30 dark:text-amber-200 dark:border-amber-700"
+          : "bg-neutral-100 text-neutral-700 border-neutral-300 dark:bg-neutral-800 dark:text-neutral-300 dark:border-neutral-700";
+  return (
+    <span
+      className={`inline-block rounded border px-1.5 py-[1px] text-[10px] font-medium uppercase tracking-wide ${cls}`}
+      title={
+        maturity === "verified"
+          ? "원문서 · 표 · 페이지 · 행까지 확인 완료"
+          : maturity === "documented"
+            ? "원문서 · 표 확인 완료 (페이지 · 행은 추후 명시)"
+            : maturity === "asserted"
+              ? "문서명 · 표는 알지만 원문 재확인 예정"
+              : "원문서 재추적 미완료"
+      }
+    >
+      {label}
+    </span>
+  );
+}
+
+function PrimarySourceCard({ ps }: { ps: PrimarySource }) {
+  const locationParts: string[] = [];
+  if (ps.part) locationParts.push(ps.part);
+  if (ps.table) locationParts.push(ps.table);
+  if (ps.page) locationParts.push(`p. ${ps.page}`);
+  if (ps.row) locationParts.push(`행: ${ps.row}`);
+
+  return (
+    <div className="rounded-md border border-blue-100 bg-blue-50/50 p-2 text-[11px] leading-relaxed dark:border-blue-900/40 dark:bg-blue-950/20">
+      <div className="mb-1.5 flex items-center gap-2">
+        <span className="text-[9px] font-semibold uppercase tracking-wider text-neutral-500">
+          원문서 근거
+        </span>
+        <MaturityBadge maturity={ps.maturity} />
+      </div>
+      <div className="space-y-0.5">
+        <div className="text-neutral-800 dark:text-neutral-100">
+          <span className="font-semibold">{ps.publisher}</span>
+          {ps.edition && <span className="ml-1 text-neutral-500">· {ps.edition}</span>}
+        </div>
+        <div className="text-neutral-700 dark:text-neutral-300">{ps.doc}</div>
+        {locationParts.length > 0 && (
+          <div className="text-neutral-600 dark:text-neutral-400">
+            {locationParts.join(" · ")}
+          </div>
+        )}
+        {ps.url && (
+          <div>
+            <a
+              href={ps.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-700 underline decoration-dotted hover:text-blue-900 dark:text-blue-300"
+            >
+              원문서 열기 ↗
+            </a>
+          </div>
+        )}
+        {ps.note && (
+          <div className="mt-1 text-neutral-500 italic dark:text-neutral-400">{ps.note}</div>
+        )}
+        {ps.reviewedAt && (
+          <div className="mt-0.5 text-[10px] text-neutral-400">확인일자 · {ps.reviewedAt}</div>
+        )}
+      </div>
     </div>
   );
 }

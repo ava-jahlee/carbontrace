@@ -105,8 +105,16 @@ export function Scope1Calculator() {
 
         {fuel && (
           <div className="mt-4 rounded border border-neutral-200 bg-neutral-50 p-3 text-[11px] text-neutral-600 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-400">
-            <div>연료 원본 셀: <code className="font-mono">{fuel._rowSource}</code></div>
+            <div className="mb-1 font-semibold text-neutral-500">연료 기본 정보</div>
+            <div>분류: {fuel.category ?? "—"}</div>
             <div>상온: {fuel.state ?? "—"}</div>
+            <div className="mt-2 text-[10px] text-neutral-500">
+              계수 근거는 각 값 옆의{" "}
+              <span className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-neutral-300 text-[9px]">
+                i
+              </span>{" "}
+              버튼을 눌러 확인하세요.
+            </div>
           </div>
         )}
       </section>

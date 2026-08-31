@@ -55,6 +55,18 @@ function derivedInput(label: string, from: Calculated): CalculatedInput {
   return { kind: "derived", label, value: from.value, unit: from.unit, from };
 }
 
+/**
+ * measurement 의 primary source 를 사람이 읽는 짧은 라벨로.
+ * (팝오버 formula 줄에 쓰기 위한 축약형; 상세 정보는 measurement 자체에 다 있다.)
+ */
+function sourceLabel(m: Measurement): string {
+  const ps = m.primarySource;
+  const parts: string[] = [ps.publisher || ps.doc];
+  if (ps.edition) parts.push(ps.edition);
+  if (ps.table) parts.push(ps.table);
+  return parts.join(" · ");
+}
+
 // ─────────────────────────────────────────────────────────────
 // 열량계수 선택 (Tier 반영)
 // ─────────────────────────────────────────────────────────────
@@ -79,13 +91,17 @@ function pickHeatFactor(
   }
   const m = tier === "T1" ? fuel.heat.t1_net : fuel.heat.t2_net;
   if (!m) {
-    // Fall back
     const fallback = tier === "T1" ? fuel.heat.t2_net : fuel.heat.t1_net;
     if (fallback) {
       warnings.push(
         `${fuel.name}: 열량계수 ${tier} 값이 원본에 없어 ${tier === "T1" ? "T2" : "T1"} 로 대체했습니다.`,
       );
-      return { value: fallback.value, unit: fallback.unit, formula: `조회 → ${fallback.sourceCell}`, inputs: [measurementInput(`열량계수 (대체)`, fallback)] };
+      return {
+        value: fallback.value,
+        unit: fallback.unit,
+        formula: `조회 → ${sourceLabel(fallback)} (대체)`,
+        inputs: [measurementInput(`열량계수 (대체)`, fallback)],
+      };
     }
     warnings.push(`${fuel.name}: 열량계수 ${tier} / 대체값 모두 없음.`);
     return null;
@@ -93,7 +109,7 @@ function pickHeatFactor(
   return {
     value: m.value,
     unit: m.unit,
-    formula: `조회 → ${m.sourceCell}`,
+    formula: `조회 → ${sourceLabel(m)}`,
     inputs: [measurementInput(`열량계수 (${tier}, 순발열량)`, m)],
   };
 }
@@ -124,7 +140,6 @@ function pickEmissionFactor(
   const set = tier === "T1" ? fuel.ef.t1 : fuel.ef.t2;
   const m = set[species];
   if (!m) {
-    // Fall back to other tier
     const otherTier: Tier = tier === "T1" ? "T2" : "T1";
     const otherSet = otherTier === "T1" ? fuel.ef.t1 : fuel.ef.t2;
     const fallback = otherSet[species];
@@ -135,7 +150,7 @@ function pickEmissionFactor(
       return {
         value: fallback.value,
         unit: fallback.unit,
-        formula: `조회 → ${fallback.sourceCell} (대체)`,
+        formula: `조회 → ${sourceLabel(fallback)} (대체)`,
         inputs: [measurementInput(`배출계수 ${species} (${otherTier}, 대체)`, fallback)],
       };
     }
@@ -145,7 +160,7 @@ function pickEmissionFactor(
   return {
     value: m.value,
     unit: m.unit,
-    formula: `조회 → ${m.sourceCell}`,
+    formula: `조회 → ${sourceLabel(m)}`,
     inputs: [measurementInput(`배출계수 ${species} (${tier})`, m)],
   };
 }
@@ -186,7 +201,7 @@ function pickOxidation(
   return {
     value: m.value,
     unit: m.unit,
-    formula: `조회 → ${m.sourceCell}`,
+    formula: `조회 → ${sourceLabel(m)}`,
     inputs: [measurementInput(`산화계수 (${state}, ${tier})`, m)],
   };
 }
@@ -248,19 +263,12 @@ function calcTCo2eq(tGhg: MaybeCalculated, gwp: Calculated): MaybeCalculated {
 
 function gwpFor(standard: Scope1Input["gwpStandard"], species: GhgSpecies): Calculated {
   const table = GWP[standard];
-  const value = table[species];
+  const m = table[species];
   return {
-    value,
+    value: m.value,
     unit: "-",
     formula: `조회 → GWP[${standard}][${species}]`,
-    inputs: [
-      constantInput(
-        `GWP ${species} (${table.label})`,
-        value,
-        "-",
-        table.source,
-      ),
-    ],
+    inputs: [measurementInput(`GWP ${species} (${table.label})`, m)],
   };
 }
 
@@ -279,7 +287,7 @@ export function calculateScope1(input: Scope1Input): Scope1Result | { error: str
   const oxidation = pickOxidation(fuel, input.efTier, input.overrides?.oxidation, warnings);
 
   const speciesList: GhgSpecies[] = ["CO2", "CH4", "N2O"];
-  const results: Record<GhgSpecies, Scope1SpeciesResult> = {} as any;
+  const results: Record<GhgSpecies, Scope1SpeciesResult> = {} as Record<GhgSpecies, Scope1SpeciesResult>;
   for (const sp of speciesList) {
     const override = sp === "CO2" ? input.overrides?.efCO2 : sp === "CH4" ? input.overrides?.efCH4 : input.overrides?.efN2O;
     const ef = pickEmissionFactor(fuel, sp, input.efTier, override, warnings);

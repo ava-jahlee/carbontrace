@@ -108,8 +108,8 @@ describe("Scope 1 파리티: 원본 xlsm 저장값과 정확히 일치해야 한
   });
 });
 
-describe("Scope 1 근거 (audit trail): 값마다 셀 주소가 붙는다", () => {
-  it("아역청탄 T2 배출계수 CO2 는 _Law&GL22!J69 셀에서 조회한 것", () => {
+describe("Scope 1 감사 근거 (primary source): 값마다 원문서가 붙는다", () => {
+  it("아역청탄 T2 배출계수 CO2 → GIR 국가고유 배출계수", () => {
     const r = calculateScope1({
       fuelId: "아역청탄-하위-유연탄",
       amount: 1,
@@ -121,11 +121,13 @@ describe("Scope 1 근거 (audit trail): 값마다 셀 주소가 붙는다", () =
     const efInputs = r.co2.emissionFactor?.inputs ?? [];
     const meas = efInputs.find((i) => i.kind === "measurement");
     if (!meas || meas.kind !== "measurement") throw new Error("배출계수에 measurement 근거가 붙어있지 않음");
-    expect(meas.measurement.sourceCell).toBe("_Law&GL22!J69");
-    expect(meas.measurement.sourceDoc).toContain("GIR");
+    const ps = meas.measurement.primarySource;
+    expect(ps.kind).toBe("gir");
+    expect(ps.docId).toBe("gir-ef-2017");
+    expect(ps.publisher).toContain("GIR");
   });
 
-  it("아역청탄 T1 열량계수는 _Law&GL22!O69", () => {
+  it("아역청탄 T1 열량계수 → IPCC 2006 GL Vol.2 Ch.1", () => {
     const r = calculateScope1({
       fuelId: "아역청탄-하위-유연탄",
       amount: 1,
@@ -136,7 +138,42 @@ describe("Scope 1 근거 (audit trail): 값마다 셀 주소가 붙는다", () =
     if ("error" in r) throw new Error(r.error);
     const meas = r.heatFactor?.inputs.find((i) => i.kind === "measurement");
     if (!meas || meas.kind !== "measurement") throw new Error("열량계수 근거 누락");
-    expect(meas.measurement.sourceCell).toBe("_Law&GL22!O69");
+    const ps = meas.measurement.primarySource;
+    expect(ps.kind).toBe("ipcc-2006");
+    expect(ps.docId).toBe("ipcc-2006-vol2-ch1");
+    expect(ps.url).toBeDefined();
+  });
+
+  it("도시가스(LNG) T2 산화계수 → K-ETS 지침 별첨6", () => {
+    const r = calculateScope1({
+      fuelId: "도시가스LNG",
+      amount: 1,
+      heatTier: "T2",
+      efTier: "T2",
+      gwpStandard: "SAR",
+    });
+    if ("error" in r) throw new Error(r.error);
+    const meas = r.oxidation?.inputs.find((i) => i.kind === "measurement");
+    if (!meas || meas.kind !== "measurement") throw new Error("산화계수 근거 누락");
+    const ps = meas.measurement.primarySource;
+    expect(ps.kind).toBe("kets-guideline");
+    expect(ps.docId).toBe("kets-annex-6");
+  });
+
+  it("GWP (SAR) → 국가 인벤토리 보고서 (한국이 채택한 GWP)", () => {
+    const r = calculateScope1({
+      fuelId: "아역청탄-하위-유연탄",
+      amount: 1,
+      heatTier: "T1",
+      efTier: "T2",
+      gwpStandard: "SAR",
+    });
+    if ("error" in r) throw new Error(r.error);
+    const meas = r.co2.gwp.inputs.find((i) => i.kind === "measurement");
+    if (!meas || meas.kind !== "measurement") throw new Error("GWP 근거 누락");
+    const ps = meas.measurement.primarySource;
+    expect(ps.kind).toBe("national-inventory");
+    expect(ps.docId).toBe("national-inventory");
   });
 
   it("총 tCO2eq 는 세 GHG 종의 tCO2eq 로부터 파생된다 (감사자가 파고들 수 있음)", () => {

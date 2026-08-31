@@ -17,11 +17,13 @@
 
 **감사받는 숫자를 다루는 도구에서는 이 차이가 결정적이다.**
 
-carbontrace 는 웹으로 옮기되 이 감사성을 잃지 않는 것을 목표로 한다.
+carbontrace 는 웹으로 옮기되 이 감사성을 잃지 않는 것을 목표로 한다.  
+**단순히 "엑셀의 어느 셀에서 가져왔다" 가 아니라, 감사자가 원문서까지 바로 클릭해서 갈 수 있어야 한다** 는 것.
 
-- 결과 값 옆의 `i` 를 누르면 → 수식 · 대입된 각 계수 · 원본 xlsm 셀 주소 · 근거 문서가 다 열린다.
-- 파생값은 다시 파고들 수 있다. 최종적으로 xlsm 셀 좌표 (예: `_Law&GL22!J69`) 까지 도달한다.
-- 계산 엔진과 데이터를 완전히 분리했다. 각 값은 `{ value, unit, sourceCell, sourceDoc }` 형태로 나른다.
+- 결과 값 옆의 `i` 를 누르면 → 수식 · 대입된 각 계수 · **각 계수의 원문서 (IPCC PDF · GIR 공식자료 · K-ETS 지침) 링크** 가 다 열린다.
+- 파생값은 다시 파고들 수 있다. 트리를 계속 파내려가면 결국 감사 가능한 원문서에 도달한다.
+- 계산 엔진과 데이터를 완전히 분리했다. 각 값은 `{ value, unit, primarySource }` 형태로 나른다.
+  `primarySource` 는 발행처 · 판 · 표 · 페이지 · URL · 조사 성숙도(verified/documented/asserted/pending) 를 갖는다.
 
 ---
 
@@ -38,7 +40,7 @@ carbontrace 의 계산 엔진 결과를 소수점 10 자리 이상 자리에서 
 | N2O tCO2eq | `0.008202599999999999` | `0.008202599999999999` | ✅ PASS |
 
 ```bash
-npm test   # Vitest 파리티 6/6 PASS
+npm test   # Vitest 파리티 8/8 PASS
 ```
 
 ---
@@ -92,12 +94,13 @@ carbontrace/
 │  └─ build_scope1_data.py      # raw JSON → src/data/factors/*.gen.ts
 ├─ src/
 │  ├─ data/
+│  │  ├─ sources.ts             # 원문서 카탈로그 (IPCC · GIR · K-ETS · NIR · KDHC)
 │  │  ├─ raw/                   # 원본 xlsm 그대로 (git 커밋)
 │  │  └─ factors/
-│  │     ├─ types.ts            # Measurement, Fuel, EmissionFactorSet, ...
+│  │     ├─ types.ts            # Measurement (value + primarySource), Fuel, ...
 │  │     ├─ fuels.gen.ts        # 63개 연료 (자동 생성)
 │  │     ├─ oxidation.gen.ts    # 산화계수 (자동 생성)
-│  │     └─ gwp.gen.ts          # GWP 세트
+│  │     └─ gwp.gen.ts          # GWP 세트 (SAR/AR4/AR5/AR6)
 │  ├─ lib/calc/
 │  │  ├─ types.ts               # Calculated, CalculatedInput, Scope1Input/Result
 │  │  └─ scope1.ts              # Scope 1 계산 엔진 (원본 Main 시트 재현)
@@ -114,17 +117,31 @@ carbontrace/
 
 ---
 
-## 데이터 출처
+## 데이터 출처 (v0.1 카탈로그)
 
-| 항목 | 출처 |
-|---|---|
-| 연료 배출계수 T1 | IPCC 2006 Guidelines for National Greenhouse Gas Inventories, Table 1.4 |
-| 연료 배출계수 T2 | 온실가스종합정보센터 (GIR) 국가고유 배출계수 |
-| 열량계수 T1 | IPCC 2006 GL 순발열량 |
-| 열량계수 T2 | 국가고유 발열량 (별첨12) |
-| 산화계수 | 온실가스 배출권거래제 지침 (별첨6) |
-| GWP (SAR) | 국가 인벤토리 채택 (IPCC Second Assessment Report, 1995) |
-| GWP (AR4/AR5/AR6) | IPCC 각 개정판 100-year GWP |
+`src/data/sources.ts` 에 원문서 카탈로그를 두고 각 계수가 이 항목을 참조한다.
+성숙도(maturity) 는 이번 릴리스에서 다음 단계로 나눴다.
+
+- **verified** — 원문서 · 표 · 페이지 · 행까지 확인 완료
+- **documented** — 원문서 · 표 확인 완료
+- **asserted** — 문서명 · 표는 알지만 원문 재확인 예정
+- **pending** — 원문서 재추적 미완료
+
+| 항목 | 원문서 | 이번 릴리스 상태 |
+|---|---|---|
+| 연료 배출계수 T1 | IPCC 2006 GL Vol.2 Ch.1 (Table 1.2/1.4) | asserted |
+| 연료 배출계수 T2 | GIR 국가 고유 배출계수 (2017) | asserted |
+| 열량계수 T1 | IPCC 2006 GL Vol.2 Ch.1 | asserted |
+| 열량계수 T2 | K-ETS 지침 별첨12 (국가고유 발열량) | asserted |
+| 산화계수 T1 | IPCC 2006 GL Vol.2 Ch.2 (관례) | asserted |
+| 산화계수 T2 | K-ETS 지침 별첨6 | asserted |
+| GWP (SAR) | 국가 온실가스 인벤토리 보고서 채택 (원출처 IPCC SAR 1995) | documented |
+| GWP (AR4/5/6) | IPCC AR4 (2007) / AR5 (2014) / AR6 (2021) | documented |
+| 지역난방 열 배출계수 | 한국지역난방공사 공시 | documented (Scope 2 예정) |
+| GIR 국가 고유 배출계수 (2022 개정) | | pending (다음 릴리스에서 병합) |
+
+v0.1 은 대부분 `asserted` 상태로 시작한다.  
+"이 값이 어느 원문서에 있다" 는 알지만, **값 하나하나에 페이지·행까지 매핑하는 조사 릴리스** 를 별도로 돌려 `verified` 로 승격할 예정이다.
 
 ---
 
