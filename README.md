@@ -40,7 +40,7 @@ carbontrace 의 계산 엔진 결과를 소수점 10 자리 이상 자리에서 
 | N2O tCO2eq | `0.008202599999999999` | `0.008202599999999999` | ✅ PASS |
 
 ```bash
-npm test   # Vitest 파리티 8/8 PASS
+npm test   # Vitest 파리티 8/8 + verified 7/7 PASS
 ```
 
 ---
@@ -95,6 +95,8 @@ carbontrace/
 ├─ src/
 │  ├─ data/
 │  │  ├─ sources.ts             # 원문서 카탈로그 (IPCC · GIR · K-ETS · NIR · KDHC)
+│  │  ├─ verified/              # 값 수준 원문서 매핑 (조사 릴리스 산출물)
+│  │  │  └─ kets-annex-6.json   # ← 산화계수 6개 조항 위치 매핑
 │  │  ├─ raw/                   # 원본 xlsm 그대로 (git 커밋)
 │  │  └─ factors/
 │  │     ├─ types.ts            # Measurement (value + primarySource), Fuel, ...
@@ -112,7 +114,8 @@ carbontrace/
 │        ├─ page.tsx
 │        └─ Scope1Calculator.tsx
 └─ tests/
-   └─ scope1.parity.test.ts     # 원본 xlsm 값과 소수점 일치 검증
+   ├─ scope1.parity.test.ts     # 원본 xlsm 값과 소수점 일치 검증
+   └─ verified.sources.test.ts  # verified 매핑 승격 검증 (docId · row · maturity)
 ```
 
 ---
@@ -133,15 +136,29 @@ carbontrace/
 | 연료 배출계수 T2 | GIR 국가 고유 배출계수 (2017) | asserted |
 | 열량계수 T1 | IPCC 2006 GL Vol.2 Ch.1 | asserted |
 | 열량계수 T2 | K-ETS 지침 별첨12 (국가고유 발열량) | asserted |
-| 산화계수 T1 | IPCC 2006 GL Vol.2 Ch.2 (관례) | asserted |
-| 산화계수 T2 | K-ETS 지침 별첨6 | asserted |
+| 산화계수 T1 | K-ETS 지침 별표 6 (각 배출활동 §④) | **verified** (2026-09-02) |
+| 산화계수 T2 | K-ETS 지침 별표 6 (각 배출활동 §④) | **verified** (2026-09-02) |
 | GWP (SAR) | 국가 온실가스 인벤토리 보고서 채택 (원출처 IPCC SAR 1995) | documented |
 | GWP (AR4/5/6) | IPCC AR4 (2007) / AR5 (2014) / AR6 (2021) | documented |
 | 지역난방 열 배출계수 | 한국지역난방공사 공시 | documented (Scope 2 예정) |
 | GIR 국가 고유 배출계수 (2022 개정) | | pending (다음 릴리스에서 병합) |
 
 v0.1 은 대부분 `asserted` 상태로 시작한다.  
-"이 값이 어느 원문서에 있다" 는 알지만, **값 하나하나에 페이지·행까지 매핑하는 조사 릴리스** 를 별도로 돌려 `verified` 로 승격할 예정이다.
+"이 값이 어느 원문서에 있다" 는 알지만, **값 하나하나에 페이지·행까지 매핑하는 조사 릴리스** 를 별도로 돌려 `verified` 로 승격한다.
+
+### 조사 릴리스 파이프라인
+
+`src/data/verified/<doc-id>.json` 매핑 파일이 있으면 build 스크립트가:
+
+1. 각 값의 `primarySource` 를 `{ ...카탈로그상수, row, note, reviewedAt }` 로 확장
+2. `maturity` 를 `verified` 로 승격
+3. 매핑의 `expectedValue` 와 실제 데이터가 다르면 stderr 경고 후 승격 취소 (사일런트 승격 방지)
+
+`tests/verified.sources.test.ts` 가 승격된 값에 대해 `docId · row · maturity` 존재를 매 빌드마다 확인한다.
+
+**진행 상황**
+
+- ✅ 2026-09-02 · K-ETS 별표 6 산화계수 6개 값 — 각 배출활동 §④ 조항까지 매핑
 
 ---
 

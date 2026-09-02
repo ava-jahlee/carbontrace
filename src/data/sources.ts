@@ -109,19 +109,23 @@ export const IPCC_2006_VOL2_CH2: PrimarySource = {
 };
 
 /**
- * 온실가스 배출권거래제 지침 · 별첨6 (연료별 산화계수)
- * 환경부 고시.
+ * 온실가스 배출권거래제 지침 · 별표 6
+ * 정식 명칭: 「배출활동별 온실가스 배출량 등의 세부산정방법 및 기준 (제11조 관련)」
+ *
+ * 환경부 (現 기후에너지환경부) 고시. 산화계수는 이 별표 안의 각 배출활동
+ * (고정연소 고체/액체/기체) § "④ 산화계수 (fi)" 조항에 규정.
  */
 export const KETS_ANNEX_6: PrimarySource = {
   kind: "kets-guideline",
   docId: "kets-annex-6",
-  doc: "온실가스 배출권거래제의 배출량 보고 및 인증에 관한 지침 · 별첨6",
-  publisher: "환경부",
-  edition: "최신 고시",
-  part: "별첨6 (연료별 산화계수)",
-  maturity: "asserted",
-  reviewedAt: "2026-08-31",
-  note: "상온(고체/액체/기체) × Tier(T1/T2) 별 산화계수. 고시 개정 이력 확인 필요.",
+  doc: "온실가스 배출권거래제의 배출량 보고 및 인증에 관한 지침 · 별표 6",
+  publisher: "환경부 (現 기후에너지환경부)",
+  edition: "고시 제2025-64호 (2025-04-11 개정)",
+  part: "별표 6 「배출활동별 온실가스 배출량 등의 세부산정방법 및 기준」 (제11조 관련)",
+  url: "https://gmi.go.kr/upload/format/Attachment6_Scope.pdf",
+  maturity: "verified",
+  reviewedAt: "2026-09-02",
+  note: "산화계수는 각 배출활동(고정연소 고체·액체·기체) 산정방법론의 「④ 산화계수 (fi)」 조항에 규정. 값별 위치는 verified 매핑 참조.",
 };
 
 /**

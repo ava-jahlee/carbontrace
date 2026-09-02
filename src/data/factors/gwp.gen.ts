@@ -4,6 +4,7 @@
  *
  * 이 파일을 직접 편집하지 마세요.
  * primary source (원문서 카탈로그) 는 src/data/sources.ts 참조.
+ * 값 수준 원문서 매핑은 src/data/verified/*.json 참조.
  */
 
 import type { GwpTables } from "./types";

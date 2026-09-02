@@ -8,8 +8,10 @@ v0.2 (2026-08-31): 근거 구조 개편.
   변경:  { value, unit, primarySource: <문서 카탈로그 참조> }
          → 진짜 원문서 (IPCC PDF, GIR 공식 자료, K-ETS 지침 등) 로 바로 역추적.
 
-primarySource 는 src/data/sources.ts 의 상수를 TS 심볼로 직접 참조한다
-(플레이스홀더 __TS_REF__NAME__END__ 를 최종 렌더 시 심볼로 치환).
+v0.3 (2026-09-02): verified 매핑 파이프라인 도입.
+  src/data/verified/*.json 매핑 파일이 있으면
+  해당 값의 primarySource 를 { ...카탈로그상수, row, note, reviewedAt } 으로 확장하고
+  maturity 를 "verified" 로 승격. 매핑의 expectedValue 와 실제 값이 다르면 stderr 경고.
 
 Usage:  python scripts/build_scope1_data.py
 """
@@ -17,10 +19,13 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from pathlib import Path
 
-RAW_DIR = Path(__file__).resolve().parent.parent / "src" / "data" / "raw"
-OUT_DIR = Path(__file__).resolve().parent.parent / "src" / "data" / "factors"
+ROOT = Path(__file__).resolve().parent.parent
+RAW_DIR = ROOT / "src" / "data" / "raw"
+VERIFIED_DIR = ROOT / "src" / "data" / "verified"
+OUT_DIR = ROOT / "src" / "data" / "factors"
 
 # ─────────────────────────────────────────────────────────────
 # _Law&GL22 실제 컬럼 매핑
@@ -56,6 +61,93 @@ SRC_KETS_A6 = "KETS_ANNEX_6"
 SRC_KETS_A12 = "KETS_ANNEX_12"
 SRC_GIR_17 = "GIR_EF_2017"
 
+# 카탈로그 상수명 → docId (verified 매핑의 docId 와 매칭용)
+DOC_ID_BY_SYMBOL = {
+    "IPCC_2006_VOL2_CH1": "ipcc-2006-vol2-ch1",
+    "IPCC_2006_VOL2_CH2": "ipcc-2006-vol2-ch2",
+    "KETS_ANNEX_6": "kets-annex-6",
+    "KETS_ANNEX_12": "kets-annex-12",
+    "GIR_EF_2017": "gir-ef-2017",
+    "GIR_EF_2022": "gir-ef-2022",
+    "NATIONAL_INVENTORY_REPORT": "national-inventory",
+    "IPCC_SAR": "ipcc-sar-1995",
+    "IPCC_AR4": "ipcc-ar4-2007",
+    "IPCC_AR5": "ipcc-ar5-2014",
+    "IPCC_AR6": "ipcc-ar6-2021",
+    "KDHC_HEAT_EF": "kdhc-heat-ef",
+}
+
+# ─────────────────────────────────────────────────────────────
+# verified 매핑 로드 (docId → { lookup-key → override })
+# ─────────────────────────────────────────────────────────────
+
+_verified_by_doc: dict[str, dict] = {}
+_parity_warnings: list[str] = []
+
+
+def load_verified_mappings():
+    """src/data/verified/*.json 을 전부 로드. docId 별로 그룹."""
+    if not VERIFIED_DIR.exists():
+        return
+    for path in sorted(VERIFIED_DIR.glob("*.json")):
+        with path.open(encoding="utf-8") as fp:
+            data = json.load(fp)
+        doc_id = data.get("docId")
+        if not doc_id:
+            print(f"! [verified] {path.name} 에 docId 없음 — 건너뜀", file=sys.stderr)
+            continue
+        _verified_by_doc[doc_id] = {
+            "reviewedAt": data.get("reviewedAt"),
+            "reviewNote": data.get("reviewNote"),
+            "entries": data.get("entries", {}),
+        }
+        print(f"[verified] loaded {path.name}  ({len(data.get('entries', {}))} entries)")
+
+
+def get_verified_override(source_symbol: str, lookup_key: str, actual_value):
+    """이 값에 대한 verified 오버라이드가 있으면 반환. 값 불일치 시 warning."""
+    doc_id = DOC_ID_BY_SYMBOL.get(source_symbol)
+    if not doc_id or doc_id not in _verified_by_doc:
+        return None
+    doc = _verified_by_doc[doc_id]
+    entry = doc["entries"].get(lookup_key)
+    if not entry:
+        return None
+
+    # Parity check
+    expected = entry.get("expectedValue")
+    if expected is not None and actual_value is not None:
+        if not _values_close(expected, actual_value):
+            msg = (f"! [parity mismatch] {doc_id} / {lookup_key}: "
+                   f"expected={expected}, actual={actual_value}")
+            _parity_warnings.append(msg)
+            print(msg, file=sys.stderr)
+            return None  # 불일치 → 오버라이드 미적용 (asserted 유지)
+
+    override = {
+        "__spread__": source_symbol,
+        "maturity": "verified",
+    }
+    if "row" in entry:
+        override["row"] = entry["row"]
+    if "page" in entry:
+        override["page"] = entry["page"]
+    if "note" in entry:
+        override["note"] = entry["note"]
+    if doc.get("reviewedAt"):
+        override["reviewedAt"] = doc["reviewedAt"]
+    return override
+
+
+def _values_close(a: float, b: float, rel_tol: float = 1e-9, abs_tol: float = 1e-12) -> bool:
+    if a == b:
+        return True
+    return abs(a - b) <= max(rel_tol * max(abs(a), abs(b)), abs_tol)
+
+
+# ─────────────────────────────────────────────────────────────
+# xlsm 데이터 읽기 유틸
+# ─────────────────────────────────────────────────────────────
 
 def col_letter_to_index(letter: str) -> int:
     idx = 0
@@ -102,16 +194,37 @@ def slugify(text) -> str:
     return s
 
 
-def m(value, unit: str, primary_source_ref: str):
-    """감사 근거 포함 계수 값. 값이 없으면 None."""
+# ─────────────────────────────────────────────────────────────
+# Measurement 생성
+# ─────────────────────────────────────────────────────────────
+
+def m(value, unit: str, primary_source_ref: str, lookup_key: str | None = None):
+    """감사 근거 포함 계수 값. 값이 없으면 None.
+    lookup_key 가 주어지고 매칭되는 verified 오버라이드가 있으면
+    primarySource 를 spread 형태로 렌더한다.
+    """
     if value is None:
         return None
+
+    if lookup_key:
+        override = get_verified_override(primary_source_ref, lookup_key, value)
+        if override:
+            return {
+                "value": value,
+                "unit": unit,
+                "primarySource": override,
+            }
+
     return {
         "value": value,
         "unit": unit,
         "primarySource": f"__TS_REF__{primary_source_ref}__END__",
     }
 
+
+# ─────────────────────────────────────────────────────────────
+# 데이터 빌드
+# ─────────────────────────────────────────────────────────────
 
 def build_fuels(sheet):
     rows = sheet["rows"]
@@ -123,6 +236,7 @@ def build_fuels(sheet):
         if not name:
             continue
         state = cell_value(get_cell(rows, row_1based, COL_STATE))
+        fuel_id = slugify(name)
 
         t1_ef_unit = cell_value(get_cell(rows, row_1based, COL_T1_EF_UNIT)) or "kgGHG/TJ"
         t1_co2 = as_number(cell_value(get_cell(rows, row_1based, COL_T1_CO2)))
@@ -151,32 +265,32 @@ def build_fuels(sheet):
             activity_unit = "천m³-연료"
 
         fuel = {
-            "id": slugify(name),
+            "id": fuel_id,
             "category": category,
             "name": name,
             "state": state,
             "activityUnit": activity_unit,
             "heat": {
                 "unit": heat_unit,
-                "t1_net":   m(t1_net,   heat_unit or "MJ/kg", SRC_IPCC_CH1),
-                "t1_gross": m(t1_gross, heat_unit or "MJ/kg", SRC_IPCC_CH1),
-                "t2_net":   m(t2_net,   heat_unit or "MJ/kg", SRC_KETS_A12),
+                "t1_net":   m(t1_net,   heat_unit or "MJ/kg", SRC_IPCC_CH1, f"fuel.{fuel_id}.heat.t1_net"),
+                "t1_gross": m(t1_gross, heat_unit or "MJ/kg", SRC_IPCC_CH1, f"fuel.{fuel_id}.heat.t1_gross"),
+                "t2_net":   m(t2_net,   heat_unit or "MJ/kg", SRC_KETS_A12, f"fuel.{fuel_id}.heat.t2_net"),
             },
             "ef": {
                 "t1_unit": t1_ef_unit,
                 "t2_unit": t2_ef_unit,
                 "t1": {
-                    "tC_per_TJ": m(t1_tc,  "tC/TJ",    SRC_IPCC_CH1),
-                    "CO2":       m(t1_co2, t1_ef_unit, SRC_IPCC_CH1),
-                    "CH4":       m(t1_ch4, t1_ef_unit, SRC_IPCC_CH1),
-                    "N2O":       m(t1_n2o, t1_ef_unit, SRC_IPCC_CH1),
+                    "tC_per_TJ": m(t1_tc,  "tC/TJ",    SRC_IPCC_CH1, f"fuel.{fuel_id}.ef.t1.tC_per_TJ"),
+                    "CO2":       m(t1_co2, t1_ef_unit, SRC_IPCC_CH1, f"fuel.{fuel_id}.ef.t1.CO2"),
+                    "CH4":       m(t1_ch4, t1_ef_unit, SRC_IPCC_CH1, f"fuel.{fuel_id}.ef.t1.CH4"),
+                    "N2O":       m(t1_n2o, t1_ef_unit, SRC_IPCC_CH1, f"fuel.{fuel_id}.ef.t1.N2O"),
                 },
                 "t2": {
                     "group":     t2_group,
-                    "tC_per_TJ": m(t2_tc,  "tC/TJ",    SRC_GIR_17),
-                    "CO2":       m(t2_co2, t2_ef_unit, SRC_GIR_17),
-                    "CH4":       m(t2_ch4, t2_ef_unit, SRC_GIR_17),
-                    "N2O":       m(t2_n2o, t2_ef_unit, SRC_GIR_17),
+                    "tC_per_TJ": m(t2_tc,  "tC/TJ",    SRC_GIR_17, f"fuel.{fuel_id}.ef.t2.tC_per_TJ"),
+                    "CO2":       m(t2_co2, t2_ef_unit, SRC_GIR_17, f"fuel.{fuel_id}.ef.t2.CO2"),
+                    "CH4":       m(t2_ch4, t2_ef_unit, SRC_GIR_17, f"fuel.{fuel_id}.ef.t2.CH4"),
+                    "N2O":       m(t2_n2o, t2_ef_unit, SRC_GIR_17, f"fuel.{fuel_id}.ef.t2.N2O"),
                 },
             },
         }
@@ -186,7 +300,9 @@ def build_fuels(sheet):
 
 
 def build_oxidation(sheet):
-    """산화계수: _Law&GL22 상단 표. T1 은 IPCC 관례(기본 1), T2 는 K-ETS 별첨6."""
+    """산화계수: 사업자가 감사받을 때의 primary source 는 K-ETS 별표 6.
+    (별표 6 이 각 배출활동별로 T1=1.0, T2=값 을 모두 규정하고 있음.
+     IPCC 2006 GL Vol.2 Ch.2 는 그 상위 국제 관례이지만 국내 지침이 최종 근거.)"""
     rows = sheet["rows"]
     table = {}
     row_map = {"고체": 14, "액체": 15, "기체": 16}
@@ -194,48 +310,48 @@ def build_oxidation(sheet):
         t1 = as_number(cell_value(get_cell(rows, r, "M")))
         t2 = as_number(cell_value(get_cell(rows, r, "N")))
         table[state] = {
-            "t1": m(t1, "-", SRC_IPCC_CH2),
-            "t2": m(t2, "-", SRC_KETS_A6),
+            "t1": m(t1, "-", SRC_KETS_A6, f"oxidation.{state}.t1"),
+            "t2": m(t2, "-", SRC_KETS_A6, f"oxidation.{state}.t2"),
         }
     return table
 
 
 def build_gwp():
     """GWP: 각 개정판 IPCC 원서 직접 참조. 한국 국가 인벤토리는 SAR 채택."""
-    def g(value: float, ref: str):
-        return {
-            "value": value,
-            "unit": "-",
-            "primarySource": f"__TS_REF__{ref}__END__",
-        }
+    def g(value: float, ref: str, lookup_key: str):
+        return m(value, "-", ref, lookup_key)
 
     return {
         "SAR": {
             "label": "국가 인벤토리 (IPCC SAR 1995 채택)",
-            "CO2": g(1,   "NATIONAL_INVENTORY_REPORT"),
-            "CH4": g(21,  "NATIONAL_INVENTORY_REPORT"),
-            "N2O": g(310, "NATIONAL_INVENTORY_REPORT"),
+            "CO2": g(1,   "NATIONAL_INVENTORY_REPORT", "gwp.SAR.CO2"),
+            "CH4": g(21,  "NATIONAL_INVENTORY_REPORT", "gwp.SAR.CH4"),
+            "N2O": g(310, "NATIONAL_INVENTORY_REPORT", "gwp.SAR.N2O"),
         },
         "AR4": {
             "label": "IPCC AR4 (2007)",
-            "CO2": g(1,   "IPCC_AR4"),
-            "CH4": g(25,  "IPCC_AR4"),
-            "N2O": g(298, "IPCC_AR4"),
+            "CO2": g(1,   "IPCC_AR4", "gwp.AR4.CO2"),
+            "CH4": g(25,  "IPCC_AR4", "gwp.AR4.CH4"),
+            "N2O": g(298, "IPCC_AR4", "gwp.AR4.N2O"),
         },
         "AR5": {
             "label": "IPCC AR5 (2014)",
-            "CO2": g(1,   "IPCC_AR5"),
-            "CH4": g(28,  "IPCC_AR5"),
-            "N2O": g(265, "IPCC_AR5"),
+            "CO2": g(1,   "IPCC_AR5", "gwp.AR5.CO2"),
+            "CH4": g(28,  "IPCC_AR5", "gwp.AR5.CH4"),
+            "N2O": g(265, "IPCC_AR5", "gwp.AR5.N2O"),
         },
         "AR6": {
             "label": "IPCC AR6 (2021)",
-            "CO2": g(1,     "IPCC_AR6"),
-            "CH4": g(27.9,  "IPCC_AR6"),
-            "N2O": g(273,   "IPCC_AR6"),
+            "CO2": g(1,     "IPCC_AR6", "gwp.AR6.CO2"),
+            "CH4": g(27.9,  "IPCC_AR6", "gwp.AR6.CH4"),
+            "N2O": g(273,   "IPCC_AR6", "gwp.AR6.N2O"),
         },
     }
 
+
+# ─────────────────────────────────────────────────────────────
+# TS 렌더링
+# ─────────────────────────────────────────────────────────────
 
 TS_HEADER_TEMPLATE = """/**
  * carbontrace — Scope 1 계수 데이터.  자동 생성 파일.
@@ -243,6 +359,7 @@ TS_HEADER_TEMPLATE = """/**
  *
  * 이 파일을 직접 편집하지 마세요.
  * primary source (원문서 카탈로그) 는 src/data/sources.ts 참조.
+ * 값 수준 원문서 매핑은 src/data/verified/*.json 참조.
  */
 
 import type {{ {ts_types} }} from "./types";
@@ -253,7 +370,10 @@ export const {var_name}: {ts_type} = {body};
 
 
 def collect_refs(obj, out):
+    """트리를 순회하며 __TS_REF__ 마커와 __spread__ 심볼을 모두 수집."""
     if isinstance(obj, dict):
+        if "__spread__" in obj:
+            out.append(obj["__spread__"])
         for v in obj.values():
             collect_refs(v, out)
     elif isinstance(obj, list):
@@ -265,11 +385,35 @@ def collect_refs(obj, out):
             out.append(mm.group(1))
 
 
-def write_ts(path: Path, data, var_name: str, ts_type: str, ts_types_import: str, source_xlsm: str):
+def _render_ts_body(data) -> str:
     body = json.dumps(data, ensure_ascii=False, indent=2)
+
+    # 1) __spread__ 마커 처리: { "__spread__": "NAME", ...others } → { ...NAME, ...others }
+    #    가정: verified override 는 flat (내부에 중첩 {} 없음).
+    spread_pattern = re.compile(
+        r'\{\s*"__spread__"\s*:\s*"(\w+)"\s*,?\s*([^{}]*?)\s*\}',
+        re.DOTALL,
+    )
+
+    def spread_repl(match: re.Match) -> str:
+        symbol = match.group(1)
+        rest = match.group(2).strip().rstrip(",")
+        if rest:
+            return f"{{ ...{symbol}, {rest} }}"
+        return f"{{ ...{symbol} }}"
+
+    body = spread_pattern.sub(spread_repl, body)
+
+    # 2) 단순 __TS_REF__ 마커 치환
     body = re.sub(r'"__TS_REF__(\w+)__END__"', r"\1", body)
 
-    refs = []
+    return body
+
+
+def write_ts(path: Path, data, var_name: str, ts_type: str, ts_types_import: str, source_xlsm: str):
+    body = _render_ts_body(data)
+
+    refs: list[str] = []
     collect_refs(data, refs)
     imports_line = ""
     if refs:
@@ -288,8 +432,15 @@ def write_ts(path: Path, data, var_name: str, ts_type: str, ts_types_import: str
     print(f"[write] {path.name}  refs: {', '.join(sorted(set(refs))) if refs else '—'}")
 
 
+# ─────────────────────────────────────────────────────────────
+# 메인
+# ─────────────────────────────────────────────────────────────
+
 def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    load_verified_mappings()
+
     law_path = RAW_DIR / "sheet__Law&GL22.json"
     with law_path.open(encoding="utf-8") as fp:
         law = json.load(fp)
@@ -307,10 +458,30 @@ def main():
     write_ts(OUT_DIR / "oxidation.gen.ts", oxidation, "OXIDATION", "OxidationTable", "OxidationTable", source_xlsm)
     write_ts(OUT_DIR / "gwp.gen.ts",       gwp,       "GWP",       "GwpTables",      "GwpTables", source_xlsm)
 
+    # verified 승격 통계
+    verified_count = 0
+    def count_verified(obj):
+        nonlocal verified_count
+        if isinstance(obj, dict):
+            if "__spread__" in obj and obj.get("maturity") == "verified":
+                verified_count += 1
+            for v in obj.values():
+                count_verified(v)
+        elif isinstance(obj, list):
+            for v in obj:
+                count_verified(v)
+    count_verified(fuels)
+    count_verified(oxidation)
+    count_verified(gwp)
+
     print()
     print(f"fuels     : {len(fuels)} entries")
     print(f"oxidation : {list(oxidation.keys())}")
     print(f"gwp       : {list(gwp.keys())}")
+    print(f"verified  : {verified_count} measurements 승격됨")
+    if _parity_warnings:
+        print(f"! parity  : {len(_parity_warnings)} 불일치 발견 (위 로그 확인)")
+        sys.exit(2)
 
 
 if __name__ == "__main__":
