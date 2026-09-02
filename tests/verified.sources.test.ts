@@ -280,7 +280,8 @@ describe("verified: IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (T2 CH4·N2O, Residential+
     expect(n2o.value).toBe(4);
     expect(ch4.primarySource.docId).toBe("gir-ef-2017");
     expect(n2o.primarySource.docId).toBe("gir-ef-2017");
-    // 문서 자체는 아직 asserted (GIR_EF_2017 은 상수 정의에서 아직 verified 아님)
+    // GIR_EF_2017 문서 자체는 verified (2017년 승인 국가고유 배출계수) 이지만
+    // T2 CH4/N2O 는 verified 매핑 대상이 아니므로 row 없이 문서만 상속.
   });
 
   it("매립지·슬러지·기타 바이오가스 T2 는 xlsm 300/4 vs Table 2.5 5/0.1 → GIR 유지", () => {
@@ -440,29 +441,39 @@ describe("verified: K-ETS 별표 12 표 B (T2 국가고유 배출계수 21개 �
     expect(subBit!.ef.t2.tC_per_TJ!.primarySource.page).toBe("4");
   });
 
-  it("등유·경유·항공유 T2 는 xlsm 값과 별표 12 불일치 → GIR_EF_2017 유지 (verified 승격 안 됨)", () => {
+  it("등유·항공유 T2 는 xlsm 뒤바꿈 오작성 → GIR_EF_2017 asserted 유지 (verified 승격 안 됨, warning note)", () => {
     const kerosene = FUELS.find((f) => f.id === "등유-기타-등유");
-    const diesel = FUELS.find((f) => f.id === "경유-가스디젤-오일");
     const jet = FUELS.find((f) => f.id === "제트용-등유-항공유");
 
-    // xlsm 값
+    // xlsm 값 (뒤바뀜)
     expect(kerosene!.ef.t2.tC_per_TJ!.value).toBeCloseTo(19.931, 10);
-    expect(diesel!.ef.t2.tC_per_TJ!.value).toBeCloseTo(20.111, 10);
     expect(jet!.ef.t2.tC_per_TJ!.value).toBeCloseTo(19.969, 10);
 
-    // 원본 카탈로그 (GIR_EF_2017) 참조 · verified 승격 안 됨
-    for (const f of [kerosene!, diesel!, jet!]) {
+    for (const f of [kerosene!, jet!]) {
       const ps = f.ef.t2.tC_per_TJ!.primarySource;
       expect(ps.docId).toBe("gir-ef-2017");
-      // GIR_EF_2017 은 아직 문서 자체가 verified 아님 (asserted)
+      // verified 승격 안 됨 (row/page 없음, note 만 오버라이드)
       expect(ps.row).toBeUndefined();
+      expect(ps.note?.startsWith("⚠")).toBe(true);
     }
   });
 
-  it("도시가스(LNG) T2 도 GIR 별도 공표계수 채택 (별표 12 병합값 15,312 vs xlsm 15.272)", () => {
+  it("경유·도시가스(LNG) T2 는 GIR 2017년 승인 세분화값 verified 승격 (KEEI 표 17~ 열 대조)", () => {
+    const diesel = FUELS.find((f) => f.id === "경유-가스디젤-오일");
     const cityLng = FUELS.find((f) => f.id === "도시가스LNG");
+
+    expect(diesel!.ef.t2.tC_per_TJ!.value).toBeCloseTo(20.111, 10);
     expect(cityLng!.ef.t2.tC_per_TJ!.value).toBeCloseTo(15.272, 10);
-    expect(cityLng!.ef.t2.tC_per_TJ!.primarySource.docId).toBe("gir-ef-2017");
+
+    for (const f of [diesel!, cityLng!]) {
+      const ps = f.ef.t2.tC_per_TJ!.primarySource;
+      expect(ps.docId).toBe("gir-ef-2017");
+      expect(ps.maturity).toBe("verified");
+      expect(ps.row).toContain("국가고유 세분화값");
+      expect(ps.page).toContain("KEEI 표 2");
+      expect(ps.note).toContain("GIR 2017년 승인");
+      expect(ps.note).toContain("병합");
+    }
   });
 });
 
@@ -490,11 +501,9 @@ describe("documented: GIR 국가고유 배출계수 · 2022.1 공표 (연료연�
   });
 });
 
-describe("warning: xlsm T2 EF 4개 값 원출처 확인 요망 (asserted + ⚠ note)", () => {
+describe("warning: xlsm T2 EF 2개 값 원본 오작성 (등유·항공유 뒤바꿈)", () => {
   const kerosene = FUELS.find((f) => f.id === "등유-기타-등유");
-  const diesel = FUELS.find((f) => f.id === "경유-가스디젤-오일");
   const jet = FUELS.find((f) => f.id === "제트용-등유-항공유");
-  const cityLng = FUELS.find((f) => f.id === "도시가스LNG");
 
   it("등유·항공유: xlsm 이 별표 12 값을 뒤바꿔 넣은 오작성 (⚠ 프리픽스 + 상세 정정 지침)", () => {
     const kNote = kerosene!.ef.t2.tC_per_TJ!.primarySource.note;
@@ -515,48 +524,92 @@ describe("warning: xlsm T2 EF 4개 값 원출처 확인 요망 (asserted + ⚠ n
     expect(jNote).toContain("GIR 2022.1 항공유(JET-A1) = 19.956");
   });
 
-  it("경유·도시가스LNG: xlsm 값이 별표 12·GIR 2022.1 어느 것과도 일치 안 함 (⚠ 프리픽스 + 이전 판 추정 지침)", () => {
-    for (const [label, m] of [
-      ["경유", diesel!.ef.t2.tC_per_TJ!],
-      ["도시가스LNG", cityLng!.ef.t2.tC_per_TJ!],
-    ] as const) {
-      const note = m.primarySource.note;
-      expect(note, label).toBeDefined();
-      expect(note!.startsWith("⚠"), label).toBe(true);
-      expect(note, label).toContain("어느 것과도 일치하지 않음");
-      expect(note, label).toContain("GIR 이전 공표");
-      expect(note, label).toContain("재확보 후 검증");
-    }
-  });
-
-  it("4개 값 모두 asserted 유지 (verified 승격 안 됨) · reviewedAt 명시", () => {
+  it("2개 값 모두 asserted 유지 (verified 승격 안 됨) · reviewedAt 명시", () => {
     for (const [label, f] of [
       ["등유", kerosene!],
-      ["경유", diesel!],
       ["항공유", jet!],
-      ["도시가스LNG", cityLng!],
     ] as const) {
       const ps = f.ef.t2.tC_per_TJ!.primarySource;
       expect(ps.docId, label).toBe("gir-ef-2017");
       expect(ps.maturity, label).toBe("asserted");
       expect(ps.reviewedAt, label).toBe("2026-09-02");
-      // note 만 오버라이드되고 row/table/page 는 없음 (verified 승격이 아님)
       expect(ps.row, label).toBeUndefined();
     }
   });
 
-  it("CO2 계수도 tC 뒤바꿈에 따른 파생 오류 note 포함 (4개 fuel)", () => {
+  it("CO2 계수도 tC 뒤바꿈에 따른 파생 오류 note 포함 (2개 fuel)", () => {
     for (const [label, f, expected] of [
       ["등유", kerosene!, "별표 12 등유 = 73,153"],
       ["항공유", jet!, "별표 12 항공유 = 72,974"],
-      ["경유", diesel!, "별표 12 경유 = 73,153"],
-      ["도시가스LNG", cityLng!, "별표 12 병합값 = 56,144"],
     ] as const) {
       const note = f.ef.t2.CO2!.primarySource.note;
       expect(note, label).toBeDefined();
       expect(note!.startsWith("⚠"), label).toBe(true);
       expect(note, label).toContain(expected);
     }
+  });
+});
+
+describe("verified: GIR 2017년 승인 국가고유 배출계수 (2018.1 공표 추정 · 경유·도시가스LNG 세분화값)", () => {
+  it("문서 자체가 verified 로 승격됨 (KEEI 학술지 대조 근거)", async () => {
+    const { SOURCES } = await import("@/data/sources");
+    const gir17 = SOURCES.GIR_EF_2017;
+    expect(gir17.maturity).toBe("verified");
+    expect(gir17.doc).toContain("2017년 승인");
+    expect(gir17.edition).toContain("2018년 공표");
+    expect(gir17.part).toContain("연료연소 부문");
+    expect(gir17.table).toContain("GIR 승인 국가고유 배출계수");
+    expect(gir17.url).toContain("gir.go.kr");
+  });
+
+  it("KEEI 표 17~ 열 대표값이 note 에 하드코딩됨 (감사용 대조 자료)", async () => {
+    const { SOURCES } = await import("@/data/sources");
+    const gir17 = SOURCES.GIR_EF_2017;
+    expect(gir17.note).toBeDefined();
+    expect(gir17.note).toContain("경유 20.111");
+    expect(gir17.note).toContain("도시가스 15.272");
+    expect(gir17.note).toContain("등유 19.969");
+    expect(gir17.note).toContain("항공유 19.931");
+    expect(gir17.note).toContain("천연가스 15.312");
+    expect(gir17.note).toContain("국내무연탄 30.185");
+    expect(gir17.note).toContain("민선영·최용옥");
+    expect(gir17.note).toContain("에너지경제연구 23(1)");
+  });
+
+  it("경유 T2 tC/CO2 verified 승격 · GIR 2017 세분화값 20.111", () => {
+    const diesel = FUELS.find((f) => f.id === "경유-가스디젤-오일");
+    const tC = diesel!.ef.t2.tC_per_TJ!;
+    expect(tC.value).toBeCloseTo(20.111, 10);
+    expect(tC.primarySource.maturity).toBe("verified");
+    expect(tC.primarySource.docId).toBe("gir-ef-2017");
+    expect(tC.primarySource.row).toContain("경유");
+    expect(tC.primarySource.row).toContain("세분화값");
+    expect(tC.primarySource.page).toContain("KEEI 표 2");
+    expect(tC.primarySource.note).toContain("2017년 승인");
+    expect(tC.primarySource.note).toContain("등유·경유를 병합값(19,969)");
+
+    const co2 = diesel!.ef.t2.CO2!;
+    expect(co2.value).toBeCloseTo(73740.333333, 4);
+    expect(co2.primarySource.maturity).toBe("verified");
+    expect(co2.primarySource.note).toContain("20.111 × 44/12 × 1000");
+  });
+
+  it("도시가스LNG T2 tC/CO2 verified 승격 · GIR 2017 세분화값 15.272", () => {
+    const cityLng = FUELS.find((f) => f.id === "도시가스LNG");
+    const tC = cityLng!.ef.t2.tC_per_TJ!;
+    expect(tC.value).toBeCloseTo(15.272, 10);
+    expect(tC.primarySource.maturity).toBe("verified");
+    expect(tC.primarySource.docId).toBe("gir-ef-2017");
+    expect(tC.primarySource.row).toContain("도시가스");
+    expect(tC.primarySource.row).toContain("세분화값");
+    expect(tC.primarySource.page).toContain("KEEI 표 2");
+    expect(tC.primarySource.note).toContain("2017년 승인");
+    expect(tC.primarySource.note).toContain("천연가스·도시가스LNG 를 병합값(15,312)");
+
+    const co2 = cityLng!.ef.t2.CO2!;
+    expect(co2.value).toBeCloseTo(55997.333333, 4);
+    expect(co2.primarySource.maturity).toBe("verified");
+    expect(co2.primarySource.note).toContain("15.272 × 44/12 × 1000");
   });
 });
 

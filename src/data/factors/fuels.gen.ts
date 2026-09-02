@@ -637,13 +637,15 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 19.969,
           "unit": "tC/TJ",
-          "primarySource": { ...GIR_EF_2017, "note": "⚠ xlsm 원본 오작성: K-ETS 별표 12 표 B 항공유값(19.931) 대신 별표 12 등유값(19.969)을 잘못 넣음. 정확한 별표 12 항공유 = 19.931 kgC/TJ · GIR 2022.1 항공유(JET-A1) = 19.956 kgC/TJ. 감사 시 xlsm 원본 정정 필요.",
+          "primarySource": { ...GIR_EF_2017, "maturity": "asserted",
+            "note": "⚠ xlsm 원본 오작성: K-ETS 별표 12 표 B 항공유값(19.931) 대신 별표 12 등유값(19.969)을 잘못 넣음. 정확한 별표 12 항공유 = 19.931 kgC/TJ · GIR 2017 항공유 = 19.931 · GIR 2022.1 항공유(JET-A1) = 19.956. 감사 시 xlsm 원본 정정 필요.",
             "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73219.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": { ...GIR_EF_2017, "note": "⚠ xlsm 원본 오작성 (tC 값 뒤바꿈에 따른 CO2 계수 파생 오류). 정확한 값 (tC × 44/12 × 1000): 별표 12 항공유 = 72,974 kgCO2/TJ · GIR 2022.1 항공유(JET-A1) = 73,152 kgCO2/TJ.",
+          "primarySource": { ...GIR_EF_2017, "maturity": "asserted",
+            "note": "⚠ xlsm 원본 오작성 (tC 값 뒤바꿈에 따른 CO2 계수 파생 오류). 정확한 값 (tC × 44/12 × 1000): 별표 12 항공유 = 72,974 kgCO2/TJ · GIR 2022.1 항공유(JET-A1) = 73,152 kgCO2/TJ.",
             "reviewedAt": "2026-09-02" }
         },
         "CH4": {
@@ -745,13 +747,15 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 19.931,
           "unit": "tC/TJ",
-          "primarySource": { ...GIR_EF_2017, "note": "⚠ xlsm 원본 오작성: K-ETS 별표 12 표 B 등유값(19.969) 대신 별표 12 항공유값(19.931)을 잘못 넣음. 정확한 별표 12 등유 = 19.969 kgC/TJ · GIR 2022.1 등유 = 19.926 kgC/TJ. 감사 시 xlsm 원본 정정 필요.",
+          "primarySource": { ...GIR_EF_2017, "maturity": "asserted",
+            "note": "⚠ xlsm 원본 오작성: K-ETS 별표 12 표 B 등유값(19.969) 대신 별표 12 항공유값(19.931)을 잘못 넣음. 정확한 별표 12 등유 = 19.969 kgC/TJ · GIR 2017 등유 = 19.969 · GIR 2022.1 등유 = 19.926. 감사 시 xlsm 원본 정정 필요.",
             "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73080.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": { ...GIR_EF_2017, "note": "⚠ xlsm 원본 오작성 (tC 값 뒤바꿈에 따른 CO2 계수 파생 오류). 정확한 값 (tC × 44/12 × 1000): 별표 12 등유 = 73,153 kgCO2/TJ · GIR 2022.1 등유 = 73,062 kgCO2/TJ.",
+          "primarySource": { ...GIR_EF_2017, "maturity": "asserted",
+            "note": "⚠ xlsm 원본 오작성 (tC 값 뒤바꿈에 따른 CO2 계수 파생 오류). 정확한 값 (tC × 44/12 × 1000): 별표 12 등유 = 73,153 kgCO2/TJ · GIR 2022.1 등유 = 73,062 kgCO2/TJ.",
             "reviewedAt": "2026-09-02" }
         },
         "CH4": {
@@ -939,13 +943,19 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 20.111,
           "unit": "tC/TJ",
-          "primarySource": { ...GIR_EF_2017, "note": "⚠ xlsm 값 20.111 은 K-ETS 별표 12 표 B(19.969 · 등유·경유 병합값) · GIR 2022.1(20.090) 어느 것과도 일치하지 않음. GIR 이전 공표(2011년대 초기 판) 참조로 추정. GIR 이전 판 PDF 재확보 후 검증 필요.",
+          "primarySource": { ...GIR_EF_2017, "maturity": "verified",
+            "row": "1A 연료연소 · 석유 · 경유 · 국가고유 세분화값",
+            "page": "KEEI 표 2 · 17~ 열 · 경유 20.111",
+            "note": "GIR 2017년 승인 국가고유 배출계수 (2018.1 공표 추정). 별표 12 표 B 는 등유·경유를 병합값(19,969)으로 규정하나 GIR 원본은 두 연료를 세분화. 후속판 GIR 2022.1 = 20.090 kgC/TJ.",
             "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73740.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": { ...GIR_EF_2017, "note": "⚠ xlsm 값이 별표 12·GIR 2022.1 어느 것과도 일치하지 않음 (tC=20.111 파생). 정확한 값: 별표 12 경유 = 73,153 kgCO2/TJ · GIR 2022.1 경유 = 73,663 kgCO2/TJ.",
+          "primarySource": { ...GIR_EF_2017, "maturity": "verified",
+            "row": "1A 연료연소 · 석유 · 경유 · CO2 유도값",
+            "page": "GIR 2017 세분화 tC 20.111 × 44/12 × 1000",
+            "note": "GIR 2017년 승인 세분화 tC (20.111) 기반 CO2 배출계수. 계산식: 20.111 × 44/12 × 1000 = 73,740 kgCO2/TJ. 별표 12 표 B 병합값 대신 GIR 원본 세분화값 준용. 후속판 GIR 2022.1 경유 CO2 = 73,663 kgCO2/TJ (tC 20.090 유도).",
             "reviewedAt": "2026-09-02" }
         },
         "CH4": {
@@ -4335,13 +4345,19 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 15.272,
           "unit": "tC/TJ",
-          "primarySource": { ...GIR_EF_2017, "note": "⚠ xlsm 값 15.272 는 K-ETS 별표 12 표 B(15.312 · 천연가스LNG·도시가스LNG 병합값) · GIR 2022.1(15.236) 어느 것과도 일치하지 않음. GIR 이전 공표 판 참조로 추정. GIR 이전 판 PDF 재확보 후 검증 필요.",
+          "primarySource": { ...GIR_EF_2017, "maturity": "verified",
+            "row": "1A 연료연소 · 가스 · 도시가스 · 국가고유 세분화값",
+            "page": "KEEI 표 2 · 17~ 열 · 도시가스 15.272",
+            "note": "GIR 2017년 승인 국가고유 배출계수 (2018.1 공표 추정). 별표 12 표 B 는 천연가스·도시가스LNG 를 병합값(15,312)으로 규정하나 GIR 원본은 두 연료를 세분화. 도시가스는 정제 과정에서 CH4 함량이 미세 조정되어 순수 LNG 대비 tC 가 낮음. 후속판 GIR 2022.1 = 15.236 kgC/TJ.",
             "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 55997.333333333336,
           "unit": "kgGHG/TJ",
-          "primarySource": { ...GIR_EF_2017, "note": "⚠ xlsm 값이 별표 12·GIR 2022.1 어느 것과도 일치하지 않음 (tC=15.272 파생). 정확한 값: 별표 12 병합값 = 56,144 kgCO2/TJ · GIR 2022.1 도시가스(LNG) = 55,865 kgCO2/TJ.",
+          "primarySource": { ...GIR_EF_2017, "maturity": "verified",
+            "row": "1A 연료연소 · 가스 · 도시가스 · CO2 유도값",
+            "page": "GIR 2017 세분화 tC 15.272 × 44/12 × 1000",
+            "note": "GIR 2017년 승인 세분화 tC (15.272) 기반 CO2 배출계수. 계산식: 15.272 × 44/12 × 1000 = 55,997 kgCO2/TJ. 별표 12 표 B 병합값(56,144) 대신 GIR 원본 세분화값 준용. 후속판 GIR 2022.1 도시가스LNG CO2 = 55,865 kgCO2/TJ (tC 15.236 유도).",
             "reviewedAt": "2026-09-02" }
         },
         "CH4": {
