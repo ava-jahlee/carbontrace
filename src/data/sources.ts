@@ -115,11 +115,11 @@ export const IPCC_2006_VOL2_CH2: PrimarySource = {
   publisher: "IPCC (Intergovernmental Panel on Climate Change)",
   edition: "2006",
   part: "Volume 2 (Energy) · Chapter 2 (Stationary Combustion)",
-  table: "Table 2.2 (Energy Industries, p.2.16–2.17) · Table 2.3/2.4/2.5 (섹터별)",
+  table: "Table 2.2 (Energy Industries, p.2.16–2.17) · Table 2.5 (Residential and Agriculture, p.2.22–2.23)",
   url: "https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_2_Ch2_Stationary_Combustion.pdf",
   maturity: "verified",
   reviewedAt: "2026-09-02",
-  note: "T1 CH4/N2O 배출계수. 섹터별 4개 표가 있으며 본 계산기는 Energy Industries (Table 2.2) 채택 — 우리 xlsm 의 석탄류 CH4=1 값이 T2.2 와 일치 (T2.3/T2.4=10, T2.5=300 이 아님).",
+  note: "CH4/N2O 배출계수 원출처. Tier 1 = Table 2.2 (Energy Industries, 109개 값 verified). Tier 2 = Table 2.5 (Residential and Agriculture, 90개 값 verified). K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값의 실제 원출처는 지침이 아니라 IPCC 다른 부문 표 (원본 xlsm 저자가 T1=Energy Industries, T2=Residential 두 부문을 담아둔 것으로 해석). 원본 xlsm 오작성 36건 발견 (석탄 N2O Peat 값 오적용, 여러 gas 류 그룹 오분류) 은 GIR_EF_2017 유지.",
 };
 
 /**
@@ -139,7 +139,7 @@ export const KETS_ANNEX_6: PrimarySource = {
   url: "https://gmi.go.kr/upload/format/Attachment6_Scope.pdf",
   maturity: "verified",
   reviewedAt: "2026-09-02",
-  note: "산화계수는 각 배출활동(고정연소 고체·액체·기체) 산정방법론의 「④ 산화계수 (fi)」 조항에 규정. 값별 위치는 verified 매핑 참조.",
+  note: "산화계수는 각 배출활동(고정연소 고체·액체·기체) 산정방법론의 「④ 산화계수 (fi)」 조항에 규정. 값별 위치는 verified 매핑 참조. 별표 6 은 CH4/N2O 배출계수를 Tier 1 만 규정 (별표 10 IPCC 기본 배출계수 인용) 하며 Tier 2 CH4/N2O 는 규정하지 않음 → xlsm T2 CH4/N2O 값의 실제 원출처는 IPCC Vol.2 Ch.2 Table 2.5 (Residential and Agriculture) 로 매핑됨.",
 };
 
 /**

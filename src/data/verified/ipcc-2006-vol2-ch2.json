@@ -2,8 +2,32 @@
   "$schema": "verified-source-map v1",
   "docId": "ipcc-2006-vol2-ch2",
   "reviewedAt": "2026-09-02",
-  "reviewNote": "IPCC 2006 Guidelines for National Greenhouse Gas Inventories · Volume 2 (Energy) · Chapter 2 (Stationary Combustion) 원문 PDF (https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_2_Ch2_Stationary_Combustion.pdf) Table 2.2 (Energy Industries, p.2.16–2.17) 직접 확인. 우리 xlsm 은 K-ETS 대상 사업체 배출을 상정하므로 Table 2.2 (Energy Industries) 를 채택. 석탄류 CH4=1 값이 T2.2 와 정확히 일치 (T2.3/T2.4=10, T2.5=300 이 아님).",
+  "reviewNote": "IPCC 2006 GL Vol.2 (Energy) · Chapter 2 (Stationary Combustion). T1 CH4/N2O = Table 2.2 (Energy Industries, p.2.16-2.17). T2 CH4/N2O = Table 2.5 (Residential and Agriculture/Forestry/Fishing, p.2.22-2.23). 원본 xlsm 이 T1/T2 컬럼에 IPCC 두 부문 표를 나눠 담은 것으로 확인. K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 값의 실제 원출처는 지침이 아닌 IPCC. 일치하는 값은 verified 승격, 불일치 값은 GIR_EF_2017 유지 (원본 xlsm 오작성 의심).",
   "entries": {
+    "fuel.B-A유.ef.t2.CH4": {
+      "row": "Table 2.5 · Residual Fuel Oil · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.B-A유.ef.t2.N2O": {
+      "row": "Table 2.5 · Residual Fuel Oil · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.B-B유.ef.t2.CH4": {
+      "row": "Table 2.5 · Residual Fuel Oil · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.B-B유.ef.t2.N2O": {
+      "row": "Table 2.5 · Residual Fuel Oil · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.B-C유-잔여-석유연료.ef.t1.CH4": {
       "row": "Table 2.2 · Residual Fuel Oil · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -16,6 +40,18 @@
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.B-C유-잔여-석유연료.ef.t2.CH4": {
+      "row": "Table 2.5 · Residual Fuel Oil · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.B-C유-잔여-석유연료.ef.t2.N2O": {
+      "row": "Table 2.5 · Residual Fuel Oil · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.LPG-액화석유가스.ef.t1.CH4": {
       "row": "Table 2.2 · Liquefied Petroleum Gases · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -27,6 +63,18 @@
       "page": "2.16–2.17",
       "expectedValue": 0.1,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.LPG-액화석유가스.ef.t2.CH4": {
+      "row": "Table 2.5 · Liquefied Petroleum Gases · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 5.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.LPG-액화석유가스.ef.t2.N2O": {
+      "row": "Table 2.5 · Liquefied Petroleum Gases · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.1,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.가스-공장-코크스-가스-코크스.ef.t1.CH4": {
       "row": "Table 2.2 · Gas Coke · CH4 Emission Factor",
@@ -64,6 +112,12 @@
       "expectedValue": 1.5,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.갈색-연탄.ef.t2.CH4": {
+      "row": "Table 2.5 · Brown Coal Briquettes · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.갈탄.ef.t1.CH4": {
       "row": "Table 2.2 · Lignite · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -76,6 +130,12 @@
       "expectedValue": 1.5,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.갈탄.ef.t2.CH4": {
+      "row": "Table 2.5 · Lignite · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.경유-가스디젤-오일.ef.t1.CH4": {
       "row": "Table 2.2 · Gas/Diesel Oil · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -87,6 +147,18 @@
       "page": "2.16–2.17",
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.경유-가스디젤-오일.ef.t2.CH4": {
+      "row": "Table 2.5 · Gas/Diesel Oil · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.경유-가스디젤-오일.ef.t2.N2O": {
+      "row": "Table 2.5 · Gas/Diesel Oil · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.고로가스.ef.t1.CH4": {
       "row": "Table 2.2 · Blast Furnace Gas · CH4 Emission Factor",
@@ -111,6 +183,12 @@
       "page": "2.16–2.17",
       "expectedValue": 1.5,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.국내-무연탄.ef.t2.CH4": {
+      "row": "Table 2.5 · Anthracite · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.기타-바이오가스.ef.t1.CH4": {
       "row": "Table 2.2 · Other Biogas · CH4 Emission Factor",
@@ -148,6 +226,18 @@
       "expectedValue": 4.0,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.기타-주요한-고체-바이오매스.ef.t2.CH4": {
+      "row": "Table 2.5 · Other Primary Solid Biomass · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.기타-주요한-고체-바이오매스.ef.t2.N2O": {
+      "row": "Table 2.5 · Other Primary Solid Biomass · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 4.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.납사-나프타.ef.t1.CH4": {
       "row": "Table 2.2 · Naphtha · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -159,6 +249,42 @@
       "page": "2.16–2.17",
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.납사-나프타.ef.t2.CH4": {
+      "row": "Table 2.5 · Naphtha · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.납사-나프타.ef.t2.N2O": {
+      "row": "Table 2.5 · Naphtha · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.도시가스LNG.ef.t2.CH4": {
+      "row": "Table 2.5 · Natural Gas (도시가스LNG 준용) · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 5.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.도시가스LNG.ef.t2.N2O": {
+      "row": "Table 2.5 · Natural Gas (도시가스LNG 준용) · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.1,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.도시가스LPG.ef.t2.CH4": {
+      "row": "Table 2.5 · Liquefied Petroleum Gases (도시가스LPG 준용) · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 5.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.도시가스LPG.ef.t2.N2O": {
+      "row": "Table 2.5 · Liquefied Petroleum Gases (도시가스LPG 준용) · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.1,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.도시폐기물-바이오매스.ef.t1.CH4": {
       "row": "Table 2.2 · Municipal Wastes (biomass fraction) · CH4 Emission Factor",
@@ -172,6 +298,18 @@
       "expectedValue": 4.0,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.도시폐기물-바이오매스.ef.t2.CH4": {
+      "row": "Table 2.5 · Municipal Wastes (biomass fraction) [Table 2.4 준용] · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.도시폐기물-바이오매스.ef.t2.N2O": {
+      "row": "Table 2.5 · Municipal Wastes (biomass fraction) [Table 2.4 준용] · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 4.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.도시폐기물-비-바이오매스.ef.t1.CH4": {
       "row": "Table 2.2 · Municipal Wastes (non-biomass fraction) · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -184,6 +322,18 @@
       "expectedValue": 4.0,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.도시폐기물-비-바이오매스.ef.t2.CH4": {
+      "row": "Table 2.5 · Municipal Wastes (non-biomass fraction) · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.도시폐기물-비-바이오매스.ef.t2.N2O": {
+      "row": "Table 2.5 · Municipal Wastes (non-biomass fraction) · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 4.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.등유-기타-등유.ef.t1.CH4": {
       "row": "Table 2.2 · Other Kerosene · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -195,6 +345,18 @@
       "page": "2.16–2.17",
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.등유-기타-등유.ef.t2.CH4": {
+      "row": "Table 2.5 · Other Kerosene · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.등유-기타-등유.ef.t2.N2O": {
+      "row": "Table 2.5 · Other Kerosene · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.매립지-가스.ef.t1.CH4": {
       "row": "Table 2.2 · Landfill Gas · CH4 Emission Factor",
@@ -220,11 +382,35 @@
       "expectedValue": 4.0,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.목재목재폐기물.ef.t2.CH4": {
+      "row": "Table 2.5 · Wood / Wood Waste · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.목재목재폐기물.ef.t2.N2O": {
+      "row": "Table 2.5 · Wood / Wood Waste · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 4.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.목탄.ef.t1.N2O": {
       "row": "Table 2.2 · Charcoal · N2O Emission Factor",
       "page": "2.16–2.17",
       "expectedValue": 4.0,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.목탄.ef.t2.CH4": {
+      "row": "Table 2.5 · Charcoal · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 200.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.목탄.ef.t2.N2O": {
+      "row": "Table 2.5 · Charcoal · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 1.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.바이오-가솔린.ef.t1.CH4": {
       "row": "Table 2.2 · Biogasoline · CH4 Emission Factor",
@@ -238,6 +424,18 @@
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.바이오-가솔린.ef.t2.CH4": {
+      "row": "Table 2.5 · Biogasoline · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.바이오-가솔린.ef.t2.N2O": {
+      "row": "Table 2.5 · Biogasoline · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.바이오-디젤.ef.t1.CH4": {
       "row": "Table 2.2 · Biodiesels (Liquid) · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -249,6 +447,54 @@
       "page": "2.16–2.17",
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.바이오-디젤.ef.t2.CH4": {
+      "row": "Table 2.5 · Biodiesels · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.바이오-디젤.ef.t2.N2O": {
+      "row": "Table 2.5 · Biodiesels · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.부생연료-1호.ef.t2.CH4": {
+      "row": "Table 2.5 · Residual Fuel Oil (부생연료는 액체석유 준용) · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.부생연료-1호.ef.t2.N2O": {
+      "row": "Table 2.5 · Residual Fuel Oil (부생연료는 액체석유 준용) · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.부생연료-2호.ef.t2.CH4": {
+      "row": "Table 2.5 · Residual Fuel Oil (부생연료는 액체석유 준용) · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.부생연료-2호.ef.t2.N2O": {
+      "row": "Table 2.5 · Residual Fuel Oil (부생연료는 액체석유 준용) · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.부탄LPG3호.ef.t2.CH4": {
+      "row": "Table 2.5 · Liquefied Petroleum Gases (부탄은 LPG 준용) · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 5.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.부탄LPG3호.ef.t2.N2O": {
+      "row": "Table 2.5 · Liquefied Petroleum Gases (부탄은 LPG 준용) · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.1,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.산소-강철로-가스.ef.t1.CH4": {
       "row": "Table 2.2 · Oxygen Steel Furnace Gas · CH4 Emission Factor",
@@ -274,6 +520,18 @@
       "expectedValue": 4.0,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.산업-폐기물.ef.t2.CH4": {
+      "row": "Table 2.5 · Industrial Wastes · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.산업-폐기물.ef.t2.N2O": {
+      "row": "Table 2.5 · Industrial Wastes · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 4.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.석유-코크스.ef.t1.CH4": {
       "row": "Table 2.2 · Petroleum Coke · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -285,6 +543,18 @@
       "page": "2.16–2.17",
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.석유-코크스.ef.t2.CH4": {
+      "row": "Table 2.5 · Petroleum Coke · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.석유-코크스.ef.t2.N2O": {
+      "row": "Table 2.5 · Petroleum Coke · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.슬러지-가스.ef.t1.CH4": {
       "row": "Table 2.2 · Sludge Gas · CH4 Emission Factor",
@@ -310,6 +580,18 @@
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.아스팔트-역청.ef.t2.CH4": {
+      "row": "Table 2.5 · Bitumen · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.아스팔트-역청.ef.t2.N2O": {
+      "row": "Table 2.5 · Bitumen · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.아역청탄-하위-유연탄.ef.t1.CH4": {
       "row": "Table 2.2 · Sub-Bituminous Coal · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -321,6 +603,12 @@
       "page": "2.16–2.17",
       "expectedValue": 1.5,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.아역청탄-하위-유연탄.ef.t2.CH4": {
+      "row": "Table 2.5 · Sub-Bituminous Coal · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.아황산염-잿물.ef.t1.CH4": {
       "row": "Table 2.2 · Sulphite lyes (black liquor) · CH4 Emission Factor",
@@ -358,6 +646,18 @@
       "expectedValue": 0.1,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.에탄.ef.t2.CH4": {
+      "row": "Table 2.5 · Ethane · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 5.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.에탄.ef.t2.N2O": {
+      "row": "Table 2.5 · Ethane · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.1,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.연료용-수입-무연탄.ef.t1.CH4": {
       "row": "Table 2.2 · Anthracite · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -369,6 +669,12 @@
       "page": "2.16–2.17",
       "expectedValue": 1.5,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.연료용-수입-무연탄.ef.t2.CH4": {
+      "row": "Table 2.5 · Anthracite · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.연료용-유연탄-기타-유연탄.ef.t1.CH4": {
       "row": "Table 2.2 · Other Bituminous Coal · CH4 Emission Factor",
@@ -382,6 +688,12 @@
       "expectedValue": 1.5,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.연료용-유연탄-기타-유연탄.ef.t2.CH4": {
+      "row": "Table 2.5 · Other Bituminous Coal · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.오리멀젼.ef.t1.CH4": {
       "row": "Table 2.2 · Orimulsion · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -393,6 +705,18 @@
       "page": "2.16–2.17",
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.오리멀젼.ef.t2.CH4": {
+      "row": "Table 2.5 · Orimulsion · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.오리멀젼.ef.t2.N2O": {
+      "row": "Table 2.5 · Orimulsion · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.용제-백유.ef.t1.CH4": {
       "row": "Table 2.2 · White Spirit and SBP · CH4 Emission Factor",
@@ -406,6 +730,18 @@
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.용제-백유.ef.t2.CH4": {
+      "row": "Table 2.5 · White Spirit and SBP · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.용제-백유.ef.t2.N2O": {
+      "row": "Table 2.5 · White Spirit and SBP · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.원료용-수입-무연탄.ef.t1.CH4": {
       "row": "Table 2.2 · Anthracite · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -417,6 +753,12 @@
       "page": "2.16–2.17",
       "expectedValue": 1.5,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.원료용-수입-무연탄.ef.t2.CH4": {
+      "row": "Table 2.5 · Anthracite · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.원료용-유연탄-점결탄.ef.t1.CH4": {
       "row": "Table 2.2 · Coking Coal · CH4 Emission Factor",
@@ -430,6 +772,12 @@
       "expectedValue": 1.5,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.원료용-유연탄-점결탄.ef.t2.CH4": {
+      "row": "Table 2.5 · Coking Coal · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.원유.ef.t1.CH4": {
       "row": "Table 2.2 · Crude Oil · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -441,6 +789,18 @@
       "page": "2.16–2.17",
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.원유.ef.t2.CH4": {
+      "row": "Table 2.5 · Crude Oil · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.원유.ef.t2.N2O": {
+      "row": "Table 2.5 · Crude Oil · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.유혈암-및-역청암.ef.t1.CH4": {
       "row": "Table 2.2 · Oil Shale and Tar Sands · CH4 Emission Factor",
@@ -454,6 +814,12 @@
       "expectedValue": 1.5,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.유혈암-및-역청암.ef.t2.CH4": {
+      "row": "Table 2.5 · Oil Shale and Tar Sands · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.윤활유.ef.t1.CH4": {
       "row": "Table 2.2 · Lubricants · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -465,6 +831,18 @@
       "page": "2.16–2.17",
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.윤활유.ef.t2.CH4": {
+      "row": "Table 2.5 · Lubricants · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.윤활유.ef.t2.N2O": {
+      "row": "Table 2.5 · Lubricants · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.이탄-토탄.ef.t1.CH4": {
       "row": "Table 2.2 · Peat · CH4 Emission Factor",
@@ -478,6 +856,18 @@
       "expectedValue": 1.5,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.이탄-토탄.ef.t2.CH4": {
+      "row": "Table 2.5 · Peat · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.이탄-토탄.ef.t2.N2O": {
+      "row": "Table 2.5 · Peat · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 1.4,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.재생유-기타석유제품.ef.t1.CH4": {
       "row": "Table 2.2 · Other Petroleum Products · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -490,6 +880,18 @@
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.재생유-기타석유제품.ef.t2.CH4": {
+      "row": "Table 2.5 · Other Petroleum Products · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.재생유-기타석유제품.ef.t2.N2O": {
+      "row": "Table 2.5 · Other Petroleum Products · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.정유공장-원료-정제-원료.ef.t1.CH4": {
       "row": "Table 2.2 · Refinery Feedstocks · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -501,6 +903,18 @@
       "page": "2.16–2.17",
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.정유공장-원료-정제-원료.ef.t2.CH4": {
+      "row": "Table 2.5 · Refinery Feedstocks · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.정유공장-원료-정제-원료.ef.t2.N2O": {
+      "row": "Table 2.5 · Refinery Feedstocks · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.정제가스.ef.t1.CH4": {
       "row": "Table 2.2 · Refinery Gas · CH4 Emission Factor",
@@ -526,6 +940,18 @@
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.제트용-가솔린.ef.t2.CH4": {
+      "row": "Table 2.5 · Jet Gasoline · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.제트용-가솔린.ef.t2.N2O": {
+      "row": "Table 2.5 · Jet Gasoline · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.제트용-등유-항공유.ef.t1.CH4": {
       "row": "Table 2.2 · Jet Kerosene · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -538,6 +964,18 @@
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.제트용-등유-항공유.ef.t2.CH4": {
+      "row": "Table 2.5 · Jet Kerosene · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.제트용-등유-항공유.ef.t2.N2O": {
+      "row": "Table 2.5 · Jet Kerosene · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.천연가스LNG.ef.t1.CH4": {
       "row": "Table 2.2 · Natural Gas · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -549,6 +987,18 @@
       "page": "2.16–2.17",
       "expectedValue": 0.1,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.천연가스LNG.ef.t2.CH4": {
+      "row": "Table 2.5 · Natural Gas · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 5.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.천연가스LNG.ef.t2.N2O": {
+      "row": "Table 2.5 · Natural Gas · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.1,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.코크스로-가스.ef.t1.CH4": {
       "row": "Table 2.2 · Coke Oven Gas · CH4 Emission Factor",
@@ -574,6 +1024,12 @@
       "expectedValue": 1.5,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.코크스로-코크스-석탄.ef.t2.CH4": {
+      "row": "Table 2.5 · Coke Oven Coke and Lignite Coke · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.콜타르.ef.t1.CH4": {
       "row": "Table 2.2 · Coal Tar · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -585,6 +1041,12 @@
       "page": "2.16–2.17",
       "expectedValue": 1.5,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.콜타르.ef.t2.CH4": {
+      "row": "Table 2.5 · Coal Tar · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.특허-연료.ef.t1.CH4": {
       "row": "Table 2.2 · Patent Fuel · CH4 Emission Factor",
@@ -598,6 +1060,12 @@
       "expectedValue": 1.5,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.특허-연료.ef.t2.CH4": {
+      "row": "Table 2.5 · Patent Fuel · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.파라핀왁스밀랍.ef.t1.CH4": {
       "row": "Table 2.2 · Paraffin Waxes · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -609,6 +1077,18 @@
       "page": "2.16–2.17",
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.파라핀왁스밀랍.ef.t2.CH4": {
+      "row": "Table 2.5 · Paraffin Waxes · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.파라핀왁스밀랍.ef.t2.N2O": {
+      "row": "Table 2.5 · Paraffin Waxes · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.폐유.ef.t1.CH4": {
       "row": "Table 2.2 · Waste Oils · CH4 Emission Factor",
@@ -622,6 +1102,30 @@
       "expectedValue": 4.0,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.폐유.ef.t2.CH4": {
+      "row": "Table 2.5 · Waste Oils · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 300.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.폐유.ef.t2.N2O": {
+      "row": "Table 2.5 · Waste Oils · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 4.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.프로판LPG1호.ef.t2.CH4": {
+      "row": "Table 2.5 · Liquefied Petroleum Gases (프로판은 LPG 준용) · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 5.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.프로판LPG1호.ef.t2.N2O": {
+      "row": "Table 2.5 · Liquefied Petroleum Gases (프로판은 LPG 준용) · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.1,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.항공용-가솔린.ef.t1.CH4": {
       "row": "Table 2.2 · Aviation Gasoline · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -633,6 +1137,18 @@
       "page": "2.16–2.17",
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.항공용-가솔린.ef.t2.CH4": {
+      "row": "Table 2.5 · Aviation Gasoline · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.항공용-가솔린.ef.t2.N2O": {
+      "row": "Table 2.5 · Aviation Gasoline · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     },
     "fuel.혈암유.ef.t1.CH4": {
       "row": "Table 2.2 · Shale Oil · CH4 Emission Factor",
@@ -646,6 +1162,18 @@
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
     },
+    "fuel.혈암유.ef.t2.CH4": {
+      "row": "Table 2.5 · Shale Oil · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.혈암유.ef.t2.N2O": {
+      "row": "Table 2.5 · Shale Oil · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
     "fuel.휘발유-자동차용-가솔린.ef.t1.CH4": {
       "row": "Table 2.2 · Motor Gasoline · CH4 Emission Factor",
       "page": "2.16–2.17",
@@ -657,6 +1185,18 @@
       "page": "2.16–2.17",
       "expectedValue": 0.6,
       "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis."
+    },
+    "fuel.휘발유-자동차용-가솔린.ef.t2.CH4": {
+      "row": "Table 2.5 · Motor Gasoline · CH4 Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 10.0,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
+    },
+    "fuel.휘발유-자동차용-가솔린.ef.t2.N2O": {
+      "row": "Table 2.5 · Motor Gasoline · N2O Emission Factor",
+      "page": "2.22–2.23",
+      "expectedValue": 0.6,
+      "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Default EF for Stationary Combustion in Residential and Agriculture/Forestry/Fishing/Fishing Farms Categories). kg/TJ on Net Calorific Basis. 참고: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정하므로 T2 컬럼 값은 지침이 아닌 IPCC Ch.2 Table 2.5 원출처. xlsm T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 로 두 부문 담아둔 것으로 해석."
     }
   }
 }

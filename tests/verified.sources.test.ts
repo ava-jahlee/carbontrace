@@ -191,6 +191,112 @@ describe("verified: IPCC 2006 GL Vol.2 Ch.2 (T1 CH4·N2O EF, Energy Industries)"
     expect(ps.publisher).toContain("IPCC");
     expect(ps.url).toContain("V2_2_Ch2_Stationary_Combustion.pdf");
     expect(ps.part).toContain("Chapter 2");
+    expect(ps.table).toContain("Table 2.2");
+    expect(ps.table).toContain("Table 2.5");
+  });
+});
+
+describe("verified: IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (T2 CH4·N2O, Residential+Agriculture)", () => {
+  const crude = FUELS.find((f) => f.id === "원유");
+  const anthracite = FUELS.find((f) => f.id === "국내-무연탄");
+  const peat = FUELS.find((f) => f.id === "이탄-토탄");
+  const lng = FUELS.find((f) => f.id === "천연가스LNG");
+  const charcoal = FUELS.find((f) => f.id === "목탄");
+  const wood = FUELS.find((f) => f.id === "목재목재폐기물");
+
+  it("원유 T2 CH4/N2O: Table 2.5 · Crude Oil · 10 / 0.6 kg/TJ (액체 그룹)", () => {
+    const ch4 = crude!.ef.t2.CH4!;
+    const n2o = crude!.ef.t2.N2O!;
+    expect(ch4.value).toBe(10);
+    expect(n2o.value).toBe(0.6);
+    expect(ch4.primarySource.maturity).toBe("verified");
+    expect(ch4.primarySource.docId).toBe("ipcc-2006-vol2-ch2");
+    expect(ch4.primarySource.row).toContain("Table 2.5");
+    expect(ch4.primarySource.row).toContain("Crude Oil");
+    expect(ch4.primarySource.page).toBe("2.22–2.23");
+    expect(ch4.primarySource.note).toContain("Residential");
+    expect(ch4.primarySource.note).toContain("Tier 1");
+    expect(n2o.primarySource.maturity).toBe("verified");
+  });
+
+  it("천연가스 T2 CH4=5 · N2O=0.1 (기체 그룹)", () => {
+    const ch4 = lng!.ef.t2.CH4!;
+    const n2o = lng!.ef.t2.N2O!;
+    expect(ch4.value).toBe(5);
+    expect(n2o.value).toBe(0.1);
+    expect(ch4.primarySource.row).toContain("Natural Gas");
+    expect(ch4.primarySource.maturity).toBe("verified");
+  });
+
+  it("이탄(Peat) T2 CH4=300 · N2O=1.4 (Peat 만 N2O=1.4, 다른 석탄은 1.5)", () => {
+    const ch4 = peat!.ef.t2.CH4!;
+    const n2o = peat!.ef.t2.N2O!;
+    expect(ch4.value).toBe(300);
+    expect(n2o.value).toBe(1.4);
+    expect(n2o.primarySource.maturity).toBe("verified");
+    expect(n2o.primarySource.row).toContain("Peat");
+  });
+
+  it("무연탄 T2 CH4 는 verified (300) · N2O 는 xlsm 1.4 vs Table 2.5 1.5 불일치 → GIR 유지", () => {
+    // CH4 = 300 은 Table 2.5 값과 일치 → verified 승격
+    const ch4 = anthracite!.ef.t2.CH4!;
+    expect(ch4.value).toBe(300);
+    expect(ch4.primarySource.maturity).toBe("verified");
+    expect(ch4.primarySource.docId).toBe("ipcc-2006-vol2-ch2");
+    expect(ch4.primarySource.row).toContain("Anthracite");
+
+    // N2O = 1.4 는 Table 2.5 값 (1.5) 과 불일치 → GIR 유지 (원본 xlsm 이 Peat 값을 오적용한 것으로 판정)
+    const n2o = anthracite!.ef.t2.N2O!;
+    expect(n2o.value).toBe(1.4);
+    expect(n2o.primarySource.docId).toBe("gir-ef-2017");
+    expect(n2o.primarySource.row).toBeUndefined();
+  });
+
+  it("목탄 T2 CH4/N2O = 200/1.0 · Charcoal 매핑 verified (T1 CH4=30 은 불일치라 asserted 였음)", () => {
+    const ch4 = charcoal!.ef.t2.CH4!;
+    const n2o = charcoal!.ef.t2.N2O!;
+    expect(ch4.value).toBe(200);
+    expect(n2o.value).toBe(1.0);
+    expect(ch4.primarySource.maturity).toBe("verified");
+    expect(ch4.primarySource.row).toContain("Charcoal");
+    expect(n2o.primarySource.row).toContain("Charcoal");
+  });
+
+  it("목재/목재폐기물 T2 CH4=300 · N2O=4 (바이오매스 그룹 · Wood/Wood Waste)", () => {
+    const ch4 = wood!.ef.t2.CH4!;
+    const n2o = wood!.ef.t2.N2O!;
+    expect(ch4.value).toBe(300);
+    expect(n2o.value).toBe(4);
+    expect(ch4.primarySource.row).toContain("Wood");
+    expect(ch4.primarySource.maturity).toBe("verified");
+  });
+
+  it("고로가스 T2 CH4/N2O 는 xlsm 300/4 vs Table 2.5 5/0.1 → GIR_EF_2017 유지 (원본 xlsm 그룹 오분류)", () => {
+    const bfg = FUELS.find((f) => f.id === "고로가스");
+    expect(bfg).toBeDefined();
+    const ch4 = bfg!.ef.t2.CH4!;
+    const n2o = bfg!.ef.t2.N2O!;
+    expect(ch4.value).toBe(300);
+    expect(n2o.value).toBe(4);
+    expect(ch4.primarySource.docId).toBe("gir-ef-2017");
+    expect(n2o.primarySource.docId).toBe("gir-ef-2017");
+    // 문서 자체는 아직 asserted (GIR_EF_2017 은 상수 정의에서 아직 verified 아님)
+  });
+
+  it("매립지·슬러지·기타 바이오가스 T2 는 xlsm 300/4 vs Table 2.5 5/0.1 → GIR 유지", () => {
+    for (const id of ["매립지-가스", "슬러지-가스", "기타-바이오가스"]) {
+      const f = FUELS.find((x) => x.id === id);
+      expect(f, id).toBeDefined();
+      expect(f!.ef.t2.CH4!.primarySource.docId).toBe("gir-ef-2017");
+      expect(f!.ef.t2.N2O!.primarySource.docId).toBe("gir-ef-2017");
+    }
+  });
+
+  it("아황산염 잿물 T2 는 xlsm 300/4 vs Table 2.5 3/2 → GIR 유지 (특수 연료 그룹)", () => {
+    const sl = FUELS.find((f) => f.id === "아황산염-잿물");
+    expect(sl).toBeDefined();
+    expect(sl!.ef.t2.CH4!.primarySource.docId).toBe("gir-ef-2017");
+    expect(sl!.ef.t2.N2O!.primarySource.docId).toBe("gir-ef-2017");
   });
 });
 

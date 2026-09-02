@@ -40,7 +40,7 @@ carbontrace 의 계산 엔진 결과를 소수점 10 자리 이상 자리에서 
 | N2O tCO2eq | `0.008202599999999999` | `0.008202599999999999` | ✅ PASS |
 
 ```bash
-npm test   # Vitest 파리티 8/8 + verified 44/44 PASS (360 measurements 승격)
+npm test   # Vitest 파리티 8/8 + verified 53/53 PASS (450 measurements 승격)
 ```
 
 ---
@@ -98,7 +98,7 @@ carbontrace/
 │  │  ├─ verified/              # 값 수준 원문서 매핑 (조사 릴리스 산출물)
 │  │  │  ├─ kets-annex-6.json   # ← 산화계수 6개 조항 위치 매핑
 │  │  │  ├─ ipcc-2006-vol2-ch1.json  # ← T1 열량 · 탄소함량 · CO2 EF 164개 표 · 행 매핑
-│  │  │  ├─ ipcc-2006-vol2-ch2.json  # ← T1 CH4/N2O EF 109개 표 · 행 매핑
+│  │  │  ├─ ipcc-2006-vol2-ch2.json  # ← T1 CH4/N2O EF 109개 (Table 2.2) + T2 CH4/N2O 90개 (Table 2.5)
 │  │  │  ├─ ipcc-sar-1995.json       # ← GWP SAR 3개 (K-ETS 채택 값)
 │  │  │  ├─ ipcc-ar4-2007.json       # ← GWP AR4 Table 2.14 3개
 │  │  │  ├─ ipcc-ar5-2014.json       # ← GWP AR5 Table 8.7 3개
@@ -146,6 +146,7 @@ carbontrace/
 | 탄소함량 T1 | IPCC 2006 GL Vol.2 Ch.1 Table 1.3 (p.1.21–1.22) | **verified** (2026-09-02, 55개 값) |
 | CO2 배출계수 T1 | IPCC 2006 GL Vol.2 Ch.1 Table 1.4 (p.1.23–1.24) | **verified** (2026-09-02, 55개 값) |
 | CH4/N2O 배출계수 T1 | IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Energy Industries, p.2.16–2.17) | **verified** (2026-09-02, 109개 값) |
+| CH4/N2O 배출계수 T2 | IPCC 2006 GL Vol.2 Ch.2 Table 2.5 (Residential and Agriculture, p.2.22–2.23) | **verified** (2026-09-02, 90개 값) — 별표 6 은 T2 CH4/N2O 미규정, 실제 원출처가 지침이 아닌 IPCC 다른 부문 표라는 사실 확인 |
 | 산화계수 T1 | K-ETS 지침 별표 6 (각 배출활동 §④) | **verified** (2026-09-02) |
 | 산화계수 T2 | K-ETS 지침 별표 6 (각 배출활동 §④) | **verified** (2026-09-02) |
 | GWP (SAR) | IPCC SAR 1995 WG1 SPM Table 4 · Ch.2 Table 2.9 | **verified** (2026-09-02) — K-ETS 배출권거래제 채택 값 |
@@ -175,6 +176,13 @@ v0.1 은 대부분 `asserted` 상태로 시작한다.
    - CO2 EF 는 IPCC 표 하단 계산식 `C = A × B × 44/12 × 1000` 유도값 사용 (표 표시값은 반올림 값)
 - ✅ 2026-09-02 · IPCC 2006 GL Vol.2 Ch.2 T1 CH4/N2O 계수 109개 값 — Table 2.2 (Energy Industries) 채택 근거로 우리 xlsm 값이 T2.2 와 정확히 일치 (석탄류 CH4=1 판정)
    - 목탄 CH4 만 우리 xlsm 값(30)이 어느 표에도 없어 asserted 유지 (원본 오류 가능성)
+- ✅ 2026-09-02 · IPCC 2006 GL Vol.2 Ch.2 T2 CH4/N2O 계수 90개 값 — Table 2.5 (Residential and Agriculture) 매핑
+   - **핵심 발견**: K-ETS 별표 6 은 CH4/N2O 를 Tier 1 만 규정 (별표 10 IPCC 기본 배출계수 인용). Tier 2 CH4/N2O 규정이 지침에 존재하지 않음. xlsm T2 컬럼 값을 IPCC 다른 부문 표와 대조한 결과 **Table 2.5 (Residential)** 값과 일치 → 원본 xlsm 저자가 T1 = Table 2.2 (Energy Industries), T2 = Table 2.5 (Residential) 두 부문을 담아둔 것으로 해석
+   - **원본 xlsm 오작성 36건 발견** (GIR_EF_2017 유지 · 승격 안 됨):
+     - 석탄 N2O = 1.4 (11개 fuel): Table 2.5 는 Peat 만 1.4, 다른 석탄은 모두 1.5 → xlsm 이 Peat 값을 다른 석탄에도 오적용
+     - 가스류 그룹 오분류 (7개 fuel): 매립지가스·슬러지가스·기타바이오가스·고로가스·산소강철로가스·코크스로가스·가스공장가스 등 xlsm 300/1.4~4.0 vs Table 2.5 5/0.1
+     - 액성천연가스·정제가스: xlsm 이 액체↔기체 분류 반대
+     - 아황산염 잿물·기타 액체 바이오매스: xlsm 이 특수 그룹을 일반 폐기물 그룹으로 분류
 - ✅ 2026-09-02 · GWP 4개 판 (SAR / AR4 / AR5 / AR6) 총 12개 값 — 각 IPCC 원본 PDF · 표 · 행까지 매핑
    - K-ETS 지침 별표 6 은 여전히 SAR (CH4=21 · N2O=310) 채택. 한국 국가 인벤토리(NIR) 는 2024년부터 AR5 (CH4=28 · N2O=265) 로 전환 (파리협정 투명성체계 대응)
    - AR6 CH4=27.9 는 Table 7.SM.7 의 순수 methane RF 값. Table 7.15 는 fossil methane 29.8 · non-fossil methane 27.0 로 분리 규정 → GHG Protocol 은 실무적으로 분리 사용 권장하나 본 계산기는 통합 값 27.9 유지

@@ -41,5 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 # 원문서 캐시 (감사자는 sources.ts URL 로 접근)
-# PDF/TXT 모두 배제 ? IPCC 등의 원문 재배포 리스크 방지
+# PDF/TXT 등 대용량 ? IPCC 원본 저작권 문제도 피함
 docs/refs/
+
+# git 임시 커밋 메시지 파일
+.git-commit-msg.tmp
