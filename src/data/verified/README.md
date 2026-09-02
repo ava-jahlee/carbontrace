@@ -54,7 +54,7 @@
 | `ipcc-ar4-2007.json` | verified (2026-09-02) | 3 / 3 (Table 2.14) |
 | `ipcc-ar5-2014.json` | verified (2026-09-02) | 3 / 3 (Table 8.7, without climate-carbon feedback) |
 | `ipcc-ar6-2021.json` | verified (2026-09-02) | 3 / 3 (Table 7.15 · 7.SM.7) |
-| `kets-annex-11.json` | (예정) | — (T2 열량계수 63개 예상) |
+| `kets-annex-12.json` | verified (2026-09-02) | 27 / 27 (표 A T2 순발열량) |
 | `gir-ef-2017.json` | (예정) | — (T2 배출계수) |
 
 ## 자동 생성 스크립트
@@ -62,4 +62,6 @@
 큰 문서는 매핑을 손으로 만들지 않고 스크립트로 생성한다:
 
 - `scripts/build_verified_ipcc_ch1.py` — IPCC Vol.2 Ch.1 원문 값을 하드코딩 → 우리 fuel id 매칭 → `ipcc-2006-vol2-ch1.json` 생성
-  - 이 스크립트는 값 대조까지 하며, 불일치가 있으면 stderr 로 경고 후 해당 항목 스킵
+- `scripts/build_verified_ipcc_ch2.py` — IPCC Vol.2 Ch.2 Table 2.2 (Energy Industries) 매핑 → `ipcc-2006-vol2-ch2.json`
+- `scripts/build_verified_kets_a12.py` — K-ETS 별표 12 표 A 매핑 → `kets-annex-12.json`
+  - 각 스크립트는 값 대조까지 하며, 불일치가 있으면 stderr 로 경고 후 해당 항목 스킵

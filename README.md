@@ -40,7 +40,7 @@ carbontrace 의 계산 엔진 결과를 소수점 10 자리 이상 자리에서 
 | N2O tCO2eq | `0.008202599999999999` | `0.008202599999999999` | ✅ PASS |
 
 ```bash
-npm test   # Vitest 파리티 8/8 + verified 24/24 PASS (291 measurements 승격)
+npm test   # Vitest 파리티 8/8 + verified 34/34 PASS (318 measurements 승격)
 ```
 
 ---
@@ -102,7 +102,8 @@ carbontrace/
 │  │  │  ├─ ipcc-sar-1995.json       # ← GWP SAR 3개 (K-ETS 채택 값)
 │  │  │  ├─ ipcc-ar4-2007.json       # ← GWP AR4 Table 2.14 3개
 │  │  │  ├─ ipcc-ar5-2014.json       # ← GWP AR5 Table 8.7 3개
-│  │  │  └─ ipcc-ar6-2021.json       # ← GWP AR6 Table 7.SM.7 / 7.15 3개
+│  │  │  ├─ ipcc-ar6-2021.json       # ← GWP AR6 Table 7.SM.7 / 7.15 3개
+│  │  │  └─ kets-annex-12.json       # ← T2 순발열량 27개 (별표 12 표 A)
 │  │  ├─ raw/                   # 원본 xlsm 그대로 (git 커밋)
 │  │  └─ factors/
 │  │     ├─ types.ts            # Measurement (value + primarySource), Fuel, ...
@@ -139,7 +140,7 @@ carbontrace/
 | 항목 | 원문서 | 이번 릴리스 상태 |
 |---|---|---|
 | 열량계수 T1 | IPCC 2006 GL Vol.2 Ch.1 Table 1.2 (p.1.18–1.19) | **verified** (2026-09-02, 54개 값) |
-| 열량계수 T2 | K-ETS 지침 별표 11 (국가고유 발열량) | asserted |
+| 열량계수 T2 | K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반) | **verified** (2026-09-02, 27개 값) |
 | 탄소함량 T1 | IPCC 2006 GL Vol.2 Ch.1 Table 1.3 (p.1.21–1.22) | **verified** (2026-09-02, 55개 값) |
 | CO2 배출계수 T1 | IPCC 2006 GL Vol.2 Ch.1 Table 1.4 (p.1.23–1.24) | **verified** (2026-09-02, 55개 값) |
 | CH4/N2O 배출계수 T1 | IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Energy Industries, p.2.16–2.17) | **verified** (2026-09-02, 109개 값) |
@@ -176,6 +177,10 @@ v0.1 은 대부분 `asserted` 상태로 시작한다.
 - ✅ 2026-09-02 · GWP 4개 판 (SAR / AR4 / AR5 / AR6) 총 12개 값 — 각 IPCC 원본 PDF · 표 · 행까지 매핑
    - K-ETS 지침 별표 6 은 여전히 SAR (CH4=21 · N2O=310) 채택. 한국 국가 인벤토리(NIR) 는 2024년부터 AR5 (CH4=28 · N2O=265) 로 전환 (파리협정 투명성체계 대응)
    - AR6 CH4=27.9 는 Table 7.SM.7 의 순수 methane RF 값. Table 7.15 는 fossil methane 29.8 · non-fossil methane 27.0 로 분리 규정 → GHG Protocol 은 실무적으로 분리 사용 권장하나 본 계산기는 통합 값 27.9 유지
+- ✅ 2026-09-02 · K-ETS 별표 12 T2 순발열량 27개 값 — 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반) 매핑
+   - 전기(발전/소비기준)는 Scope 1 대상 아님으로 제외
+   - 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구, 에너지관리공단
+   - 별표 12 표 B (배출계수) 는 별도 매핑 예정
 
 ---
 

@@ -143,18 +143,21 @@ export const KETS_ANNEX_6: PrimarySource = {
 };
 
 /**
- * 온실가스 배출권거래제 지침 · 별첨12 (연료별 국가고유 발열량)
+ * 온실가스 배출권거래제 지침 · 별표 12 (연료별 국가 고유 발열량 및 배출계수)
+ * — Tier 2 열량계수 (순발열량) · Tier 2 국가고유 배출계수 원출처.
  */
 export const KETS_ANNEX_12: PrimarySource = {
   kind: "kets-guideline",
   docId: "kets-annex-12",
-  doc: "온실가스 배출권거래제의 배출량 보고 및 인증에 관한 지침 · 별첨12",
-  publisher: "환경부",
-  edition: "최신 고시",
-  part: "별첨12 (연료별 국가고유 발열량)",
-  maturity: "asserted",
-  reviewedAt: "2026-08-31",
-  note: "T2 열량계수 (국가고유 발열량). 17년 · 22년 개정판 각각 별도 매핑 필요.",
+  doc: "온실가스 배출권거래제의 배출량 보고 및 인증에 관한 지침 · 별표 12",
+  publisher: "환경부 (現 기후에너지환경부)",
+  edition: "고시 제2025-64호 (2025-04-11 개정)",
+  part: "별표 12 「연료별 국가 고유 발열량 및 배출계수」 (제15조제2항 관련)",
+  table: "표 A 연료별 국가 고유 발열량 (에너지법 시행규칙 별표) · 표 B 연료별 국가고유 배출계수",
+  url: "https://www.law.go.kr/LSW/flDownload.do?bylClsCd=200201&flNm=%5B%EB%B3%84%ED%91%9C+12%5D+%EC%97%B0%EB%A3%8C%EB%B3%84+%EA%B5%AD%EA%B0%80+%EA%B3%A0%EC%9C%A0+%EB%B0%9C%EC%97%B4%EB%9F%89+%EB%B0%8F+%EB%B0%B0%EC%B6%9C%EA%B3%84%EC%88%98+%28%EC%A0%9C15%EC%A1%B0%EC%A0%9C2%ED%95%AD+%EA%B4%80%EB%A0%A8%29&flSeq=151024615",
+  maturity: "verified",
+  reviewedAt: "2026-09-02",
+  note: "T2 열량계수: 표 A (순발열량) 27개 값 verified 승격 (전기 2개는 Scope 1 대상 아님으로 제외). 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구, 에너지관리공단. 배출계수 표 B 는 별도 매핑 예정.",
 };
 
 /**

@@ -194,6 +194,83 @@ describe("verified: IPCC 2006 GL Vol.2 Ch.2 (T1 CH4·N2O EF, Energy Industries)"
   });
 });
 
+describe("verified: K-ETS 별표 12 (T2 순발열량 27개)", () => {
+  const crude = FUELS.find((f) => f.id === "원유");
+  const gasoline = FUELS.find((f) => f.id === "휘발유-자동차용-가솔린");
+  const bC = FUELS.find((f) => f.id === "B-C유-잔여-석유연료");
+  const anthracite = FUELS.find((f) => f.id === "국내-무연탄");
+  const lng = FUELS.find((f) => f.id === "천연가스LNG");
+  const cityLng = FUELS.find((f) => f.id === "도시가스LNG");
+  const propane = FUELS.find((f) => f.id === "프로판LPG1호");
+  const coke = FUELS.find((f) => f.id === "코크스로-코크스-석탄");
+
+  it("원유 T2 순발열량: 표 A · 원유 · 42.2 MJ/kg", () => {
+    const h = crude!.heat.t2_net!;
+    expect(h.value).toBeCloseTo(42.2, 10);
+    expect(h.unit).toBe("MJ/kg");
+    expect(h.primarySource.maturity).toBe("verified");
+    expect(h.primarySource.docId).toBe("kets-annex-12");
+    expect(h.primarySource.row).toBe("표 A · 원유 · 순발열량");
+    expect(h.primarySource.page).toBe("1");
+  });
+
+  it("휘발유 T2 순발열량: 30.4 MJ/L", () => {
+    expect(gasoline!.heat.t2_net!.value).toBeCloseTo(30.4, 10);
+    expect(gasoline!.heat.t2_net!.primarySource.row).toContain("휘발유");
+  });
+
+  it("B-C유 T2 순발열량: 39.2 MJ/L", () => {
+    expect(bC!.heat.t2_net!.value).toBeCloseTo(39.2, 10);
+    expect(bC!.heat.t2_net!.primarySource.row).toContain("B-C유");
+  });
+
+  it("국내무연탄 T2 순발열량: 19.4 MJ/kg", () => {
+    expect(anthracite!.heat.t2_net!.value).toBeCloseTo(19.4, 10);
+    expect(anthracite!.heat.t2_net!.primarySource.row).toContain("국내무연탄");
+  });
+
+  it("천연가스(LNG) T2 순발열량: 49.4 (별표 12 원표 MJ/kg vs xlsm MJ/L 단위 표기 불일치 note 포함)", () => {
+    const h = lng!.heat.t2_net!;
+    expect(h.value).toBeCloseTo(49.4, 10);
+    expect(h.primarySource.row).toContain("천연가스");
+    expect(h.primarySource.note).toContain("단위 표기");
+    expect(h.primarySource.note).toContain("MJ/kg");
+  });
+
+  it("도시가스(LNG) T2 순발열량: 38.9 MJ/Nm³", () => {
+    expect(cityLng!.heat.t2_net!.value).toBeCloseTo(38.9, 10);
+    expect(cityLng!.heat.t2_net!.primarySource.row).toContain("도시가스");
+  });
+
+  it("프로판(LPG1호) T2 순발열량: 46.3 MJ/kg", () => {
+    expect(propane!.heat.t2_net!.value).toBeCloseTo(46.3, 10);
+    expect(propane!.heat.t2_net!.primarySource.row).toContain("프로판");
+  });
+
+  it("코크스 T2 순발열량: 28.9 MJ/kg · 페이지 2", () => {
+    expect(coke!.heat.t2_net!.value).toBeCloseTo(28.9, 10);
+    expect(coke!.heat.t2_net!.primarySource.row).toContain("코크스");
+    expect(coke!.heat.t2_net!.primarySource.page).toBe("2");
+  });
+
+  it("K-ETS 별표 12 문서 자체 정보가 승격됨 (별표 12 정식 명칭 · 고시번호 · URL · 표 목록)", () => {
+    const ps = crude!.heat.t2_net!.primarySource;
+    expect(ps.doc).toContain("별표 12");
+    expect(ps.edition).toContain("2025");
+    expect(ps.part).toContain("연료별 국가 고유 발열량 및 배출계수");
+    expect(ps.part).toContain("제15조제2항");
+    expect(ps.table).toContain("표 A");
+    expect(ps.url).toContain("law.go.kr");
+  });
+
+  it("도시가스(LPG) T2 순발열량: 58.4 MJ/Nm³", () => {
+    const cityLpg = FUELS.find((f) => f.id === "도시가스LPG");
+    expect(cityLpg!.heat.t2_net!.value).toBeCloseTo(58.4, 10);
+    expect(cityLpg!.heat.t2_net!.primarySource.row).toContain("도시가스(LPG)");
+    expect(cityLpg!.heat.t2_net!.primarySource.maturity).toBe("verified");
+  });
+});
+
 describe("verified: GWP 4개 판 (SAR · AR4 · AR5 · AR6)", () => {
   it("SAR (K-ETS 채택 · CH4=21 · N2O=310)", () => {
     expect(GWP.SAR.CO2.value).toBe(1);

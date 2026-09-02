@@ -36,7 +36,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 42.2,
         "unit": "MJ/kg",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 원유 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -278,7 +282,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 30.4,
         "unit": "MJ/L",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 휘발유 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -528,7 +536,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 33.9,
         "unit": "MJ/L",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 항공유 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -622,7 +634,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 34.2,
         "unit": "MJ/L",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 등유 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -794,7 +810,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 35.2,
         "unit": "MJ/L",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 경유 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -880,7 +900,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 36.4,
         "unit": "MJ/L",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · B-A유 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -942,7 +966,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 38.0,
         "unit": "MJ/L",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · B-B유 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -1012,7 +1040,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 39.2,
         "unit": "MJ/L",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · B-C유 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -1098,7 +1130,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 34.6,
         "unit": "MJ/L",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 부생연료유1호 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -1152,7 +1188,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 37.7,
         "unit": "MJ/L",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 부생연료유2호 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -1284,7 +1324,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 46.3,
         "unit": "MJ/kg",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 프로판(LPG1호) · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -1338,7 +1382,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 45.7,
         "unit": "MJ/kg",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 부탄(LPG3호) · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -1478,7 +1526,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 29.9,
         "unit": "MJ/L",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 나프타 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -1572,7 +1624,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 39.2,
         "unit": "MJ/kg",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 아스팔트 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -1666,7 +1722,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 37.3,
         "unit": "MJ/L",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 윤활유 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -1760,7 +1820,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 34.2,
         "unit": "MJ/kg",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 석유코크스 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -2088,7 +2152,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 30.3,
         "unit": "MJ/L",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 용제 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -2268,7 +2336,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 19.4,
         "unit": "MJ/kg",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 국내무연탄 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -2362,7 +2434,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 20.5,
         "unit": "MJ/kg",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 연료용 수입무연탄 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -2456,7 +2532,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 24.7,
         "unit": "MJ/kg",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 원료용 수입무연탄 · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -2550,7 +2630,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 28.0,
         "unit": "MJ/kg",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 원료용 유연탄(역청탄) · 순발열량",
+          "page": "1-2",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -2644,7 +2728,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 23.7,
         "unit": "MJ/kg",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 연료용 유연탄(역청탄) · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -2738,7 +2826,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 19.9,
         "unit": "MJ/kg",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 아역청탄 · 순발열량",
+          "page": "2",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -3144,7 +3236,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 28.9,
         "unit": "MJ/kg",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 코크스 · 순발열량",
+          "page": "2",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -3698,7 +3794,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 49.4,
         "unit": "MJ/L",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 천연가스(LNG) · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단). 단위 표기 참고: 별표 12 원표는 MJ/kg, xlsm 은 MJ/L 로 기록되어 있으나 값 자체(순발열량)는 동일.",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -3784,7 +3884,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 38.9,
         "unit": "MJ/Nm3",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 도시가스(LNG) · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단). 단위 표기 참고: 별표 12 원표는 MJ/Nm³, xlsm 은 MJ/Nm3 로 기록되어 있으나 값 자체(순발열량)는 동일.",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
@@ -3838,7 +3942,11 @@ export const FUELS: Fuel[] = [
       "t2_net": {
         "value": 58.4,
         "unit": "MJ/Nm3",
-        "primarySource": KETS_ANNEX_12
+        "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+          "row": "표 A · 도시가스(LPG) · 순발열량",
+          "page": "1",
+          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단). 단위 표기 참고: 별표 12 원표는 MJ/Nm³, xlsm 은 MJ/Nm3 로 기록되어 있으나 값 자체(순발열량)는 동일.",
+          "reviewedAt": "2026-09-02" }
       }
     },
     "ef": {
