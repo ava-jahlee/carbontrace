@@ -22,7 +22,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 42.3,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Crude Oil · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 45.0,
@@ -42,12 +46,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 20.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Crude Oil · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73333.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Crude Oil · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 73,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=20.0 kg/GJ, B=1) 유도값 = 73333.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -88,7 +100,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 27.5,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Orimulsion · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -100,12 +116,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 21.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Orimulsion · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 77000.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Orimulsion · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 77,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=21.0 kg/GJ, B=1) 유도값 = 77000.0000.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -146,7 +170,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 44.2,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Natural Gas Liquids · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -158,12 +186,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 17.5,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Natural Gas Liquids · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 64166.666666666664,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Natural Gas Liquids · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 64,200 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=17.5 kg/GJ, B=1) 유도값 = 64166.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -204,7 +240,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 44.3,
         "unit": "MJ/L",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Motor Gasoline · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 32.7,
@@ -224,12 +264,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 18.9,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Motor Gasoline · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 69299.99999999999,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Motor Gasoline · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 69,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=18.9 kg/GJ, B=1) 유도값 = 69300.0000.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -278,7 +326,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 44.3,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Aviation Gasoline · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -290,12 +342,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 19.1,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Aviation Gasoline · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 70033.33333333334,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Aviation Gasoline · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 70,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=19.1 kg/GJ, B=1) 유도값 = 70033.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -336,7 +396,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 44.3,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Jet Gasoline · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -348,12 +412,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 19.1,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Jet Gasoline · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 70033.33333333334,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Jet Gasoline · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 70,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=19.1 kg/GJ, B=1) 유도값 = 70033.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -394,7 +466,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 44.1,
         "unit": "MJ/L",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Jet Kerosene · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 36.5,
@@ -414,12 +490,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 19.5,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Jet Kerosene · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 71500.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Jet Kerosene · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 71,500 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=19.5 kg/GJ, B=1) 유도값 = 71500.0000.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -468,7 +552,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 43.8,
         "unit": "MJ/L",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Other Kerosene · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 36.7,
@@ -488,12 +576,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 19.6,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Other Kerosene · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 71866.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Other Kerosene · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 71,900 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=19.6 kg/GJ, B=1) 유도값 = 71866.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -542,7 +638,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 38.1,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Shale Oil · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -554,12 +654,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 20.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Shale Oil · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73333.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Shale Oil · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 73,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=20.0 kg/GJ, B=1) 유도값 = 73333.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -600,7 +708,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 43.0,
         "unit": "MJ/L",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Gas/Diesel Oil · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 37.8,
@@ -620,12 +732,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 20.2,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Gas/Diesel Oil · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 74066.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Gas/Diesel Oil · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 74,100 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=20.2 kg/GJ, B=1) 유도값 = 74066.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -798,7 +918,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 40.4,
         "unit": "MJ/L",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Residual Fuel Oil · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 41.7,
@@ -818,12 +942,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 21.1,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Residual Fuel Oil · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 77366.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Residual Fuel Oil · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 77,400 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=21.1 kg/GJ, B=1) 유도값 = 77366.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -980,7 +1112,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 47.3,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Liquefied Petroleum Gases · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -992,12 +1128,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 17.2,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Liquefied Petroleum Gases · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 63066.666666666664,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Liquefied Petroleum Gases · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 63,100 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=17.2 kg/GJ, B=1) 유도값 = 63066.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -1146,7 +1290,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 46.4,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Ethane · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -1158,12 +1306,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 16.8,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Ethane · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 61600.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Ethane · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 61,600 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=16.8 kg/GJ, B=1) 유도값 = 61600.0000.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -1204,7 +1360,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 44.5,
         "unit": "MJ/L",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Naphtha · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 32.3,
@@ -1224,12 +1384,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 20.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Naphtha · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73333.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Naphtha · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 73,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=20.0 kg/GJ, B=1) 유도값 = 73333.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -1278,7 +1446,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 40.2,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Bitumen · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 41.4,
@@ -1298,12 +1470,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 22.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Bitumen · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 80666.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Bitumen · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 80,700 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=22.0 kg/GJ, B=1) 유도값 = 80666.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -1352,7 +1532,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 40.2,
         "unit": "MJ/L",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Lubricants · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 40.0,
@@ -1372,12 +1556,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 20.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Lubricants · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73333.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Lubricants · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 73,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=20.0 kg/GJ, B=1) 유도값 = 73333.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -1426,7 +1618,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 32.5,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Petroleum Coke · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 35.0,
@@ -1446,12 +1642,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 26.6,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Petroleum Coke · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 97533.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Petroleum Coke · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 97,500 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=26.6 kg/GJ, B=1) 유도값 = 97533.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -1500,7 +1704,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 43.0,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Refinery Feedstocks · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -1512,12 +1720,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 20.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Refinery Feedstocks · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73333.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Refinery Feedstocks · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 73,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=20.0 kg/GJ, B=1) 유도값 = 73333.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -1558,7 +1774,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 49.5,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Refinery Gas · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -1570,12 +1790,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 15.7,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Refinery Gas · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 57566.666666666664,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Refinery Gas · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 57,600 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=15.7 kg/GJ, B=1) 유도값 = 57566.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -1616,7 +1844,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 40.2,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Paraffin Waxes · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -1628,12 +1860,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 20.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Paraffin Waxes · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73333.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Paraffin Waxes · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 73,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=20.0 kg/GJ, B=1) 유도값 = 73333.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -1674,7 +1914,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 40.2,
         "unit": "MJ/L",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · White Spirit and SBP · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 32.8,
@@ -1694,12 +1938,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 20.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · White Spirit and SBP · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73333.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · White Spirit and SBP · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 73,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=20.0 kg/GJ, B=1) 유도값 = 73333.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -1748,7 +2000,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 40.2,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Other Petroleum Products · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -1760,12 +2016,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 20.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Other Petroleum Products · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73333.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Other Petroleum Products · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 73,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=20.0 kg/GJ, B=1) 유도값 = 73333.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -1814,7 +2078,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 26.7,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Anthracite · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 19.8,
@@ -1834,12 +2102,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 26.8,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Anthracite · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 98266.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Anthracite · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 98,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=26.8 kg/GJ, B=1) 유도값 = 98266.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -1888,7 +2164,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 26.7,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Anthracite · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 21.2,
@@ -1908,12 +2188,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 26.8,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Anthracite · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 98266.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Anthracite · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 98,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=26.8 kg/GJ, B=1) 유도값 = 98266.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -1962,7 +2250,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 26.7,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Anthracite · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 25.2,
@@ -1982,12 +2274,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 26.8,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Anthracite · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 98266.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Anthracite · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 98,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=26.8 kg/GJ, B=1) 유도값 = 98266.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2036,7 +2336,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 28.2,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Coking Coal · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 29.2,
@@ -2056,12 +2360,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 25.8,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Coking Coal · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 94600.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Coking Coal · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 94,600 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=25.8 kg/GJ, B=1) 유도값 = 94600.0000.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2110,7 +2422,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 25.8,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Other Bituminous Coal · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 24.8,
@@ -2130,12 +2446,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 25.8,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Other Bituminous Coal · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 94600.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Other Bituminous Coal · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 94,600 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=25.8 kg/GJ, B=1) 유도값 = 94600.0000.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2184,7 +2508,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 18.9,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Sub-Bituminous Coal · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 21.4,
@@ -2204,12 +2532,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 26.2,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Sub-Bituminous Coal · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 96066.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Sub-Bituminous Coal · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 96,100 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=26.2 kg/GJ, B=1) 유도값 = 96066.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2258,7 +2594,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 11.9,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Lignite · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -2270,12 +2610,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 27.6,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Lignite · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 101200.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Lignite · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 101,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=27.6 kg/GJ, B=1) 유도값 = 101200.0000.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2316,7 +2664,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 8.9,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Oil Shale and Tar Sands · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -2328,12 +2680,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 29.1,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Oil Shale and Tar Sands · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 106700.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Oil Shale and Tar Sands · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 107,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=29.1 kg/GJ, B=1) 유도값 = 106700.0000.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2374,7 +2734,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 20.7,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Brown Coal Briquettes · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -2386,12 +2750,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 26.6,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Brown Coal Briquettes · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 97533.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Brown Coal Briquettes · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 97,500 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=26.6 kg/GJ, B=1) 유도값 = 97533.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2432,7 +2804,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 20.7,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Patent Fuel · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -2444,12 +2820,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 26.6,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Patent Fuel · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 97533.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Patent Fuel · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 97,500 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=26.6 kg/GJ, B=1) 유도값 = 97533.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2490,7 +2874,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 28.2,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Coke Oven Coke and Lignite Coke · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 29.0,
@@ -2510,12 +2898,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 29.2,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Coke Oven Coke and Lignite Coke · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 107066.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Coke Oven Coke and Lignite Coke · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 107,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=29.2 kg/GJ, B=1) 유도값 = 107066.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2556,7 +2952,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 28.2,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Gas Coke · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -2568,12 +2968,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 29.2,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Gas Coke · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 107066.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Gas Coke · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 107,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=29.2 kg/GJ, B=1) 유도값 = 107066.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2614,7 +3022,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 28.0,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Coal Tar · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -2626,12 +3038,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 22.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Coal Tar · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 80666.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Coal Tar · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 80,700 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=22.0 kg/GJ, B=1) 유도값 = 80666.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2672,7 +3092,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 38.7,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Gas Works Gas · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -2684,12 +3108,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 12.1,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Gas Works Gas · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 44366.666666666664,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Gas Works Gas · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 44,400 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=12.1 kg/GJ, B=1) 유도값 = 44366.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2730,7 +3162,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 38.7,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Coke Oven Gas · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -2742,12 +3178,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 12.1,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Coke Oven Gas · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 44366.666666666664,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Coke Oven Gas · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 44,400 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=12.1 kg/GJ, B=1) 유도값 = 44366.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2788,7 +3232,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 2.47,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Blast Furnace Gas · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -2800,12 +3248,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 70.8,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Blast Furnace Gas · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 259600.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Blast Furnace Gas · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 260,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=70.8 kg/GJ, B=1) 유도값 = 259600.0000.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2846,7 +3302,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 7.06,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Oxygen Steel Furnace Gas · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -2858,12 +3318,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 49.6,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Oxygen Steel Furnace Gas · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 181866.66666666666,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Oxygen Steel Furnace Gas · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 182,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=49.6 kg/GJ, B=1) 유도값 = 181866.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -2904,7 +3372,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 48.0,
         "unit": "MJ/L",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Natural Gas · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": {
         "value": 54.7,
@@ -2924,12 +3396,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 15.3,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Natural Gas · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 56100.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Natural Gas · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 56,100 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=15.3 kg/GJ, B=1) 유도값 = 56100.0000.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -3086,7 +3566,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 10.0,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Municipal Wastes (non-biomass fraction) · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3098,12 +3582,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 25.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Municipal Wastes (non-biomass fraction) · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 91666.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Municipal Wastes (non-biomass fraction) · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 91,700 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=25.0 kg/GJ, B=1) 유도값 = 91666.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 30.0,
@@ -3152,12 +3644,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 39.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Industrial Wastes · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 143000.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Industrial Wastes · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 143,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=39.0 kg/GJ, B=1) 유도값 = 143000.0000.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 30.0,
@@ -3198,7 +3698,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 40.2,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Waste Oil · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3210,12 +3714,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 20.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Waste Oil · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73333.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Waste Oil · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 73,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=20.0 kg/GJ, B=1) 유도값 = 73333.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 30.0,
@@ -3256,7 +3768,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 9.76,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Peat · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3268,12 +3784,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 28.9,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Peat · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 105966.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Peat · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 106,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=28.9 kg/GJ, B=1) 유도값 = 105966.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -3314,7 +3838,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 15.6,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Wood/Wood Waste · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3326,12 +3854,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 30.5,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Wood/Wood Waste · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 111833.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Wood/Wood Waste · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 112,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=30.5 kg/GJ, B=1) 유도값 = 111833.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 30.0,
@@ -3372,7 +3908,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 11.8,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Sulphite lyes (black liquor) · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3384,12 +3924,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 26.0,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Sulphite lyes (black liquor) · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 95333.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Sulphite lyes (black liquor) · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 95,300 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=26.0 kg/GJ, B=1) 유도값 = 95333.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -3430,7 +3978,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 11.6,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Other Primary Solid Biomass · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3442,12 +3994,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 27.3,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Other Primary Solid Biomass · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 100100.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Other Primary Solid Biomass · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 100,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=27.3 kg/GJ, B=1) 유도값 = 100100.0000.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 30.0,
@@ -3488,7 +4048,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 29.5,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Charcoal · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3500,12 +4064,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 30.5,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Charcoal · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 111833.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Charcoal · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 112,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=30.5 kg/GJ, B=1) 유도값 = 111833.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 30.0,
@@ -3546,7 +4118,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 27.0,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Biogasoline · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3558,12 +4134,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 19.3,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Biogasoline · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 70766.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Biogasoline · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 70,800 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=19.3 kg/GJ, B=1) 유도값 = 70766.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -3604,7 +4188,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 27.0,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Biodiesels (Liquid) · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3616,12 +4204,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 19.3,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Biodiesels (Liquid) · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 70766.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Biodiesels (Liquid) · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 70,800 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=19.3 kg/GJ, B=1) 유도값 = 70766.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -3662,7 +4258,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 27.4,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Other Liquid Biofuels · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3674,12 +4274,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 21.7,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Other Liquid Biofuels · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 79566.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Other Liquid Biofuels · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 79,600 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=21.7 kg/GJ, B=1) 유도값 = 79566.6667.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 3.0,
@@ -3720,7 +4328,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 50.4,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Landfill Gas · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3732,12 +4344,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 14.9,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Landfill Gas · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 54633.333333333336,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Landfill Gas · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 54,600 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=14.9 kg/GJ, B=1) 유도값 = 54633.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -3778,7 +4398,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 50.4,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Sludge Gas · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3790,12 +4414,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 14.9,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Sludge Gas · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 54633.333333333336,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Sludge Gas · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 54,600 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=14.9 kg/GJ, B=1) 유도값 = 54633.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -3836,7 +4468,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 50.4,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Other Biogas · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3848,12 +4484,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 14.9,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Other Biogas · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 54633.333333333336,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Other Biogas · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 54,600 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=14.9 kg/GJ, B=1) 유도값 = 54633.3333.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 1.0,
@@ -3894,7 +4538,11 @@ export const FUELS: Fuel[] = [
       "t1_net": {
         "value": 11.6,
         "unit": "MJ/kg",
-        "primarySource": IPCC_2006_VOL2_CH1
+        "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+          "row": "Table 1.2 · Municipal Wastes (biomass fraction) · Net Calorific Value",
+          "page": "1.18–1.19",
+          "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.2 Default Net Calorific Values. TJ/Gg = MJ/kg.",
+          "reviewedAt": "2026-09-02" }
       },
       "t1_gross": null,
       "t2_net": null
@@ -3906,12 +4554,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 27.3,
           "unit": "tC/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.3 · Municipal Wastes (biomass fraction) · Default Carbon Content",
+            "page": "1.21–1.22",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.3 Default Values of Carbon Content. kg/GJ = tC/TJ.",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 100100.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH1, "maturity": "verified",
+            "row": "Table 1.4 · Municipal Wastes (biomass fraction) · CO2 Emission Factor",
+            "page": "1.23–1.24",
+            "note": "IPCC 2006 GL Vol.2 Ch.1 Table 1.4. 표시값(반올림) = 100,000 kg/TJ. 표 하단 계산식 C = A × B × 44/12 × 1000 (A=27.3 kg/GJ, B=1) 유도값 = 100100.0000.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 30.0,

@@ -78,21 +78,24 @@ export interface PrimarySource {
 
 /**
  * IPCC 2006 Guidelines for National GHG Inventories · Volume 2 (Energy)
- * · Chapter 1 (Introduction) : Table 1.2, 1.4 — 기본(default) 배출계수 (T1)
- * · Chapter 2 (Stationary Combustion) : 연료 열량계수 · 산화계수 (T1)
+ * · Chapter 1 (Introduction)
+ *   - Table 1.2 (p.1.18–1.19) : Default Net Calorific Values (NCV)
+ *   - Table 1.3 (p.1.21–1.22) : Default Carbon Content (kg/GJ = tC/TJ)
+ *   - Table 1.4 (p.1.23–1.24) : Default CO2 Emission Factors
+ *     · 표시값은 반올림. 정확값은 표 하단 계산식 C = A × B × 44/12 × 1000 으로 유도.
  */
 export const IPCC_2006_VOL2_CH1: PrimarySource = {
   kind: "ipcc-2006",
   docId: "ipcc-2006-vol2-ch1",
   doc: "2006 IPCC Guidelines for National Greenhouse Gas Inventories",
-  publisher: "IPCC",
+  publisher: "IPCC (Intergovernmental Panel on Climate Change)",
   edition: "2006",
-  part: "Volume 2 (Energy), Chapter 1 (Introduction)",
-  table: "Table 1.2 / Table 1.4 (Default Emission Factors)",
-  url: "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol2.html",
-  maturity: "asserted",
-  reviewedAt: "2026-08-31",
-  note: "T1 CO2/CH4/N2O 배출계수 기본값. 값 단위 페이지·행 매핑 조사 필요.",
+  part: "Volume 2 (Energy) · Chapter 1 (Introduction)",
+  table: "Table 1.2 (NCV, p.1.18–1.19) · Table 1.3 (Carbon Content, p.1.21–1.22) · Table 1.4 (CO2 EF, p.1.23–1.24)",
+  url: "https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_1_Ch1_Introduction.pdf",
+  maturity: "verified",
+  reviewedAt: "2026-09-02",
+  note: "T1 열량계수 · 탄소함량 · CO2 배출계수 (IPCC 국제 관례 기본값). Ch.1 은 CO2 만 다루며, CH4·N2O 는 Vol.2 Ch.2 참조.",
 };
 
 export const IPCC_2006_VOL2_CH2: PrimarySource = {
