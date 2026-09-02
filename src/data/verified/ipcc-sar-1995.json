@@ -1,0 +1,23 @@
+{
+  "$schema": "verified-source-map v1",
+  "docId": "ipcc-sar-1995",
+  "reviewedAt": "2026-09-02",
+  "reviewNote": "IPCC Second Assessment Report (SAR) WG1 · Climate Change 1995: The Science of Climate Change. K-ETS 배출권거래제 지침 별표 6 은 여전히 SAR (CH4=21, N2O=310) 을 채택하고 있어 본 계산기의 기본은 SAR. 2024년부터 한국 국가 온실가스 인벤토리(NIR) 는 AR5 GWP 로 전환 (파리협정 투명성체계 대응).",
+  "entries": {
+    "gwp.SAR.CO2": {
+      "row": "SPM · Table 4 · Direct GWP · CO2",
+      "expectedValue": 1,
+      "note": "정의상 항상 1. IPCC SAR WG1 SPM Table 4 및 Ch.2 Table 2.9."
+    },
+    "gwp.SAR.CH4": {
+      "row": "SPM · Table 4 · Direct GWP · Methane (100-year)",
+      "expectedValue": 21,
+      "note": "IPCC SAR WG1 (1995) SPM Table 4. K-ETS 지침 별표 6 CO2 등가계수 규정에서 채택 (Feq,j: CO2=1, CH4=21, N2O=310)."
+    },
+    "gwp.SAR.N2O": {
+      "row": "SPM · Table 4 · Direct GWP · Nitrous Oxide (100-year)",
+      "expectedValue": 310,
+      "note": "IPCC SAR WG1 (1995) SPM Table 4. K-ETS 지침 채택 값."
+    }
+  }
+}

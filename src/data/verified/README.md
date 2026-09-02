@@ -50,9 +50,12 @@
 | `kets-annex-6.json` | verified (2026-09-02) | 6 / 6 |
 | `ipcc-2006-vol2-ch1.json` | verified (2026-09-02) | 164 / 164 (Table 1.2/1.3/1.4) |
 | `ipcc-2006-vol2-ch2.json` | verified (2026-09-02) | 109 / 110 (Table 2.2, 목탄 CH4 mismatch 1건) |
+| `ipcc-sar-1995.json` | verified (2026-09-02) | 3 / 3 (GWP-100) |
+| `ipcc-ar4-2007.json` | verified (2026-09-02) | 3 / 3 (Table 2.14) |
+| `ipcc-ar5-2014.json` | verified (2026-09-02) | 3 / 3 (Table 8.7, without climate-carbon feedback) |
+| `ipcc-ar6-2021.json` | verified (2026-09-02) | 3 / 3 (Table 7.15 · 7.SM.7) |
 | `kets-annex-11.json` | (예정) | — (T2 열량계수 63개 예상) |
 | `gir-ef-2017.json` | (예정) | — (T2 배출계수) |
-| `gwp.json` | (예정) | — (12개) |
 
 ## 자동 생성 스크립트
 

@@ -160,7 +160,7 @@ describe("Scope 1 감사 근거 (primary source): 값마다 원문서가 붙는�
     expect(ps.docId).toBe("kets-annex-6");
   });
 
-  it("GWP (SAR) → 국가 인벤토리 보고서 (한국이 채택한 GWP)", () => {
+  it("GWP (SAR) → IPCC Second Assessment Report (1995) 직접 참조", () => {
     const r = calculateScope1({
       fuelId: "아역청탄-하위-유연탄",
       amount: 1,
@@ -172,8 +172,10 @@ describe("Scope 1 감사 근거 (primary source): 값마다 원문서가 붙는�
     const meas = r.co2.gwp.inputs.find((i) => i.kind === "measurement");
     if (!meas || meas.kind !== "measurement") throw new Error("GWP 근거 누락");
     const ps = meas.measurement.primarySource;
-    expect(ps.kind).toBe("national-inventory");
-    expect(ps.docId).toBe("national-inventory");
+    expect(ps.kind).toBe("ipcc-ar");
+    expect(ps.docId).toBe("ipcc-sar-1995");
+    expect(ps.maturity).toBe("verified");
+    expect(ps.doc).toContain("Second Assessment Report");
   });
 
   it("총 tCO2eq 는 세 GHG 종의 tCO2eq 로부터 파생된다 (감사자가 파고들 수 있음)", () => {

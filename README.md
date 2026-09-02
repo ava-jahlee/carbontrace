@@ -40,7 +40,7 @@ carbontrace 의 계산 엔진 결과를 소수점 10 자리 이상 자리에서 
 | N2O tCO2eq | `0.008202599999999999` | `0.008202599999999999` | ✅ PASS |
 
 ```bash
-npm test   # Vitest 파리티 8/8 + verified 20/20 PASS (279 measurements 승격)
+npm test   # Vitest 파리티 8/8 + verified 24/24 PASS (291 measurements 승격)
 ```
 
 ---
@@ -98,7 +98,11 @@ carbontrace/
 │  │  ├─ verified/              # 값 수준 원문서 매핑 (조사 릴리스 산출물)
 │  │  │  ├─ kets-annex-6.json   # ← 산화계수 6개 조항 위치 매핑
 │  │  │  ├─ ipcc-2006-vol2-ch1.json  # ← T1 열량 · 탄소함량 · CO2 EF 164개 표 · 행 매핑
-│  │  │  └─ ipcc-2006-vol2-ch2.json  # ← T1 CH4/N2O EF 109개 표 · 행 매핑
+│  │  │  ├─ ipcc-2006-vol2-ch2.json  # ← T1 CH4/N2O EF 109개 표 · 행 매핑
+│  │  │  ├─ ipcc-sar-1995.json       # ← GWP SAR 3개 (K-ETS 채택 값)
+│  │  │  ├─ ipcc-ar4-2007.json       # ← GWP AR4 Table 2.14 3개
+│  │  │  ├─ ipcc-ar5-2014.json       # ← GWP AR5 Table 8.7 3개
+│  │  │  └─ ipcc-ar6-2021.json       # ← GWP AR6 Table 7.SM.7 / 7.15 3개
 │  │  ├─ raw/                   # 원본 xlsm 그대로 (git 커밋)
 │  │  └─ factors/
 │  │     ├─ types.ts            # Measurement (value + primarySource), Fuel, ...
@@ -142,8 +146,10 @@ carbontrace/
 | 배출계수 T2 | GIR 국가 고유 배출계수 (2017) | asserted |
 | 산화계수 T1 | K-ETS 지침 별표 6 (각 배출활동 §④) | **verified** (2026-09-02) |
 | 산화계수 T2 | K-ETS 지침 별표 6 (각 배출활동 §④) | **verified** (2026-09-02) |
-| GWP (SAR) | 국가 온실가스 인벤토리 보고서 채택 (원출처 IPCC SAR 1995) | documented |
-| GWP (AR4/5/6) | IPCC AR4 (2007) / AR5 (2014) / AR6 (2021) | documented |
+| GWP (SAR) | IPCC SAR 1995 WG1 SPM Table 4 · Ch.2 Table 2.9 | **verified** (2026-09-02) — K-ETS 배출권거래제 채택 값 |
+| GWP (AR4) | IPCC AR4 2007 WG1 Ch.2 Table 2.14 | **verified** (2026-09-02) |
+| GWP (AR5) | IPCC AR5 2013 WG1 Ch.8 Appendix 8.A Table 8.7 (w/o climate-carbon feedback) | **verified** (2026-09-02) — 한국 NIR 2024~ 채택 값 |
+| GWP (AR6) | IPCC AR6 2021 WG1 Ch.7 Table 7.15 · 7.SM.7 | **verified** (2026-09-02) — CH4 27.9 (통합값, fossil 29.8 / non-fossil 27.0 미구분) |
 | 지역난방 열 배출계수 | 한국지역난방공사 공시 | documented (Scope 2 예정) |
 | GIR 국가 고유 배출계수 (2022 개정) | | pending (다음 릴리스에서 병합) |
 
@@ -167,6 +173,9 @@ v0.1 은 대부분 `asserted` 상태로 시작한다.
    - CO2 EF 는 IPCC 표 하단 계산식 `C = A × B × 44/12 × 1000` 유도값 사용 (표 표시값은 반올림 값)
 - ✅ 2026-09-02 · IPCC 2006 GL Vol.2 Ch.2 T1 CH4/N2O 계수 109개 값 — Table 2.2 (Energy Industries) 채택 근거로 우리 xlsm 값이 T2.2 와 정확히 일치 (석탄류 CH4=1 판정)
    - 목탄 CH4 만 우리 xlsm 값(30)이 어느 표에도 없어 asserted 유지 (원본 오류 가능성)
+- ✅ 2026-09-02 · GWP 4개 판 (SAR / AR4 / AR5 / AR6) 총 12개 값 — 각 IPCC 원본 PDF · 표 · 행까지 매핑
+   - K-ETS 지침 별표 6 은 여전히 SAR (CH4=21 · N2O=310) 채택. 한국 국가 인벤토리(NIR) 는 2024년부터 AR5 (CH4=28 · N2O=265) 로 전환 (파리협정 투명성체계 대응)
+   - AR6 CH4=27.9 는 Table 7.SM.7 의 순수 methane RF 값. Table 7.15 는 fossil methane 29.8 · non-fossil methane 27.0 로 분리 규정 → GHG Protocol 은 실무적으로 분리 사용 권장하나 본 계산기는 통합 값 27.9 유지
 
 ---
 

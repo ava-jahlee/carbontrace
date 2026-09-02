@@ -69,7 +69,6 @@ DOC_ID_BY_SYMBOL = {
     "KETS_ANNEX_12": "kets-annex-12",
     "GIR_EF_2017": "gir-ef-2017",
     "GIR_EF_2022": "gir-ef-2022",
-    "NATIONAL_INVENTORY_REPORT": "national-inventory",
     "IPCC_SAR": "ipcc-sar-1995",
     "IPCC_AR4": "ipcc-ar4-2007",
     "IPCC_AR5": "ipcc-ar5-2014",
@@ -318,16 +317,18 @@ def build_oxidation(sheet):
 
 
 def build_gwp():
-    """GWP: 각 개정판 IPCC 원서 직접 참조. 한국 국가 인벤토리는 SAR 채택."""
+    """GWP: 각 개정판 IPCC 원서 직접 참조.
+    K-ETS 배출권거래제는 SAR (1995) 채택. 2024년~ 한국 국가 인벤토리는 AR5 채택.
+    """
     def g(value: float, ref: str, lookup_key: str):
         return m(value, "-", ref, lookup_key)
 
     return {
         "SAR": {
-            "label": "국가 인벤토리 (IPCC SAR 1995 채택)",
-            "CO2": g(1,   "NATIONAL_INVENTORY_REPORT", "gwp.SAR.CO2"),
-            "CH4": g(21,  "NATIONAL_INVENTORY_REPORT", "gwp.SAR.CH4"),
-            "N2O": g(310, "NATIONAL_INVENTORY_REPORT", "gwp.SAR.N2O"),
+            "label": "K-ETS 관례 · IPCC SAR (1995) 채택",
+            "CO2": g(1,   "IPCC_SAR", "gwp.SAR.CO2"),
+            "CH4": g(21,  "IPCC_SAR", "gwp.SAR.CH4"),
+            "N2O": g(310, "IPCC_SAR", "gwp.SAR.N2O"),
         },
         "AR4": {
             "label": "IPCC AR4 (2007)",
@@ -336,7 +337,7 @@ def build_gwp():
             "N2O": g(298, "IPCC_AR4", "gwp.AR4.N2O"),
         },
         "AR5": {
-            "label": "IPCC AR5 (2014)",
+            "label": "IPCC AR5 (2013) · 한국 NIR 2024~ 채택",
             "CO2": g(1,   "IPCC_AR5", "gwp.AR5.CO2"),
             "CH4": g(28,  "IPCC_AR5", "gwp.AR5.CH4"),
             "N2O": g(265, "IPCC_AR5", "gwp.AR5.N2O"),

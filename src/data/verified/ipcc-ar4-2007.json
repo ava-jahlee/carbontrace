@@ -1,0 +1,23 @@
+{
+  "$schema": "verified-source-map v1",
+  "docId": "ipcc-ar4-2007",
+  "reviewedAt": "2026-09-02",
+  "reviewNote": "IPCC Fourth Assessment Report (AR4) WG1 · Climate Change 2007: The Physical Science Basis · Chapter 2 (Changes in Atmospheric Constituents and in Radiative Forcing). GWP-100 값은 Table 2.14 에 명시.",
+  "entries": {
+    "gwp.AR4.CO2": {
+      "row": "WG1 Ch.2 · Table 2.14 · CO2",
+      "expectedValue": 1,
+      "note": "정의상 항상 1."
+    },
+    "gwp.AR4.CH4": {
+      "row": "WG1 Ch.2 · Table 2.14 · CH4 (100-year, direct + indirect)",
+      "expectedValue": 25,
+      "note": "AR4 는 SAR 의 21 에서 25 로 상향. Direct GWP 에 troposphere O3, stratosphere H2O 등 indirect effects 포함."
+    },
+    "gwp.AR4.N2O": {
+      "row": "WG1 Ch.2 · Table 2.14 · N2O (100-year)",
+      "expectedValue": 298,
+      "note": "SAR 의 310 에서 298 로 하향."
+    }
+  }
+}

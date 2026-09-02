@@ -13,6 +13,7 @@
 import { describe, expect, it } from "vitest";
 import { FUELS } from "@/data/factors/fuels.gen";
 import { OXIDATION } from "@/data/factors/oxidation.gen";
+import { GWP } from "@/data/factors/gwp.gen";
 
 describe("verified: K-ETS 별표 6 (산화계수)", () => {
   const cases: Array<{ state: "고체" | "액체" | "기체"; tier: "t1" | "t2"; expectedValue: number }> = [
@@ -190,5 +191,69 @@ describe("verified: IPCC 2006 GL Vol.2 Ch.2 (T1 CH4·N2O EF, Energy Industries)"
     expect(ps.publisher).toContain("IPCC");
     expect(ps.url).toContain("V2_2_Ch2_Stationary_Combustion.pdf");
     expect(ps.part).toContain("Chapter 2");
+  });
+});
+
+describe("verified: GWP 4개 판 (SAR · AR4 · AR5 · AR6)", () => {
+  it("SAR (K-ETS 채택 · CH4=21 · N2O=310)", () => {
+    expect(GWP.SAR.CO2.value).toBe(1);
+    expect(GWP.SAR.CH4.value).toBe(21);
+    expect(GWP.SAR.N2O.value).toBe(310);
+
+    for (const g of [GWP.SAR.CO2, GWP.SAR.CH4, GWP.SAR.N2O]) {
+      expect(g.primarySource.maturity).toBe("verified");
+      expect(g.primarySource.docId).toBe("ipcc-sar-1995");
+      expect(g.primarySource.row).toBeDefined();
+    }
+
+    const sar = GWP.SAR.CH4;
+    expect(sar.primarySource.publisher).toContain("IPCC");
+    expect(sar.primarySource.edition).toContain("1995");
+    expect(sar.primarySource.url).toContain("ipcc_sar_wg_I_full_report.pdf");
+    expect(sar.primarySource.note).toContain("K-ETS");
+    expect(GWP.SAR.label).toContain("K-ETS");
+  });
+
+  it("AR4 (CH4=25 · N2O=298 · Table 2.14)", () => {
+    expect(GWP.AR4.CO2.value).toBe(1);
+    expect(GWP.AR4.CH4.value).toBe(25);
+    expect(GWP.AR4.N2O.value).toBe(298);
+
+    const ch4 = GWP.AR4.CH4;
+    expect(ch4.primarySource.maturity).toBe("verified");
+    expect(ch4.primarySource.docId).toBe("ipcc-ar4-2007");
+    expect(ch4.primarySource.row).toContain("Table 2.14");
+    expect(ch4.primarySource.url).toContain("ar4-wg1-chapter2");
+  });
+
+  it("AR5 (CH4=28 · N2O=265 · Ch.8 Table 8.7 · without climate-carbon feedback)", () => {
+    expect(GWP.AR5.CO2.value).toBe(1);
+    expect(GWP.AR5.CH4.value).toBe(28);
+    expect(GWP.AR5.N2O.value).toBe(265);
+
+    const ch4 = GWP.AR5.CH4;
+    expect(ch4.primarySource.maturity).toBe("verified");
+    expect(ch4.primarySource.docId).toBe("ipcc-ar5-2014");
+    expect(ch4.primarySource.row).toContain("Table 8.7");
+    expect(ch4.primarySource.note).toContain("without climate-carbon feedback");
+    expect(ch4.primarySource.url).toContain("WG1AR5_Chapter08");
+    expect(GWP.AR5.label).toContain("NIR");
+  });
+
+  it("AR6 (CH4=27.9 · N2O=273 · methane fossil/non-fossil 구분 주의)", () => {
+    expect(GWP.AR6.CO2.value).toBe(1);
+    expect(GWP.AR6.CH4.value).toBeCloseTo(27.9, 10);
+    expect(GWP.AR6.N2O.value).toBe(273);
+
+    const ch4 = GWP.AR6.CH4;
+    expect(ch4.primarySource.maturity).toBe("verified");
+    expect(ch4.primarySource.docId).toBe("ipcc-ar6-2021");
+    expect(ch4.primarySource.row).toContain("Table 7.SM.7");
+    expect(ch4.primarySource.note).toContain("fossil methane 29.8");
+    expect(ch4.primarySource.note).toContain("27.0");
+    expect(ch4.primarySource.url).toContain("AR6_WGI_Chapter07");
+
+    const n2o = GWP.AR6.N2O;
+    expect(n2o.primarySource.row).toContain("Table 7.15");
   });
 });

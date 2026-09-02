@@ -190,75 +190,73 @@ export const GIR_EF_2022: PrimarySource = {
 };
 
 /**
- * 국가 온실가스 인벤토리 보고서 (NIR)
- * 매년 발간. SAR GWP 채택 근거.
- */
-export const NATIONAL_INVENTORY_REPORT: PrimarySource = {
-  kind: "national-inventory",
-  docId: "national-inventory",
-  doc: "국가 온실가스 인벤토리 보고서",
-  publisher: "온실가스종합정보센터 (GIR)",
-  edition: "최신 보고서",
-  url: "http://www.gir.go.kr",
-  maturity: "documented",
-  reviewedAt: "2026-08-31",
-  note: "한국은 GWP 로 SAR (IPCC 1995) 을 국가 인벤토리에 채택함. 이 값이 K-ETS 계산에 사용됨.",
-};
-
-/**
- * IPCC Second Assessment Report (SAR, 1995)
- * — 국가 인벤토리가 채택한 GWP 원출처.
+ * IPCC Second Assessment Report (SAR, 1995) — Working Group I.
+ * K-ETS 배출권거래제 지침 별표 6 이 채택한 GWP 원출처.
  */
 export const IPCC_SAR: PrimarySource = {
   kind: "ipcc-ar",
   docId: "ipcc-sar-1995",
-  doc: "IPCC Second Assessment Report",
-  publisher: "IPCC",
-  edition: "1995",
-  part: "Working Group I, Chapter 2 (GWP 100-year values)",
-  url: "https://www.ipcc.ch/report/climate-change-1995-the-science-of-climate-change/",
-  maturity: "documented",
-  reviewedAt: "2026-08-31",
-  note: "CO2=1, CH4=21, N2O=310. 한국 국가 인벤토리 · K-ETS 채택 GWP.",
+  doc: "IPCC Second Assessment Report · Climate Change 1995: The Science of Climate Change",
+  publisher: "IPCC (Intergovernmental Panel on Climate Change)",
+  edition: "1995 (WG1 Full Report, digitized 2010)",
+  part: "Working Group I · Summary for Policymakers Table 4 · Ch.2 Table 2.9",
+  url: "https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_sar_wg_I_full_report.pdf",
+  maturity: "verified",
+  reviewedAt: "2026-09-02",
+  note: "GWP-100: CO2=1, CH4=21, N2O=310. K-ETS 배출권거래제 지침 별표 6 채택 값 (2024년 이전에는 한국 국가 인벤토리도 SAR 채택했으나 파리협정 대응으로 2024년부터 AR5 로 전환).",
 };
 
+/**
+ * IPCC Fourth Assessment Report (AR4, 2007) — Working Group I Chapter 2.
+ */
 export const IPCC_AR4: PrimarySource = {
   kind: "ipcc-ar",
   docId: "ipcc-ar4-2007",
-  doc: "IPCC Fourth Assessment Report",
-  publisher: "IPCC",
+  doc: "IPCC Fourth Assessment Report · Climate Change 2007: The Physical Science Basis",
+  publisher: "IPCC (Intergovernmental Panel on Climate Change)",
   edition: "2007",
-  part: "Working Group I, Chapter 2 (Table 2.14, 100-year GWP)",
-  url: "https://www.ipcc.ch/report/ar4/wg1/",
-  maturity: "documented",
-  reviewedAt: "2026-08-31",
-  note: "CO2=1, CH4=25, N2O=298.",
+  part: "Working Group I · Chapter 2 (Changes in Atmospheric Constituents and Radiative Forcing)",
+  table: "Table 2.14 (Direct GWPs relative to CO2, 100-year)",
+  url: "https://www.ipcc.ch/site/assets/uploads/2018/02/ar4-wg1-chapter2-1.pdf",
+  maturity: "verified",
+  reviewedAt: "2026-09-02",
+  note: "GWP-100: CO2=1, CH4=25, N2O=298.",
 };
 
+/**
+ * IPCC Fifth Assessment Report (AR5, 2013) — Working Group I Chapter 8 Appendix 8.A.
+ * 파리협정 투명성체계 대응으로 2024년부터 한국 국가 인벤토리에서 채택.
+ */
 export const IPCC_AR5: PrimarySource = {
   kind: "ipcc-ar",
   docId: "ipcc-ar5-2014",
-  doc: "IPCC Fifth Assessment Report",
-  publisher: "IPCC",
-  edition: "2014",
-  part: "Working Group I, Chapter 8 (Table 8.7, 100-year GWP without feedback)",
-  url: "https://www.ipcc.ch/report/ar5/wg1/",
-  maturity: "documented",
-  reviewedAt: "2026-08-31",
-  note: "CO2=1, CH4=28, N2O=265. carbon-climate feedback 미포함 값.",
+  doc: "IPCC Fifth Assessment Report · Climate Change 2013: The Physical Science Basis",
+  publisher: "IPCC (Intergovernmental Panel on Climate Change)",
+  edition: "2013 (WG1 Full Report)",
+  part: "Working Group I · Chapter 8 (Anthropogenic and Natural Radiative Forcing) · Appendix 8.A",
+  table: "Table 8.7 (Lifetimes, radiative efficiencies and metrics)",
+  url: "https://www.ipcc.ch/site/assets/uploads/2018/02/WG1AR5_Chapter08_FINAL.pdf",
+  maturity: "verified",
+  reviewedAt: "2026-09-02",
+  note: "GWP-100 (without climate-carbon feedback): CO2=1, CH4=28, N2O=265. 2024년~ 한국 국가 온실가스 인벤토리(NIR) 채택 값 (K-ETS 배출권거래제는 여전히 SAR 사용).",
 };
 
+/**
+ * IPCC Sixth Assessment Report (AR6, 2021) — Working Group I Chapter 7.
+ * Methane 을 fossil/non-fossil 로 분리 규정 (Table 7.15). 별도 Table 7.SM.7 에 통합 값 제공.
+ */
 export const IPCC_AR6: PrimarySource = {
   kind: "ipcc-ar",
   docId: "ipcc-ar6-2021",
-  doc: "IPCC Sixth Assessment Report",
-  publisher: "IPCC",
-  edition: "2021",
-  part: "Working Group I, Chapter 7 (Table 7.15, GWP-100)",
-  url: "https://www.ipcc.ch/report/ar6/wg1/",
-  maturity: "documented",
-  reviewedAt: "2026-08-31",
-  note: "CO2=1, CH4=27.9 (non-fossil) / 29.8 (fossil), N2O=273.",
+  doc: "IPCC Sixth Assessment Report · Climate Change 2021: The Physical Science Basis",
+  publisher: "IPCC (Intergovernmental Panel on Climate Change)",
+  edition: "2021 (WG1 Full Report)",
+  part: "Working Group I · Chapter 7 (Earth's Energy Budget, Climate Feedbacks, Climate Sensitivity)",
+  table: "Table 7.15 (GWP/GTP) · Table 7.SM.7 (methane, radiative forcing only)",
+  url: "https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Chapter07.pdf",
+  maturity: "verified",
+  reviewedAt: "2026-09-02",
+  note: "GWP-100: CO2=1, CH4=27.9 (methane pure RF, Table 7.SM.7), N2O=273 (Table 7.15). AR6 는 methane 을 fossil (29.8) 과 non-fossil (27.0) 로 분리 규정하지만 본 계산기는 통합 값 27.9 사용.",
 };
 
 /**
@@ -287,7 +285,6 @@ export const SOURCES = {
   KETS_ANNEX_12,
   GIR_EF_2017,
   GIR_EF_2022,
-  NATIONAL_INVENTORY_REPORT,
   IPCC_SAR,
   IPCC_AR4,
   IPCC_AR5,

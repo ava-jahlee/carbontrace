@@ -1,0 +1,23 @@
+{
+  "$schema": "verified-source-map v1",
+  "docId": "ipcc-ar5-2014",
+  "reviewedAt": "2026-09-02",
+  "reviewNote": "IPCC Fifth Assessment Report (AR5) WG1 · Climate Change 2013: The Physical Science Basis · Chapter 8 (Anthropogenic and Natural Radiative Forcing) · Appendix 8.A · Table 8.7. 파리협정 투명성체계(2024년 이후 한국 NIR) 채택 값.",
+  "entries": {
+    "gwp.AR5.CO2": {
+      "row": "WG1 Ch.8 · Appendix 8.A · Table 8.7 · CO2",
+      "expectedValue": 1,
+      "note": "정의상 항상 1."
+    },
+    "gwp.AR5.CH4": {
+      "row": "WG1 Ch.8 · Appendix 8.A · Table 8.7 · CH4 (100-year, without climate-carbon feedback)",
+      "expectedValue": 28,
+      "note": "Table 8.7 은 두 열을 제공: (a) without climate-carbon feedback (CH4=28), (b) with climate-carbon feedback (CH4=34). 표준 인벤토리 관례는 (a) 값 사용. 한국 NIR (2024년~) 채택."
+    },
+    "gwp.AR5.N2O": {
+      "row": "WG1 Ch.8 · Appendix 8.A · Table 8.7 · N2O (100-year, without climate-carbon feedback)",
+      "expectedValue": 265,
+      "note": "AR4 의 298 에서 265 로 하향. Without climate-carbon feedback 열."
+    }
+  }
+}
