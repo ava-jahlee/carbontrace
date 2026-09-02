@@ -8,7 +8,7 @@
  */
 
 import type { Fuel } from "./types";
-import { GIR_EF_2017, IPCC_2006_VOL2_CH1, KETS_ANNEX_12 } from "@/data/sources";
+import { GIR_EF_2017, IPCC_2006_VOL2_CH1, IPCC_2006_VOL2_CH2, KETS_ANNEX_12 } from "@/data/sources";
 
 export const FUELS: Fuel[] = [
   {
@@ -64,12 +64,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Crude Oil · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Crude Oil · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -134,12 +142,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Orimulsion · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Orimulsion · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -204,12 +220,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Natural Gas Liquids · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Natural Gas Liquids · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -282,12 +306,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Motor Gasoline · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Motor Gasoline · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -360,12 +392,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Aviation Gasoline · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Aviation Gasoline · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -430,12 +470,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Jet Gasoline · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Jet Gasoline · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -508,12 +556,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Jet Kerosene · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Jet Kerosene · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -594,12 +650,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Other Kerosene · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Other Kerosene · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -672,12 +736,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Shale Oil · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Shale Oil · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -750,12 +822,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Gas/Diesel Oil · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Gas/Diesel Oil · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -812,12 +892,12 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 10.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": IPCC_2006_VOL2_CH2
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": IPCC_2006_VOL2_CH2
         }
       },
       "t2": {
@@ -874,12 +954,12 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 10.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": IPCC_2006_VOL2_CH2
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": IPCC_2006_VOL2_CH2
         }
       },
       "t2": {
@@ -960,12 +1040,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Residual Fuel Oil · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Residual Fuel Oil · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -1146,12 +1234,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Liquefied Petroleum Gases · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.1,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Liquefied Petroleum Gases · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -1324,12 +1420,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Ethane · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.1,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Ethane · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -1402,12 +1506,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Naphtha · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Naphtha · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -1488,12 +1600,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Bitumen · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Bitumen · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -1574,12 +1694,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Lubricants · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Lubricants · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -1660,12 +1788,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Petroleum Coke · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Petroleum Coke · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -1738,12 +1874,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Refinery Feedstocks · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Refinery Feedstocks · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -1808,12 +1952,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Refinery Gas · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.1,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Refinery Gas · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -1878,12 +2030,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Paraffin Waxes · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Paraffin Waxes · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -1956,12 +2116,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · White Spirit and SBP · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · White Spirit and SBP · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -2034,12 +2202,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Other Petroleum Products · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Other Petroleum Products · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -2120,12 +2296,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Anthracite · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 1.5,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Anthracite · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -2206,12 +2390,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Anthracite · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 1.5,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Anthracite · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -2292,12 +2484,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Anthracite · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 1.5,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Anthracite · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -2378,12 +2578,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Coking Coal · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 1.5,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Coking Coal · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -2464,12 +2672,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Other Bituminous Coal · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 1.5,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Other Bituminous Coal · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -2550,12 +2766,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Sub-Bituminous Coal · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 1.5,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Sub-Bituminous Coal · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -2628,12 +2852,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Lignite · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 1.5,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Lignite · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -2698,12 +2930,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Oil Shale and Tar Sands · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 1.5,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Oil Shale and Tar Sands · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -2768,12 +3008,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Brown Coal Briquettes · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 1.5,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Brown Coal Briquettes · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -2838,12 +3086,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Patent Fuel · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 1.5,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Patent Fuel · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -2916,12 +3172,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Coke Oven Coke and Lignite Coke · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 1.5,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Coke Oven Coke and Lignite Coke · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -2986,12 +3250,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Gas Coke · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.1,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Gas Coke · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -3056,12 +3328,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Coal Tar · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 1.5,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Coal Tar · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -3126,12 +3406,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Gas Works Gas · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.1,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Gas Works Gas · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -3196,12 +3484,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Coke Oven Gas · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.1,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Coke Oven Gas · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -3266,12 +3562,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Blast Furnace Gas · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.1,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Blast Furnace Gas · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -3336,12 +3640,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Oxygen Steel Furnace Gas · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.1,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Oxygen Steel Furnace Gas · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -3414,12 +3726,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Natural Gas · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.1,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Natural Gas · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -3600,12 +3920,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 30.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Municipal Wastes (non-biomass fraction) · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 4.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Municipal Wastes (non-biomass fraction) · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -3662,12 +3990,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 30.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Industrial Wastes · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 4.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Industrial Wastes · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -3732,12 +4068,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 30.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Waste Oils · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 4.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Waste Oils · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -3802,12 +4146,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Peat · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 1.5,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Peat · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -3872,12 +4224,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 30.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Wood/Wood Waste · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 4.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Wood/Wood Waste · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -3942,12 +4302,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Sulphite lyes (black liquor) · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 2.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Sulphite lyes (black liquor) · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -4012,12 +4380,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 30.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Other Primary Solid Biomass · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 4.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Other Primary Solid Biomass · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -4082,12 +4458,16 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 30.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": IPCC_2006_VOL2_CH2
         },
         "N2O": {
           "value": 4.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Charcoal · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -4152,12 +4532,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Biogasoline · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Biogasoline · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -4222,12 +4610,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Biodiesels (Liquid) · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Biodiesels (Liquid) · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -4292,12 +4688,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 3.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Other Liquid Biofuels · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.6,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Other Liquid Biofuels · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -4362,12 +4766,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Landfill Gas · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.1,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Landfill Gas · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -4432,12 +4844,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Sludge Gas · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.1,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Sludge Gas · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -4502,12 +4922,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 1.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Other Biogas · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 0.1,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Other Biogas · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {
@@ -4572,12 +5000,20 @@ export const FUELS: Fuel[] = [
         "CH4": {
           "value": 30.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Municipal Wastes (biomass fraction) · CH4 Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         },
         "N2O": {
           "value": 4.0,
           "unit": "kgGHG/TJ",
-          "primarySource": IPCC_2006_VOL2_CH1
+          "primarySource": { ...IPCC_2006_VOL2_CH2, "maturity": "verified",
+            "row": "Table 2.2 · Municipal Wastes (biomass fraction) · N2O Emission Factor",
+            "page": "2.16–2.17",
+            "note": "IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Default EF for Stationary Combustion in Energy Industries). kg/TJ on Net Calorific Basis.",
+            "reviewedAt": "2026-09-02" }
         }
       },
       "t2": {

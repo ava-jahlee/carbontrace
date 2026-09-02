@@ -282,8 +282,9 @@ def build_fuels(sheet):
                 "t1": {
                     "tC_per_TJ": m(t1_tc,  "tC/TJ",    SRC_IPCC_CH1, f"fuel.{fuel_id}.ef.t1.tC_per_TJ"),
                     "CO2":       m(t1_co2, t1_ef_unit, SRC_IPCC_CH1, f"fuel.{fuel_id}.ef.t1.CO2"),
-                    "CH4":       m(t1_ch4, t1_ef_unit, SRC_IPCC_CH1, f"fuel.{fuel_id}.ef.t1.CH4"),
-                    "N2O":       m(t1_n2o, t1_ef_unit, SRC_IPCC_CH1, f"fuel.{fuel_id}.ef.t1.N2O"),
+                    # CH4/N2O 는 IPCC Vol.2 Ch.2 (섹터별 표) 소관. 우리 xlsm 은 Table 2.2 (Energy Industries) 채택.
+                    "CH4":       m(t1_ch4, t1_ef_unit, SRC_IPCC_CH2, f"fuel.{fuel_id}.ef.t1.CH4"),
+                    "N2O":       m(t1_n2o, t1_ef_unit, SRC_IPCC_CH2, f"fuel.{fuel_id}.ef.t1.N2O"),
                 },
                 "t2": {
                     "group":     t2_group,

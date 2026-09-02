@@ -40,7 +40,7 @@ carbontrace 의 계산 엔진 결과를 소수점 10 자리 이상 자리에서 
 | N2O tCO2eq | `0.008202599999999999` | `0.008202599999999999` | ✅ PASS |
 
 ```bash
-npm test   # Vitest 파리티 8/8 + verified 14/14 PASS (170 measurements 승격)
+npm test   # Vitest 파리티 8/8 + verified 20/20 PASS (279 measurements 승격)
 ```
 
 ---
@@ -97,7 +97,8 @@ carbontrace/
 │  │  ├─ sources.ts             # 원문서 카탈로그 (IPCC · GIR · K-ETS · NIR · KDHC)
 │  │  ├─ verified/              # 값 수준 원문서 매핑 (조사 릴리스 산출물)
 │  │  │  ├─ kets-annex-6.json   # ← 산화계수 6개 조항 위치 매핑
-│  │  │  └─ ipcc-2006-vol2-ch1.json  # ← T1 열량 · 탄소함량 · CO2 EF 164개 표 · 행 매핑
+│  │  │  ├─ ipcc-2006-vol2-ch1.json  # ← T1 열량 · 탄소함량 · CO2 EF 164개 표 · 행 매핑
+│  │  │  └─ ipcc-2006-vol2-ch2.json  # ← T1 CH4/N2O EF 109개 표 · 행 매핑
 │  │  ├─ raw/                   # 원본 xlsm 그대로 (git 커밋)
 │  │  └─ factors/
 │  │     ├─ types.ts            # Measurement (value + primarySource), Fuel, ...
@@ -137,7 +138,7 @@ carbontrace/
 | 열량계수 T2 | K-ETS 지침 별표 11 (국가고유 발열량) | asserted |
 | 탄소함량 T1 | IPCC 2006 GL Vol.2 Ch.1 Table 1.3 (p.1.21–1.22) | **verified** (2026-09-02, 55개 값) |
 | CO2 배출계수 T1 | IPCC 2006 GL Vol.2 Ch.1 Table 1.4 (p.1.23–1.24) | **verified** (2026-09-02, 55개 값) |
-| CH4/N2O 배출계수 T1 | IPCC 2006 GL Vol.2 Ch.2 (섹터별) | asserted (다음 세션) |
+| CH4/N2O 배출계수 T1 | IPCC 2006 GL Vol.2 Ch.2 Table 2.2 (Energy Industries, p.2.16–2.17) | **verified** (2026-09-02, 109개 값) |
 | 배출계수 T2 | GIR 국가 고유 배출계수 (2017) | asserted |
 | 산화계수 T1 | K-ETS 지침 별표 6 (각 배출활동 §④) | **verified** (2026-09-02) |
 | 산화계수 T2 | K-ETS 지침 별표 6 (각 배출활동 §④) | **verified** (2026-09-02) |
@@ -164,6 +165,8 @@ v0.1 은 대부분 `asserted` 상태로 시작한다.
 - ✅ 2026-09-02 · K-ETS 별표 6 산화계수 6개 값 — 각 배출활동 §④ 조항까지 매핑
 - ✅ 2026-09-02 · IPCC 2006 GL Vol.2 Ch.1 T1 계수 164개 값 — Table 1.2 (NCV) · Table 1.3 (탄소함량) · Table 1.4 (CO2 EF) 각 표 · 행 · 페이지 매핑
    - CO2 EF 는 IPCC 표 하단 계산식 `C = A × B × 44/12 × 1000` 유도값 사용 (표 표시값은 반올림 값)
+- ✅ 2026-09-02 · IPCC 2006 GL Vol.2 Ch.2 T1 CH4/N2O 계수 109개 값 — Table 2.2 (Energy Industries) 채택 근거로 우리 xlsm 값이 T2.2 와 정확히 일치 (석탄류 CH4=1 판정)
+   - 목탄 CH4 만 우리 xlsm 값(30)이 어느 표에도 없어 asserted 유지 (원본 오류 가능성)
 
 ---
 

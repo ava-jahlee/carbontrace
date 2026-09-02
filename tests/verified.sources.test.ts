@@ -121,3 +121,74 @@ describe("verified: IPCC 2006 GL Vol.2 Ch.1 (T1 열량 · 탄소함량 · CO2 EF
     expect(bA!.heat.t1_net).toBeNull();
   });
 });
+
+describe("verified: IPCC 2006 GL Vol.2 Ch.2 (T1 CH4·N2O EF, Energy Industries)", () => {
+  const crude = FUELS.find((f) => f.id === "원유");
+  const anthracite = FUELS.find((f) => f.id === "국내-무연탄");
+  const naturalGas = FUELS.find((f) => f.id === "천연가스LNG");
+  const wood = FUELS.find((f) => f.id === "목재목재폐기물");
+  const charcoal = FUELS.find((f) => f.id === "목탄");
+
+  it("원유 T1 CH4/N2O: Table 2.2 · Crude Oil · 3 / 0.6 kg/TJ", () => {
+    const ch4 = crude!.ef.t1.CH4!;
+    const n2o = crude!.ef.t1.N2O!;
+    expect(ch4.value).toBeCloseTo(3, 10);
+    expect(n2o.value).toBeCloseTo(0.6, 10);
+    expect(ch4.primarySource.maturity).toBe("verified");
+    expect(ch4.primarySource.docId).toBe("ipcc-2006-vol2-ch2");
+    expect(ch4.primarySource.row).toContain("Table 2.2");
+    expect(ch4.primarySource.row).toContain("Crude Oil");
+    expect(ch4.primarySource.page).toBe("2.16–2.17");
+    expect(n2o.primarySource.maturity).toBe("verified");
+  });
+
+  it("무연탄 T1 CH4=1 · N2O=1.5 (Table 2.2 Energy Industries 특유 — T2.3/2.4=10, T2.5=300 이 아님)", () => {
+    const ch4 = anthracite!.ef.t1.CH4!;
+    const n2o = anthracite!.ef.t1.N2O!;
+    expect(ch4.value).toBe(1);
+    expect(n2o.value).toBe(1.5);
+    expect(ch4.primarySource.maturity).toBe("verified");
+    expect(ch4.primarySource.row).toContain("Anthracite");
+  });
+
+  it("천연가스 T1 CH4=1 · N2O=0.1 (기체 그룹)", () => {
+    const ch4 = naturalGas!.ef.t1.CH4!;
+    const n2o = naturalGas!.ef.t1.N2O!;
+    expect(ch4.value).toBe(1);
+    expect(n2o.value).toBe(0.1);
+    expect(ch4.primarySource.row).toContain("Natural Gas");
+  });
+
+  it("목재/목재폐기물 T1 CH4=30 · N2O=4 (바이오매스 그룹)", () => {
+    const ch4 = wood!.ef.t1.CH4!;
+    const n2o = wood!.ef.t1.N2O!;
+    expect(ch4.value).toBe(30);
+    expect(n2o.value).toBe(4);
+    expect(ch4.primarySource.row).toContain("Wood");
+  });
+
+  it("목탄 CH4 는 우리 xlsm 값(30)이 IPCC Table 2.2(200)과 불일치 → asserted 유지", () => {
+    // 원본 xlsm 저자가 잘못 넣었거나 다른 자료 참조. 승격 취소되어 카탈로그 기본값(asserted 아닌 verified) 사용.
+    // 우리 sources.ts 는 문서 자체를 verified 로 승격했지만 이 값 매핑은 mismatch 로 취소됨.
+    // 결과: primarySource === IPCC_2006_VOL2_CH2 원본 카탈로그 상수 (row 없음)
+    const ch4 = charcoal!.ef.t1.CH4!;
+    expect(ch4.value).toBe(30);
+    // spread override 가 적용 안 됐으므로 row 필드가 없음 (문서 자체 정보만)
+    expect(ch4.primarySource.row).toBeUndefined();
+    // 문서 자체는 여전히 verified maturity (sources.ts 상수)
+    expect(ch4.primarySource.maturity).toBe("verified");
+    // N2O 는 매칭 성공 → row 있음
+    const n2o = charcoal!.ef.t1.N2O!;
+    expect(n2o.value).toBe(4);
+    expect(n2o.primarySource.row).toContain("Charcoal");
+  });
+
+  it("IPCC Vol.2 Ch.2 문서 자체 정보가 승격됨", () => {
+    const m = crude!.ef.t1.CH4!;
+    const ps = m.primarySource;
+    expect(ps.docId).toBe("ipcc-2006-vol2-ch2");
+    expect(ps.publisher).toContain("IPCC");
+    expect(ps.url).toContain("V2_2_Ch2_Stationary_Combustion.pdf");
+    expect(ps.part).toContain("Chapter 2");
+  });
+});

@@ -49,8 +49,8 @@
 |---|---|---|
 | `kets-annex-6.json` | verified (2026-09-02) | 6 / 6 |
 | `ipcc-2006-vol2-ch1.json` | verified (2026-09-02) | 164 / 164 (Table 1.2/1.3/1.4) |
+| `ipcc-2006-vol2-ch2.json` | verified (2026-09-02) | 109 / 110 (Table 2.2, 목탄 CH4 mismatch 1건) |
 | `kets-annex-11.json` | (예정) | — (T2 열량계수 63개 예상) |
-| `ipcc-2006-vol2-ch2.json` | (예정) | — (T1 CH4/N2O 배출계수) |
 | `gir-ef-2017.json` | (예정) | — (T2 배출계수) |
 | `gwp.json` | (예정) | — (12개) |
 

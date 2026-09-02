@@ -98,17 +98,28 @@ export const IPCC_2006_VOL2_CH1: PrimarySource = {
   note: "T1 열량계수 · 탄소함량 · CO2 배출계수 (IPCC 국제 관례 기본값). Ch.1 은 CO2 만 다루며, CH4·N2O 는 Vol.2 Ch.2 참조.",
 };
 
+/**
+ * IPCC 2006 Guidelines for National GHG Inventories · Volume 2 (Energy)
+ * · Chapter 2 (Stationary Combustion)
+ *   섹터별 CH4·N2O 기본 배출계수 (Ch.1 은 CO2 · Ch.2 는 CH4/N2O 분담).
+ *   - Table 2.2 (p.2.16–2.17) : Energy Industries
+ *   - Table 2.3 (p.2.18–2.19) : Manufacturing Industries & Construction
+ *   - Table 2.4 (p.2.20–2.21) : Commercial/Institutional
+ *   - Table 2.5 (p.2.22–2.23) : Residential & Agriculture/Forestry/Fishing
+ *   본 계산기 (K-ETS 대상 사업체 배출) 는 Table 2.2 (Energy Industries) 채택.
+ */
 export const IPCC_2006_VOL2_CH2: PrimarySource = {
   kind: "ipcc-2006",
   docId: "ipcc-2006-vol2-ch2",
   doc: "2006 IPCC Guidelines for National Greenhouse Gas Inventories",
-  publisher: "IPCC",
+  publisher: "IPCC (Intergovernmental Panel on Climate Change)",
   edition: "2006",
-  part: "Volume 2 (Energy), Chapter 2 (Stationary Combustion)",
-  url: "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol2.html",
-  maturity: "asserted",
-  reviewedAt: "2026-08-31",
-  note: "고정 연소 관련 방법론·기본값.",
+  part: "Volume 2 (Energy) · Chapter 2 (Stationary Combustion)",
+  table: "Table 2.2 (Energy Industries, p.2.16–2.17) · Table 2.3/2.4/2.5 (섹터별)",
+  url: "https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_2_Ch2_Stationary_Combustion.pdf",
+  maturity: "verified",
+  reviewedAt: "2026-09-02",
+  note: "T1 CH4/N2O 배출계수. 섹터별 4개 표가 있으며 본 계산기는 Energy Industries (Table 2.2) 채택 — 우리 xlsm 의 석탄류 CH4=1 값이 T2.2 와 일치 (T2.3/T2.4=10, T2.5=300 이 아님).",
 };
 
 /**
