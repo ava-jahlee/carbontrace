@@ -271,13 +271,27 @@ function PrimarySourceCard({ ps }: { ps: PrimarySource }) {
   if (ps.page) locationParts.push(`p. ${ps.page}`);
   if (ps.row) locationParts.push(`행: ${ps.row}`);
 
+  // note 에 ⚠ 프리픽스가 있으면 원본 xlsm 오작성/원출처 불명 warning.
+  const isWarning = ps.note?.trimStart().startsWith("⚠");
+  const cardCls = isWarning
+    ? "rounded-md border-2 border-amber-300 bg-amber-50 p-2 text-[11px] leading-relaxed dark:border-amber-700 dark:bg-amber-950/30"
+    : "rounded-md border border-blue-100 bg-blue-50/50 p-2 text-[11px] leading-relaxed dark:border-blue-900/40 dark:bg-blue-950/20";
+
   return (
-    <div className="rounded-md border border-blue-100 bg-blue-50/50 p-2 text-[11px] leading-relaxed dark:border-blue-900/40 dark:bg-blue-950/20">
+    <div className={cardCls}>
       <div className="mb-1.5 flex items-center gap-2">
         <span className="text-[9px] font-semibold uppercase tracking-wider text-neutral-500">
           원문서 근거
         </span>
         <MaturityBadge maturity={ps.maturity} />
+        {isWarning && (
+          <span
+            className="inline-block rounded border border-amber-400 bg-amber-100 px-1.5 py-[1px] text-[10px] font-semibold uppercase tracking-wide text-amber-900 dark:border-amber-600 dark:bg-amber-900/50 dark:text-amber-200"
+            title="원본 xlsm 오작성 또는 원출처 불명 · 감사 시 재확인 필요"
+          >
+            ⚠ 원출처 확인 요망
+          </span>
+        )}
       </div>
       <div className="space-y-0.5">
         <div className="text-neutral-800 dark:text-neutral-100">
@@ -303,7 +317,15 @@ function PrimarySourceCard({ ps }: { ps: PrimarySource }) {
           </div>
         )}
         {ps.note && (
-          <div className="mt-1 text-neutral-500 italic dark:text-neutral-400">{ps.note}</div>
+          <div
+            className={
+              isWarning
+                ? "mt-1 rounded bg-amber-100/70 px-2 py-1 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100"
+                : "mt-1 text-neutral-500 italic dark:text-neutral-400"
+            }
+          >
+            {ps.note}
+          </div>
         )}
         {ps.reviewedAt && (
           <div className="mt-0.5 text-[10px] text-neutral-400">확인일자 · {ps.reviewedAt}</div>

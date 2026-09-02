@@ -111,6 +111,49 @@ IPCC_T25_N2O_MATCHED = {
     "바이오-가솔린", "바이오-디젤", "도시폐기물-바이오매스",
 }
 
+# T2 tC/CO2 원출처 불명 4개 연료의 상세 note.
+# UI 는 "⚠" 프리픽스로 warning 배지 판단.
+# 등유·항공유: xlsm 이 K-ETS 별표 12 값을 뒤바꿔 넣은 오작성.
+# 경유·도시가스LNG: 별표 12·GIR 2022.1 어느 것과도 일치 안 함, 이전 판 참조 추정.
+GIR_T2_TC_NOTES: dict[str, str] = {
+    "등유-기타-등유": (
+        "⚠ xlsm 원본 오작성: K-ETS 별표 12 표 B 등유값(19.969) 대신 별표 12 항공유값(19.931)을 잘못 넣음. "
+        "정확한 별표 12 등유 = 19.969 kgC/TJ · GIR 2022.1 등유 = 19.926 kgC/TJ. "
+        "감사 시 xlsm 원본 정정 필요."
+    ),
+    "제트용-등유-항공유": (
+        "⚠ xlsm 원본 오작성: K-ETS 별표 12 표 B 항공유값(19.931) 대신 별표 12 등유값(19.969)을 잘못 넣음. "
+        "정확한 별표 12 항공유 = 19.931 kgC/TJ · GIR 2022.1 항공유(JET-A1) = 19.956 kgC/TJ. "
+        "감사 시 xlsm 원본 정정 필요."
+    ),
+    "경유-가스디젤-오일": (
+        "⚠ xlsm 값 20.111 은 K-ETS 별표 12 표 B(19.969 · 등유·경유 병합값) · GIR 2022.1(20.090) 어느 것과도 일치하지 않음. "
+        "GIR 이전 공표(2011년대 초기 판) 참조로 추정. GIR 이전 판 PDF 재확보 후 검증 필요."
+    ),
+    "도시가스LNG": (
+        "⚠ xlsm 값 15.272 는 K-ETS 별표 12 표 B(15.312 · 천연가스LNG·도시가스LNG 병합값) · GIR 2022.1(15.236) 어느 것과도 일치하지 않음. "
+        "GIR 이전 공표 판 참조로 추정. GIR 이전 판 PDF 재확보 후 검증 필요."
+    ),
+}
+GIR_T2_CO2_NOTES: dict[str, str] = {
+    "등유-기타-등유": (
+        "⚠ xlsm 원본 오작성 (tC 값 뒤바꿈에 따른 CO2 계수 파생 오류). "
+        "정확한 값 (tC × 44/12 × 1000): 별표 12 등유 = 73,153 kgCO2/TJ · GIR 2022.1 등유 = 73,062 kgCO2/TJ."
+    ),
+    "제트용-등유-항공유": (
+        "⚠ xlsm 원본 오작성 (tC 값 뒤바꿈에 따른 CO2 계수 파생 오류). "
+        "정확한 값 (tC × 44/12 × 1000): 별표 12 항공유 = 72,974 kgCO2/TJ · GIR 2022.1 항공유(JET-A1) = 73,152 kgCO2/TJ."
+    ),
+    "경유-가스디젤-오일": (
+        "⚠ xlsm 값이 별표 12·GIR 2022.1 어느 것과도 일치하지 않음 (tC=20.111 파생). "
+        "정확한 값: 별표 12 경유 = 73,153 kgCO2/TJ · GIR 2022.1 경유 = 73,663 kgCO2/TJ."
+    ),
+    "도시가스LNG": (
+        "⚠ xlsm 값이 별표 12·GIR 2022.1 어느 것과도 일치하지 않음 (tC=15.272 파생). "
+        "정확한 값: 별표 12 병합값 = 56,144 kgCO2/TJ · GIR 2022.1 도시가스(LNG) = 55,865 kgCO2/TJ."
+    ),
+}
+
 # 카탈로그 상수명 → docId (verified 매핑의 docId 와 매칭용)
 DOC_ID_BY_SYMBOL = {
     "IPCC_2006_VOL2_CH1": "ipcc-2006-vol2-ch1",
@@ -247,10 +290,19 @@ def slugify(text) -> str:
 # Measurement 생성
 # ─────────────────────────────────────────────────────────────
 
-def m(value, unit: str, primary_source_ref: str, lookup_key: str | None = None):
+def m(
+    value,
+    unit: str,
+    primary_source_ref: str,
+    lookup_key: str | None = None,
+    extra_note: str | None = None,
+):
     """감사 근거 포함 계수 값. 값이 없으면 None.
-    lookup_key 가 주어지고 매칭되는 verified 오버라이드가 있으면
-    primarySource 를 spread 형태로 렌더한다.
+
+    - lookup_key 가 주어지고 매칭되는 verified 오버라이드가 있으면
+      primarySource 를 spread 형태로 렌더 (verified 승격).
+    - verified 오버라이드가 없고 extra_note 가 있으면 spread + note 만 오버라이드
+      (maturity 는 원본 상수 유지, 즉 asserted/documented 그대로).
     """
     if value is None:
         return None
@@ -263,6 +315,17 @@ def m(value, unit: str, primary_source_ref: str, lookup_key: str | None = None):
                 "unit": unit,
                 "primarySource": override,
             }
+
+    if extra_note:
+        return {
+            "value": value,
+            "unit": unit,
+            "primarySource": {
+                "__spread__": primary_source_ref,
+                "note": extra_note,
+                "reviewedAt": "2026-09-02",
+            },
+        }
 
     return {
         "value": value,
@@ -344,11 +407,13 @@ def build_fuels(sheet):
                         t2_tc, "tC/TJ",
                         SRC_KETS_A12 if fuel_id in KETS_A12_EF_MATCHED else SRC_GIR_17,
                         f"fuel.{fuel_id}.ef.t2.tC_per_TJ",
+                        extra_note=GIR_T2_TC_NOTES.get(fuel_id),
                     ),
                     "CO2": m(
                         t2_co2, t2_ef_unit,
                         SRC_KETS_A12 if fuel_id in KETS_A12_EF_MATCHED else SRC_GIR_17,
                         f"fuel.{fuel_id}.ef.t2.CO2",
+                        extra_note=GIR_T2_CO2_NOTES.get(fuel_id),
                     ),
                     # T2 CH4/N2O: 별표 6 은 Tier 1 만 규정 → 원출처는 IPCC Ch.2 Table 2.5 (Residential).
                     # 매칭 안 되는 fuel_id (gas 분류 오류·석탄 N2O 오적용 등) 는 GIR_EF_2017 유지.

@@ -55,7 +55,8 @@
 | `ipcc-ar5-2014.json` | verified (2026-09-02) | 3 / 3 (Table 8.7, without climate-carbon feedback) |
 | `ipcc-ar6-2021.json` | verified (2026-09-02) | 3 / 3 (Table 7.15 · 7.SM.7) |
 | `kets-annex-12.json` | verified (2026-09-02) | 69 / 69 (표 A T2 순발열량 27 + 표 B T2 배출계수 21 연료 × 2 = 42) |
-| `gir-ef-2017.json` | (예정) | — (별표 12 와 불일치 4건: 등유·경유·항공유·도시가스LNG) |
+| `gir-ef-2017.json` | 매핑 파일 미생성 (asserted 유지) | 4건 (등유·경유·항공유·도시가스LNG) 은 build_scope1_data.py 의 GIR_T2_TC_NOTES/GIR_T2_CO2_NOTES 에서 ⚠ warning note 만 주입, verified 승격 없음 |
+| GIR_EF_2022 (sources.ts) | verified (2026-09-02) | 25 / 25 (연료연소 부문 2022.1 공표 · sources.ts note 에 전체 등재) |
 
 ## 자동 생성 스크립트
 
@@ -65,6 +66,17 @@
 - `scripts/build_verified_ipcc_ch2_t25.py` — IPCC Vol.2 Ch.2 Table 2.2 (Energy Industries, T1) + Table 2.5 (Residential and Agriculture, T2) 통합 매핑 → `ipcc-2006-vol2-ch2.json`
 - `scripts/build_verified_kets_a12.py` — K-ETS 별표 12 표 A/B 매핑 → `kets-annex-12.json`
   - 각 스크립트는 값 대조까지 하며, 불일치가 있으면 stderr 로 경고 후 해당 항목 스킵
+
+## xlsm T2 EF 불일치 4건 처리 (2026-09-02)
+
+xlsm 이 T2 tC/CO2 컬럼에 넣은 값 중 4건 (등유·경유·항공유·도시가스LNG) 이 K-ETS 별표 12 (2025-04-11 고시 제2025-64호) · GIR 2022.1 공표 어느 것과도 일치하지 않는다.
+
+- **등유·항공유**: xlsm 저자가 별표 12 값을 정확히 뒤바꿔 넣은 원본 오작성으로 판정 (xlsm 등유=19.931=별표 12 항공유값, xlsm 항공유=19.969=별표 12 등유값).
+- **경유·도시가스LNG**: 별표 12·GIR 2022.1 어느 값과도 일치하지 않음. GIR 이전 공표 판(2011년대 초기 공표) 참조 추정. 이전 판 PDF 재확보 후 검증 예정.
+
+이 4건은 verified 승격 없이 asserted 유지하되, `build_scope1_data.py` 의 `GIR_T2_TC_NOTES` / `GIR_T2_CO2_NOTES` 에서 `⚠` 프리픽스 warning note 를 주입한다. UI Cell 컴포넌트가 note 의 `⚠` 를 감지해 노란 warning 배지 (`⚠ 원출처 확인 요망`) 를 표시.
+
+감사자는 `sources.ts` 의 `GIR_EF_2022` note 에 하드코딩된 25개 값과 대조해 정확한 국가 공표값을 확인할 수 있다.
 
 ## T2 CH4/N2O 원출처 결정 (2026-09-02)
 

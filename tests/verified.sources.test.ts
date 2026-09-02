@@ -466,6 +466,100 @@ describe("verified: K-ETS 별표 12 표 B (T2 국가고유 배출계수 21개 �
   });
 });
 
+describe("documented: GIR 국가고유 배출계수 · 2022.1 공표 (연료연소 부문 25개)", () => {
+  // GIR_EF_2022 는 어떤 fuel 에도 직접 참조되지 않지만 (K-ETS 별표 12 값 우선),
+  // sources.ts 카탈로그 상수로 등록되어 있어 감사자가 최신 국가 공표값을 참조할 수 있다.
+  it("SOURCES 카탈로그에 GIR_EF_2022 등록되고 verified 문서 자체 승격", async () => {
+    const { SOURCES } = await import("@/data/sources");
+    const gir22 = SOURCES.GIR_EF_2022;
+    expect(gir22).toBeDefined();
+    expect(gir22.docId).toBe("gir-ef-2022");
+    expect(gir22.maturity).toBe("verified");
+    expect(gir22.edition).toContain("2022");
+    expect(gir22.part).toContain("25개");
+    expect(gir22.table).toContain("연료연소 부문");
+    expect(gir22.url).toContain("gir.go.kr");
+    expect(gir22.reviewedAt).toBe("2026-09-02");
+    // note 에 대표 값 25개가 hardcoded 로 명시되어야 감사자가 원문 대조 가능
+    expect(gir22.note).toContain("19.731");   // 휘발유
+    expect(gir22.note).toContain("19.926");   // 등유
+    expect(gir22.note).toContain("20.090");   // 경유
+    expect(gir22.note).toContain("19.956");   // 항공유(JET-A1)
+    expect(gir22.note).toContain("15.236");   // 도시가스(LNG)
+    expect(gir22.note).toContain("29.705");   // 국내무연탄
+  });
+});
+
+describe("warning: xlsm T2 EF 4개 값 원출처 확인 요망 (asserted + ⚠ note)", () => {
+  const kerosene = FUELS.find((f) => f.id === "등유-기타-등유");
+  const diesel = FUELS.find((f) => f.id === "경유-가스디젤-오일");
+  const jet = FUELS.find((f) => f.id === "제트용-등유-항공유");
+  const cityLng = FUELS.find((f) => f.id === "도시가스LNG");
+
+  it("등유·항공유: xlsm 이 별표 12 값을 뒤바꿔 넣은 오작성 (⚠ 프리픽스 + 상세 정정 지침)", () => {
+    const kNote = kerosene!.ef.t2.tC_per_TJ!.primarySource.note;
+    const jNote = jet!.ef.t2.tC_per_TJ!.primarySource.note;
+
+    expect(kNote).toBeDefined();
+    expect(kNote!.startsWith("⚠")).toBe(true);
+    expect(kNote).toContain("xlsm 원본 오작성");
+    expect(kNote).toContain("항공유값(19.931)을 잘못 넣음");
+    expect(kNote).toContain("정확한 별표 12 등유 = 19.969");
+    expect(kNote).toContain("GIR 2022.1 등유 = 19.926");
+
+    expect(jNote).toBeDefined();
+    expect(jNote!.startsWith("⚠")).toBe(true);
+    expect(jNote).toContain("xlsm 원본 오작성");
+    expect(jNote).toContain("등유값(19.969)을 잘못 넣음");
+    expect(jNote).toContain("정확한 별표 12 항공유 = 19.931");
+    expect(jNote).toContain("GIR 2022.1 항공유(JET-A1) = 19.956");
+  });
+
+  it("경유·도시가스LNG: xlsm 값이 별표 12·GIR 2022.1 어느 것과도 일치 안 함 (⚠ 프리픽스 + 이전 판 추정 지침)", () => {
+    for (const [label, m] of [
+      ["경유", diesel!.ef.t2.tC_per_TJ!],
+      ["도시가스LNG", cityLng!.ef.t2.tC_per_TJ!],
+    ] as const) {
+      const note = m.primarySource.note;
+      expect(note, label).toBeDefined();
+      expect(note!.startsWith("⚠"), label).toBe(true);
+      expect(note, label).toContain("어느 것과도 일치하지 않음");
+      expect(note, label).toContain("GIR 이전 공표");
+      expect(note, label).toContain("재확보 후 검증");
+    }
+  });
+
+  it("4개 값 모두 asserted 유지 (verified 승격 안 됨) · reviewedAt 명시", () => {
+    for (const [label, f] of [
+      ["등유", kerosene!],
+      ["경유", diesel!],
+      ["항공유", jet!],
+      ["도시가스LNG", cityLng!],
+    ] as const) {
+      const ps = f.ef.t2.tC_per_TJ!.primarySource;
+      expect(ps.docId, label).toBe("gir-ef-2017");
+      expect(ps.maturity, label).toBe("asserted");
+      expect(ps.reviewedAt, label).toBe("2026-09-02");
+      // note 만 오버라이드되고 row/table/page 는 없음 (verified 승격이 아님)
+      expect(ps.row, label).toBeUndefined();
+    }
+  });
+
+  it("CO2 계수도 tC 뒤바꿈에 따른 파생 오류 note 포함 (4개 fuel)", () => {
+    for (const [label, f, expected] of [
+      ["등유", kerosene!, "별표 12 등유 = 73,153"],
+      ["항공유", jet!, "별표 12 항공유 = 72,974"],
+      ["경유", diesel!, "별표 12 경유 = 73,153"],
+      ["도시가스LNG", cityLng!, "별표 12 병합값 = 56,144"],
+    ] as const) {
+      const note = f.ef.t2.CO2!.primarySource.note;
+      expect(note, label).toBeDefined();
+      expect(note!.startsWith("⚠"), label).toBe(true);
+      expect(note, label).toContain(expected);
+    }
+  });
+});
+
 describe("verified: GWP 4개 판 (SAR · AR4 · AR5 · AR6)", () => {
   it("SAR (K-ETS 채택 · CH4=21 · N2O=310)", () => {
     expect(GWP.SAR.CO2.value).toBe(1);
