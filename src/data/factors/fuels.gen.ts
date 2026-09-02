@@ -39,7 +39,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 원유 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -285,7 +285,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 휘발유 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -335,12 +335,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 19.548,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 휘발유 · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 71676.0,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 휘발유 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 71,600 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 71676.0000. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 10.0,
@@ -539,7 +547,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 항공유 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -637,7 +645,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 등유 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -813,7 +821,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 경유 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -903,7 +911,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · B-A유 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -929,12 +937,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 20.657,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · B-A유 · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 75742.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · B-A유 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 75,700 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 75742.3333. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 10.0,
@@ -969,7 +985,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · B-B유 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -995,12 +1011,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 21.384,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · B-B유 · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 78408.0,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · B-B유 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 78,400 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 78408.0000. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 10.0,
@@ -1043,7 +1067,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · B-C유 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -1093,12 +1117,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 21.929,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · B-C유 · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 80406.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · B-C유 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 80,300 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 80406.3333. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 10.0,
@@ -1133,7 +1165,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 부생연료유1호 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -1151,12 +1183,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 20.067,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 부생연료 1호 · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73579.0,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 부생연료 1호 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 73,500 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 73579.0000. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 10.0,
@@ -1191,7 +1231,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 부생연료유2호 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -1209,12 +1249,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 21.729,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 부생연료 2호 · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 79673.0,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 부생연료 2호 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 79,600 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 79673.0000. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 10.0,
@@ -1327,7 +1375,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 프로판(LPG1호) · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -1345,12 +1393,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 17.641,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 프로판(LPG1호) · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 64683.666666666664,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 프로판(LPG1호) · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 64,600 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 64683.6667. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 5.0,
@@ -1385,7 +1441,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 부탄(LPG3호) · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -1403,12 +1459,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 18.107,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 부탄(LPP3호) · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 66392.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 부탄(LPP3호) · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 66,300 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 66392.3333. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 5.0,
@@ -1529,7 +1593,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 나프타 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -1579,12 +1643,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 19.157,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 나프타 · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 70242.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 나프타 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 70,200 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 70242.3333. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 10.0,
@@ -1627,7 +1699,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 아스팔트 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -1677,12 +1749,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 21.544,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 아스팔트 · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 78994.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 아스팔트 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 78,900 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 78994.6667. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 10.0,
@@ -1725,7 +1805,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 윤활유 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -1775,12 +1855,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 19.979,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 윤활유 · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 73256.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 윤활유 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 73,200 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 73256.3333. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 10.0,
@@ -1823,7 +1911,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 석유코크스 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -1873,12 +1961,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 26.086,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 석유코크스 · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 95648.66666666664,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 석유코크스 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 95,600 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 95648.6667. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 10.0,
@@ -2155,7 +2251,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 용제 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -2205,12 +2301,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 19.172,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 용제 · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 70297.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석유(16) · 용제 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 70,200 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 70297.3333. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 10.0,
@@ -2339,7 +2443,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 국내무연탄 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -2389,12 +2493,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 30.185,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석탄(6) · 국내무연탄 · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 110678.33333333331,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석탄(6) · 국내무연탄 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 110,600 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 110678.3333. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 300.0,
@@ -2437,7 +2549,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 연료용 수입무연탄 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -2487,12 +2599,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 27.404,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석탄(6) · 수입무연탄(연료용) · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 100481.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석탄(6) · 수입무연탄(연료용) · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 100,400 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 100481.3333. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 300.0,
@@ -2535,7 +2655,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 원료용 수입무연탄 · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -2585,12 +2705,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 29.909,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석탄(6) · 수입무연탄(원료용) · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 109666.33333333331,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석탄(6) · 수입무연탄(원료용) · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 109,600 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 109666.3333. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 300.0,
@@ -2633,7 +2761,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 원료용 유연탄(역청탄) · 순발열량",
           "page": "1-2",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -2683,12 +2811,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 25.963,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석탄(6) · 유연탄(원료용) · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 95197.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석탄(6) · 유연탄(원료용) · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 95,100 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 95197.6667. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 300.0,
@@ -2731,7 +2867,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 연료용 유연탄(역청탄) · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -2781,12 +2917,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 25.951,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석탄(6) · 유연탄(연료용) · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 95153.66666666667,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석탄(6) · 유연탄(연료용) · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 95,100 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 95153.6667. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 300.0,
@@ -2829,7 +2973,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 아역청탄 · 순발열량",
           "page": "2",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -2879,12 +3023,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 26.468,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석탄(6) · 아역청탄 · 탄소배출계수 (kgC/TJ)",
+            "page": "4",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 97049.33333333333,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 석탄(6) · 아역청탄 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "4",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 97,000 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 97049.3333. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 300.0,
@@ -3239,7 +3391,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 코크스 · 순발열량",
           "page": "2",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단).",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -3797,7 +3949,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 천연가스(LNG) · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단). 단위 표기 참고: 별표 12 원표는 MJ/kg, xlsm 은 MJ/L 로 기록되어 있으나 값 자체(순발열량)는 동일.",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단). 단위 표기 참고: 별표 12 원표는 MJ/kg, xlsm 은 MJ/L 로 기록되어 있으나 값 자체(순발열량)는 동일.",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -3847,12 +3999,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 15.312,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 가스(3) · 천연가스·도시가스(LNG) 병합 · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 56144.0,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 가스(3) · 천연가스·도시가스(LNG) 병합 · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 56,100 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 56144.0000. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 5.0,
@@ -3887,7 +4047,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 도시가스(LNG) · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단). 단위 표기 참고: 별표 12 원표는 MJ/Nm³, xlsm 은 MJ/Nm3 로 기록되어 있으나 값 자체(순발열량)는 동일.",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단). 단위 표기 참고: 별표 12 원표는 MJ/Nm³, xlsm 은 MJ/Nm3 로 기록되어 있으나 값 자체(순발열량)는 동일.",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -3945,7 +4105,7 @@ export const FUELS: Fuel[] = [
         "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
           "row": "표 A · 도시가스(LPG) · 순발열량",
           "page": "1",
-          "note": "K-ETS 지침 별표 12 (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단). 단위 표기 참고: 별표 12 원표는 MJ/Nm³, xlsm 은 MJ/Nm3 로 기록되어 있으나 값 자체(순발열량)는 동일.",
+          "note": "K-ETS 지침 별표 12 표 A (연료별 국가 고유 발열량, 에너지법 시행규칙 별표 기반). 순발열량. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구 (에너지관리공단). 단위 표기 참고: 별표 12 원표는 MJ/Nm³, xlsm 은 MJ/Nm3 로 기록되어 있으나 값 자체(순발열량)는 동일.",
           "reviewedAt": "2026-09-02" }
       }
     },
@@ -3963,12 +4123,20 @@ export const FUELS: Fuel[] = [
         "tC_per_TJ": {
           "value": 17.454,
           "unit": "tC/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 가스(3) · 도시가스(LPG) · 탄소배출계수 (kgC/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 탄소배출계수 (kgC/TJ = tC/TJ). 비고: 에너지법 시행규칙에 의해 2017년 12월 고시된 발열량 기준으로 개발. 석탄의 발열량은 인수식(引受式) 기준 (코크스는 건식 기준).",
+            "reviewedAt": "2026-09-02" }
         },
         "CO2": {
           "value": 63998.0,
           "unit": "kgGHG/TJ",
-          "primarySource": GIR_EF_2017
+          "primarySource": { ...KETS_ANNEX_12, "maturity": "verified",
+            "row": "표 B · 가스(3) · 도시가스(LPG) · 이산화탄소 배출계수 (kgCO2/TJ)",
+            "page": "3",
+            "note": "K-ETS 지침 별표 12 표 B (연료별 국가고유 배출계수). 표 표기 반올림값 = 64,000 kgCO2/TJ. 본 값은 표 하단 관례 (kgCO2/TJ = tC × 44/12 × 1000) 유도값 = 63998.0000. tC 대비 소수점 오차만 있음.",
+            "reviewedAt": "2026-09-02" }
         },
         "CH4": {
           "value": 5.0,

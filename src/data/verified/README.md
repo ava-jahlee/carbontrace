@@ -54,8 +54,8 @@
 | `ipcc-ar4-2007.json` | verified (2026-09-02) | 3 / 3 (Table 2.14) |
 | `ipcc-ar5-2014.json` | verified (2026-09-02) | 3 / 3 (Table 8.7, without climate-carbon feedback) |
 | `ipcc-ar6-2021.json` | verified (2026-09-02) | 3 / 3 (Table 7.15 · 7.SM.7) |
-| `kets-annex-12.json` | verified (2026-09-02) | 27 / 27 (표 A T2 순발열량) |
-| `gir-ef-2017.json` | (예정) | — (T2 배출계수) |
+| `kets-annex-12.json` | verified (2026-09-02) | 69 / 69 (표 A T2 순발열량 27 + 표 B T2 배출계수 21 연료 × 2 = 42) |
+| `gir-ef-2017.json` | (예정) | — (별표 12 와 불일치 4건: 등유·경유·항공유·도시가스LNG) |
 
 ## 자동 생성 스크립트
 

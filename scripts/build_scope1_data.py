@@ -61,6 +61,19 @@ SRC_KETS_A6 = "KETS_ANNEX_6"
 SRC_KETS_A12 = "KETS_ANNEX_12"
 SRC_GIR_17 = "GIR_EF_2017"
 
+# T2 배출계수 (tC/CO2) 중 별표 12 표 B 값과 일치하는 21개 연료.
+# 이 목록은 scripts/diff_kets_a12_tableB.py 결과 기반.
+# 매칭되는 것은 primary source = KETS_ANNEX_12 (표 B)
+# 매칭 안 되는 4개 (등유/경유/항공유/도시가스LNG) 는 GIR_EF_2017 유지 (xlsm 값이 다름).
+KETS_A12_EF_MATCHED = {
+    "휘발유-자동차용-가솔린", "B-A유", "B-B유", "B-C유-잔여-석유연료",
+    "납사-나프타", "용제-백유", "아스팔트-역청", "석유-코크스", "윤활유",
+    "부생연료-1호", "부생연료-2호", "프로판LPG1호", "부탄LPG3호",
+    "천연가스LNG", "도시가스LPG",
+    "국내-무연탄", "연료용-수입-무연탄", "원료용-수입-무연탄",
+    "연료용-유연탄-기타-유연탄", "원료용-유연탄-점결탄", "아역청탄-하위-유연탄",
+}
+
 # 카탈로그 상수명 → docId (verified 매핑의 docId 와 매칭용)
 DOC_ID_BY_SYMBOL = {
     "IPCC_2006_VOL2_CH1": "ipcc-2006-vol2-ch1",
@@ -287,10 +300,21 @@ def build_fuels(sheet):
                 },
                 "t2": {
                     "group":     t2_group,
-                    "tC_per_TJ": m(t2_tc,  "tC/TJ",    SRC_GIR_17, f"fuel.{fuel_id}.ef.t2.tC_per_TJ"),
-                    "CO2":       m(t2_co2, t2_ef_unit, SRC_GIR_17, f"fuel.{fuel_id}.ef.t2.CO2"),
-                    "CH4":       m(t2_ch4, t2_ef_unit, SRC_GIR_17, f"fuel.{fuel_id}.ef.t2.CH4"),
-                    "N2O":       m(t2_n2o, t2_ef_unit, SRC_GIR_17, f"fuel.{fuel_id}.ef.t2.N2O"),
+                    # 별표 12 표 B 매칭 여부에 따라 primary source 분기.
+                    # 매칭 21개는 KETS 별표 12 를 원출처로 · 나머지 4개 (등유·경유·항공유·도시가스LNG) 는
+                    # GIR 별도 공표계수 채택으로 추정 → GIR_EF_2017 유지.
+                    "tC_per_TJ": m(
+                        t2_tc, "tC/TJ",
+                        SRC_KETS_A12 if fuel_id in KETS_A12_EF_MATCHED else SRC_GIR_17,
+                        f"fuel.{fuel_id}.ef.t2.tC_per_TJ",
+                    ),
+                    "CO2": m(
+                        t2_co2, t2_ef_unit,
+                        SRC_KETS_A12 if fuel_id in KETS_A12_EF_MATCHED else SRC_GIR_17,
+                        f"fuel.{fuel_id}.ef.t2.CO2",
+                    ),
+                    "CH4": m(t2_ch4, t2_ef_unit, SRC_GIR_17, f"fuel.{fuel_id}.ef.t2.CH4"),
+                    "N2O": m(t2_n2o, t2_ef_unit, SRC_GIR_17, f"fuel.{fuel_id}.ef.t2.N2O"),
                 },
             },
         }

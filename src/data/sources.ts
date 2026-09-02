@@ -157,7 +157,7 @@ export const KETS_ANNEX_12: PrimarySource = {
   url: "https://www.law.go.kr/LSW/flDownload.do?bylClsCd=200201&flNm=%5B%EB%B3%84%ED%91%9C+12%5D+%EC%97%B0%EB%A3%8C%EB%B3%84+%EA%B5%AD%EA%B0%80+%EA%B3%A0%EC%9C%A0+%EB%B0%9C%EC%97%B4%EB%9F%89+%EB%B0%8F+%EB%B0%B0%EC%B6%9C%EA%B3%84%EC%88%98+%28%EC%A0%9C15%EC%A1%B0%EC%A0%9C2%ED%95%AD+%EA%B4%80%EB%A0%A8%29&flSeq=151024615",
   maturity: "verified",
   reviewedAt: "2026-09-02",
-  note: "T2 열량계수: 표 A (순발열량) 27개 값 verified 승격 (전기 2개는 Scope 1 대상 아님으로 제외). 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구, 에너지관리공단. 배출계수 표 B 는 별도 매핑 예정.",
+  note: "T2 열량계수 표 A 27개 + T2 국가고유 배출계수 표 B 21개 연료 × (tC + CO2) = 42개 · 총 69개 값 verified 승격. 표 B 4개(등유·경유·항공유·도시가스LNG)는 xlsm 값이 별표 12 와 달라 GIR 별도 공표계수 채택으로 추정 (verified 승격 안 됨, GIR_EF_2017 유지). 특히 xlsm 등유·항공유 tC 값이 별표 12 와 정확히 뒤바뀌어 있어 원본 오작성 가능성. 자료출처: 국제표준규격에 따른 석유류 발열량 분석연구, 에너지관리공단.",
 };
 
 /**

@@ -271,6 +271,95 @@ describe("verified: K-ETS 별표 12 (T2 순발열량 27개)", () => {
   });
 });
 
+describe("verified: K-ETS 별표 12 표 B (T2 국가고유 배출계수 21개 연료 · tC + CO2)", () => {
+  const gasoline = FUELS.find((f) => f.id === "휘발유-자동차용-가솔린");
+  const bC = FUELS.find((f) => f.id === "B-C유-잔여-석유연료");
+  const propane = FUELS.find((f) => f.id === "프로판LPG1호");
+  const lng = FUELS.find((f) => f.id === "천연가스LNG");
+  const cityLpg = FUELS.find((f) => f.id === "도시가스LPG");
+  const anthracite = FUELS.find((f) => f.id === "국내-무연탄");
+  const subBit = FUELS.find((f) => f.id === "아역청탄-하위-유연탄");
+
+  it("휘발유 T2 tC: 표 B · 석유(16) · 휘발유 · 19.548 kgC/TJ", () => {
+    const tc = gasoline!.ef.t2.tC_per_TJ!;
+    expect(tc.value).toBeCloseTo(19.548, 10);
+    expect(tc.primarySource.maturity).toBe("verified");
+    expect(tc.primarySource.docId).toBe("kets-annex-12");
+    expect(tc.primarySource.row).toContain("표 B");
+    expect(tc.primarySource.row).toContain("휘발유");
+    expect(tc.primarySource.row).toContain("탄소배출계수");
+    expect(tc.primarySource.page).toBe("3");
+  });
+
+  it("휘발유 T2 CO2: 71,676 kgCO2/TJ (tC × 44/12 × 1000 유도값 · 표기 71,600)", () => {
+    const co2 = gasoline!.ef.t2.CO2!;
+    expect(co2.value).toBeCloseTo(19.548 * 44 / 12 * 1000, 4);
+    expect(co2.primarySource.maturity).toBe("verified");
+    expect(co2.primarySource.docId).toBe("kets-annex-12");
+    expect(co2.primarySource.note).toContain("71,600");
+    expect(co2.primarySource.note).toContain("44/12");
+  });
+
+  it("B-C유 T2 tC/CO2 verified", () => {
+    expect(bC!.ef.t2.tC_per_TJ!.value).toBeCloseTo(21.929, 10);
+    expect(bC!.ef.t2.tC_per_TJ!.primarySource.maturity).toBe("verified");
+    expect(bC!.ef.t2.CO2!.primarySource.maturity).toBe("verified");
+  });
+
+  it("프로판(LPG1호) T2 tC: 17.641 · 석유(16) 그룹 (별표 12 표 B 는 프로판/부탄을 석유 구분에 편성)", () => {
+    expect(propane!.ef.t2.tC_per_TJ!.value).toBeCloseTo(17.641, 10);
+    expect(propane!.ef.t2.tC_per_TJ!.primarySource.row).toContain("석유(16)");
+    expect(propane!.ef.t2.tC_per_TJ!.primarySource.row).toContain("프로판");
+  });
+
+  it("천연가스(LNG) T2 tC: 15.312 · 가스(3) 그룹 (도시가스LNG 와 병합값)", () => {
+    expect(lng!.ef.t2.tC_per_TJ!.value).toBeCloseTo(15.312, 10);
+    expect(lng!.ef.t2.tC_per_TJ!.primarySource.row).toContain("가스(3)");
+    expect(lng!.ef.t2.tC_per_TJ!.primarySource.row).toContain("병합");
+  });
+
+  it("도시가스(LPG) T2 tC: 17.454 · 가스(3) 단독", () => {
+    expect(cityLpg!.ef.t2.tC_per_TJ!.value).toBeCloseTo(17.454, 10);
+    expect(cityLpg!.ef.t2.tC_per_TJ!.primarySource.row).toContain("도시가스(LPG)");
+  });
+
+  it("국내무연탄 T2 tC/CO2: 석탄(6) · 30.185 kgC/TJ", () => {
+    expect(anthracite!.ef.t2.tC_per_TJ!.value).toBeCloseTo(30.185, 10);
+    expect(anthracite!.ef.t2.tC_per_TJ!.primarySource.row).toContain("석탄(6)");
+    expect(anthracite!.ef.t2.tC_per_TJ!.primarySource.note).toContain("인수식");
+  });
+
+  it("아역청탄 T2 페이지 4 (표 B 마지막 행)", () => {
+    expect(subBit!.ef.t2.tC_per_TJ!.value).toBeCloseTo(26.468, 10);
+    expect(subBit!.ef.t2.tC_per_TJ!.primarySource.page).toBe("4");
+  });
+
+  it("등유·경유·항공유 T2 는 xlsm 값과 별표 12 불일치 → GIR_EF_2017 유지 (verified 승격 안 됨)", () => {
+    const kerosene = FUELS.find((f) => f.id === "등유-기타-등유");
+    const diesel = FUELS.find((f) => f.id === "경유-가스디젤-오일");
+    const jet = FUELS.find((f) => f.id === "제트용-등유-항공유");
+
+    // xlsm 값
+    expect(kerosene!.ef.t2.tC_per_TJ!.value).toBeCloseTo(19.931, 10);
+    expect(diesel!.ef.t2.tC_per_TJ!.value).toBeCloseTo(20.111, 10);
+    expect(jet!.ef.t2.tC_per_TJ!.value).toBeCloseTo(19.969, 10);
+
+    // 원본 카탈로그 (GIR_EF_2017) 참조 · verified 승격 안 됨
+    for (const f of [kerosene!, diesel!, jet!]) {
+      const ps = f.ef.t2.tC_per_TJ!.primarySource;
+      expect(ps.docId).toBe("gir-ef-2017");
+      // GIR_EF_2017 은 아직 문서 자체가 verified 아님 (asserted)
+      expect(ps.row).toBeUndefined();
+    }
+  });
+
+  it("도시가스(LNG) T2 도 GIR 별도 공표계수 채택 (별표 12 병합값 15,312 vs xlsm 15.272)", () => {
+    const cityLng = FUELS.find((f) => f.id === "도시가스LNG");
+    expect(cityLng!.ef.t2.tC_per_TJ!.value).toBeCloseTo(15.272, 10);
+    expect(cityLng!.ef.t2.tC_per_TJ!.primarySource.docId).toBe("gir-ef-2017");
+  });
+});
+
 describe("verified: GWP 4개 판 (SAR · AR4 · AR5 · AR6)", () => {
   it("SAR (K-ETS 채택 · CH4=21 · N2O=310)", () => {
     expect(GWP.SAR.CO2.value).toBe(1);

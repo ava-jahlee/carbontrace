@@ -109,7 +109,7 @@ describe("Scope 1 파리티: 원본 xlsm 저장값과 정확히 일치해야 한
 });
 
 describe("Scope 1 감사 근거 (primary source): 값마다 원문서가 붙는다", () => {
-  it("아역청탄 T2 배출계수 CO2 → GIR 국가고유 배출계수", () => {
+  it("아역청탄 T2 배출계수 CO2 → K-ETS 별표 12 표 B 국가고유 배출계수 (verified)", () => {
     const r = calculateScope1({
       fuelId: "아역청탄-하위-유연탄",
       amount: 1,
@@ -122,9 +122,11 @@ describe("Scope 1 감사 근거 (primary source): 값마다 원문서가 붙는�
     const meas = efInputs.find((i) => i.kind === "measurement");
     if (!meas || meas.kind !== "measurement") throw new Error("배출계수에 measurement 근거가 붙어있지 않음");
     const ps = meas.measurement.primarySource;
-    expect(ps.kind).toBe("gir");
-    expect(ps.docId).toBe("gir-ef-2017");
-    expect(ps.publisher).toContain("GIR");
+    expect(ps.kind).toBe("kets-guideline");
+    expect(ps.docId).toBe("kets-annex-12");
+    expect(ps.maturity).toBe("verified");
+    expect(ps.row).toContain("표 B");
+    expect(ps.row).toContain("아역청탄");
   });
 
   it("아역청탄 T1 열량계수 → IPCC 2006 GL Vol.2 Ch.1", () => {
