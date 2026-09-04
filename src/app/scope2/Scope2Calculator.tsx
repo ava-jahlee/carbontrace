@@ -4,8 +4,13 @@ import { useMemo, useState } from "react";
 import { Cell } from "@/components/cell/Cell";
 import { AuditSummaryCard } from "@/components/audit/AuditSummary";
 import { SectionHeader } from "@/components/layout/SectionHeader";
+import { FacilityContextBanner } from "@/components/facility/FacilityContextBanner";
+import { AddToInventoryButton } from "@/components/inventory/AddToInventoryButton";
 import { summarizeAll } from "@/lib/audit/summary";
 import { calculateScope2, type Scope2Input, type Scope2Result, type Scope2SpeciesResult } from "@/lib/calc/scope2";
+import { useFacility } from "@/lib/facility/useFacility";
+import { buildFacilitySnapshot, defaultInventoryLabel } from "@/lib/inventory/draft";
+import type { InventoryCategory, InventoryDraft } from "@/data/inventory";
 import type { Calculated, GwpStandard, MaybeCalculated } from "@/lib/calc/types";
 import type {
   HeatKind,
@@ -23,6 +28,7 @@ const DISTRICTS: KdhcDistrict[] = [
 ];
 
 export function Scope2Calculator() {
+  const { facility } = useFacility();
   const [mode, setMode] = useState<SourceMode>("heat-kdhc");
   const [amount, setAmount] = useState<string>("1");
   const [gwpStandard, setGwpStandard] = useState<GwpStandard>("SAR");
@@ -51,8 +57,26 @@ export function Scope2Calculator() {
     return calculateScope2(input);
   }, [mode, amount, powerVintage, powerLocation, phase, district, heatKind, gwpStandard]);
 
+  // mode → InventoryCategory 매핑
+  const category: InventoryCategory =
+    mode === "power" ? "electricity" : mode === "heat-kdhc" ? "heat-kdhc" : "heat-national";
+
+  // 조건 요약 텍스트 (mode 별)
+  const conditionsText = useMemo(() => {
+    if (mode === "power") {
+      return `전력 · ${powerVintage}년 판 · ${powerLocation} · GWP ${gwpStandard}`;
+    }
+    if (mode === "heat-kdhc") {
+      return `KDHC · ${phase} · ${district} · GWP ${gwpStandard}`;
+    }
+    return `국가 통합 열 · ${heatKind} · GWP ${gwpStandard}`;
+  }, [mode, powerVintage, powerLocation, phase, district, heatKind, gwpStandard]);
+
   return (
-    <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
+    <div className="mt-10">
+      <FacilityContextBanner />
+
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
       {/* ═══ 좌: 입력 ═══ */}
       <aside className="lg:sticky lg:top-6 lg:self-start">
         <div className="rounded-md border border-border bg-surface-2 p-5">
@@ -169,7 +193,55 @@ export function Scope2Calculator() {
       {/* ═══ 우: 결과 ═══ */}
       <section className="space-y-6">
         <ResultView result={result} activityUnit={activityUnit} amount={amount} />
+
+        {/* 인벤토리에 추가 */}
+        {result && !("error" in result) && (
+          <div className="border-t border-border pt-5">
+            <div className="mb-3 font-mono text-[10px] uppercase tracking-widest text-text-dim">
+              add to inventory
+            </div>
+            <AddToInventoryButton
+              defaultLabel={defaultInventoryLabel(facility, result.sourceLabel)}
+              getDraft={(label): InventoryDraft => ({
+                label,
+                category,
+                facility: buildFacilitySnapshot(facility),
+                display: {
+                  activity: `${result.sourceLabel} · ${amount} ${activityUnit}`,
+                  conditions: conditionsText,
+                },
+                totalCo2eq: result.totalCo2eq,
+                inputs:
+                  mode === "power"
+                    ? {
+                        kind: "power",
+                        amount: parseFloat(amount),
+                        vintage: powerVintage,
+                        location: powerLocation,
+                        gwpStandard,
+                      }
+                    : mode === "heat-kdhc"
+                    ? {
+                        kind: "heat-kdhc",
+                        amount: parseFloat(amount),
+                        phase,
+                        district,
+                        gwpStandard,
+                      }
+                    : {
+                        kind: "heat-national",
+                        amount: parseFloat(amount),
+                        heatKind,
+                        gwpStandard,
+                      },
+                rawResult: result,
+                warnings: result.warnings,
+              })}
+            />
+          </div>
+        )}
       </section>
+      </div>
     </div>
   );
 }

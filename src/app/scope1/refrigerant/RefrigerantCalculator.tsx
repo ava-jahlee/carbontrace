@@ -4,12 +4,18 @@ import { useMemo, useState } from "react";
 import { Cell } from "@/components/cell/Cell";
 import { AuditSummaryCard } from "@/components/audit/AuditSummary";
 import { SectionHeader } from "@/components/layout/SectionHeader";
+import { FacilityContextBanner } from "@/components/facility/FacilityContextBanner";
+import { AddToInventoryButton } from "@/components/inventory/AddToInventoryButton";
 import { summarizeAll } from "@/lib/audit/summary";
 import { calculateRefrigerant } from "@/lib/calc/refrigerant";
+import { useFacility } from "@/lib/facility/useFacility";
+import { buildFacilitySnapshot, defaultInventoryLabel } from "@/lib/inventory/draft";
+import type { InventoryDraft } from "@/data/inventory";
 import { REFRIGERANTS } from "@/data/factors/refrigerants.gen";
 import type { GwpAssessment } from "@/data/factors/refrigerants.gen";
 
 export function RefrigerantCalculator() {
+  const { facility } = useFacility();
   const [refrigerantId, setRefrigerantId] = useState<string>("HFC-134a");
   const [leakedKg, setLeakedKg] = useState<string>("5");
   const [gwpAssessment, setGwpAssessment] = useState<GwpAssessment>("AR6");
@@ -32,7 +38,10 @@ export function RefrigerantCalculator() {
   }, []);
 
   return (
-    <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
+    <div className="mt-10">
+      <FacilityContextBanner />
+
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
       {/* ═══ 좌: 입력 ═══ */}
       <aside className="lg:sticky lg:top-6 lg:self-start">
         <div className="rounded-md border border-border bg-surface-2 p-5">
@@ -169,9 +178,37 @@ export function RefrigerantCalculator() {
                 <IntermediateRow label="방법론 근거" hint="methodology" c={result.methodology} digits={0} />
               </div>
             </div>
+
+            {/* ═ 인벤토리에 추가 ═ */}
+            <div className="border-t border-border pt-5">
+              <div className="mb-3 font-mono text-[10px] uppercase tracking-widest text-text-dim">
+                add to inventory
+              </div>
+              <AddToInventoryButton
+                defaultLabel={defaultInventoryLabel(facility, `${result.refrigerantName} 유출`)}
+                getDraft={(label): InventoryDraft => ({
+                  label,
+                  category: "refrigerant",
+                  facility: buildFacilitySnapshot(facility),
+                  display: {
+                    activity: `${result.refrigerantName} · ${leakedKg} kg 유출`,
+                    conditions: `GWP ${gwpAssessment}`,
+                  },
+                  totalCo2eq: result.tCo2eq,
+                  inputs: {
+                    refrigerantId,
+                    leakedKg: parseFloat(leakedKg),
+                    gwpAssessment,
+                  },
+                  rawResult: result,
+                  warnings: result.warnings,
+                })}
+              />
+            </div>
           </>
         )}
       </section>
+      </div>
     </div>
   );
 }

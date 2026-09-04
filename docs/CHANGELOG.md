@@ -4,6 +4,103 @@ carbontrace 는 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 형식�
 
 ---
 
+## v0.9 · 2026-09-04 · 시설 등록 · 배출 인벤토리 · Tier 강제
+
+**정아 님의 두 핵심 지적을 함께 해결한 릴리스.** 첫째 · 원 xlsm 은 계산 전에 시설 정보 (유형·연간 GHG 규모 → K-ETS 별표 5 등급 → 최소 Tier) 를 먼저 요구하는데 웹에는 이 진입점이 없었다. 둘째 · "단순 결과 계산이 의미있는게 아냐. 그걸 다 합산한 값이 중요한거잖아. 지금은 검색하고 다른거 검색하려면 원래 검색했던게 다 날아가잖아." 이 두 가지를 시설 (Facility) 계층 + 인벤토리 (Inventory) 계층으로 함께 해결.
+
+**엑셀 실측 근거** · `scripts/extract_facility_schema.py` 로 `Main` 시트의 셀 값·수식·xlsm 내부 `dataValidation` XML 을 직접 파싱해 · 시설 진입 스키마·등급 기준·최소 Tier 매핑을 실측 확인. 근거 리포트 = `docs/refs/facility_schema.txt`. 원 xlsm 은 처음부터 1A4 (건물 부문) 전용 · 사용자 선택은 사실상 3 개 (현장명 · 용도 · 연간 GHG).
+
+### Added
+
+#### 시설 (Facility) 계층 · `/facility`
+
+- `src/data/facility.ts` · **Facility 스키마**
+  - `FacilityUsage` · `residential` / `commercial-public` (Main!H3 dropdown · `_Law&GL22!F23:F24` 실측)
+  - `FacilityGrade` · A/B/C · 등급 기준 `FACILITY_GRADE_THRESHOLDS` = 0-5-50 만ton/yr (`_Law&GL22!B109:C111` 실측 · K-ETS 별표 5)
+  - `MinTiers` · heat/ef/ox × A/B/C 매핑 (Main!D14/E14/F14 실측)
+  - `Facility` · siteName · usage · annualGhgMTons + schemaVersion · createdAt/updatedAt
+  - 분야·부문 · `1A. 에너지` · `1A4. 기타` 로 고정 (원 xlsm 도 건물 부문 전용)
+- `src/lib/facility/` · 순수 유틸
+  - `grade.ts` · `calcGrade` · `minTiersOf` · `checkTier` · `isTierAllowed`
+  - `storage.ts` · localStorage 어댑터 · `carbontrace:facility:v1` · SSR 안전 · `FACILITY_EVENT` dispatch
+  - `useFacility.ts` · React hook · hydration 안전 · ready flag
+- `src/components/layout/FacilityBadge.tsx` · TopNav 우측 뱃지 · 미등록 회색 dot · 등록됨 accent dot + 시설명 + 등급
+- `src/app/facility/page.tsx` + `FacilityForm.tsx` · 시설 등록 UI
+  - 좌측 · 3 필드 (사업장 이름 · 용도 2 버튼 · 연간 GHG)
+  - 우측 · auto/derived · 등급 큰 배지 + 최소 Tier 표 + 다음 진입 링크
+  - 저장·업데이트·삭제 액션 + 저장 flash
+
+#### 인벤토리 (Inventory) 계층 · `/inventory`
+
+- `src/data/inventory.ts` · **InventoryItem 스키마**
+  - `InventoryCategory` (open enum) · `fuel-combustion` / `refrigerant` / `electricity` / `heat-kdhc` / `heat-national` / `scope3`
+  - `CATEGORY_META` · ko 라벨 + scope 유도 + 계산기 href
+  - `FacilitySnapshot` · 저장 시점 시설 스냅샷 (감사시 시설 정보가 바뀌어도 이 항목 기록은 유지)
+  - `InventoryDisplay` · activity + conditions 요약
+  - `totalCo2eq: Calculated` · **value + formula + inputs 를 통째로 보존** (감사자가 원 계산 근거 열람 가능)
+  - `inputs: unknown` · 재계산용 원본 입력 스냅샷
+  - `rawResult?: unknown` · optional · 종별 배출 등 세부
+- `src/lib/inventory/`
+  - `storage.ts` · localStorage · `carbontrace:inventory:v1` · add · updateMeta · remove · clear · **exportInventoryJson** (파일 다운로드)
+  - `useInventory.ts` · React hook
+  - `aggregations.ts` · `groupByScope` · `sumCo2eqTons` · `groupByCategory` · `formatCo2eq`
+  - `draft.ts` · `buildFacilitySnapshot` · `defaultInventoryLabel` (계산기 공통 헬퍼)
+- `src/app/inventory/page.tsx` + `InventoryView.tsx` · 인벤토리 뷰
+  - 상단 · 큰 총합 tCO₂eq · 현재 시설 · 항목 수 · JSON 내보내기 · 전체 삭제
+  - Scope 1/2/3 그룹 · 각 소계 헤더 · 항목 리스트
+  - 항목 · 카테고리 배지 · 라벨 · activity/conditions · memo · site 스냅샷 · warnings · tCO₂eq · 계산기 링크 · 편집/삭제
+  - EmptyState · 시설 미등록 시 시설 등록 유도 + 각 계산기 진입 링크
+
+#### 각 계산기 · 시설 컨텍스트 + Tier 강제 + Add 버튼
+
+- `src/components/facility/FacilityContextBanner.tsx` · 계산기 상단 배너
+  - 등록됨 · 시설명 · 등급 · (fuel-combustion 만) 최소 Tier + 시설 수정 링크
+  - 미등록 · warn 색 · 시설 등록 유도 링크
+- `src/components/inventory/AddToInventoryButton.tsx` · 결과 카드 아래 버튼
+  - idle → editing (라벨 인라인 입력 · Enter/Escape 지원) → saved (인벤토리 보기 링크 · 3초 후 idle 복귀)
+- `Scope1Calculator` (fuel-combustion)
+  - **시설 등급이 최소 Tier 를 강제** · 등급 B → T1 disabled · line-through 회색 처리 · title 툴팁 안내
+  - 시설이 바뀌면 기존 Tier 상태가 미달일 경우 자동 승격
+  - Add 버튼 · category="fuel-combustion" · display.activity `${fuelName} · ${amount} ${unit}` · conditions `열량 ${T} · 배출 ${T} · GWP ${G}`
+- `RefrigerantCalculator` · 시설 배너 (Tier 무관) + Add 버튼 · category="refrigerant"
+- `Scope2Calculator` · 시설 배너 + Add 버튼 · mode → category 자동 매핑 (`power`→`electricity` · `heat-kdhc` · `heat-national`)
+
+### Changed
+
+- **TopNav**
+  - `active` 타입에 `"inventory"` · `"facility"` 추가
+  - NAV_ITEMS 에 Inventory 링크 (Scope 3 와 Docs 사이)
+  - 우측에 FacilityBadge 통합 · meta 왼쪽에
+  - 기본 meta 를 `v 0.9` 로
+
+### Docs · Scripts
+
+- `scripts/extract_facility_schema.py` · openpyxl 로 시설 관련 셀 값·수식 + zipfile 로 dataValidation XML 파싱
+  - `docs/refs/facility_schema.txt` (gitignore) 에 저장
+- `README.md` · 헤더 v0.9 로 · 시설 등록 · 배출 인벤토리 요약 추가
+
+### Verified (브라우저)
+
+1. `/facility` · 사업장 이름 · 연간 GHG 6 만ton/yr → **B 등급** · heat T2 · ef T2 · ox T2 자동 · 저장 → TopNav 뱃지 `● 카본트레이스 본사 · B` 즉시 갱신
+2. `/scope1/fuel-combustion` · 시설 배너 표시 · **T1 두 버튼 모두 disabled (line-through)** · 자동 T2 승격
+3. `+ 인벤토리에 추가` · 라벨 자동 채움 (`카본트레이스 본사 · 아역청탄 (하위 유연탄)`) · 저장 → 인벤토리 항목 1건 (2.0267 tCO₂eq)
+4. `/scope1/refrigerant` · 시설 배너 · Add · 항목 추가 (7.6500 tCO₂eq)
+5. `/inventory` · **Grand total 9.677 tCO₂eq** · Scope 1 소계 9.677 (2개 항목) · Scope 2/3 · 0 · 빈 그룹 안내
+
+### Tests · Build
+
+- 137/137 (unchanged) · 파리티·감사요약·데이터프로파일 전부 pass
+- 33 static routes (`/facility` · `/inventory` 추가)
+
+### Next (v0.10 후보)
+
+- 시설 여러 개 관리 · 활성 시설 스위처 (여러 사업장을 오가는 컨설턴트/그룹사 대응)
+- 인벤토리 JSON 가져오기 (백업 파일 복원)
+- Scope 3 계산기 (구체 카테고리별)
+- PDF 리포트 (인벤토리 → 감사 walkthrough 포함 인쇄)
+
+---
+
 ## v0.8.1 · 2026-09-04 · 카드 정의화 · Docs 랜딩 삭제 · 이슈 별도 장치
 
 **정아 님 피드백 반영.** v0.8 랜딩이 여전히 문제였다. 카드가 계산법 서술 (검색기 뉘앙스) 이었고 · 랜딩 Docs 섹션은 상단 nav 와 중복이면서 사용자 앞에 정신없이 나열됐고 · 이슈/제안이 Docs 안에 끼어 있었다.

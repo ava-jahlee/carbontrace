@@ -1,9 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Cell } from "@/components/cell/Cell";
 import { AuditSummaryCard } from "@/components/audit/AuditSummary";
 import { SectionHeader } from "@/components/layout/SectionHeader";
+import { FacilityContextBanner } from "@/components/facility/FacilityContextBanner";
+import { AddToInventoryButton } from "@/components/inventory/AddToInventoryButton";
 import { FUELS } from "@/data/factors/fuels.gen";
 import {
   countOverrides,
@@ -13,15 +15,32 @@ import {
 } from "@/data/factors/corrections";
 import { calculateScope1 } from "@/lib/calc/scope1";
 import { summarizeAll } from "@/lib/audit/summary";
+import { useFacility } from "@/lib/facility/useFacility";
+import { minTiersOf } from "@/lib/facility/grade";
+import { buildFacilitySnapshot, defaultInventoryLabel } from "@/lib/inventory/draft";
+import type { InventoryDraft } from "@/data/inventory";
 import type { GwpStandard, Tier } from "@/lib/calc/types";
 
+const TIER_RANK: Record<Tier, number> = { T1: 1, T2: 2, T3: 3 };
+
 export function Scope1Calculator() {
+  const { facility } = useFacility();
+  const mins = minTiersOf(facility);
+
   const [fuelId, setFuelId] = useState<string>("아역청탄-하위-유연탄");
   const [amount, setAmount] = useState<string>("1");
   const [heatTier, setHeatTier] = useState<Tier>("T1");
   const [efTier, setEfTier] = useState<Tier>("T2");
   const [gwpStandard, setGwpStandard] = useState<GwpStandard>("SAR");
   const [dataProfile, setDataProfile] = useState<DataProfile>("xlsm-original");
+
+  // 시설이 바뀌면 · 현재 Tier 가 최소치 미달이면 자동으로 올림.
+  useEffect(() => {
+    if (!mins) return;
+    if (TIER_RANK[heatTier] < TIER_RANK[mins.heat]) setHeatTier(mins.heat);
+    if (TIER_RANK[efTier] < TIER_RANK[mins.ef]) setEfTier(mins.ef);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mins?.heat, mins?.ef]);
 
   const fuel = useMemo(() => FUELS.find((f) => f.id === fuelId), [fuelId]);
 
@@ -49,7 +68,10 @@ export function Scope1Calculator() {
   }, []);
 
   return (
-    <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
+    <div className="mt-10">
+      <FacilityContextBanner showTiers />
+
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
       {/* ═══ 좌: 입력 (subtle wash · workspace DESIGN.md 4.2) ═══ */}
       <aside className="lg:sticky lg:top-6 lg:self-start">
         <div className="rounded-md border border-border bg-surface-2 p-5">
@@ -87,11 +109,17 @@ export function Scope1Calculator() {
             </Field>
 
             <div className="grid grid-cols-2 gap-3">
-              <Field label="열량 tier" hint="ncv">
-                <TierPicker value={heatTier} onChange={setHeatTier} />
+              <Field
+                label="열량 tier"
+                hint={mins ? `ncv · min ${mins.heat}` : "ncv"}
+              >
+                <TierPicker value={heatTier} onChange={setHeatTier} minTier={mins?.heat} />
               </Field>
-              <Field label="배출 tier" hint="ef">
-                <TierPicker value={efTier} onChange={setEfTier} />
+              <Field
+                label="배출 tier"
+                hint={mins ? `ef · min ${mins.ef}` : "ef"}
+              >
+                <TierPicker value={efTier} onChange={setEfTier} minTier={mins?.ef} />
               </Field>
             </div>
 
@@ -149,7 +177,40 @@ export function Scope1Calculator() {
           efTier={efTier}
           gwpStandard={gwpStandard}
         />
+
+        {/* ═ VI · 인벤토리에 추가 ═ */}
+        {result && !("error" in result) && (
+          <div className="border-t border-border pt-5">
+            <div className="mb-3 font-mono text-[10px] uppercase tracking-widest text-text-dim">
+              add to inventory
+            </div>
+            <AddToInventoryButton
+              defaultLabel={defaultInventoryLabel(facility, result.fuelName)}
+              getDraft={(label): InventoryDraft => ({
+                label,
+                category: "fuel-combustion",
+                facility: buildFacilitySnapshot(facility),
+                display: {
+                  activity: `${result.fuelName} · ${amount} ${fuel?.activityUnit ?? ""}`,
+                  conditions: `열량 ${heatTier} · 배출 ${efTier} · GWP ${gwpStandard}`,
+                },
+                totalCo2eq: result.totalCo2eq,
+                inputs: {
+                  fuelId,
+                  amount: parseFloat(amount),
+                  heatTier,
+                  efTier,
+                  gwpStandard,
+                  dataProfile,
+                },
+                rawResult: result,
+                warnings: result.warnings,
+              })}
+            />
+          </div>
+        )}
       </section>
+      </div>
     </div>
   );
 }
@@ -174,24 +235,41 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
   );
 }
 
-function TierPicker({ value, onChange }: { value: Tier; onChange: (t: Tier) => void }) {
+function TierPicker({
+  value,
+  onChange,
+  minTier,
+}: {
+  value: Tier;
+  onChange: (t: Tier) => void;
+  /** 시설 등급이 요구하는 최소 Tier · 이보다 낮은 것은 disabled */
+  minTier?: Tier;
+}) {
   return (
     <div className="inline-flex overflow-hidden rounded-sm border border-border">
-      {(["T1", "T2", "T3"] as Tier[]).map((t) => (
-        <button
-          key={t}
-          type="button"
-          onClick={() => onChange(t)}
-          className={
-            "px-2.5 py-1.5 font-mono text-[11px] tracking-wide " +
-            (value === t
-              ? "bg-ink text-bg"
-              : "bg-surface text-text-muted hover:bg-surface-2 hover:text-text")
-          }
-        >
-          {t}
-        </button>
-      ))}
+      {(["T1", "T2", "T3"] as Tier[]).map((t) => {
+        const disabled = minTier ? TIER_RANK[t] < TIER_RANK[minTier] : false;
+        const active = value === t;
+        return (
+          <button
+            key={t}
+            type="button"
+            onClick={() => !disabled && onChange(t)}
+            disabled={disabled}
+            title={disabled ? `시설 등급이 최소 ${minTier} 를 요구합니다` : undefined}
+            className={
+              "px-2.5 py-1.5 font-mono text-[11px] tracking-wide " +
+              (active
+                ? "bg-ink text-bg"
+                : disabled
+                ? "bg-surface-2 text-text-dim/60 line-through cursor-not-allowed"
+                : "bg-surface text-text-muted hover:bg-surface-2 hover:text-text")
+            }
+          >
+            {t}
+          </button>
+        );
+      })}
     </div>
   );
 }

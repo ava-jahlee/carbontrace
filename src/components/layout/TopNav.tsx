@@ -26,7 +26,7 @@ const NAV_ITEMS = [
   { href: "/docs", label: "Docs", key: "docs" as const },
 ];
 
-export function TopNav({ meta = "v 0.8", active }: TopNavProps) {
+export function TopNav({ meta = "v 0.9", active }: TopNavProps) {
   return (
     <nav className="flex items-baseline gap-2 border-b border-border px-6 py-5 text-sm sm:px-10 md:px-12 lg:px-16">
       <Link

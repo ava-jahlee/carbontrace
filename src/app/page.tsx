@@ -171,10 +171,10 @@ export default function Home() {
           </ul>
         </section>
 
-        {/* ─── 푸터 · v0.8 · GitHub · 제안 · admin ─── */}
+        {/* ─── 푸터 · v0.9 · GitHub · 제안 · admin ─── */}
         <footer className="mt-24 flex items-baseline justify-between border-t border-border pt-6 text-xs text-text-dim">
           <div>
-            v 0.8 · 2026-09-04 ·{" "}
+            v 0.9 · 2026-09-04 ·{" "}
             <a
               href="https://github.com/ava-jahlee/carbontrace"
               target="_blank"

@@ -71,7 +71,7 @@ export const DOCS: DocEntry[] = [
     slug: "changelog",
     file: "CHANGELOG.md",
     title: "Changelog",
-    subtitle: "버전별 릴리스 노트 · v0.1 → v0.8",
+    subtitle: "버전별 릴리스 노트 · v0.1 → v0.9",
     group: "dev",
   },
 ];
