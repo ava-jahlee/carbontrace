@@ -90,36 +90,45 @@ function CategoryList({ items, offset = 0 }: { items: Category[]; offset?: numbe
 export default function RoadmapPage() {
   return (
     <CornerMetaFrame bl="scope_1 · 2 · 3 · IPPU" br="GHG Protocol · IPCC 2006">
-      <TopNav active="roadmap" meta="roadmap / planned" />
+      <TopNav meta="admin / roadmap" />
 
       <main className="mx-auto max-w-4xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
         <header className="border-b border-border pb-8">
-          <div className="font-mono text-[11px] uppercase tracking-widest text-accent-soft">
-            future scope · expansion
+          <div className="font-mono text-[11px] uppercase tracking-widest text-asserted">
+            admin · internal · not linked from main nav
           </div>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-text sm:text-5xl">
             확장성 <span className="text-accent">·</span> Roadmap
           </h1>
           <div className="mt-4 max-w-2xl space-y-1 text-sm leading-relaxed text-pretty">
             <p className="text-text-muted">
-              carbontrace 는 지금은 건물용 온실가스 계산기입니다.
+              관리자·개발자용 내부 로드맵. 사용자 대면 nav 에서는 노출하지 않습니다.
             </p>
             <p className="text-text-dim">
-              같은 감사 원칙과 primary source 카탈로그 위에서 Scope 3 · IPPU · F-gas 까지 확장할 수 있도록 만들었습니다.
+              사용자에게는 지금 준비된 것만 카탈로그로 보여줍니다. 계획 중인 항목·확장 예정은 여기에 정리됩니다. 이슈·제안은{" "}
+              <a
+                href="https://github.com/ava-jahlee/carbontrace/issues"
+                target="_blank"
+                rel="noreferrer"
+                className="underline decoration-dotted underline-offset-4 hover:text-accent"
+              >
+                GitHub Issues ↗
+              </a>
+              {" "}에서 받습니다.
             </p>
           </div>
         </header>
 
-        {/* v0.6 요약 */}
+        {/* v0.7 현재 */}
         <div className="mt-8 rounded-md border border-verified/40 bg-verified-bg p-4">
           <div className="font-mono text-[10px] uppercase tracking-widest text-verified">
-            v0.6 · current
+            v0.7 · current
           </div>
           <ul className="mt-2 space-y-1 text-xs text-text-muted">
-            <li>· Scope 1 · 연료 연소 (63 연료 · 3 티어 · 4 GWP 판 · 3 데이터 프로파일)</li>
+            <li>· Scope 1 · 랜딩 (하위 2 카테고리) · 연료 연소 · 냉매 fugitive</li>
             <li>· Scope 2 · 전력 · KDHC 열 · 국가 통합 열</li>
-            <li>· Scope 1 fugitive · 냉매 · F-gas (HFC · 블렌드 · SF6 · NF3)</li>
-            <li>· Scope 3 · 15 카테고리 카탈로그 (정의 · 방법론 · 원문서 · 계산기 순차 구현)</li>
+            <li>· Scope 3 · 15 카테고리 카탈로그 (계산기 순차 구현 예정)</li>
+            <li>· URL 재구성 · /scope1/{"{fuel-combustion,refrigerant}"}</li>
           </ul>
         </div>
 

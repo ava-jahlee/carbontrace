@@ -25,10 +25,10 @@ interface CatalogItem {
 const CATALOG: CatalogItem[] = [
   {
     href: "/scope1",
-    title: "Scope 1 · 연료 연소",
-    subtitle: "Fuel combustion · direct emissions",
-    detail: "63 연료 · T1/T2/T3 · GWP 4판 · 3 데이터 프로파일",
-    tag: "scope_1 / stationary / 1A4",
+    title: "Scope 1 · 직접 배출",
+    subtitle: "Direct emissions · fuel + fugitive",
+    detail: "1A4 연료 연소 (63 연료 · 3 tier · 3 profile) · 1B 냉매 · F-gas",
+    tag: "scope_1 / direct",
   },
   {
     href: "/scope2",
@@ -38,25 +38,11 @@ const CATALOG: CatalogItem[] = [
     tag: "scope_2 / purchased_energy",
   },
   {
-    href: "/refrigerant",
-    title: "냉매 · F-gas",
-    subtitle: "Refrigerant leakage · fugitive",
-    detail: "HFC 5 · blend 3 · SF6 · NF3 · GWP SAR/AR4/AR5/AR6",
-    tag: "scope_1 / fugitive / 1B",
-  },
-  {
     href: "/scope3",
     title: "Scope 3 · 기타 간접",
     subtitle: "Corporate value chain · 15 categories",
     detail: "GHG Protocol Standard · NIER v1.0 · Upstream 1-8 · Downstream 9-15",
     tag: "scope_3 / value_chain",
-  },
-  {
-    href: "/roadmap",
-    title: "확장 로드맵",
-    subtitle: "IPPU · future scope",
-    detail: "GHG Protocol · IPCC 2006 Vol.3 · PCAF · GLEC",
-    tag: "roadmap / planned",
   },
 ];
 
@@ -96,7 +82,13 @@ const DOC_LINKS: DocLink[] = [
     href: "https://github.com/ava-jahlee/carbontrace/blob/main/docs/CHANGELOG.md",
     tag: "log",
     title: "Changelog",
-    hint: "버전별 릴리스 노트 · v0.1 → v0.6",
+    hint: "버전별 릴리스 노트 · v0.1 → v0.7",
+  },
+  {
+    href: "https://github.com/ava-jahlee/carbontrace/issues/new?labels=user-feedback",
+    tag: "issue",
+    title: "이슈 · 제안",
+    hint: "값·방법론에 이상이 있으면 GitHub Issues 로 제안 (오픈 커뮤니티)",
   },
   {
     href: "https://github.com/ava-jahlee/carbontrace",
@@ -204,10 +196,10 @@ export default function Home() {
           <div className="mb-8 flex items-baseline justify-between border-b border-border-strong pb-3">
             <h2 className="text-base font-semibold text-text">Catalog</h2>
             <span className="font-mono text-[11px] uppercase tracking-widest text-text-dim">
-              5 items
+              3 scopes
             </span>
           </div>
-          <ul className="grid gap-px bg-border sm:grid-cols-2" style={{ border: "1px solid var(--border)" }}>
+          <ul className="grid gap-px bg-border sm:grid-cols-3" style={{ border: "1px solid var(--border)" }}>
             {CATALOG.map((item) => (
               <li key={item.href} className="bg-surface">
                 <Link
@@ -235,7 +227,7 @@ export default function Home() {
           <div className="mb-6 flex items-baseline justify-between border-b border-border pb-3">
             <h2 className="text-base font-semibold text-text">Docs</h2>
             <span className="font-mono text-[11px] uppercase tracking-widest text-text-dim">
-              6 items
+              7 items
             </span>
           </div>
           <ul className="space-y-4">
@@ -262,9 +254,14 @@ export default function Home() {
         </section>
 
         {/* ─── 푸터 · sources ─── */}
-        <footer className="mt-24 border-t border-border pt-6 font-mono text-[10px] uppercase tracking-widest text-text-dim">
-          <div>src · GHGCalc_V0m_lja.xlsm · parity 137/137</div>
-          <div className="mt-1">v 0.6 · 2026-09-04</div>
+        <footer className="mt-24 flex items-baseline justify-between border-t border-border pt-6 font-mono text-[10px] uppercase tracking-widest text-text-dim">
+          <div>
+            <div>src · GHGCalc_V0m_lja.xlsm · parity 137/137</div>
+            <div className="mt-1">v 0.7 · 2026-09-04</div>
+          </div>
+          <Link href="/roadmap" className="text-text-dim hover:text-accent">
+            admin · roadmap
+          </Link>
         </footer>
       </main>
     </CornerMetaFrame>

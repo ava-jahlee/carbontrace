@@ -1,38 +1,187 @@
-import { Scope1Calculator } from "./Scope1Calculator";
+import Link from "next/link";
 import { CornerMetaFrame } from "@/components/layout/CornerMeta";
+import { SectionHeader } from "@/components/layout/SectionHeader";
 import { TopNav } from "@/components/layout/TopNav";
 
 export const metadata = {
-  title: "Scope 1 계산기 — carbontrace",
+  title: "Scope 1 · 직접 배출 — carbontrace",
   description:
-    "IPCC 2006 GL 과 K-ETS 지침을 그대로 따르는 연료 연소 배출량 산정. 모든 수치에는 근거가 필요합니다.",
+    "사업자가 소유·통제하는 배출원에서 나온 직접 배출량. IPCC 카테고리 1A (연료 연소) · 1B (fugitive) 등.",
 };
+
+interface SubCategory {
+  href: string;
+  ipccCode: string;
+  nameKo: string;
+  nameEn: string;
+  detail: string;
+  status: "done" | "planned";
+  source?: string;
+}
+
+const READY: SubCategory[] = [
+  {
+    href: "/scope1/fuel-combustion",
+    ipccCode: "1A4",
+    nameKo: "연료 연소",
+    nameEn: "Fuel combustion · stationary",
+    detail: "63 연료 · T1/T2/T3 · GWP 4 판 · 3 데이터 프로파일",
+    status: "done",
+    source: "IPCC 2006 Vol.2 Ch.2 · K-ETS 별표 12",
+  },
+  {
+    href: "/scope1/refrigerant",
+    ipccCode: "1B",
+    nameKo: "냉매 · F-gas",
+    nameEn: "Refrigerant leakage · fugitive",
+    detail: "HFC 5 · blend 3 · SF6 · NF3 · GWP SAR/AR4/AR5/AR6",
+    status: "done",
+    source: "IPCC 2006 Vol.3 Ch.7 · AR6 Table 7.SM.7",
+  },
+];
+
+const PLANNED: SubCategory[] = [
+  {
+    href: "#",
+    ipccCode: "1A2",
+    nameKo: "산업 공정 · 부지 내 연료",
+    nameEn: "Manufacturing industries & construction",
+    detail: "부지 내 자재 생산 (시멘트·철강 등) 시",
+    status: "planned",
+    source: "IPCC 2006 Vol.2 Ch.2",
+  },
+];
+
+function CardBody({ item }: { item: SubCategory }) {
+  const isPlanned = item.status === "planned";
+  return (
+    <div className="p-8">
+      <div className="flex items-baseline justify-between">
+        <div className="font-mono text-[10px] uppercase tracking-widest text-accent-soft">
+          scope_1 / {item.ipccCode.toLowerCase()}
+        </div>
+        <span
+          className={`inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wide ${
+            isPlanned ? "text-pending" : "text-verified"
+          }`}
+        >
+          <span
+            className={`h-1.5 w-1.5 rounded-full ${
+              isPlanned ? "bg-pending" : "bg-verified"
+            }`}
+            aria-hidden
+          />
+          {isPlanned ? "planned" : "ready"}
+        </span>
+      </div>
+      <div
+        className={`mt-3 text-xl font-semibold tracking-tight ${
+          isPlanned ? "text-text" : "text-text group-hover:text-ink"
+        }`}
+      >
+        {item.nameKo}
+      </div>
+      <div className="mt-1 text-xs text-text-muted">{item.nameEn}</div>
+      <div className="mt-4 font-mono text-[11px] leading-relaxed text-text-muted">
+        {item.detail}
+      </div>
+      {item.source && (
+        <div className="mt-2 font-mono text-[10px] uppercase tracking-widest text-text-dim">
+          src · {item.source}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SubCategoryCard({ item }: { item: SubCategory }) {
+  if (item.status === "planned") {
+    return (
+      <li className="bg-surface">
+        <div className="block cursor-not-allowed opacity-60">
+          <CardBody item={item} />
+        </div>
+      </li>
+    );
+  }
+  return (
+    <li className="bg-surface">
+      <Link
+        href={item.href}
+        className="group block transition-colors hover:bg-accent/[0.04]"
+      >
+        <CardBody item={item} />
+      </Link>
+    </li>
+  );
+}
 
 export default function Scope1Page() {
   return (
-    <CornerMetaFrame bl="fuel_combustion · 1A4" br="IPCC 2006 · K-ETS">
-      <TopNav active="scope1" meta="scope_1 / stationary" />
+    <CornerMetaFrame bl="scope_1 · direct emissions" br="IPCC 2006 · K-ETS">
+      <TopNav active="scope1" meta="scope_1 / direct" />
 
       <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
-        {/* 헤드 · Mara 계열 큰 sans + terracotta accent */}
         <header className="border-b border-border pb-8">
           <div className="font-mono text-[11px] uppercase tracking-widest text-accent-soft">
-            direct emissions · stationary
+            scope_1 · direct emissions
           </div>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-text sm:text-5xl">
-            Scope 1 <span className="text-accent">·</span> 연료 연소
+            Scope 1 <span className="text-accent">·</span> 직접 배출
           </h1>
-          <div className="mt-4 max-w-2xl space-y-1 text-sm leading-relaxed text-pretty">
+          <div className="mt-4 max-w-2xl space-y-3 text-sm leading-relaxed text-pretty">
             <p className="text-text-muted">
-              건물 안에서 태우는 연료 (도시가스·경유·LPG 등) 에서 나온 직접 배출량을 산정합니다.
+              사업자가 소유·통제하는 배출원에서 나온 직접 배출량을 산정합니다.
             </p>
             <p className="text-text-dim">
-              IPCC 2006 Vol.2 Ch.2 · K-ETS 별표 12 를 따릅니다. 분류상 1A4 · 기타 (고정연소) 에 해당합니다.
+              GHG Protocol Corporate Standard 는 이 범위를 세 갈래로 나눕니다 · 연료 연소 (1A) · 산업 공정 (2A~2G) · 비의도적 유출 (1B fugitive · 냉매·메탄 누출 등).
+            </p>
+            <p className="text-text-dim">
+              carbontrace 는 건물 부문에서 자주 쓰이는 1A4 (기타 · 고정연소) 와 1B (fugitive · 냉매) 두 하위 카테고리를 먼저 다룹니다.
             </p>
           </div>
         </header>
 
-        <Scope1Calculator />
+        {/* 하위 카테고리 · 준비 완료 (ready) */}
+        <div className="mt-12">
+          <SectionHeader title="하위 카테고리" hint="ready · 2" />
+          <ul
+            className="mt-4 grid gap-px bg-border sm:grid-cols-2"
+            style={{ border: "1px solid var(--border)" }}
+          >
+            {READY.map((item) => (
+              <SubCategoryCard key={item.ipccCode} item={item} />
+            ))}
+          </ul>
+        </div>
+
+        {/* 하위 카테고리 · 확장 예정 (planned) · 별도 서브섹션 · 폭 좁게 */}
+        <div className="mt-12 max-w-md">
+          <SectionHeader title="확장 예정" hint="planned" />
+          <ul
+            className="mt-4 grid gap-px bg-border"
+            style={{ border: "1px solid var(--border)" }}
+          >
+            {PLANNED.map((item) => (
+              <SubCategoryCard key={item.ipccCode} item={item} />
+            ))}
+          </ul>
+        </div>
+
+        {/* 페이지 footer · 이슈 제안 채널 */}
+        <footer className="mt-16 border-t border-border pt-4 text-xs text-text-dim">
+          <p>
+            값 · 방법론에 이상이 있으면 →{" "}
+            <a
+              href="https://github.com/ava-jahlee/carbontrace/issues/new?labels=user-feedback&title=%5BScope+1%5D+"
+              target="_blank"
+              rel="noreferrer"
+              className="underline decoration-dotted underline-offset-4 hover:text-accent"
+            >
+              GitHub Issues 로 제안 ↗
+            </a>
+          </p>
+        </footer>
       </main>
     </CornerMetaFrame>
   );

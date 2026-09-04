@@ -8,21 +8,22 @@ import Link from "next/link";
  */
 
 interface TopNavProps {
-  /** 우측 mono 라벨 (예: "v 0.6" · "scope_1 / stationary") */
+  /** 우측 mono 라벨 (예: "v 0.7" · "scope_1 / stationary") */
   meta?: string;
-  /** 현재 페이지 (활성 링크 accent 처리용) */
-  active?: "home" | "scope1" | "scope2" | "refrigerant" | "scope3" | "roadmap";
+  /**
+   * 현재 페이지 (활성 링크 accent 처리용).
+   * fuel-combustion · refrigerant 둘 다 scope1 로 hoist (Scope 1 하위 카테고리).
+   */
+  active?: "home" | "scope1" | "scope2" | "scope3";
 }
 
 const NAV_ITEMS = [
   { href: "/scope1", label: "Scope 1", key: "scope1" as const },
   { href: "/scope2", label: "Scope 2", key: "scope2" as const },
-  { href: "/refrigerant", label: "Refrigerant", key: "refrigerant" as const },
   { href: "/scope3", label: "Scope 3", key: "scope3" as const },
-  { href: "/roadmap", label: "Roadmap", key: "roadmap" as const },
 ];
 
-export function TopNav({ meta = "v 0.6", active }: TopNavProps) {
+export function TopNav({ meta = "v 0.7", active }: TopNavProps) {
   return (
     <nav className="flex items-baseline gap-2 border-b border-border px-6 py-5 text-sm sm:px-10 md:px-12 lg:px-16">
       <Link

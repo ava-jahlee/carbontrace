@@ -4,6 +4,50 @@ carbontrace 는 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 형식�
 
 ---
 
+## v0.7 · 2026-09-04 · 위계 재조정 · Scope 1 하위 카테고리 · 이슈 채널
+
+**IPCC · GHG Protocol 위계 그대로 반영.** Scope 1 안의 연료 연소·냉매를 별도 최상위 카드로 두던 구조를 정리 · Scope 1 랜딩 아래로 hoist. 사용자 대면 nav 4 items (Scope 1 · 2 · 3 · Docs) 로 단순화. 로드맵은 관리자 내부 페이지로 격리 · 사용자 피드백은 GitHub Issues 로 받는다.
+
+### Changed
+
+- **URL 재구성** (Next.js App Router · git mv 로 히스토리 보존)
+  - `/scope1` (기존 연료 연소 계산기) → `/scope1/fuel-combustion`
+  - `/refrigerant` (기존 냉매 계산기) → `/scope1/refrigerant`
+  - `/scope1` 은 **Scope 1 랜딩** 으로 전환 (하위 카테고리 카드)
+- `TopNav` · 5 → 4 items · Refrigerant · Roadmap 링크 제거
+  - `active` 타입에서 `refrigerant` · `roadmap` 제거 · fuel-combustion 과 refrigerant 모두 `scope1` active 로 통일
+  - default meta `v 0.6` → `v 0.7`
+- **랜딩 Catalog** · 5 → 3 items (Scope 1 · Scope 2 · Scope 3 · scope 축 정렬)
+  - "5 items" → "3 scopes"
+  - Scope 1 카드 detail: "63 연료 · T1/T2/T3 · GWP 4판 · 3 데이터 프로파일" → "1A4 연료 연소 (63 연료 · 3 tier · 3 profile) · 1B 냉매 · F-gas"
+  - 냉매 · Roadmap 최상위 카드 제거
+- **랜딩 footer** · admin · roadmap 링크 추가 (조용히 · 우측 mono)
+  - v 0.6 → v 0.7
+- **Docs 섹션** · 6 → 7 items · **이슈 · 제안** 링크 추가 (GitHub Issues `?labels=user-feedback`)
+- **로드맵 페이지** (`/roadmap`)
+  - 헤더 eyebrow `future scope · expansion` → `admin · internal · not linked from main nav`
+  - 관리자·개발자 대상임을 명시 · 사용자 피드백은 GitHub Issues 링크
+  - v0.6 요약 → v0.7 요약 · URL 재구성 항목 추가
+
+### Added
+
+- [`/scope1`](../src/app/scope1/page.tsx) · **Scope 1 랜딩 페이지** 신규
+  - 하위 카테고리 2 카드 · 1A4 연료 연소 (ready) · 1B 냉매 (ready)
+  - 1A2 산업 공정 · 부지 내 연료 (planned · 회색 카드)
+  - 각 카드에 IPCC 코드 · 근본 원문서 명시
+  - `● ready` · `● planned` dot 배지
+- **계산기 페이지 breadcrumb** · `← scope 1 · 하위 카테고리`
+- **각 계산기 페이지 footer** · GitHub Issues 링크 (연료연소 · 냉매 각각 title prefix)
+- **문서** · [AUDIT-GUIDE.md](./AUDIT-GUIDE.md) URL 목록 업데이트 (5 → 5 정확한 경로)
+
+### Design rationale
+
+- **위계 문제.** 이전 카탈로그에서 연료연소와 냉매가 별도 최상위 카드로 뜨는 게 GHG Protocol 관점에서 이상했다. 둘 다 Scope 1 하위 (1A4 · 1B) 이다. Scope 축을 먼저 · 그 아래 세부 배출원.
+- **관리자·사용자 경계.** 로드맵은 사업자·감사자에게 노이즈다. 계획된 것보다 지금 준비된 것을 정확히 보여주는 게 중요. 로드맵은 내부용 · admin footer 링크로만 접근.
+- **피드백 채널.** 자체 게시판 (백엔드 필요) 대신 GitHub Issues 활용 · 오픈 · 감사 가능 · 무료. `labels=user-feedback` 로 자동 분류.
+
+---
+
 ## v0.6 · 2026-09-04 · Scope 3 · 15 카테고리 카탈로그 스캐폴딩
 
 **GHG Protocol Corporate Value Chain (Scope 3) Standard 의 15 카테고리를 감사 가능한 카탈로그 형태로 스캐폴딩.**

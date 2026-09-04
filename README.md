@@ -3,7 +3,7 @@
 > 온실가스 배출량 산정 도구. **모든 수치에는 근거가 필요합니다.**
 >
 > IPCC 2006 GL, 온실가스 배출권거래제 (K-ETS) 지침, GIR 국가고유 배출계수, KDHC 지사별 실측, GHG Protocol Scope 3 표준을 그대로 따릅니다.  
-> v0.6 · Scope 1 (연료 · 냉매) + Scope 2 (전력 · 열) + Scope 3 (15 카테고리 카탈로그) + 데이터 프로파일.
+> v0.7 · GHG Protocol 위계 정렬 · Scope 1 랜딩 (하위: 연료 연소 · 냉매) + Scope 2 (전력 · 열) + Scope 3 (15 카테고리 카탈로그).
 
 ---
 
@@ -67,9 +67,12 @@ Scope 2 는 CH4/N2O 도 완전 계산하므로 총합 tCO2eq 는 xlsm 원본 (CO
 
 ---
 
-## 지금 담긴 범위 (v0.6)
+## 지금 담긴 범위 (v0.7)
 
-- **Scope 1** — 1A4 기타 (건물) 고정연소 · 1B fugitive (냉매/F-gas)
+- **Scope 1** — 랜딩 `/scope1` · 하위 두 카테고리
+  - `1A4` 연료 연소 → `/scope1/fuel-combustion` (건물 고정연소 · 63 연료 · 3 tier · 3 데이터 프로파일)
+  - `1B` fugitive → `/scope1/refrigerant` (냉매 · F-gas · SAR/AR4/AR5/AR6)
+  - `1A2` 산업 공정 · planned
 - **Scope 2** — 외부 공급 전기·열 간접 배출
   - 전력: GIR 승인 국가 온실가스 배출계수 (2017년 승인 · 2022년 승인 두 판 verified)
   - 열/스팀 (KDHC): 지사별 8개 × 계획기간 3기·4기 = 16개 실측값
@@ -107,12 +110,12 @@ Scope 2 는 CH4/N2O 도 완전 계산하므로 총합 tCO2eq 는 xlsm 원본 (CO
 
 각 냉매에 대해 SAR/AR4/AR5/AR6 4개 GWP 판 지원. 블렌드는 mass 비율 가중 GWP 자동 계산.
 
-### 로드맵 (v0.4 신규 · `/roadmap`)
+### 로드맵 · 관리자 페이지 (v0.7 개편 · `/roadmap`)
 
-Scope 3 15개 카테고리 · IPPU 5개 카테고리 · 확장 예정 항목 목록 페이지.
-각 항목에 상태 (완료/진행/예정) · 근거 문서 (GHG Protocol · IPCC Vol.3 · PCAF 등) 명시.
+v0.7 부터 로드맵은 사용자 대면 nav 에서 제거 · 관리자·개발자 내부용 페이지로 격리.
+랜딩 footer 우측 `admin · roadmap` 링크로만 접근. 사용자 피드백·오류 제안은 [GitHub Issues](https://github.com/ava-jahlee/carbontrace/issues) 로 받음.
 
-### Scope 3 · 15 카테고리 카탈로그 (v0.6 신규 · `/scope3`)
+### Scope 3 · 15 카테고리 카탈로그 (v0.6 · `/scope3`)
 
 GHG Protocol Corporate Value Chain (Scope 3) Standard (2011) 의 15 카테고리를 그대로 옮긴 카탈로그.
 각 카테고리마다 정의 · 대표 활동 · 방법론 (rank 순) · 원문서를 정리.
@@ -121,7 +124,7 @@ GHG Protocol Corporate Value Chain (Scope 3) Standard (2011) 의 15 카테고리
 - **Downstream 9-15** · 하류 물류 · 후속 가공 · 제품 사용 · 폐기 · 임대 자산 · 프랜차이즈 · 투자
 
 각 카테고리 상세 페이지 (`/scope3/[cat]`) 에서 방법론 (rank 1 공급자 특정 → rank 4 지출 기반) 과 원문서 링크 확인 가능.
-계산 엔진은 카테고리별로 순차 구현 예정 (v0.6 은 스캐폴딩만).
+계산 엔진은 카테고리별로 순차 구현 예정 (v0.6 시점 스캐폴딩만).
 
 **원문서 카탈로그 (4종 신규):**
 

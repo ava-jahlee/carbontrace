@@ -29,9 +29,11 @@ carbontrace 는 다음 3층 구조를 지킨다.
 
 사업자가 제출한 계산 조건을 그대로 재현.
 
-- Scope 1 (연료 연소): `/scope1`
-- Scope 2 (전력·열): `/scope2`
-- Scope 1 fugitive (냉매): `/refrigerant`
+- Scope 1 · 랜딩 (하위 카테고리 선택): `/scope1`
+- Scope 1 · 연료 연소 (1A4): `/scope1/fuel-combustion`
+- Scope 1 · 냉매 fugitive (1B): `/scope1/refrigerant`
+- Scope 2 · 전력·열 (구매 에너지): `/scope2`
+- Scope 3 · 15 카테고리 카탈로그: `/scope3`
 
 각 계산기 왼쪽 입력 패널에 사업자가 사용한 조건을 그대로 입력:
 - 연료·활동원 · 사용량 · Tier · GWP 기준
