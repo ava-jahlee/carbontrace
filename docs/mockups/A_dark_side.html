@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>목업 A · Field Studies Flora + Capricorn 계열</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1815;             /* deep olive-ink */
+    --bg-2: #221f1a;           /* sidebar */
+    --surface: #2a2620;
+    --border: #3d3830;
+    --text: #e8e2d3;           /* warm cream */
+    --text-muted: #8a8477;
+    --text-dim: #5a554c;
+    --accent: #c69168;         /* warm terracotta */
+    --accent-dim: #7a5a44;
+    --verified: #93a577;
+    --asserted: #c69168;
+    --pending: #6a6558;
+    --serif: 'EB Garamond', 'Times New Roman', serif;
+    --sans-kr: 'IBM Plex Sans KR', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: var(--sans-kr); min-height: 100vh; }
+  body { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+
+  /* ── 좌측 사이드바 (Field Studies Flora) ────────── */
+  aside {
+    background: var(--bg-2);
+    border-right: 1px solid var(--border);
+    padding: 32px 24px;
+    display: flex; flex-direction: column;
+    position: sticky; top: 0; height: 100vh;
+  }
+  .brand {
+    font-family: var(--serif); font-weight: 500; font-size: 22px;
+    letter-spacing: 0.04em; margin-bottom: 4px;
+  }
+  .brand-sub {
+    font-family: var(--mono); font-size: 9px; text-transform: uppercase;
+    letter-spacing: 0.2em; color: var(--text-dim); margin-bottom: 48px;
+  }
+  .nav-section { margin-bottom: 28px; }
+  .nav-numeral {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em;
+    color: var(--accent-dim); text-transform: uppercase; margin-bottom: 6px;
+  }
+  .nav-title {
+    font-family: var(--serif); font-size: 12px; letter-spacing: 0.25em;
+    text-transform: uppercase; font-weight: 500; margin-bottom: 6px;
+  }
+  .nav-sub {
+    font-family: var(--serif); font-size: 13px; font-style: italic;
+    color: var(--text-muted); line-height: 1.7; padding-left: 4px;
+  }
+  .nav-sub div:hover { color: var(--accent); cursor: pointer; }
+  aside footer {
+    margin-top: auto; font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.15em; color: var(--text-dim); text-transform: uppercase;
+  }
+
+  /* ── 우측 메인 ────────── */
+  main { padding: 64px 80px; max-width: 900px; }
+  .hero { border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 56px; }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px;
+  }
+  h1.hero-title {
+    font-family: var(--serif); font-weight: 500; font-size: 72px;
+    letter-spacing: -0.01em; line-height: 1; margin-bottom: 20px;
+  }
+  .hero-tagline {
+    font-family: var(--sans-kr); font-size: 15px; line-height: 1.7;
+    color: var(--text-muted); max-width: 480px;
+  }
+  .hero-tagline b { color: var(--text); font-weight: 500; }
+
+  .principle { display: grid; grid-template-columns: 80px 1fr; gap: 24px; margin-bottom: 64px; }
+  .principle-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent-dim); padding-top: 4px;
+  }
+  .principle-body { font-size: 14px; line-height: 1.75; color: var(--text-muted); }
+  .principle-body p { margin-bottom: 12px; }
+  .principle-body em {
+    font-family: var(--serif); font-style: italic; color: var(--accent); font-size: 15px;
+  }
+  .principle-body strong { color: var(--text); font-weight: 500; }
+
+  h2.section-title {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--text-dim); margin-bottom: 24px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+  ul.catalog { list-style: none; }
+  ul.catalog li { border-bottom: 1px solid var(--border); }
+  ul.catalog a {
+    display: grid; grid-template-columns: 60px 1fr auto; gap: 24px;
+    padding: 20px 0; text-decoration: none; color: inherit; align-items: baseline;
+  }
+  ul.catalog a:hover { background: rgba(198, 145, 104, 0.05); }
+  .cat-num {
+    font-family: var(--serif); font-style: italic; font-size: 20px;
+    color: var(--accent); font-weight: 500;
+  }
+  .cat-body h3 {
+    font-family: var(--serif); font-size: 22px; font-weight: 500;
+    letter-spacing: 0.01em; margin-bottom: 4px;
+  }
+  .cat-body .cat-sub {
+    font-family: var(--serif); font-size: 13px; font-style: italic;
+    color: var(--text-muted); margin-bottom: 6px;
+  }
+  .cat-body .cat-detail {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+    color: var(--text-dim); text-transform: lowercase;
+  }
+  .cat-arrow {
+    font-family: var(--serif); font-size: 20px; color: var(--text-dim);
+  }
+  ul.catalog a:hover .cat-arrow { color: var(--accent); }
+
+  .maturity-dots { display: flex; gap: 20px; margin-top: 24px; }
+  .dot-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .dot.verified { background: var(--verified); }
+  .dot.documented { background: #8a857a; }
+  .dot.asserted { background: var(--asserted); }
+  .dot.pending { background: var(--pending); }
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">carbontrace</div>
+  <div class="brand-sub">v 0.4</div>
+
+  <div class="nav-section">
+    <div class="nav-numeral">I.</div>
+    <div class="nav-title">Scopes</div>
+    <div class="nav-sub">
+      <div>Scope 1 · Fuel</div>
+      <div>Scope 2 · Electric &amp; Heat</div>
+      <div>Refrigerant</div>
+    </div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-numeral">II.</div>
+    <div class="nav-title">Docs</div>
+    <div class="nav-sub">
+      <div>Audit Guide</div>
+      <div>Development</div>
+      <div>Source Note</div>
+    </div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-numeral">III.</div>
+    <div class="nav-title">Roadmap</div>
+  </div>
+
+  <footer>compute01 · seoul<br>vitest 137/137</footer>
+</aside>
+
+<main>
+  <div class="hero">
+    <div class="hero-eyebrow">auditable ghg ledger · KR</div>
+    <h1 class="hero-title">carbontrace</h1>
+    <p class="hero-tagline">
+      온실가스 배출량 산정 도구.
+      <b>모든 수치에는 근거가 필요합니다.</b>
+    </p>
+  </div>
+
+  <div class="principle">
+    <div class="principle-label">0 · principle</div>
+    <div class="principle-body">
+      <p>IPCC 2006 GL 과 K-ETS 지침을 그대로 따르는 계산 엔진입니다. <em>감사 가능성</em>이 이 도구의 핵심입니다.</p>
+      <p>결과 값 옆의 (i) 를 누르면 그 값을 만든 수식과 각 계수를 볼 수 있습니다. 계수마다 <strong>원문서 (IPCC PDF · GIR · K-ETS)</strong> 링크가 붙어 있어 값을 곧바로 재확인할 수 있습니다.</p>
+      <div class="maturity-dots">
+        <div class="dot-item"><span class="dot verified"></span>verified</div>
+        <div class="dot-item"><span class="dot documented"></span>documented</div>
+        <div class="dot-item"><span class="dot asserted"></span>asserted</div>
+        <div class="dot-item"><span class="dot pending"></span>pending</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Catalog · 4 items</h2>
+  <ul class="catalog">
+    <li><a href="#">
+      <div class="cat-num">i</div>
+      <div class="cat-body">
+        <h3>Scope 1 · 연료 연소</h3>
+        <div class="cat-sub">Fuel combustion · direct emissions</div>
+        <div class="cat-detail">63 fuels · T1/T2/T3 · gwp 4 sets · 3 profiles</div>
+      </div>
+      <div class="cat-arrow">→</div>
+    </a></li>
+    <li><a href="#">
+      <div class="cat-num">ii</div>
+      <div class="cat-body">
+        <h3>Scope 2 · 전력 · 열</h3>
+        <div class="cat-sub">Purchased electricity &amp; heat</div>
+        <div class="cat-detail">gir grid · kdhc 8 branches · national 3</div>
+      </div>
+      <div class="cat-arrow">→</div>
+    </a></li>
+    <li><a href="#">
+      <div class="cat-num">iii</div>
+      <div class="cat-body">
+        <h3>냉매 · F-gas</h3>
+        <div class="cat-sub">Refrigerant leakage · fugitive</div>
+        <div class="cat-detail">hfc 5 · blend 3 · sf6 · nf3</div>
+      </div>
+      <div class="cat-arrow">→</div>
+    </a></li>
+    <li><a href="#">
+      <div class="cat-num">iv</div>
+      <div class="cat-body">
+        <h3>확장 로드맵</h3>
+        <div class="cat-sub">Scope 3 · IPPU · future</div>
+        <div class="cat-detail">ghgp 15 · ippu 5 · pcaf · glec</div>
+      </div>
+      <div class="cat-arrow">→</div>
+    </a></li>
+  </ul>
+</main>
+
+</body>
+</html>

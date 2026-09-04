@@ -1,5 +1,6 @@
 import { CornerMetaFrame } from "@/components/layout/CornerMeta";
 import { SectionHeader } from "@/components/layout/SectionHeader";
+import { TopNav } from "@/components/layout/TopNav";
 
 export const metadata = {
   title: "확장성 로드맵 — carbontrace",
@@ -52,15 +53,18 @@ const ippu: Category[] = [
 ];
 
 function StatusBadge({ s }: { s: Category["status"] }) {
-  const label = s === "done" ? "[done]" : s === "in-progress" ? "[wip]" : "[planned]";
-  const cls =
-    s === "done"
-      ? "text-verified border-verified/40 bg-verified-bg"
-      : s === "in-progress"
-      ? "text-asserted border-asserted/40 bg-asserted-bg"
-      : "text-pending border-pending/40 bg-pending-bg";
+  const label = s === "done" ? "done" : s === "in-progress" ? "wip" : "planned";
+  const dotCls =
+    s === "done" ? "bg-verified"
+    : s === "in-progress" ? "bg-asserted"
+    : "bg-pending";
+  const textCls =
+    s === "done" ? "text-verified"
+    : s === "in-progress" ? "text-asserted"
+    : "text-pending";
   return (
-    <span className={`inline-block rounded-sm border px-1 py-0 font-mono text-[10px] leading-4 tracking-tight ${cls}`}>
+    <span className={`inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wide ${textCls}`}>
+      <span className={`h-1.5 w-1.5 rounded-full ${dotCls}`} />
       {label}
     </span>
   );
@@ -92,32 +96,29 @@ function CategoryList({ items, offset = 0 }: { items: Category[]; offset?: numbe
 
 export default function RoadmapPage() {
   return (
-    <CornerMetaFrame
-      tl="carbontrace"
-      tr="v0.4"
-      bl="scope_1 · 2 · 3 · IPPU"
-      br="GHG Protocol · IPCC 2006"
-    >
-      <main className="mx-auto max-w-4xl px-6 pt-12 pb-16 sm:px-10 md:px-12">
-        <div className="mb-4 flex items-baseline gap-2 font-mono text-[10px] uppercase tracking-widest text-text-muted">
-          <a href="/" className="hover:text-ink">carbontrace</a>
-          <span className="text-text-dim">/</span>
-          <span className="text-ink-dim">roadmap</span>
-        </div>
+    <CornerMetaFrame bl="scope_1 · 2 · 3 · IPPU" br="GHG Protocol · IPCC 2006">
+      <TopNav active="roadmap" meta="roadmap / planned" />
 
-        <header className="border-b border-border pb-6">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">
-            IV · future scope
+      <main className="mx-auto max-w-4xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
+        <header className="border-b border-border pb-8">
+          <div className="font-mono text-[11px] uppercase tracking-widest text-accent-soft">
+            future scope · expansion
           </div>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-text">확장성 로드맵</h1>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">
-            carbontrace 는 건물용 온실가스 계산기지만, 같은 감사 원칙과 primary source 카탈로그 위에서
-            Scope 3 · IPPU · F-gas 까지 확장할 수 있도록 만들었습니다.
-          </p>
+          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-text sm:text-5xl">
+            확장성 <span className="text-accent">·</span> Roadmap
+          </h1>
+          <div className="mt-4 max-w-2xl space-y-1 text-sm leading-relaxed text-pretty">
+            <p className="text-text-muted">
+              carbontrace 는 지금은 건물용 온실가스 계산기입니다.
+            </p>
+            <p className="text-text-dim">
+              같은 감사 원칙과 primary source 카탈로그 위에서 Scope 3 · IPPU · F-gas 까지 확장할 수 있도록 만들었습니다.
+            </p>
+          </div>
         </header>
 
         {/* v0.4 요약 */}
-        <div className="mt-6 rounded-md border border-verified/40 bg-verified-bg p-4">
+        <div className="mt-8 rounded-md border border-verified/40 bg-verified-bg p-4">
           <div className="font-mono text-[10px] uppercase tracking-widest text-verified">
             v0.4 · current
           </div>
@@ -129,26 +130,26 @@ export default function RoadmapPage() {
         </div>
 
         {/* Scope 1 */}
-        <div className="mt-10">
-          <SectionHeader numeral="I" title="Scope 1 · 직접 배출" hint="direct" />
+        <div className="mt-12">
+          <SectionHeader title="Scope 1 · 직접 배출" hint="direct" />
           <div className="mt-4"><CategoryList items={scope1} /></div>
         </div>
 
         {/* Scope 2 */}
-        <div className="mt-10">
-          <SectionHeader numeral="II" title="Scope 2 · 외부 공급 에너지" hint="purchased energy" />
+        <div className="mt-12">
+          <SectionHeader title="Scope 2 · 외부 공급 에너지" hint="purchased energy" />
           <div className="mt-4"><CategoryList items={scope2} /></div>
         </div>
 
         {/* Scope 3 */}
-        <div className="mt-10">
-          <SectionHeader numeral="III" title="Scope 3 · 기타 간접" hint="GHG Protocol · 15 categories" />
+        <div className="mt-12">
+          <SectionHeader title="Scope 3 · 기타 간접" hint="ghg protocol · 15 categories" />
           <div className="mt-4"><CategoryList items={scope3} /></div>
         </div>
 
         {/* IPPU */}
-        <div className="mt-10">
-          <SectionHeader numeral="IV" title="IPPU · 산업 공정 및 제품 사용" hint="processes" />
+        <div className="mt-12">
+          <SectionHeader title="IPPU · 산업 공정 및 제품 사용" hint="processes" />
           <div className="mt-4"><CategoryList items={ippu} /></div>
         </div>
       </main>

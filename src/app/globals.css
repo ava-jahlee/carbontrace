@@ -12,32 +12,36 @@
    ═══════════════════════════════════════════════════════════ */
 
 :root {
-  /* ── 기본 팔레트 (ivory 톤) ────────────────────────── */
-  --bg: #fafaf7;
+  /* ── 기본 팔레트 (warmer ivory · Mara 계열) ────────────── */
+  --bg: #f5f2ec;             /* warmer ivory (기존 #fafaf7 대비 노랑톤) */
   --surface: #ffffff;
-  --surface-2: #f2f2ee;      /* input 영역 subtle wash */
-  --border: #e6e5e0;
-  --border-strong: #c9c7c0;
-  --text: #171613;           /* ink */
-  --text-muted: #7f7c78;
-  --text-dim: #a8a5a0;
-  --ink: #3a3833;            /* 강조 · fill */
-  --ink-dim: #8c887f;
+  --surface-2: #ece7dc;      /* input 영역 subtle wash */
+  --border: #d9d4c8;
+  --border-strong: #b5ac9a;
+  --text: #1c1a15;
+  --text-muted: #6b6659;
+  --text-dim: #9c9789;
+  --ink: #2f2b23;            /* 강조 · fill */
+  --ink-dim: #7a7466;
 
-  /* ── 성숙도 색 (muted · workspace DESIGN.md) ───────── */
-  --verified: #5c7a4e;       /* muted green */
-  --verified-bg: #eef2ea;
-  --documented: #6a6763;     /* neutral ink */
-  --documented-bg: #ededea;
-  --asserted: #8a7645;       /* muted amber */
-  --asserted-bg: #f4f0e6;
-  --pending: #a8a5a0;        /* dim */
-  --pending-bg: #efeeeb;
+  /* ── warm accent (terracotta · Mara + Studio Bruch) ────── */
+  --accent: #b8532a;         /* deep terracotta · 강조 · underline · hover */
+  --accent-soft: #d9926b;    /* soft peach · 태그 · 서브 */
+
+  /* ── 성숙도 색 (dot 시스템 · warm 계열로 재조정) ──────── */
+  --verified: #6a8054;       /* muted olive green */
+  --verified-bg: #ede8dc;
+  --documented: #7a756a;     /* warm neutral */
+  --documented-bg: #e5e0d3;
+  --asserted: #b8532a;       /* terracotta (accent 와 통일 · warning 아님) */
+  --asserted-bg: #f2e4d8;
+  --pending: #9c9789;        /* warm dim */
+  --pending-bg: #e8e3d6;
 
   /* ── warning (⚠) · 원출처 확인 요망 ─────────────── */
   --warn: #7a5a1e;
-  --warn-bg: #f7ecd2;
-  --warn-border: #d9b872;
+  --warn-bg: #f4ecd8;
+  --warn-border: #c9a86a;
 }
 
 /* Tailwind v4 · @theme 로 CSS 변수 → utility 클래스 매핑 */
@@ -53,6 +57,10 @@
   --color-text-dim: var(--text-dim);
   --color-ink: var(--ink);
   --color-ink-dim: var(--ink-dim);
+
+  /* accent */
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
 
   /* 성숙도 */
   --color-verified: var(--verified);

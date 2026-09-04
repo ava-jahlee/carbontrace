@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>목업 B · Mara + Daniel Blue 계열</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2ec;             /* warmer ivory (기존보다 노랑 톤) */
+    --surface: #ffffff;
+    --border: #d9d4c8;
+    --text: #1c1a15;
+    --text-muted: #6b6659;
+    --text-dim: #9c9789;
+    --accent: #b8532a;         /* warm terracotta (Mara) */
+    --accent-soft: #d9926b;
+    --verified: #6a8054;
+    --asserted: #b8532a;
+    --pending: #9c9789;
+    --sans-kr: 'IBM Plex Sans KR', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: var(--sans-kr); min-height: 100vh; }
+  body { min-height: 100vh; position: relative; padding-bottom: 40px; }
+
+  /* ── 상단 인라인 nav (Mara 계열) ────────── */
+  nav.top {
+    display: flex; align-items: baseline; gap: 8px;
+    padding: 24px 40px; border-bottom: 1px solid var(--border);
+    font-size: 14px; letter-spacing: 0.01em;
+  }
+  nav.top .brand {
+    font-weight: 600; font-size: 18px; letter-spacing: -0.01em;
+    color: var(--text); margin-right: 32px;
+  }
+  nav.top .link { color: var(--text-muted); text-decoration: none; }
+  nav.top .link:hover { color: var(--accent); }
+  nav.top .sep { color: var(--text-dim); margin: 0 2px; }
+  nav.top .spacer { flex: 1; }
+  nav.top .meta {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--text-dim);
+  }
+
+  main {
+    max-width: 960px; margin: 0 auto; padding: 80px 40px 0;
+  }
+
+  /* ── 히어로 ────────── */
+  .hero { margin-bottom: 96px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; }
+  .hero-left { }
+  h1.hero-title {
+    font-size: 84px; font-weight: 600; letter-spacing: -0.03em;
+    line-height: 0.95; margin-bottom: 24px;
+  }
+  h1.hero-title .under { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 4px; text-underline-offset: 8px; }
+  .hero-tagline {
+    font-size: 16px; line-height: 1.7; color: var(--text-muted); max-width: 380px;
+  }
+  .hero-tagline b { color: var(--accent); font-weight: 500; }
+
+  .hero-right {
+    border-left: 1px solid var(--border); padding-left: 40px;
+    font-size: 13px; line-height: 1.8; color: var(--text-muted);
+  }
+  .hero-right p { margin-bottom: 12px; }
+  .hero-right strong { color: var(--text); font-weight: 500; }
+  .hero-right .accent { color: var(--accent); font-weight: 500; }
+  .hero-right .maturity { margin-top: 24px; display: flex; gap: 16px; }
+  .hero-right .m-item { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; }
+  .hero-right .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .dot.verified { background: var(--verified); }
+  .dot.documented { background: #7a756a; }
+  .dot.asserted { background: var(--asserted); }
+  .dot.pending { background: var(--pending); }
+
+  /* ── 카탈로그 ────────── */
+  .catalog-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 32px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+  .catalog-head .head-title {
+    font-size: 15px; font-weight: 600;
+  }
+  .catalog-head .head-count {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-dim);
+  }
+
+  ul.catalog { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  ul.catalog li { background: var(--surface); }
+  ul.catalog a {
+    display: block; padding: 32px; text-decoration: none; color: inherit;
+    transition: background 0.2s;
+  }
+  ul.catalog a:hover { background: rgba(184, 83, 42, 0.04); }
+  .cat-tag {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent-soft); margin-bottom: 12px;
+  }
+  .cat-body h3 {
+    font-size: 22px; font-weight: 600; letter-spacing: -0.01em;
+    margin-bottom: 6px; color: var(--text);
+  }
+  .cat-body .cat-sub {
+    font-size: 12px; color: var(--text-muted); margin-bottom: 12px;
+  }
+  .cat-body .cat-detail {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em;
+    color: var(--text-muted); line-height: 1.6;
+  }
+
+  /* ── 코너 메타 (Daniel Blue) ────────── */
+  .corner-tl, .corner-tr, .corner-bl, .corner-br {
+    position: fixed; font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim);
+    z-index: 20; pointer-events: none;
+  }
+  .corner-bl { left: 20px; bottom: 16px; }
+  .corner-br { right: 20px; bottom: 16px; }
+
+  main .docs { margin-top: 80px; }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="brand">carbontrace</div>
+  <a class="link" href="#">Scope&nbsp;1</a><span class="sep">,</span>
+  <a class="link" href="#">Scope&nbsp;2</a><span class="sep">,</span>
+  <a class="link" href="#">Refrigerant</a><span class="sep">,</span>
+  <a class="link" href="#">Roadmap</a><span class="sep">,</span>
+  <a class="link" href="#">Docs</a>
+  <div class="spacer"></div>
+  <span class="meta">v 0.4</span>
+</nav>
+
+<main>
+  <div class="hero">
+    <div class="hero-left">
+      <h1 class="hero-title">carbon<br><span class="under">trace</span></h1>
+      <p class="hero-tagline">
+        온실가스 배출량 산정 도구. <b>모든 수치에는 근거가 필요합니다.</b>
+      </p>
+    </div>
+    <div class="hero-right">
+      <p>IPCC 2006 GL 과 K-ETS 지침을 그대로 따르는 계산 엔진입니다. <span class="accent">감사 가능성</span>이 이 도구의 핵심입니다.</p>
+      <p>결과 값 옆의 (i) 를 누르면 그 값을 만든 수식과 각 계수를 볼 수 있습니다. 계수마다 <strong>원문서 (IPCC · GIR · K-ETS)</strong> 링크가 붙어 있어 값을 곧바로 재확인할 수 있습니다.</p>
+      <div class="maturity">
+        <div class="m-item"><span class="dot verified"></span>verified</div>
+        <div class="m-item"><span class="dot documented"></span>documented</div>
+        <div class="m-item"><span class="dot asserted"></span>asserted</div>
+        <div class="m-item"><span class="dot pending"></span>pending</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="catalog-head">
+    <div class="head-title">Catalog</div>
+    <div class="head-count">4 items</div>
+  </div>
+  <ul class="catalog">
+    <li><a href="#">
+      <div class="cat-tag">scope_1 / stationary / 1A4</div>
+      <div class="cat-body">
+        <h3>Scope 1 · 연료 연소</h3>
+        <div class="cat-sub">Fuel combustion · direct emissions</div>
+        <div class="cat-detail">63 fuels · T1/T2/T3 · GWP 4 sets · 3 profiles</div>
+      </div>
+    </a></li>
+    <li><a href="#">
+      <div class="cat-tag">scope_2 / purchased_energy</div>
+      <div class="cat-body">
+        <h3>Scope 2 · 전력 · 열</h3>
+        <div class="cat-sub">Purchased electricity &amp; heat</div>
+        <div class="cat-detail">GIR grid · KDHC 8 branches · national 3</div>
+      </div>
+    </a></li>
+    <li><a href="#">
+      <div class="cat-tag">scope_1 / fugitive / 1B</div>
+      <div class="cat-body">
+        <h3>냉매 · F-gas</h3>
+        <div class="cat-sub">Refrigerant leakage · fugitive</div>
+        <div class="cat-detail">HFC 5 · blend 3 · SF6 · NF3 · GWP SAR/AR4/AR5/AR6</div>
+      </div>
+    </a></li>
+    <li><a href="#">
+      <div class="cat-tag">roadmap / planned</div>
+      <div class="cat-body">
+        <h3>확장 로드맵</h3>
+        <div class="cat-sub">Scope 3 · IPPU · future scope</div>
+        <div class="cat-detail">GHG Protocol 15 · IPPU 5 · PCAF · GLEC</div>
+      </div>
+    </a></li>
+  </ul>
+</main>
+
+<div class="corner-bl">SEOUL · 37.5665° N 126.9780° E</div>
+<div class="corner-br">vitest · 137/137 pass</div>
+
+</body>
+</html>

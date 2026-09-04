@@ -2,7 +2,7 @@
  * <AuditSummary /> — 계산 결과의 신뢰도 요약 카드.
  *
  * 계산 트리에 사용된 primary source 들의 성숙도 분포와 warning 을 한눈에 표시.
- * workspace DESIGN.md 준수: mono 대괄호 뱃지 · muted 성숙도 색 · 이모지 X.
+ * 목업 B 준수: 도트 + 소문자 · warm accent · 대괄호 X · 이모지 X.
  */
 
 import type { AuditSummary } from "@/lib/audit/summary";
@@ -79,9 +79,10 @@ export function AuditSummaryCard({ summary }: Props) {
       {/* Warning 목록 */}
       {warnings.length > 0 && (
         <div className="mt-3 rounded-sm border border-warn-border bg-warn-bg p-2 text-[11px]">
-          <div className="mb-1 flex items-center gap-2 font-mono uppercase tracking-widest text-warn">
-            <span>[needs-review]</span>
-            <span className="tabular-nums">{warnings.length} warning(s)</span>
+          <div className="mb-1 flex items-center gap-2 font-mono tracking-wide text-warn">
+            <span className="h-1.5 w-1.5 rounded-full bg-warn" />
+            <span>needs review</span>
+            <span className="tabular-nums text-warn/80">· {warnings.length} warning(s)</span>
           </div>
           <ul className="space-y-1 pl-4 text-warn">
             {warnings.map((w, i) => (
@@ -109,10 +110,15 @@ function MatItem({ tone, label, count, pct }: { tone: Tone; label: string; count
     : tone === "documented" ? "bg-documented"
     : tone === "asserted" ? "bg-asserted"
     : "bg-pending";
+  const textCls =
+    tone === "verified" ? "text-verified"
+    : tone === "documented" ? "text-documented"
+    : tone === "asserted" ? "text-asserted"
+    : "text-pending";
   return (
-    <span className="inline-flex items-center gap-1.5 text-text-muted">
+    <span className={`inline-flex items-center gap-1.5 ${textCls}`}>
       <span className={`inline-block h-1.5 w-1.5 rounded-full ${dotCls}`} aria-hidden="true" />
-      <span>[{label}]</span>
+      <span>{label}</span>
       <span className="text-text-dim">{count} · {pct}%</span>
     </span>
   );

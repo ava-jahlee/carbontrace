@@ -1,38 +1,35 @@
 import { Scope1Calculator } from "./Scope1Calculator";
 import { CornerMetaFrame } from "@/components/layout/CornerMeta";
+import { TopNav } from "@/components/layout/TopNav";
 
 export const metadata = {
   title: "Scope 1 계산기 — carbontrace",
-  description: "IPCC 2006 GL · K-ETS 지침 기반 연료 연소 배출량 산정. 모든 값이 근거를 달고 다닌다.",
+  description:
+    "IPCC 2006 GL 과 K-ETS 지침을 그대로 따르는 연료 연소 배출량 산정. 모든 수치에는 근거가 필요합니다.",
 };
 
 export default function Scope1Page() {
   return (
-    <CornerMetaFrame
-      tl="carbontrace"
-      tr="v0.4"
-      bl="fuel_combustion · 1A4"
-      br="IPCC 2006 · K-ETS"
-    >
-      <main className="mx-auto max-w-6xl px-6 pt-12 pb-16 sm:px-10 md:px-12">
-        {/* breadcrumb · mono */}
-        <div className="mb-4 flex items-baseline gap-2 font-mono text-[10px] uppercase tracking-widest text-text-muted">
-          <a href="/" className="hover:text-ink">carbontrace</a>
-          <span className="text-text-dim">/</span>
-          <span className="text-ink-dim">scope_1</span>
-        </div>
+    <CornerMetaFrame bl="fuel_combustion · 1A4" br="IPCC 2006 · K-ETS">
+      <TopNav active="scope1" meta="scope_1 / stationary" />
 
-        {/* 헤드 */}
-        <header className="border-b border-border pb-6">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">
-            I · direct emissions
+      <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
+        {/* 헤드 · Mara 계열 큰 sans + terracotta accent */}
+        <header className="border-b border-border pb-8">
+          <div className="font-mono text-[11px] uppercase tracking-widest text-accent-soft">
+            direct emissions · stationary
           </div>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-text">
-            Scope 1 · 연료 연소 직접 배출
+          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-text sm:text-5xl">
+            Scope 1 <span className="text-accent">·</span> 연료 연소
           </h1>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">
-            1A. 에너지 · 1A4. 기타 (고정연소). IPCC 2006 GL 과 온실가스 배출권거래제 지침을 그대로 따릅니다.
-          </p>
+          <div className="mt-4 max-w-2xl space-y-1 text-sm leading-relaxed text-pretty">
+            <p className="text-text-muted">
+              건물 안에서 태우는 연료 (도시가스·경유·LPG 등) 에서 나온 직접 배출량을 산정합니다.
+            </p>
+            <p className="text-text-dim">
+              IPCC 2006 Vol.2 Ch.2 · K-ETS 별표 12 를 따릅니다. 분류상 1A4 · 기타 (고정연소) 에 해당합니다.
+            </p>
+          </div>
         </header>
 
         <Scope1Calculator />

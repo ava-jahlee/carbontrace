@@ -5,10 +5,10 @@
  *
  * 값 하나를 표시하되, 그 값이 왜 그 값인지의 근거를 팝오버로 완전히 열어 보여 준다.
  *
- * 핵심 원칙 (workspace DESIGN.md · REFERENCES.md 준수):
+ * 핵심 원칙 (workspace DESIGN.md · REFERENCES.md · 목업 B 준수):
  *   - 근거 = 진짜 원문서 (primarySource). IPCC PDF, GIR, K-ETS 지침 등
- *   - 성숙도 뱃지는 mono 대괄호 `[verified]` (이모지 X)
- *   - 라이트 우선 · ivory 톤 · muted 성숙도 색
+ *   - 성숙도 뱃지는 도트 + 소문자 (`● verified`) — 대괄호 X, 이모지 X
+ *   - 라이트 우선 · warmer ivory 톤 · warm accent (terracotta)
  */
 
 import { useState } from "react";
@@ -69,11 +69,12 @@ export function Cell({ calculated, digits = 4, label, size = "md", emphasis = fa
       <span className="text-xs text-text-muted">{calculated.unit}</span>
       {hasDirectWarning && (
         <span
-          className="ml-1 inline-flex h-4 items-center rounded-sm border border-warn-border bg-warn-bg px-1 font-mono text-[10px] font-medium tracking-tight text-warn"
+          className="ml-1 inline-flex items-center gap-1 font-mono text-[10px] tracking-wide text-warn"
           title="이 값을 만든 근거 중 확인이 필요한 항목이 있습니다. 팝오버를 열어 원문서를 확인해 주세요."
           aria-label="warning primary source"
         >
-          [warn]
+          <span className="h-1.5 w-1.5 rounded-full bg-warn" />
+          warn
         </span>
       )}
       <button
@@ -163,20 +164,26 @@ function InputRow({ input }: { input: CalculatedInput }) {
   const [open, setOpen] = useState(false);
 
   const KindBadge = ({ kind }: { kind: CalculatedInput["kind"] }) => {
-    // mono 대괄호 형식 (workspace DESIGN.md 5.1 뱃지 관용구)
+    // 도트 + 소문자 mono (목업 B 준수 · 대괄호 X)
     const label =
-      kind === "measurement" ? "[factor]"
-      : kind === "derived" ? "[derived]"
-      : kind === "user" ? "[input]"
-      : "[const]";
-    // 톤: measurement=ink, derived=ink-dim, user=verified, constant=text-muted
-    const cls =
-      kind === "measurement" ? "text-ink border-border-strong bg-surface-2"
-      : kind === "derived" ? "text-ink-dim border-border bg-surface-2"
-      : kind === "user" ? "text-verified border-verified/40 bg-verified-bg"
-      : "text-text-muted border-border bg-surface-2";
+      kind === "measurement" ? "factor"
+      : kind === "derived" ? "derived"
+      : kind === "user" ? "input"
+      : "const";
+    // 도트 색: measurement=accent, derived=ink-dim, user=verified, constant=text-dim
+    const dotCls =
+      kind === "measurement" ? "bg-accent"
+      : kind === "derived" ? "bg-ink-dim"
+      : kind === "user" ? "bg-verified"
+      : "bg-text-dim";
+    const textCls =
+      kind === "measurement" ? "text-accent"
+      : kind === "derived" ? "text-ink-dim"
+      : kind === "user" ? "text-verified"
+      : "text-text-dim";
     return (
-      <span className={`inline-block rounded-sm border px-1 py-0 font-mono text-[10px] leading-4 tracking-tight ${cls}`}>
+      <span className={`inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wide ${textCls}`}>
+        <span className={`h-1.5 w-1.5 rounded-full ${dotCls}`} />
         {label}
       </span>
     );
@@ -234,24 +241,29 @@ function InputRow({ input }: { input: CalculatedInput }) {
 // ─────────────────────────────────────────────────────────────
 
 function MaturityBadge({ maturity }: { maturity: SourceMaturity }) {
-  // mono 대괄호 · muted 색 (workspace DESIGN.md 5.1 뱃지 관용구)
-  const label = `[${maturity}]`;
+  // 도트 + 소문자 (목업 B 준수 · 대괄호 X · 이모지 X)
   const title =
     maturity === "verified" ? "원문서의 표·페이지·행까지 확인을 마쳤습니다."
     : maturity === "documented" ? "원문서와 표는 확인을 마쳤습니다. 페이지와 행은 추후 명시할 예정입니다."
     : maturity === "asserted" ? "문서명과 표는 알지만 원문 재확인이 남아 있습니다."
     : "아직 원문서 재추적을 하지 않았습니다.";
-  const cls =
-    maturity === "verified" ? "text-verified border-verified/40 bg-verified-bg"
-    : maturity === "documented" ? "text-documented border-documented/40 bg-documented-bg"
-    : maturity === "asserted" ? "text-asserted border-asserted/40 bg-asserted-bg"
-    : "text-pending border-pending/40 bg-pending-bg";
+  const dotCls =
+    maturity === "verified" ? "bg-verified"
+    : maturity === "documented" ? "bg-documented"
+    : maturity === "asserted" ? "bg-asserted"
+    : "bg-pending";
+  const textCls =
+    maturity === "verified" ? "text-verified"
+    : maturity === "documented" ? "text-documented"
+    : maturity === "asserted" ? "text-asserted"
+    : "text-pending";
   return (
     <span
-      className={`inline-block rounded-sm border px-1 py-0 font-mono text-[10px] leading-4 tracking-tight ${cls}`}
+      className={`inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wide ${textCls}`}
       title={title}
     >
-      {label}
+      <span className={`h-1.5 w-1.5 rounded-full ${dotCls}`} />
+      {maturity}
     </span>
   );
 }
@@ -278,10 +290,11 @@ function PrimarySourceCard({ ps }: { ps: PrimarySource }) {
         <MaturityBadge maturity={ps.maturity} />
         {isWarning && (
           <span
-            className="inline-block rounded-sm border border-warn-border bg-warn-bg px-1 py-0 font-mono text-[10px] leading-4 tracking-tight text-warn"
+            className="inline-flex items-center gap-1 font-mono text-[10px] tracking-wide text-warn"
             title="원본 xlsm 에 오작성이 있거나 원출처를 아직 확인하지 못했습니다. 감사할 때 재확인이 필요합니다."
           >
-            [needs-review]
+            <span className="h-1.5 w-1.5 rounded-full bg-warn" />
+            needs review
           </span>
         )}
       </div>

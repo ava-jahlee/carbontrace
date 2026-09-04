@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>목업 C · Studio Bruch + Pasqua 계열</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ede4d3;             /* warm paper cream (kraft) */
+    --bg-2: #e5dbc7;
+    --surface: #f7f0df;
+    --border: #c9b898;
+    --border-strong: #8a7955;
+    --text: #2a2015;           /* dark bister */
+    --text-muted: #6b5e45;
+    --text-dim: #8a7d65;
+    --accent: #a83f1e;         /* deep terracotta (studio bruch orange) */
+    --accent-soft: #d97a4e;
+    --verified: #5f7048;
+    --asserted: #a83f1e;
+    --pending: #9a8b6d;
+    --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+    --sans-kr: 'IBM Plex Sans KR', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--sans-kr); min-height: 100vh;
+  }
+  /* 종이 텍스처 (subtle noise via svg filter) */
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.17 0 0 0 0 0.13 0 0 0 0 0.08 0 0 0 0.09 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
+    opacity: 0.5; z-index: 1;
+  }
+  body > * { position: relative; z-index: 2; }
+
+  /* ── 상단 nav (Studio Bruch 계열: 원형 logo + Work/Studio/Contact) ────────── */
+  nav.top {
+    display: flex; align-items: center; gap: 24px;
+    padding: 20px 40px;
+  }
+  nav.top .brand-circle {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--text); color: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-weight: 500; font-size: 20px;
+    letter-spacing: -0.02em;
+  }
+  nav.top .link {
+    color: var(--text); text-decoration: none; font-size: 15px; font-weight: 500;
+  }
+  nav.top .link:hover { color: var(--accent); }
+  nav.top .spacer { flex: 1; }
+  nav.top .meta { font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  main { max-width: 1000px; margin: 0 auto; padding: 40px 40px 80px; }
+
+  /* ── 히어로 (Pasqua Wines 계열 큰 세리프) ────────── */
+  .hero {
+    background: var(--bg-2); border: 1px solid var(--border);
+    padding: 80px 60px; margin-bottom: 64px; position: relative;
+    box-shadow: 0 1px 0 var(--border-strong);
+  }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 32px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  h1.hero-title {
+    font-family: var(--serif); font-weight: 500; font-size: 128px;
+    line-height: 0.9; letter-spacing: -0.02em; margin-bottom: 8px;
+    color: var(--text); text-align: center;
+  }
+  h1.hero-title em {
+    font-style: italic; color: var(--accent); font-weight: 400;
+  }
+  .hero-sub {
+    font-family: var(--serif); font-style: italic; font-size: 24px;
+    color: var(--text-muted); text-align: center; margin-bottom: 40px;
+  }
+  .hero-tagline {
+    font-size: 15px; line-height: 1.7; color: var(--text-muted);
+    max-width: 520px; margin: 0 auto; text-align: center;
+  }
+  .hero-tagline b { color: var(--text); font-weight: 500; }
+
+  /* ── principle ────────── */
+  .principle {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    margin-bottom: 80px;
+  }
+  .principle-card {
+    padding: 32px; background: var(--surface); border: 1px solid var(--border);
+  }
+  .principle-card .card-num {
+    font-family: var(--serif); font-style: italic; font-size: 36px;
+    color: var(--accent); font-weight: 500; margin-bottom: 8px;
+  }
+  .principle-card h4 {
+    font-family: var(--serif); font-size: 22px; font-weight: 500;
+    margin-bottom: 12px; color: var(--text);
+  }
+  .principle-card p {
+    font-size: 13px; line-height: 1.7; color: var(--text-muted);
+  }
+  .principle-card p strong { color: var(--text); font-weight: 500; }
+  .principle-card .maturity {
+    margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em;
+  }
+  .maturity .m { display: flex; align-items: center; gap: 6px; }
+  .maturity .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .dot.verified { background: var(--verified); }
+  .dot.documented { background: #7a6f58; }
+  .dot.asserted { background: var(--asserted); }
+  .dot.pending { background: var(--pending); }
+
+  /* ── 카탈로그 (Studio Bruch 계열: hospitality 스토리 카드) ────────── */
+  h2.section-title {
+    font-family: var(--serif); font-size: 32px; font-weight: 500;
+    margin-bottom: 8px;
+  }
+  h2.section-title em { font-style: italic; color: var(--accent); }
+  .section-sub {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--text-dim); margin-bottom: 32px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--border-strong);
+  }
+
+  ul.catalog { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  ul.catalog li {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 28px; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  ul.catalog li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(42, 32, 21, 0.1);
+  }
+  ul.catalog a { display: block; text-decoration: none; color: inherit; }
+  .cat-tag {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent-soft); margin-bottom: 16px;
+  }
+  .cat-body h3 {
+    font-family: var(--serif); font-size: 28px; font-weight: 500;
+    line-height: 1.1; margin-bottom: 6px; color: var(--text);
+  }
+  .cat-body h3 em { font-style: italic; color: var(--accent); }
+  .cat-body .cat-sub {
+    font-family: var(--serif); font-style: italic; font-size: 15px;
+    color: var(--text-muted); margin-bottom: 16px;
+  }
+  .cat-body .cat-detail {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em;
+    color: var(--text-muted); line-height: 1.6;
+  }
+  .cat-arrow {
+    margin-top: 16px; font-family: var(--serif); font-style: italic;
+    font-size: 15px; color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="brand-circle">c</div>
+  <a class="link" href="#">Scopes</a>
+  <a class="link" href="#">Refrigerant</a>
+  <a class="link" href="#">Roadmap</a>
+  <a class="link" href="#">Docs</a>
+  <div class="spacer"></div>
+  <span class="meta">v 0.4 · 137/137 pass</span>
+</nav>
+
+<main>
+  <div class="hero">
+    <div class="hero-eyebrow">auditable ghg ledger · KR · 2026</div>
+    <h1 class="hero-title">carbon<em>trace</em></h1>
+    <p class="hero-sub">모든 수치에는 근거가 필요합니다.</p>
+    <p class="hero-tagline">
+      IPCC 2006 GL 과 K-ETS 지침을 그대로 따르는 온실가스 배출량 산정 도구입니다.
+      결과 값 옆의 (i) 를 누르면, 그 값을 만든 수식과 <b>원문서 링크</b>가 열립니다.
+    </p>
+  </div>
+
+  <div class="principle">
+    <div class="principle-card">
+      <div class="card-num">i.</div>
+      <h4>감사 가능성</h4>
+      <p>모든 계수가 <strong>IPCC PDF · GIR 공식자료 · K-ETS 지침</strong> 원문서 링크를 달고 다닙니다. 링크를 눌러 원문서로 이동해 값을 곧바로 재확인할 수 있습니다.</p>
+      <div class="maturity">
+        <div class="m"><span class="dot verified"></span>verified</div>
+        <div class="m"><span class="dot documented"></span>documented</div>
+        <div class="m"><span class="dot asserted"></span>asserted</div>
+        <div class="m"><span class="dot pending"></span>pending</div>
+      </div>
+    </div>
+    <div class="principle-card">
+      <div class="card-num">ii.</div>
+      <h4>확장 가능성</h4>
+      <p>같은 감사 원칙과 primary source 카탈로그 위에서 <strong>Scope 3 · IPPU · F-gas</strong> 까지 확장할 수 있도록 만들었습니다.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">계산 도구 <em>·</em></h2>
+  <div class="section-sub">catalog / 4 items</div>
+  <ul class="catalog">
+    <li><a href="#">
+      <div class="cat-tag">scope_1 / stationary / 1A4</div>
+      <div class="cat-body">
+        <h3>Scope 1 <em>·</em> 연료 연소</h3>
+        <div class="cat-sub">Fuel combustion, direct emissions</div>
+        <div class="cat-detail">63 fuels · T1/T2/T3 · GWP 4 sets · 3 profiles</div>
+        <div class="cat-arrow">계산하러 가기 →</div>
+      </div>
+    </a></li>
+    <li><a href="#">
+      <div class="cat-tag">scope_2 / purchased_energy</div>
+      <div class="cat-body">
+        <h3>Scope 2 <em>·</em> 전력 · 열</h3>
+        <div class="cat-sub">Purchased electricity &amp; heat</div>
+        <div class="cat-detail">GIR grid · KDHC 8 branches · national 3</div>
+        <div class="cat-arrow">계산하러 가기 →</div>
+      </div>
+    </a></li>
+    <li><a href="#">
+      <div class="cat-tag">scope_1 / fugitive / 1B</div>
+      <div class="cat-body">
+        <h3>냉매 <em>·</em> F-gas</h3>
+        <div class="cat-sub">Refrigerant leakage, fugitive</div>
+        <div class="cat-detail">HFC 5 · blend 3 · SF6 · NF3 · GWP 4 sets</div>
+        <div class="cat-arrow">계산하러 가기 →</div>
+      </div>
+    </a></li>
+    <li><a href="#">
+      <div class="cat-tag">roadmap / planned</div>
+      <div class="cat-body">
+        <h3>확장 <em>·</em> Roadmap</h3>
+        <div class="cat-sub">Scope 3 · IPPU · future scope</div>
+        <div class="cat-detail">GHG Protocol 15 · IPPU 5 · PCAF · GLEC</div>
+        <div class="cat-arrow">확인하러 가기 →</div>
+      </div>
+    </a></li>
+  </ul>
+</main>
+
+</body>
+</html>

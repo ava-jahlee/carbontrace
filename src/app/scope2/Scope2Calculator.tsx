@@ -56,7 +56,7 @@ export function Scope2Calculator() {
       {/* ═══ 좌: 입력 ═══ */}
       <aside className="lg:sticky lg:top-6 lg:self-start">
         <div className="rounded-md border border-border bg-surface-2 p-5">
-          <SectionHeader numeral="I" title="입력" hint="control panel" />
+          <SectionHeader title="입력" hint="control panel" />
 
           <div className="mt-4 space-y-4">
             <Field label="공급 유형" hint="mode">
@@ -150,7 +150,7 @@ export function Scope2Calculator() {
               />
             </Field>
 
-            <Field label="GWP 기준" hint="assessment">
+            <Field label="기준" hint="GWP ver.">
               <select
                 value={gwpStandard}
                 onChange={(e) => setGwpStandard(e.target.value as GwpStandard)}
@@ -242,7 +242,10 @@ function ResultView({
     <>
       {result.warnings.length > 0 && (
         <div className="rounded-sm border border-warn-border bg-warn-bg p-3 text-xs text-warn">
-          <div className="mb-1 font-mono uppercase tracking-widest">[warning]</div>
+          <div className="mb-1 flex items-center gap-1.5 font-mono uppercase tracking-widest">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-warn" aria-hidden />
+            <span>warning</span>
+          </div>
           <ul className="list-disc pl-4">
             {result.warnings.map((w, i) => <li key={i}>{w}</li>)}
           </ul>
@@ -250,7 +253,7 @@ function ResultView({
       )}
 
       <div>
-        <SectionHeader numeral="II" title="결과" hint="total emission" />
+        <SectionHeader title="결과" hint="total emission" />
         <div className="mt-4 rounded-md border border-border-strong bg-surface p-6">
           <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">
             ∑ tCO2eq
@@ -258,21 +261,35 @@ function ResultView({
           <div className="mt-2">
             <Cell calculated={result.totalCo2eq} digits={6} size="lg" emphasis />
           </div>
-          <div className="mt-2 text-xs text-text-muted">
-            {result.sourceLabel} · 사용량 {amount} {activityUnit}
-          </div>
+          {/* 요약 · 명시적 라벨 (공급원·사용량) */}
+          <dl className="mt-4 space-y-1 text-xs">
+            <div className="flex gap-3">
+              <dt className="w-14 shrink-0 font-mono text-[10px] uppercase tracking-widest text-text-dim">
+                공급원
+              </dt>
+              <dd className="text-text-muted">{result.sourceLabel}</dd>
+            </div>
+            <div className="flex gap-3">
+              <dt className="w-14 shrink-0 font-mono text-[10px] uppercase tracking-widest text-text-dim">
+                사용량
+              </dt>
+              <dd className="text-text-muted">
+                <span className="tabular-nums">{amount}</span> {activityUnit}
+              </dd>
+            </div>
+          </dl>
         </div>
       </div>
 
       <div>
-        <SectionHeader numeral="III" title="감사 신뢰도" hint="confidence" />
+        <SectionHeader title="감사 신뢰도" hint="confidence" />
         <div className="mt-4">
           <AuditSummaryCard summary={summarizeAll([result.totalCo2eq])} />
         </div>
       </div>
 
       <div>
-        <SectionHeader numeral="IV" title="종별 배출" hint="by species" />
+        <SectionHeader title="종별 배출" hint="by species" />
         <div className="mt-4 grid gap-4 md:grid-cols-3">
           <SpeciesCard title="CO₂" result={result.co2} />
           <SpeciesCard title="CH₄" result={result.ch4} />
