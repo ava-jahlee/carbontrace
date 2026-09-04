@@ -18,10 +18,10 @@ import {
 } from "@/lib/inventory/aggregations";
 import { useFacility } from "@/lib/facility/useFacility";
 
-const SCOPE_META: Record<Scope, { ko: string; en: string }> = {
-  1: { ko: "Scope 1 · 직접 배출", en: "direct" },
-  2: { ko: "Scope 2 · 전력·열", en: "energy indirect" },
-  3: { ko: "Scope 3 · 기타 간접", en: "other indirect" },
+const SCOPE_META: Record<Scope, { ko: string }> = {
+  1: { ko: "Scope 1 · 직접 배출" },
+  2: { ko: "Scope 2 · 전력·열" },
+  3: { ko: "Scope 3 · 기타 간접" },
 };
 
 /** 인벤토리 메인 뷰 · 총합 배너 + Scope 그룹 + 항목 리스트. */
@@ -47,10 +47,7 @@ export function InventoryView() {
       {/* ─── 상단 · 총합 배너 ─── */}
       <section className="grid gap-6 border-b border-border pb-8 md:grid-cols-[1fr_auto]">
         <div>
-          <div className="font-mono text-[10px] uppercase tracking-widest text-text-dim">
-            grand total
-          </div>
-          <div className="mt-2 flex items-baseline gap-3">
+          <div className="flex items-baseline gap-3">
             <span className="text-5xl font-semibold tracking-tight text-accent">
               {formatCo2eq(total, 3)}
             </span>
@@ -58,10 +55,7 @@ export function InventoryView() {
           </div>
           {facility && (
             <div className="mt-3 text-xs text-text-muted">
-              현재 시설 · <span className="text-text">{facility.siteName}</span>{" "}
-              <span className="font-mono text-[10px] uppercase tracking-widest text-text-dim">
-                · 항목 {items.length}건 누적
-              </span>
+              현재 시설 · <span className="text-text">{facility.siteName}</span>
             </div>
           )}
           {!facility && (
@@ -118,10 +112,7 @@ export function InventoryView() {
 function EmptyState({ hasFacility }: { hasFacility: boolean }) {
   return (
     <div className="border border-border bg-surface-2 p-10 text-center">
-      <div className="font-mono text-[10px] uppercase tracking-widest text-text-dim">
-        empty
-      </div>
-      <p className="mt-3 text-sm text-text-muted">
+      <p className="text-sm text-text-muted">
         아직 담긴 항목이 없습니다.
       </p>
       <p className="mt-1 text-sm text-text-dim">
@@ -162,9 +153,6 @@ function ScopeGroup({
       <header className="flex items-baseline justify-between border-b border-border pb-3">
         <h2 className="text-lg font-semibold text-text">
           {meta.ko}
-          <span className="ml-3 font-mono text-[10px] uppercase tracking-widest text-text-dim">
-            {meta.en}
-          </span>
         </h2>
         <div className="flex items-baseline gap-2">
           <span className="text-xl font-semibold text-accent">

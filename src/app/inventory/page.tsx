@@ -14,10 +14,7 @@ export default function InventoryPage() {
 
       <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
         <header className="border-b border-border pb-8">
-          <div className="font-mono text-[11px] uppercase tracking-widest text-accent-soft">
-            inventory · items · total
-          </div>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-text sm:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight text-text sm:text-5xl">
             배출 인벤토리
           </h1>
           <div className="mt-4 max-w-2xl space-y-3 text-sm leading-relaxed text-pretty">
