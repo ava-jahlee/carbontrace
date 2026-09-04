@@ -109,3 +109,205 @@ a {
 a:hover {
   color: var(--ink);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   .doc-prose · 감사자·개발자 대상 markdown 렌더
+   /docs/{slug} 페이지에서 <MarkdownRenderer /> 가 감쌈.
+   Tailwind Typography 대신 명시 스타일 · ivory-warm 팔레트 일관.
+   ═══════════════════════════════════════════════════════════ */
+.doc-prose {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.75;
+  max-width: 44rem;
+}
+.doc-prose > * + * {
+  margin-top: 1rem;
+}
+.doc-prose h1 {
+  /* 문서 본문 h1 은 안 씀 · 상단 <DocLayout> 이 별도 렌더 · 만약 남으면 축소 */
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 2.5rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.005em;
+}
+.doc-prose h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  letter-spacing: -0.005em;
+  scroll-margin-top: 5rem;
+}
+.doc-prose h2:first-child {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+.doc-prose h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  scroll-margin-top: 5rem;
+}
+.doc-prose h4 {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  margin-top: 1.75rem;
+  margin-bottom: 0.25rem;
+}
+/* rehype-autolink-headings behavior:wrap 시 · a.anchor 로 감쌈 */
+.doc-prose .anchor {
+  color: inherit;
+  text-decoration: none;
+}
+.doc-prose .anchor:hover {
+  color: var(--accent);
+}
+
+.doc-prose p {
+  color: var(--text);
+}
+.doc-prose ul, .doc-prose ol {
+  padding-left: 1.5rem;
+  color: var(--text);
+}
+.doc-prose ul { list-style: disc; }
+.doc-prose ol { list-style: decimal; }
+.doc-prose li {
+  margin: 0.35rem 0;
+}
+.doc-prose li > p {
+  margin: 0.25rem 0;
+}
+
+.doc-prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: color-mix(in oklab, var(--accent) 40%, transparent);
+  text-underline-offset: 3px;
+}
+.doc-prose a:hover {
+  text-decoration-style: solid;
+  text-decoration-color: var(--accent);
+}
+
+.doc-prose strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.doc-prose em {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* code inline */
+.doc-prose code {
+  background: var(--surface-2);
+  color: var(--ink);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-size: 0.85em;
+  border: 1px solid var(--border);
+}
+/* code block */
+.doc-prose pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-size: 12.5px;
+  line-height: 1.55;
+  margin: 1.25rem 0;
+}
+.doc-prose pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* table */
+.doc-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 13.5px;
+}
+.doc-prose thead {
+  background: var(--surface-2);
+}
+.doc-prose th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-strong);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+.doc-prose td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+/* blockquote */
+.doc-prose blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--accent);
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* hr */
+.doc-prose hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   @media print · PDF 다운 (window.print())
+   nav · sticky TOC · footer 다 숨기고 본문만 인쇄.
+   ═══════════════════════════════════════════════════════════ */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  /* print 에서 숨길 요소 · data-print="hide" 붙은 것 */
+  [data-print="hide"] {
+    display: none !important;
+  }
+  .doc-prose {
+    max-width: none;
+    font-size: 11pt;
+    line-height: 1.55;
+  }
+  .doc-prose a {
+    color: black;
+    text-decoration: underline;
+  }
+  .doc-prose h2 {
+    page-break-after: avoid;
+    border-top: 1px solid #999;
+  }
+  .doc-prose pre, .doc-prose table, .doc-prose blockquote {
+    page-break-inside: avoid;
+  }
+}

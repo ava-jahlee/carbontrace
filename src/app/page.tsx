@@ -53,50 +53,54 @@ interface DocLink {
   tag: string;
   title: string;
   hint: string;
+  /** true 면 외부 링크 (target=_blank) · false·미지정 이면 내부 <Link> */
+  external?: boolean;
 }
 
 const DOC_LINKS: DocLink[] = [
   {
-    href: "https://github.com/ava-jahlee/carbontrace/blob/main/docs/AUDIT-GUIDE.md",
+    href: "/docs/audit-guide",
     tag: "audit",
     title: "감사자용 walkthrough",
     hint: "제3자 검증기관·심사원이 특정 값을 원문서까지 역추적하는 표준 5단계",
   },
   {
-    href: "https://github.com/ava-jahlee/carbontrace/blob/main/docs/DATA-PROFILES.md",
+    href: "/docs/data-profiles",
     tag: "data",
     title: "데이터 프로파일 상세",
     hint: "3 프로파일 (원본·정정·최신) · 각 정정 fuel 별 표 · 원문서 근거",
   },
   {
-    href: "https://github.com/ava-jahlee/carbontrace/blob/main/docs/DEVELOPMENT.md",
+    href: "/docs/development",
     tag: "dev",
     title: "개발자 가이드",
     hint: "신규 배출원·데이터 프로파일 추가 5단계",
   },
   {
-    href: "https://github.com/ava-jahlee/carbontrace/blob/main/docs/PRIMARY-SOURCE-NOTE-STANDARD.md",
+    href: "/docs/primary-source-note",
     tag: "note",
     title: "Primary source note 표준",
     hint: "note 필드 작성 규칙 · muted · 사실 · 마침표",
   },
   {
-    href: "https://github.com/ava-jahlee/carbontrace/blob/main/docs/CHANGELOG.md",
+    href: "/docs/changelog",
     tag: "log",
     title: "Changelog",
-    hint: "버전별 릴리스 노트 · v0.1 → v0.7",
+    hint: "버전별 릴리스 노트 · v0.1 → v0.8",
   },
   {
     href: "https://github.com/ava-jahlee/carbontrace/issues/new?labels=user-feedback",
     tag: "issue",
     title: "이슈 · 제안",
     hint: "값·방법론에 이상이 있으면 GitHub Issues 로 제안 (오픈 커뮤니티)",
+    external: true,
   },
   {
     href: "https://github.com/ava-jahlee/carbontrace",
     tag: "repo",
     title: "GitHub · ava-jahlee/carbontrace",
     hint: "",
+    external: true,
   },
 ];
 
@@ -227,32 +231,52 @@ export default function Home() {
             <h2 className="text-base font-semibold text-text">Docs</h2>
           </div>
           <ul className="space-y-4">
-            {DOC_LINKS.map((doc) => (
-              <li key={doc.href}>
-                <a
-                  href={doc.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group inline-flex items-baseline gap-3 text-text hover:text-accent"
-                >
+            {DOC_LINKS.map((doc) => {
+              const inner = (
+                <>
                   <span className="w-14 shrink-0 font-mono text-[10px] uppercase tracking-widest text-text-dim group-hover:text-accent-soft">
                     {doc.tag}
                   </span>
-                  <span className="underline decoration-dotted underline-offset-4">{doc.title}</span>
-                  <span className="text-text-dim">↗</span>
-                </a>
-                {doc.hint && (
-                  <div className="ml-[4.25rem] mt-0.5 text-xs text-text-muted">{doc.hint}</div>
-                )}
-              </li>
-            ))}
+                  <span className="underline decoration-dotted underline-offset-4">
+                    {doc.title}
+                  </span>
+                  {doc.external && <span className="text-text-dim">↗</span>}
+                </>
+              );
+              return (
+                <li key={doc.href}>
+                  {doc.external ? (
+                    <a
+                      href={doc.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group inline-flex items-baseline gap-3 text-text hover:text-accent"
+                    >
+                      {inner}
+                    </a>
+                  ) : (
+                    <Link
+                      href={doc.href}
+                      className="group inline-flex items-baseline gap-3 text-text hover:text-accent"
+                    >
+                      {inner}
+                    </Link>
+                  )}
+                  {doc.hint && (
+                    <div className="ml-[4.25rem] mt-0.5 text-xs text-text-muted">
+                      {doc.hint}
+                    </div>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </section>
 
         {/* ─── 푸터 ─── */}
         <footer className="mt-24 flex items-baseline justify-between border-t border-border pt-6 text-xs text-text-dim">
           <div>
-            v 0.7 · 2026-09-04 ·{" "}
+            v 0.8 · 2026-09-04 ·{" "}
             <a
               href="https://github.com/ava-jahlee/carbontrace"
               target="_blank"

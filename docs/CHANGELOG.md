@@ -4,6 +4,84 @@ carbontrace 는 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 형식�
 
 ---
 
+## v0.8 · 2026-09-04 · 사이트 내부 Docs · UI 노이즈 정리 · 계산기 문구
+
+**Docs 를 사이트 안 카테고리·본문 뷰로 실장.** 이전에는 랜딩 Docs 섹션이 전부 GitHub 로 튀어나가는 링크 나열이었다. Thunderhead / DesignBuilder 스타일로 재설계 · `/docs` 랜딩에 카테고리 3 그룹 (감사 · 데이터 · 개발) · 각 문서는 개별 페이지 (`/docs/{slug}`) · 좌측 sticky TOC + 우측 markdown 렌더 본문 + 상단 PDF 다운 버튼 (브라우저 인쇄 → PDF 저장).
+
+같은 릴리스에서 **UI 노이즈 대거 정리** · 카운트 라벨 (`3 SCOPES` · `7 ITEMS`) 삭제 · fixed 코너 mono (`seoul 37.5665° N ...` · `vitest 137/137 pass`) 완전 제거 · footer 자기 자랑 축소. **카드 문구도 검색기 → 계산기 뉘앙스** 로 재작성.
+
+### Added
+
+- **`/docs` · 사이트 내부 Docs 시스템** — Thunderhead / DesignBuilder 참조
+  - [`/docs`](../src/app/docs/page.tsx) 랜딩 · 3 그룹 카테고리 카드
+    - **감사 · 검증** (audit / verify) · Audit Guide · Primary Source Note 표준
+    - **데이터** (data / methodology) · Data Profiles
+    - **개발 · 릴리스** (dev / release) · Development Guide · Changelog
+  - [`/docs/[slug]`](../src/app/docs/[slug]/page.tsx) 개별 페이지 5 개 · dynamic route + `generateStaticParams`
+    - `/docs/audit-guide` · `/docs/primary-source-note` · `/docs/data-profiles` · `/docs/development` · `/docs/changelog`
+  - [`<DocLayout />`](../src/components/docs/DocLayout.tsx) · 2 컬럼 grid (좌 220px sticky TOC · 우 본문)
+    - 상단 · kicker + 큰 제목 + subtitle + `PDF ↓` 버튼
+    - 좌측 · `← docs` 브레드크럼 + h2/h3 목록 (h3 는 들여쓰기)
+    - 하단 · GitHub 수정 제안 링크 (`edit/main/docs/{file}`)
+  - [`<MarkdownRenderer />`](../src/components/docs/MarkdownRenderer.tsx) · react-markdown + remark-gfm + rehype-slug + rehype-autolink-headings
+    - heading 에 anchor id 자동 부여 · 클릭 시 URL 해시 이동
+    - GitHub-flavored (표 · 체크박스 · strikethrough)
+  - [`<PrintButton />`](../src/components/docs/PrintButton.tsx) · `window.print()` 로 브라우저 인쇄 대화상자 · destination "PDF 로 저장" 선택
+- **`.doc-prose` markdown 스타일** ([globals.css](../src/app/globals.css)) · ivory-warm 팔레트 일관
+  - h2 상단 border · h3 muted · h4 mono uppercase
+  - 인라인 code · code block · table (thead 배경) · blockquote (accent border-left) · hr
+  - `scroll-margin-top: 5rem` · anchor 이동 시 상단 nav 아래로 정확히 정렬
+- **`@media print` CSS** · nav · TOC · footer 를 `data-print="hide"` 로 인쇄 시 숨김 · 본문만 남김
+- **문서 카탈로그** ([`src/lib/docs/catalog.ts`](../src/lib/docs/catalog.ts)) · DocEntry 정의 · 그룹 메타
+- **markdown 로더 · TOC 추출 유틸** ([`src/lib/docs/loader.ts`](../src/lib/docs/loader.ts))
+  - `loadDoc(file)` · `extractTitle(md)` · `extractToc(md)` · rehype-slug 호환 slugify (한글 지원)
+
+### Changed
+
+- **랜딩 페이지 UI 노이즈 정리** ([`page.tsx`](../src/app/page.tsx))
+  - CornerMetaFrame 완전 제거 · `seoul · 37.5665° N 126.9780° E` · `vitest · 137/137 pass` 삭제
+  - Catalog 헤더 `3 SCOPES` 카운트 라벨 삭제
+  - Docs 헤더 `7 ITEMS` 카운트 라벨 삭제
+  - footer · `src · GHGCalc_V0m_lja.xlsm · parity 137/137` 제거 → `v 0.7 · 2026-09-04 · GitHub ↗` 만 · admin 링크 우측
+- **모든 계산기 페이지 CornerMetaFrame 삭제**
+  - `/scope1` · `/scope1/fuel-combustion` · `/scope1/refrigerant`
+  - `/scope2` · `/scope3` · `/scope3/[cat]` · `/roadmap`
+  - 이유 · TopNav 우측 meta 로 컨텍스트 이미 충분 · fixed 코너 라벨은 중복이고 화면 하단 지저분함
+- **Scope 1 랜딩 · section header hint 제거** · `ready · 2` · `planned` 카운트 삭제
+- **랜딩 카탈로그 카드 · 계산기 뉘앙스로 문구 재작성**
+  - Scope 1 · 이전: "1A4 연료 연소 (63 연료 · 3 tier · 3 profile) · 1B 냉매 · F-gas"
+  - Scope 1 · 이후: "연료 사용량 · 냉매 유출량을 입력하면 IPCC 2006 + K-ETS 방법으로 tCO₂eq 을 계산합니다."
+  - Scope 2 · 유사하게 활동 흐름 명시
+  - Scope 3 · "계산기는 순차 구현 중" 명시 (스캐폴딩만 있음을 명확히)
+- **Scope 1 랜딩 하위 카드 · 계산기 뉘앙스로 재작성**
+  - fuel-combustion · "연료 종류·사용량·Tier 를 입력하면 저위발열량과 배출계수를 거쳐 tCO₂eq 을 계산합니다."
+  - refrigerant · "냉매 종류·연간 유출량·GWP 기준을 입력하면 GWP × 유출량으로 tCO₂eq 을 계산합니다."
+  - 1A2 planned · "계산기 미구현" 명시
+- **TopNav · Docs 링크 · 외부 GitHub → 내부 `/docs`** ([`TopNav.tsx`](../src/components/layout/TopNav.tsx))
+  - `active` 타입에 `"docs"` 추가
+  - `NAV_ITEMS` 에 Docs 항목 통합 · 별도로 하드코드된 외부 링크 제거
+- **랜딩 Docs 섹션 링크 · 외부 md 파일 → 내부 `/docs/{slug}`**
+  - 5 개 문서 (audit-guide · primary-source-note · data-profiles · development · changelog) 모두 내부 링크로 전환
+  - Issue · Repo 만 외부 GitHub 유지 (`external: true`)
+
+### Design rationale
+
+- **`/docs` = 사이트 안 · 카테고리 · 본문 · PDF**. 이 셋 다 사용자 기대다. 그 기대 없이 링크만 뿌리면 문서가 있어도 문서가 없는 것과 같다.
+- **자기 자랑 mono 축소**. `parity 137/137` · `vitest 137/137 pass` · `seoul 37.5665° N` 은 개발자 자기 만족이고 사용자에게는 노이즈. 감사자·개발자용 정보는 관련 페이지 (docs · repo) 로.
+- **계산기 vs 검색기**. 카드 detail 이 "63 연료 · 3 tier · 3 profile" 처럼 데이터 인벤토리를 나열하면 조회기처럼 읽힌다. carbontrace 는 **입력 → 계산 → 결과** 도구다. 문구도 그 흐름을 말해야 한다.
+- **인쇄 = 뷰포트 재구성**. `window.print()` + `@media print` CSS 조합으로 별도 PDF 파이프라인 (pandoc 등) 없이 브라우저만으로 PDF 저장 가능. 나중에 필요하면 서버측 puppeteer/pandoc 추가.
+
+### Dependencies
+
+- `react-markdown` `^10.1.0` · `remark-gfm` `^4.0.1` · `rehype-slug` `^6.0.0` · `rehype-autolink-headings` `^7.1.0`
+
+### Tests
+
+- 137/137 (unchanged · 계산 로직 무변경)
+- 빌드 · 31 static routes (25 → 31 · Docs 6 페이지 추가)
+
+---
+
 ## v0.7 · 2026-09-04 · 위계 재조정 · Scope 1 하위 카테고리 · 이슈 채널
 
 **IPCC · GHG Protocol 위계 그대로 반영.** Scope 1 안의 연료 연소·냉매를 별도 최상위 카드로 두던 구조를 정리 · Scope 1 랜딩 아래로 hoist. 사용자 대면 nav 4 items (Scope 1 · 2 · 3 · Docs) 로 단순화. 로드맵은 관리자 내부 페이지로 격리 · 사용자 피드백은 GitHub Issues 로 받는다.

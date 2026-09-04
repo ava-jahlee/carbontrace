@@ -14,16 +14,17 @@ interface TopNavProps {
    * 현재 페이지 (활성 링크 accent 처리용).
    * fuel-combustion · refrigerant 둘 다 scope1 로 hoist (Scope 1 하위 카테고리).
    */
-  active?: "home" | "scope1" | "scope2" | "scope3";
+  active?: "home" | "scope1" | "scope2" | "scope3" | "docs";
 }
 
 const NAV_ITEMS = [
   { href: "/scope1", label: "Scope 1", key: "scope1" as const },
   { href: "/scope2", label: "Scope 2", key: "scope2" as const },
   { href: "/scope3", label: "Scope 3", key: "scope3" as const },
+  { href: "/docs", label: "Docs", key: "docs" as const },
 ];
 
-export function TopNav({ meta = "v 0.7", active }: TopNavProps) {
+export function TopNav({ meta = "v 0.8", active }: TopNavProps) {
   return (
     <nav className="flex items-baseline gap-2 border-b border-border px-6 py-5 text-sm sm:px-10 md:px-12 lg:px-16">
       <Link
@@ -51,15 +52,6 @@ export function TopNav({ meta = "v 0.7", active }: TopNavProps) {
           {idx < NAV_ITEMS.length - 1 && <span className="text-text-dim">,</span>}
         </span>
       ))}
-      <span className="text-text-dim">,</span>
-      <a
-        href="https://github.com/ava-jahlee/carbontrace/tree/main/docs"
-        target="_blank"
-        rel="noreferrer"
-        className="text-text-muted hover:text-accent"
-      >
-        Docs
-      </a>
       <div className="flex-1" />
       <span className="font-mono text-[10px] uppercase tracking-widest text-text-dim">
         {meta}
