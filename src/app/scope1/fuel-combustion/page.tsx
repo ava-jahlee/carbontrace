@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Scope1Calculator } from "./Scope1Calculator";
-import { CornerMetaFrame } from "@/components/layout/CornerMeta";
 import { TopNav } from "@/components/layout/TopNav";
 
 export const metadata = {
@@ -11,7 +10,7 @@ export const metadata = {
 
 export default function FuelCombustionPage() {
   return (
-    <CornerMetaFrame bl="scope_1 / stationary / 1A4" br="IPCC 2006 · K-ETS">
+    <>
       <TopNav active="scope1" meta="scope_1 / stationary / 1A4" />
 
       <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
@@ -59,6 +58,6 @@ export default function FuelCombustionPage() {
           </p>
         </footer>
       </main>
-    </CornerMetaFrame>
+    </>
   );
 }

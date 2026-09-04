@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CornerMetaFrame } from "@/components/layout/CornerMeta";
 import { SectionHeader } from "@/components/layout/SectionHeader";
 import { TopNav } from "@/components/layout/TopNav";
 import { SCOPE3_CATEGORIES, getScope3Category } from "@/data/scope3";
@@ -36,10 +35,7 @@ export default async function Scope3CategoryPage({
   const catNumStr = String(category.number).padStart(2, "0");
 
   return (
-    <CornerMetaFrame
-      bl={`scope_3 · cat_${catNumStr}`}
-      br={`GHG Protocol · ${category.direction}`}
-    >
+    <>
       <TopNav active="scope3" meta={`scope_3 / cat_${catNumStr}`} />
 
       <main className="mx-auto max-w-4xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
@@ -196,6 +192,6 @@ export default async function Scope3CategoryPage({
           )}
         </div>
       </main>
-    </CornerMetaFrame>
+    </>
   );
 }

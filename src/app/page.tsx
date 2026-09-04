@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { CornerMetaFrame } from "@/components/layout/CornerMeta";
 import { TopNav } from "@/components/layout/TopNav";
 
 /**
@@ -27,21 +26,24 @@ const CATALOG: CatalogItem[] = [
     href: "/scope1",
     title: "Scope 1 · 직접 배출",
     subtitle: "Direct emissions · fuel + fugitive",
-    detail: "1A4 연료 연소 (63 연료 · 3 tier · 3 profile) · 1B 냉매 · F-gas",
+    detail:
+      "연료 사용량 · 냉매 유출량을 입력하면 IPCC 2006 + K-ETS 방법으로 tCO₂eq 을 계산합니다.",
     tag: "scope_1 / direct",
   },
   {
     href: "/scope2",
     title: "Scope 2 · 전력·열",
     subtitle: "Purchased electricity & heat",
-    detail: "GIR 전력 배출계수 · KDHC 8지사 3·4기 · 국가 통합 3종",
+    detail:
+      "전력·열 사용량을 입력하면 GIR 국가고유 배출계수와 KDHC 지사별 실측치로 tCO₂eq 을 계산합니다.",
     tag: "scope_2 / purchased_energy",
   },
   {
     href: "/scope3",
     title: "Scope 3 · 기타 간접",
     subtitle: "Corporate value chain · 15 categories",
-    detail: "GHG Protocol Standard · NIER v1.0 · Upstream 1-8 · Downstream 9-15",
+    detail:
+      "협력사 · 물류 · 통근 · 투자 등 15 카테고리의 방법론 카탈로그. 계산기는 순차 구현 중입니다.",
     tag: "scope_3 / value_chain",
   },
 ];
@@ -131,7 +133,7 @@ const MATURITY = [
 
 export default function Home() {
   return (
-    <CornerMetaFrame bl="seoul · 37.5665° N 126.9780° E" br="vitest · 137/137 pass">
+    <>
       <TopNav active="home" />
 
       <main className="mx-auto max-w-6xl px-6 pt-20 pb-24 sm:px-10 md:px-12 lg:px-16">
@@ -191,13 +193,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── 카탈로그 (2x2 그리드) ─── */}
+        {/* ─── 카탈로그 (Scope 1·2·3) ─── */}
         <section className="mt-24">
-          <div className="mb-8 flex items-baseline justify-between border-b border-border-strong pb-3">
+          <div className="mb-8 border-b border-border-strong pb-3">
             <h2 className="text-base font-semibold text-text">Catalog</h2>
-            <span className="font-mono text-[11px] uppercase tracking-widest text-text-dim">
-              3 scopes
-            </span>
           </div>
           <ul className="grid gap-px bg-border sm:grid-cols-3" style={{ border: "1px solid var(--border)" }}>
             {CATALOG.map((item) => (
@@ -224,11 +223,8 @@ export default function Home() {
 
         {/* ─── 감사자 · 개발자 진입 (docs) ─── */}
         <section className="mt-24">
-          <div className="mb-6 flex items-baseline justify-between border-b border-border pb-3">
+          <div className="mb-6 border-b border-border pb-3">
             <h2 className="text-base font-semibold text-text">Docs</h2>
-            <span className="font-mono text-[11px] uppercase tracking-widest text-text-dim">
-              7 items
-            </span>
           </div>
           <ul className="space-y-4">
             {DOC_LINKS.map((doc) => (
@@ -253,17 +249,27 @@ export default function Home() {
           </ul>
         </section>
 
-        {/* ─── 푸터 · sources ─── */}
-        <footer className="mt-24 flex items-baseline justify-between border-t border-border pt-6 font-mono text-[10px] uppercase tracking-widest text-text-dim">
+        {/* ─── 푸터 ─── */}
+        <footer className="mt-24 flex items-baseline justify-between border-t border-border pt-6 text-xs text-text-dim">
           <div>
-            <div>src · GHGCalc_V0m_lja.xlsm · parity 137/137</div>
-            <div className="mt-1">v 0.7 · 2026-09-04</div>
+            v 0.7 · 2026-09-04 ·{" "}
+            <a
+              href="https://github.com/ava-jahlee/carbontrace"
+              target="_blank"
+              rel="noreferrer"
+              className="underline decoration-dotted underline-offset-4 hover:text-accent"
+            >
+              GitHub ↗
+            </a>
           </div>
-          <Link href="/roadmap" className="text-text-dim hover:text-accent">
-            admin · roadmap
+          <Link
+            href="/roadmap"
+            className="font-mono text-[10px] uppercase tracking-widest text-text-dim hover:text-accent"
+          >
+            admin
           </Link>
         </footer>
       </main>
-    </CornerMetaFrame>
+    </>
   );
 }

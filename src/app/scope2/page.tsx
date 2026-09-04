@@ -1,5 +1,4 @@
 import { Scope2Calculator } from "./Scope2Calculator";
-import { CornerMetaFrame } from "@/components/layout/CornerMeta";
 import { TopNav } from "@/components/layout/TopNav";
 
 export const metadata = {
@@ -10,7 +9,7 @@ export const metadata = {
 
 export default function Scope2Page() {
   return (
-    <CornerMetaFrame bl="purchased_energy · elec + heat" br="GIR · KDHC">
+    <>
       <TopNav active="scope2" meta="scope_2 / purchased_energy" />
 
       <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
@@ -33,6 +32,6 @@ export default function Scope2Page() {
 
         <Scope2Calculator />
       </main>
-    </CornerMetaFrame>
+    </>
   );
 }

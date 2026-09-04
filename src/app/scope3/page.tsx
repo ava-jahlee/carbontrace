@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { CornerMetaFrame } from "@/components/layout/CornerMeta";
 import { SectionHeader } from "@/components/layout/SectionHeader";
 import { TopNav } from "@/components/layout/TopNav";
 import { getScope3CategoriesByDirection, type Scope3Category } from "@/data/scope3";
@@ -46,7 +45,7 @@ function CategoryCard({ cat }: { cat: Scope3Category }) {
 
 export default function Scope3Page() {
   return (
-    <CornerMetaFrame bl="scope_3 · value_chain" br="GHG Protocol · 15 categories">
+    <>
       <TopNav active="scope3" meta="scope_3 / value_chain" />
 
       <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
@@ -171,6 +170,6 @@ export default function Scope3Page() {
           </ul>
         </div>
       </main>
-    </CornerMetaFrame>
+    </>
   );
 }

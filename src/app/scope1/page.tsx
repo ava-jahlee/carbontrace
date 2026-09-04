@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { CornerMetaFrame } from "@/components/layout/CornerMeta";
 import { SectionHeader } from "@/components/layout/SectionHeader";
 import { TopNav } from "@/components/layout/TopNav";
 
@@ -25,7 +24,8 @@ const READY: SubCategory[] = [
     ipccCode: "1A4",
     nameKo: "연료 연소",
     nameEn: "Fuel combustion · stationary",
-    detail: "63 연료 · T1/T2/T3 · GWP 4 판 · 3 데이터 프로파일",
+    detail:
+      "연료 종류·사용량·Tier 를 입력하면 저위발열량과 배출계수를 거쳐 tCO₂eq 을 계산합니다.",
     status: "done",
     source: "IPCC 2006 Vol.2 Ch.2 · K-ETS 별표 12",
   },
@@ -34,7 +34,8 @@ const READY: SubCategory[] = [
     ipccCode: "1B",
     nameKo: "냉매 · F-gas",
     nameEn: "Refrigerant leakage · fugitive",
-    detail: "HFC 5 · blend 3 · SF6 · NF3 · GWP SAR/AR4/AR5/AR6",
+    detail:
+      "냉매 종류·연간 유출량·GWP 기준을 입력하면 GWP × 유출량으로 tCO₂eq 을 계산합니다.",
     status: "done",
     source: "IPCC 2006 Vol.3 Ch.7 · AR6 Table 7.SM.7",
   },
@@ -46,7 +47,7 @@ const PLANNED: SubCategory[] = [
     ipccCode: "1A2",
     nameKo: "산업 공정 · 부지 내 연료",
     nameEn: "Manufacturing industries & construction",
-    detail: "부지 내 자재 생산 (시멘트·철강 등) 시",
+    detail: "부지 내 자재 생산 (시멘트·철강 등) 배출량 · 계산기 미구현",
     status: "planned",
     source: "IPCC 2006 Vol.2 Ch.2",
   },
@@ -118,7 +119,7 @@ function SubCategoryCard({ item }: { item: SubCategory }) {
 
 export default function Scope1Page() {
   return (
-    <CornerMetaFrame bl="scope_1 · direct emissions" br="IPCC 2006 · K-ETS">
+    <>
       <TopNav active="scope1" meta="scope_1 / direct" />
 
       <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
@@ -142,9 +143,9 @@ export default function Scope1Page() {
           </div>
         </header>
 
-        {/* 하위 카테고리 · 준비 완료 (ready) */}
+        {/* 하위 카테고리 · 준비 완료 */}
         <div className="mt-12">
-          <SectionHeader title="하위 카테고리" hint="ready · 2" />
+          <SectionHeader title="하위 카테고리" />
           <ul
             className="mt-4 grid gap-px bg-border sm:grid-cols-2"
             style={{ border: "1px solid var(--border)" }}
@@ -155,9 +156,9 @@ export default function Scope1Page() {
           </ul>
         </div>
 
-        {/* 하위 카테고리 · 확장 예정 (planned) · 별도 서브섹션 · 폭 좁게 */}
+        {/* 하위 카테고리 · 확장 예정 · 별도 서브섹션 · 폭 좁게 */}
         <div className="mt-12 max-w-md">
-          <SectionHeader title="확장 예정" hint="planned" />
+          <SectionHeader title="확장 예정" />
           <ul
             className="mt-4 grid gap-px bg-border"
             style={{ border: "1px solid var(--border)" }}
@@ -183,6 +184,6 @@ export default function Scope1Page() {
           </p>
         </footer>
       </main>
-    </CornerMetaFrame>
+    </>
   );
 }

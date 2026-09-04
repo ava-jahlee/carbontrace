@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { RefrigerantCalculator } from "./RefrigerantCalculator";
-import { CornerMetaFrame } from "@/components/layout/CornerMeta";
 import { TopNav } from "@/components/layout/TopNav";
 
 export const metadata = {
@@ -11,7 +10,7 @@ export const metadata = {
 
 export default function RefrigerantPage() {
   return (
-    <CornerMetaFrame bl="scope_1 / fugitive / 1B" br="IPCC 2006 Vol.3 · AR6 SM.7">
+    <>
       <TopNav active="scope1" meta="scope_1 / fugitive / 1B" />
 
       <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
@@ -59,6 +58,6 @@ export default function RefrigerantPage() {
           </p>
         </footer>
       </main>
-    </CornerMetaFrame>
+    </>
   );
 }

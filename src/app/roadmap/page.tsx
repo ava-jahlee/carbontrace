@@ -1,4 +1,3 @@
-import { CornerMetaFrame } from "@/components/layout/CornerMeta";
 import { SectionHeader } from "@/components/layout/SectionHeader";
 import { TopNav } from "@/components/layout/TopNav";
 
@@ -89,7 +88,7 @@ function CategoryList({ items, offset = 0 }: { items: Category[]; offset?: numbe
 
 export default function RoadmapPage() {
   return (
-    <CornerMetaFrame bl="scope_1 · 2 · 3 · IPPU" br="GHG Protocol · IPCC 2006">
+    <>
       <TopNav meta="admin / roadmap" />
 
       <main className="mx-auto max-w-4xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
@@ -156,6 +155,6 @@ export default function RoadmapPage() {
           <div className="mt-4"><CategoryList items={ippu} /></div>
         </div>
       </main>
-    </CornerMetaFrame>
+    </>
   );
 }
