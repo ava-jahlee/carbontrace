@@ -282,18 +282,97 @@ export const IPCC_AR6: PrimarySource = {
 
 /**
  * 한국지역난방공사 열(스팀) 배출계수 (지역별)
- * — Scope 2 (다음 릴리스) 에서 사용.
+ * — Scope 2 에서 사용. xlsm _Supplier 시트 8개 지사 × 계획기간 3기·4기 = 16개 값.
  */
 export const KDHC_HEAT_EF: PrimarySource = {
   kind: "kdhc",
   docId: "kdhc-heat-ef",
   doc: "한국지역난방공사 열(스팀) 온실가스 배출계수",
-  publisher: "한국지역난방공사",
-  edition: "2023 공시 (계획기간 4기)",
+  publisher: "한국지역난방공사 (KDHC)",
+  edition: "2023 공시 · 계획기간 3기·4기 병기",
   url: "https://www.kdhc.co.kr",
   maturity: "documented",
-  reviewedAt: "2026-08-31",
-  note: "지역별 지사(수도권/평택/청주/세종/대구/양산/김해/광주전남) 별 CO2/CH4/N2O 배출계수. 계획기간 3기/4기 별도.",
+  reviewedAt: "2026-09-04",
+  note: "지사별 배출계수: 수도권·평택·청주·세종·대구·양산·김해·광주전남 8개 지사. K-ETS 배출권거래제 계획기간 3기(2021~2025) 와 4기(2026~2030) 별도 공표. 지사별 열매체(온수·중온수·증기) 및 열원(열병합·열전용) 조합에 따라 값이 다르며, 실측 기반 매년 갱신. 매년 KDHC 홈페이지 공지사항 게시판에서 신 공표 확인 필요.",
+};
+
+/**
+ * GIR 승인 국가 온실가스 배출계수 · 전력배출계수 · 2017년 승인
+ * (2018년 초 공표 추정, xlsm 이 담은 첫 판)
+ *
+ * xlsm _Law&GL22!J99~L100: 발전단 · 소비단 CO2/CH4/N2O.
+ */
+export const GIR_POWER_2017: PrimarySource = {
+  kind: "gir",
+  docId: "gir-power-2017",
+  doc: "GIR 승인 국가 온실가스 배출계수 · 전력 부문 · 2017년 승인",
+  publisher: "온실가스종합정보센터 (GIR · 現 기후에너지환경부)",
+  edition: "2017년 승인 · 2018년 공표 추정 (3년 주기 갱신 · 2021년까지 적용)",
+  part: "전력 부문 배출계수 (발전단 · 소비단)",
+  table: "GIR 승인 국가 온실가스 배출계수 · 전력배출계수 · 2017년 승인",
+  url: "https://www.gir.go.kr/home/index.do?menuId=36",
+  maturity: "verified",
+  reviewedAt: "2026-09-04",
+  note: "발전단 CO2 = 440.1 kgCO2/MWh (0.4401 tCO2/MWh) · CH4 = 0.0034 kgCH4/MWh · N2O = 0.0082 kgN2O/MWh. 소비단 CO2 = 456.7 kgCO2/MWh (0.4567 tCO2/MWh) · CH4 = 0.0036 kgCH4/MWh · N2O = 0.0085 kgN2O/MWh. 순발열량: 발전단 8.9 MJ/kWh · 소비단 9.6 MJ/kWh (별표 12 표 A 와 동일). 소비단 = 송·배전 손실 반영값 (약 3.8% 손실). K-ETS 배출권거래제 실무에서 사용.",
+};
+
+/**
+ * GIR 승인 국가 온실가스 배출계수 · 전력배출계수 · 2022년 승인
+ * (2023년 초 공표, xlsm 이 담은 두 번째 판 = 최신 xlsm 반영 판)
+ *
+ * xlsm 은 이 판을 반영. 이후 갱신 (2025.3, 2025.12) 은 xlsm 미반영.
+ */
+export const GIR_POWER_2022: PrimarySource = {
+  kind: "gir",
+  docId: "gir-power-2022",
+  doc: "GIR 승인 국가 온실가스 배출계수 · 전력 부문 · 2022년 승인",
+  publisher: "온실가스종합정보센터 (GIR · 現 기후에너지환경부)",
+  edition: "2022년 승인 · 2023년 공표 (3년 주기 · 2024년까지 K-ETS 실무 적용)",
+  part: "전력 부문 배출계수 (발전단 · 소비단)",
+  table: "GIR 승인 국가 온실가스 배출계수 · 전력배출계수 · 2022년 승인",
+  url: "https://www.gir.go.kr/home/index.do?menuId=36",
+  maturity: "verified",
+  reviewedAt: "2026-09-04",
+  note: "발전단 CO2 = 440.3 kgCO2/MWh (0.4403 tCO2/MWh) · CH4 = 0.0116 kgCH4/MWh · N2O = 0.0093 kgN2O/MWh. 소비단 CO2 = 474.7 kgCO2/MWh (0.4747 tCO2/MWh) · CH4 = 0.0125 kgCH4/MWh · N2O = 0.01 kgN2O/MWh. 순발열량 (변동 없음): 발전단 8.9 · 소비단 9.6 MJ/kWh. 후속 판: 2024년 승인 판 (2025-03-31 공표 · 2020~2022 평균 = 0.4541 tCO2eq/MWh) → 2023년 판 (2025-12-18 공표 · 2023년 단년도 = 0.4173 tCO2eq/MWh · 갱신 주기가 3년 → 1년으로 단축). xlsm 은 최신 2판을 반영 안 함.",
+};
+
+/**
+ * GIR 최신 전력배출계수 참조 (감사자용, xlsm 미반영)
+ * — 2025년 12월 기후에너지환경부 공표 최신값 두 판을 note 에 등재.
+ */
+export const GIR_POWER_LATEST: PrimarySource = {
+  kind: "gir",
+  docId: "gir-power-latest",
+  doc: "기후에너지환경부 최신 전력배출계수 (감사 참조용)",
+  publisher: "기후에너지환경부 · 국가 온실가스 통계 관리위원회",
+  edition: "2024년 승인 (2025-03-31 공표) + 2023년 계수 (2025-12-18 공표)",
+  part: "전력 부문 · 소비단 배출계수 (연간 갱신)",
+  table: "국가 온실가스 배출계수 · 전력배출계수",
+  url: "https://www.gir.go.kr/home/board/read.do?boardId=82&boardMasterId=2&menuId=36",
+  maturity: "verified",
+  reviewedAt: "2026-09-04",
+  note: "2024년 승인 판 (2025-03-31 공표): 2020~2022년 평균 소비단 = 0.4541 tCO2eq/MWh. 2023년 판 (2025-12-18 공표, 최신): 2023년 단년도 소비단 = 0.4173 tCO2eq/MWh (전년 대비 8.1% 감소, 재생에너지 확대 반영). 2025년 12월부터 갱신 주기가 3년 → 1년으로 단축. xlsm 은 2022년 승인 판까지만 반영하므로 감사자는 최신 계수와의 차이를 인식해야 함. 배출권거래제 정산 실무는 여전히 3년 주기 판 적용.",
+};
+
+/**
+ * 열(스팀) 부문 국가 통합 배출계수 (열전용 · 열병합 · 열평균) — 원출처 미상
+ *
+ * xlsm _Law&GL22!J101~L103: 열전용 (56,373/1.278/0.166), 열병합 (60,760/2.053/0.549),
+ * 열평균 (59,510/1.832/0.44) kgGHG/TJ.
+ *
+ * 이 3종은 KDHC 지사별 실측값이 아니라, 전국 평균 통합값으로 보임. K-ETS 지침 별표 어딘가에
+ * 정의됐을 가능성 큼. 원문 재확보 후 verified 승격 대상.
+ */
+export const KETS_HEAT_EF: PrimarySource = {
+  kind: "kets-guideline",
+  docId: "kets-heat-ef",
+  doc: "국가 통합 열(스팀) 배출계수 · 열전용/열병합/열평균 3종 (원출처 조사 중)",
+  publisher: "환경부 · 산업통상자원부 (K-ETS 지침 관련 추정)",
+  edition: "원출처 미상 (추정: K-ETS 지침 별표 또는 GIR 인벤토리 부속 자료)",
+  url: "https://www.gir.go.kr/home/index.do?menuId=36",
+  maturity: "asserted",
+  reviewedAt: "2026-09-04",
+  note: "⚠ 원출처 미상. xlsm 값: 열전용 CO2=56,373 · CH4=1.278 · N2O=0.166 kgGHG/TJ · 열병합 CO2=60,760 · CH4=2.053 · N2O=0.549 · 열평균 CO2=59,510 · CH4=1.832 · N2O=0.44. 이 3종 값은 KDHC 지사별 실측이 아닌 전국 통합값으로 보이며 K-ETS 배출권거래제 지침 별표 또는 GIR 국가 인벤토리 부속 자료에 있을 것으로 추정. 원문 확보 후 verified 승격 필요. 감사 시 KDHC 지사별 값 (KDHC_HEAT_EF 참조) 우선 사용 권장.",
 };
 
 /**
@@ -311,6 +390,10 @@ export const SOURCES = {
   IPCC_AR5,
   IPCC_AR6,
   KDHC_HEAT_EF,
+  GIR_POWER_2017,
+  GIR_POWER_2022,
+  GIR_POWER_LATEST,
+  KETS_HEAT_EF,
 } as const;
 
 export type SourceKey = keyof typeof SOURCES;

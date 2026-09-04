@@ -2,8 +2,8 @@
 
 > 온실가스 배출량 산정 도구. **모든 숫자가 근거를 달고 다닌다.**
 >
-> IPCC 2006 GL · 온실가스 배출권거래제(K-ETS) 지침 기반.  
-> v0.1 · Scope 1 (연료 연소) 전용.
+> IPCC 2006 GL · 온실가스 배출권거래제(K-ETS) 지침 · GIR 국가고유 배출계수 · KDHC 지사별 실측 기반.  
+> v0.2 · Scope 1 (연료 연소) + Scope 2 (외부 공급 전기·열).
 
 ---
 
@@ -40,12 +40,32 @@ carbontrace 의 계산 엔진 결과를 소수점 10 자리 이상 자리에서 
 | N2O tCO2eq | `0.008202599999999999` | `0.008202599999999999` | ✅ PASS |
 
 ```bash
-npm test   # Vitest 파리티 8/8 + verified 61/61 PASS (454 measurements 승격 + xlsm 원본 오류 2건 warning note)
+npm test   # Vitest 파리티 8/8 (Scope 1) + Scope 2 14/14 + verified 61/61 PASS = 83/83
+           #                (454 measurements 승격 + xlsm 원본 오류 2건 warning note)
 ```
+
+Scope 2 파리티 (xlsm Main D42 = 35.991 tCO2, KDHC 4기 수도권지사 1 TJ):
+| 케이스 | 원본 xlsm | carbontrace | 결과 |
+|---|---|---|---|
+| KDHC 4기 수도권지사 1 TJ · CO2 tCO2eq | `35.991` | `35.991` | ✅ PASS |
+| GIR 2022년 승인 · 소비단 1 MWh · CO2 tCO2eq | `0.4747` | `0.4747` | ✅ PASS |
+
+Scope 2 는 CH4/N2O 도 완전 계산하므로 총합 tCO2eq 는 xlsm 원본 (CO2 만 계산) 보다 약간 큼:
+- KDHC 4기 수도권지사 1 TJ: xlsm 35.991 → carbontrace **36.025181** (+0.034, CH4·N2O 항 추가).
 
 ---
 
-## 지금 담긴 범위 (v0.1)
+## 지금 담긴 범위 (v0.2)
+
+- **Scope 1** — 1A4 기타 (건물) 고정연소
+- **Scope 2** — 외부 공급 전기·열 간접 배출
+  - 전력: GIR 승인 국가 온실가스 배출계수 (2017년 승인 · 2022년 승인 두 판 verified)
+  - 열/스팀 (KDHC): 지사별 8개 × 계획기간 3기·4기 = 16개 실측값
+  - 열/스팀 (국가 통합 3종): 열전용·열병합·열평균 — 원출처 미상 (asserted + warning)
+  - 최신 정보 참조: 2024년 승인 판 (2025-03-31 공표, 소비단 = 0.4541 tCO2eq/MWh) · 2023년 판 (2025-12-18 공표, 소비단 = 0.4173 tCO2eq/MWh)
+- **원본 xlsm 넘어서기** — xlsm 이 CO2 만 계산한 Scope 2 CH4/N2O 도 완전 계산 · 다중 GWP 판 (SAR/AR4/AR5/AR6) 선택 지원
+
+## 이전 범위 (v0.1)
 
 - **Scope 1** — 1A4 기타 (건물) 고정연소
   - 63 개 연료 (석유류 · 석탄류 · 가스류 · 기타 화석연료 · 바이오매스)
