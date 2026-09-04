@@ -11,7 +11,7 @@ export const metadata = {
 export default function FuelCombustionPage() {
   return (
     <>
-      <TopNav active="scope1" meta="scope_1 / stationary / 1A4" />
+      <TopNav active="scope1" />
 
       <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
         {/* breadcrumb · scope 1 로 돌아가기 */}

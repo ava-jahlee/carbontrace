@@ -11,14 +11,11 @@ export const metadata = {
 export default function FacilityPage() {
   return (
     <>
-      <TopNav active="facility" meta="facility / site" />
+      <TopNav active="facility" />
 
       <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
         <header className="border-b border-border pb-8">
-          <div className="font-mono text-[11px] uppercase tracking-widest text-accent-soft">
-            facility · site registration
-          </div>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-text sm:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight text-text sm:text-5xl">
             시설 등록
           </h1>
           <div className="mt-4 max-w-2xl space-y-3 text-sm leading-relaxed text-pretty">
@@ -26,19 +23,16 @@ export default function FacilityPage() {
               계산 시작 전에 사업장 정보를 먼저 등록합니다.
             </p>
             <p className="text-text-dim">
-              사업장 이름 · 용도 · 연간 GHG 배출량 세 가지만 입력하면{" "}
+              세 가지를 입력하면{" "}
               <span className="font-medium text-accent">K-ETS 별표 5 등급 (A · B · C)</span> 과{" "}
-              <span className="font-medium text-accent">각 계수의 최소 Tier</span> 가 자동 산정됩니다.
-              이 등급이 이후 계산기에서 선택할 수 있는 Tier 를 규정합니다.
-            </p>
-            <p className="text-text-dim">
-              분야 · 부문은 <span className="font-mono text-text-muted">{FIXED_IPCC_CATEGORY.sector}</span> ·{" "}
+              <span className="font-medium text-accent">각 계수의 최소 Tier</span> 가 자동 산정되고 ·
+              이후 계산기에서 선택 가능한 Tier 를 규정합니다.
+              IPCC 카테고리는{" "}
+              <span className="font-mono text-text-muted">{FIXED_IPCC_CATEGORY.sector}</span> ·{" "}
               <span className="font-mono text-text-muted">{FIXED_IPCC_CATEGORY.subSector}</span> 로 고정입니다.
-              이 도구는 원 xlsm 과 동일하게 건물 부문 (1A4) 을 대상으로 만들어졌습니다.
             </p>
             <p className="text-text-dim">
-              입력한 정보는 <span className="font-medium text-text">브라우저 로컬 저장소</span> 에만 저장됩니다.
-              서버로 전송되지 않고 · 다른 기기에서는 보이지 않습니다.
+              입력값은 <span className="font-medium text-text">브라우저 로컬 저장소</span> 에만 저장됩니다.
             </p>
           </div>
         </header>

@@ -89,17 +89,10 @@ export function FacilityForm() {
     <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_320px]">
       {/* ─── 좌측 · 입력 폼 ─── */}
       <section>
-        <div className="mb-4 font-mono text-[11px] uppercase tracking-widest text-accent-soft">
-          input · 3 fields
-        </div>
-
         {/* 1. 사업장 이름 */}
         <label className="block">
           <div className="text-sm font-medium text-text">
             1. 사업장 이름
-            <span className="ml-2 font-mono text-[10px] uppercase tracking-widest text-text-dim">
-              site name
-            </span>
           </div>
           <input
             type="text"
@@ -118,9 +111,6 @@ export function FacilityForm() {
         <fieldset className="mt-6">
           <legend className="text-sm font-medium text-text">
             2. 용도
-            <span className="ml-2 font-mono text-[10px] uppercase tracking-widest text-text-dim">
-              usage · IPCC 1A4
-            </span>
           </legend>
           <div className="mt-2 grid gap-2 sm:grid-cols-2">
             {USAGE_ORDER.map((u) => {
@@ -141,7 +131,7 @@ export function FacilityForm() {
                     {meta.ko}
                   </span>
                   <span className="font-mono text-[10px] uppercase tracking-widest text-text-dim">
-                    {meta.ipccCode} · {meta.en}
+                    {meta.ipccCode}
                   </span>
                 </button>
               );
@@ -153,9 +143,6 @@ export function FacilityForm() {
         <label className="mt-6 block">
           <div className="text-sm font-medium text-text">
             3. 연간 GHG 배출량
-            <span className="ml-2 font-mono text-[10px] uppercase tracking-widest text-text-dim">
-              annual ghg · 만ton/yr
-            </span>
           </div>
           <div className="mt-2 flex items-baseline gap-3">
             <input
@@ -209,18 +196,14 @@ export function FacilityForm() {
 
       {/* ─── 우측 · 자동 산정 결과 ─── */}
       <aside className="border-l border-border pl-8">
-        <div className="font-mono text-[11px] uppercase tracking-widest text-accent-soft">
-          auto · derived
-        </div>
-
         {!preview ? (
-          <p className="mt-4 text-sm text-text-dim">
+          <p className="text-sm text-text-dim">
             사업장 이름과 연간 GHG 를 입력하면 등급과 최소 Tier 가 여기에 자동 표시됩니다.
           </p>
         ) : (
           <>
             {/* 등급 */}
-            <div className="mt-6">
+            <div>
               <div className="font-mono text-[10px] uppercase tracking-widest text-text-dim">
                 K-ETS 별표 5 · 시설 등급
               </div>

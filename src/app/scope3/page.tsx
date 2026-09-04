@@ -46,7 +46,7 @@ function CategoryCard({ cat }: { cat: Scope3Category }) {
 export default function Scope3Page() {
   return (
     <>
-      <TopNav active="scope3" meta="scope_3 / value_chain" />
+      <TopNav active="scope3" />
 
       <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
         <header className="border-b border-border pb-8">

@@ -36,7 +36,7 @@ export default async function Scope3CategoryPage({
 
   return (
     <>
-      <TopNav active="scope3" meta={`scope_3 / cat_${catNumStr}`} />
+      <TopNav active="scope3" />
 
       <main className="mx-auto max-w-4xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
         {/* 상단 · 뒤로 가기 */}

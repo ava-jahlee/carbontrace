@@ -10,7 +10,7 @@ export const metadata = {
 export default function InventoryPage() {
   return (
     <>
-      <TopNav active="inventory" meta="inventory / items" />
+      <TopNav active="inventory" />
 
       <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
         <header className="border-b border-border pb-8">

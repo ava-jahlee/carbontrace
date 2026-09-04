@@ -11,7 +11,7 @@ export const metadata = {
 export default function RefrigerantPage() {
   return (
     <>
-      <TopNav active="scope1" meta="scope_1 / fugitive / 1B" />
+      <TopNav active="scope1" />
 
       <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
         {/* breadcrumb · scope 1 로 돌아가기 */}

@@ -29,7 +29,7 @@ export function DocLayout({ entry, source, title, toc }: DocLayoutProps) {
   return (
     <>
       <div data-print="hide">
-        <TopNav active="docs" meta={`docs / ${entry.group}`} />
+        <TopNav active="docs" />
       </div>
 
       <div className="mx-auto max-w-6xl px-6 pt-12 pb-20 sm:px-10 md:px-12">

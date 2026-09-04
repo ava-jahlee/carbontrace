@@ -4,13 +4,14 @@ import { FacilityBadge } from "./FacilityBadge";
 /**
  * 상단 인라인 nav — Mara 계열 (쉼표 나열).
  *
- * carbontrace 로고 + 카달로그 링크 (쉼표) + 우측 시설 뱃지 · meta.
+ * carbontrace 로고 + 카달로그 링크 (쉼표) + 우측 시설 뱃지.
  * 랜딩과 계산기 페이지에서 동일하게 사용.
+ *
+ * v0.9 부터 · 우측 mono meta (버전 · 스코프 슬러그) 제거.
+ * 정보 가치가 낮고 시각 소음을 유발.
  */
 
 interface TopNavProps {
-  /** 우측 mono 라벨 (예: "v 0.8" · "scope_1 / stationary") */
-  meta?: string;
   /**
    * 현재 페이지 (활성 링크 accent 처리용).
    * fuel-combustion · refrigerant 둘 다 scope1 로 hoist (Scope 1 하위 카테고리).
@@ -26,7 +27,7 @@ const NAV_ITEMS = [
   { href: "/docs", label: "Docs", key: "docs" as const },
 ];
 
-export function TopNav({ meta = "v 0.9", active }: TopNavProps) {
+export function TopNav({ active }: TopNavProps) {
   return (
     <nav className="flex items-baseline gap-2 border-b border-border px-6 py-5 text-sm sm:px-10 md:px-12 lg:px-16">
       <Link
@@ -55,12 +56,7 @@ export function TopNav({ meta = "v 0.9", active }: TopNavProps) {
         </span>
       ))}
       <div className="flex-1" />
-      <div className="flex items-baseline gap-6">
-        <FacilityBadge />
-        <span className="font-mono text-[10px] uppercase tracking-widest text-text-dim">
-          {meta}
-        </span>
-      </div>
+      <FacilityBadge />
     </nav>
   );
 }

@@ -18,7 +18,6 @@ interface CatalogItem {
   title: string;
   subtitle: string;
   detail: string;
-  tag: string;
 }
 
 const CATALOG: CatalogItem[] = [
@@ -28,7 +27,6 @@ const CATALOG: CatalogItem[] = [
     subtitle: "우리 사업장 · 우리가 직접 태운 것",
     detail:
       "사업장 안의 보일러 · 차량 · 냉매 유출 등 · 소유·통제하는 배출원에서 우리가 직접 낸 배출량.",
-    tag: "scope_1",
   },
   {
     href: "/scope2",
@@ -36,7 +34,6 @@ const CATALOG: CatalogItem[] = [
     subtitle: "우리 대신 · 한전·지역난방이 태워준 것",
     detail:
       "사 온 전기 · 열 · 스팀. 우리가 소비했지만 실제 배출은 발전소 · 열병합 시설에서 났고 · 그 상류 배출을 우리 몫으로 인정하는 부분.",
-    tag: "scope_2",
   },
   {
     href: "/scope3",
@@ -44,7 +41,6 @@ const CATALOG: CatalogItem[] = [
     subtitle: "우리 사업 때문에 · 다른 회사·사람이 태운 것",
     detail:
       "원재료 공급사 · 물류 · 임직원 통근 · 투자한 회사 · 우리 제품을 쓰는 사용자 등 15 카테고리. 우리가 직접 태우진 않았지만 우리 사업이 유발한 배출량.",
-    tag: "scope_3",
   },
 ];
 
@@ -153,10 +149,7 @@ export default function Home() {
                   href={item.href}
                   className="group block h-full p-8 transition-colors hover:bg-accent/[0.04]"
                 >
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-accent-soft">
-                    {item.tag}
-                  </div>
-                  <div className="mt-3 text-xl font-semibold tracking-tight text-text group-hover:text-ink">
+                  <div className="text-xl font-semibold tracking-tight text-text group-hover:text-ink">
                     {item.title}
                   </div>
                   <div className="mt-2 text-sm font-medium text-accent">
@@ -171,31 +164,28 @@ export default function Home() {
           </ul>
         </section>
 
-        {/* ─── 푸터 · v0.9 · GitHub · 제안 · admin ─── */}
-        <footer className="mt-24 flex items-baseline justify-between border-t border-border pt-6 text-xs text-text-dim">
-          <div>
-            v 0.9 · 2026-09-04 ·{" "}
-            <a
-              href="https://github.com/ava-jahlee/carbontrace"
-              target="_blank"
-              rel="noreferrer"
-              className="underline decoration-dotted underline-offset-4 hover:text-accent"
-            >
-              GitHub ↗
-            </a>
-          </div>
-          <div className="flex items-baseline gap-6">
+        {/* ─── 푸터 · GitHub · 제안 · admin ─── */}
+        <footer className="mt-24 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 border-t border-border pt-6 text-sm text-text-muted">
+          <a
+            href="https://github.com/ava-jahlee/carbontrace"
+            target="_blank"
+            rel="noreferrer"
+            className="underline decoration-dotted underline-offset-4 hover:text-accent"
+          >
+            GitHub ↗
+          </a>
+          <div className="flex items-baseline gap-8">
             <a
               href="https://github.com/ava-jahlee/carbontrace/issues/new?labels=user-feedback"
               target="_blank"
               rel="noreferrer"
-              className="font-mono text-[10px] uppercase tracking-widest text-text-dim hover:text-accent"
+              className="hover:text-accent"
             >
-              제안 ↗
+              값·방법론 제안 ↗
             </a>
             <Link
               href="/roadmap"
-              className="font-mono text-[10px] uppercase tracking-widest text-text-dim hover:text-accent"
+              className="text-text-dim hover:text-accent"
             >
               admin
             </Link>

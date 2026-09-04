@@ -60,7 +60,7 @@ function Group({ group }: { group: DocGroup }) {
 export default function DocsPage() {
   return (
     <>
-      <TopNav active="docs" meta="docs" />
+      <TopNav active="docs" />
 
       <main className="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:px-10 md:px-12">
         <header className="border-b border-border pb-8">
