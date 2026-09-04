@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
       <div className="mb-6 inline-block rounded border border-neutral-300 bg-white px-2 py-1 text-[10px] uppercase tracking-widest text-neutral-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400">
-        v0.2 · Scope 1 + Scope 2
+        v0.3 · Scope 1 + Scope 2 + Data Profiles
       </div>
       <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
         carbontrace
@@ -54,7 +54,7 @@ export default function Home() {
       </div>
 
       <footer className="mt-16 border-t border-neutral-200 pt-6 text-xs text-neutral-500 dark:border-neutral-800">
-        원본: <code className="font-mono">GHGCalc_V0m_lja.xlsm</code> · 재현 신뢰: Vitest 파리티 83/83 PASS
+        원본: <code className="font-mono">GHGCalc_V0m_lja.xlsm</code> · 재현 신뢰: Vitest 파리티 102/102 PASS
       </footer>
     </main>
   );

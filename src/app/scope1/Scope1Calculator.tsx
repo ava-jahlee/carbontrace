@@ -3,6 +3,12 @@
 import { useMemo, useState } from "react";
 import { Cell } from "@/components/cell/Cell";
 import { FUELS } from "@/data/factors/fuels.gen";
+import {
+  countOverrides,
+  DATA_PROFILE_DESC,
+  DATA_PROFILE_LABELS,
+  type DataProfile,
+} from "@/data/factors/corrections";
 import { calculateScope1 } from "@/lib/calc/scope1";
 import type { GwpStandard, Tier } from "@/lib/calc/types";
 
@@ -12,6 +18,7 @@ export function Scope1Calculator() {
   const [heatTier, setHeatTier] = useState<Tier>("T1");
   const [efTier, setEfTier] = useState<Tier>("T2");
   const [gwpStandard, setGwpStandard] = useState<GwpStandard>("SAR");
+  const [dataProfile, setDataProfile] = useState<DataProfile>("xlsm-original");
 
   const fuel = useMemo(() => FUELS.find((f) => f.id === fuelId), [fuelId]);
 
@@ -24,8 +31,9 @@ export function Scope1Calculator() {
       heatTier,
       efTier,
       gwpStandard,
+      dataProfile,
     });
-  }, [fuelId, amount, heatTier, efTier, gwpStandard]);
+  }, [fuelId, amount, heatTier, efTier, gwpStandard, dataProfile]);
 
   const grouped = useMemo(() => {
     const g = new Map<string, typeof FUELS>();
@@ -102,6 +110,27 @@ export function Scope1Calculator() {
           <option value="AR5">IPCC AR5 (2014)</option>
           <option value="AR6">IPCC AR6 (2021)</option>
         </select>
+
+        <label className="mt-4 block text-xs font-medium text-neutral-700 dark:text-neutral-300">
+          데이터 프로파일
+          <span className="ml-2 text-[10px] text-neutral-400">
+            (override {countOverrides(dataProfile)} 건)
+          </span>
+        </label>
+        <select
+          value={dataProfile}
+          onChange={(e) => setDataProfile(e.target.value as DataProfile)}
+          className="mt-1 w-full rounded border border-neutral-300 bg-white px-2 py-1.5 text-sm dark:border-neutral-700 dark:bg-neutral-950"
+        >
+          {(Object.keys(DATA_PROFILE_LABELS) as DataProfile[]).map((p) => (
+            <option key={p} value={p}>
+              {DATA_PROFILE_LABELS[p]}
+            </option>
+          ))}
+        </select>
+        <p className="mt-2 rounded border border-neutral-200 bg-neutral-50 px-2 py-1.5 text-[11px] leading-relaxed text-neutral-600 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-400">
+          {DATA_PROFILE_DESC[dataProfile]}
+        </p>
 
         {fuel && (
           <div className="mt-4 rounded border border-neutral-200 bg-neutral-50 p-3 text-[11px] text-neutral-600 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-400">

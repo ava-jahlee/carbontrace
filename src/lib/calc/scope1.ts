@@ -30,6 +30,7 @@ import type { Fuel, FuelState, MaybeMeasurement, Measurement } from "@/data/fact
 import { FUELS } from "@/data/factors/fuels.gen";
 import { OXIDATION } from "@/data/factors/oxidation.gen";
 import { GWP } from "@/data/factors/gwp.gen";
+import { getOverride, type DataProfile } from "@/data/factors/corrections";
 
 // ─────────────────────────────────────────────────────────────
 // 유틸
@@ -124,6 +125,7 @@ function pickEmissionFactor(
   tier: Tier,
   override: number | undefined,
   warnings: string[],
+  dataProfile: DataProfile = "xlsm-original",
 ): MaybeCalculated {
   if (tier === "T3") {
     if (override === undefined) {
@@ -137,6 +139,29 @@ function pickEmissionFactor(
       inputs: [userInput(`배출계수 ${species} (T3 직접 입력)`, override, "kgGHG/TJ", "사업자 실측치")],
     };
   }
+
+  // profile override 우선 조회 (T2 배출계수 필드만 override 대상 · T1 은 IPCC 원본이라 손대지 않음)
+  if (tier === "T2") {
+    const lookupKey = species === "CO2"
+      ? `fuel.${fuel.id}.ef.t2.CO2`
+      : `fuel.${fuel.id}.ef.t2.${species}`;
+    const ovr = getOverride(dataProfile, lookupKey);
+    if (ovr) {
+      // profile 이 override 제공한 값을 Measurement 로 감싸서 반환
+      const asMeasurement: Measurement = {
+        value: ovr.value,
+        unit: ovr.unit,
+        primarySource: ovr.primarySource,
+      };
+      return {
+        value: ovr.value,
+        unit: ovr.unit,
+        formula: `조회 → ${sourceLabel(asMeasurement)} · profile: ${dataProfile}`,
+        inputs: [measurementInput(`배출계수 ${species} (T2 · ${dataProfile})`, asMeasurement)],
+      };
+    }
+  }
+
   const set = tier === "T1" ? fuel.ef.t1 : fuel.ef.t2;
   const m = set[species];
   if (!m) {
@@ -283,6 +308,7 @@ export function calculateScope1(input: Scope1Input): Scope1Result | { error: str
   const warnings: string[] = [];
   const activityUnit = fuel.activityUnit ?? "ton-연료";
 
+  const dataProfile: DataProfile = input.dataProfile ?? "xlsm-original";
   const heat = pickHeatFactor(fuel, input.heatTier, input.overrides?.heatFactor, warnings);
   const oxidation = pickOxidation(fuel, input.efTier, input.overrides?.oxidation, warnings);
 
@@ -290,7 +316,7 @@ export function calculateScope1(input: Scope1Input): Scope1Result | { error: str
   const results: Record<GhgSpecies, Scope1SpeciesResult> = {} as Record<GhgSpecies, Scope1SpeciesResult>;
   for (const sp of speciesList) {
     const override = sp === "CO2" ? input.overrides?.efCO2 : sp === "CH4" ? input.overrides?.efCH4 : input.overrides?.efN2O;
-    const ef = pickEmissionFactor(fuel, sp, input.efTier, override, warnings);
+    const ef = pickEmissionFactor(fuel, sp, input.efTier, override, warnings, dataProfile);
     const tGhg = calcTGhg(sp, input.amount, activityUnit, heat, ef, oxidation);
     const gwp = gwpFor(input.gwpStandard, sp);
     const tCo2eq = calcTCo2eq(tGhg, gwp);

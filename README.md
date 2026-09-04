@@ -3,7 +3,7 @@
 > 온실가스 배출량 산정 도구. **모든 숫자가 근거를 달고 다닌다.**
 >
 > IPCC 2006 GL · 온실가스 배출권거래제(K-ETS) 지침 · GIR 국가고유 배출계수 · KDHC 지사별 실측 기반.  
-> v0.2 · Scope 1 (연료 연소) + Scope 2 (외부 공급 전기·열).
+> v0.3 · Scope 1 + Scope 2 + 데이터 프로파일 (원본 xlsm / 정정판 / GIR 최신).
 
 ---
 
@@ -40,8 +40,9 @@ carbontrace 의 계산 엔진 결과를 소수점 10 자리 이상 자리에서 
 | N2O tCO2eq | `0.008202599999999999` | `0.008202599999999999` | ✅ PASS |
 
 ```bash
-npm test   # Vitest 파리티 8/8 (Scope 1) + Scope 2 14/14 + verified 61/61 PASS = 83/83
-           #                (454 measurements 승격 + xlsm 원본 오류 2건 warning note)
+npm test   # Vitest 파리티 8/8 (Scope 1) + Scope 2 14/14 + verified 61/61
+           #  + dataProfile 19/19 = 102/102 PASS
+           # (454 measurements 승격 · xlsm 정정 override 33 건 · GIR 2022.1 최신 override 26 건)
 ```
 
 Scope 2 파리티 (xlsm Main D42 = 35.991 tCO2, KDHC 4기 수도권지사 1 TJ):
@@ -55,7 +56,7 @@ Scope 2 는 CH4/N2O 도 완전 계산하므로 총합 tCO2eq 는 xlsm 원본 (CO
 
 ---
 
-## 지금 담긴 범위 (v0.2)
+## 지금 담긴 범위 (v0.3)
 
 - **Scope 1** — 1A4 기타 (건물) 고정연소
 - **Scope 2** — 외부 공급 전기·열 간접 배출
@@ -64,6 +65,26 @@ Scope 2 는 CH4/N2O 도 완전 계산하므로 총합 tCO2eq 는 xlsm 원본 (CO
   - 열/스팀 (국가 통합 3종): 열전용·열병합·열평균 — 원출처 미상 (asserted + warning)
   - 최신 정보 참조: 2024년 승인 판 (2025-03-31 공표, 소비단 = 0.4541 tCO2eq/MWh) · 2023년 판 (2025-12-18 공표, 소비단 = 0.4173 tCO2eq/MWh)
 - **원본 xlsm 넘어서기** — xlsm 이 CO2 만 계산한 Scope 2 CH4/N2O 도 완전 계산 · 다중 GWP 판 (SAR/AR4/AR5/AR6) 선택 지원
+
+### 데이터 프로파일 (v0.3 신규)
+
+원본 xlsm 은 훌륭히 만들었지만 다음 오류가 있음. carbontrace 는 원본 파리티를 지키면서
+사용자가 정정판을 선택할 수 있는 **데이터 프로파일** 을 제공.
+
+| 프로파일 | override | 설명 |
+|---|---|---|
+| `xlsm-original` | 0 건 | 원본 xlsm 그대로 (파리티 보존 · 기본) |
+| `xlsm-corrected` | 33 건 | xlsm 오류만 정정 · GIR 국가고유는 xlsm 판 유지 |
+| `gir22-latest` | 59 건 | 정정 + GIR 2022.1 공표 최신 국가고유 배출계수 |
+
+정정 대상 (`xlsm-corrected`):
+- **등유·항공유 T2 tC 뒤바꿈 4건** — xlsm 저자가 두 값을 뒤바꿔 넣은 것. 별표 12 표 B 기준으로 원상복구
+- **석탄류 T2 N2O = 1.4 오작성 13건** — xlsm 이 Peat (이탄) 값 1.4 를 다른 석탄에도 그대로 넣음. IPCC Table 2.5 는 Peat 외 다른 석탄 모두 1.5
+- **가스류 7건** — 매립지가스·슬러지가스·고로가스·산소강철로가스·가스공장가스·코크스로가스·기타바이오가스 T2 CH4/N2O 가 xlsm 300/(1.4 or 4) → Table 2.5 기체 그룹 5/0.1
+- **아황산염 잿물 (Sulphite Lyes/Black Liquor)** — xlsm 300/4 → Table 2.5 3/2 (특수 화학 그룹)
+
+추가 최신화 (`gir22-latest`):
+- GIR 2022.1 공표 국가고유 배출계수 13개 반영 (경유 · 도시가스LNG · 천연가스LNG · 휘발유 · 등유 · 항공유 · B-A/B/C유 · 프로판/부탄 · 국내무연탄 · 수입무연탄)
 
 ## 이전 범위 (v0.1)
 

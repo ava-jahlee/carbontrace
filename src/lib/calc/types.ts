@@ -93,6 +93,13 @@ export interface Scope1Input {
   gwpStandard: GwpStandard;
   /** T3 직접 입력값. */
   overrides?: T3Overrides;
+  /**
+   * 데이터 프로파일. 지정하지 않으면 "xlsm-original" (파리티 보존).
+   *   - "xlsm-original"  : 원본 xlsm 값 그대로 (기본, 파리티 보존)
+   *   - "xlsm-corrected" : xlsm 원본 오류 (등유·항공유 뒤바꿈 · T2 CH4/N2O 오작성) 정정
+   *   - "gir22-latest"   : xlsm-corrected + GIR 2022.1 공표 최신 국가값 반영
+   */
+  dataProfile?: import("@/data/factors/corrections").DataProfile;
 }
 
 export interface Scope1SpeciesResult {
