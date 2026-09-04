@@ -418,7 +418,13 @@ function ResultView({
       <div className="rounded-md border border-border-strong bg-surface">
         {/* 결과 값 · 큰 숫자 + 조건 요약 dl */}
         <div className="p-4">
-          <Cell calculated={result.totalCo2eq} digits={6} size="md" emphasis />
+          <Cell
+            calculated={result.totalCo2eq}
+            digits={6}
+            size="md"
+            emphasis
+            provenanceLabel="총 CO₂eq"
+          />
           <dl className="mt-3 space-y-1 text-xs">
             <div className="flex gap-3">
               <dt className="w-12 shrink-0 font-mono text-[10px] uppercase tracking-widest text-text-dim">
@@ -491,7 +497,7 @@ function FactorInline({
       {hint && (
         <span className="font-mono text-[9px] uppercase tracking-widest text-text-dim">/ {hint}</span>
       )}
-      <Cell calculated={calculated} digits={digits} size="sm" />
+      <Cell calculated={calculated} digits={digits} size="sm" provenanceLabel={label} />
     </div>
   );
 }
@@ -503,11 +509,11 @@ function SpeciesCard({ title, result }: { title: string; result: Scope1SpeciesRe
         <h3 className="text-sm font-semibold text-text">{title}</h3>
       </div>
       <div className="mt-2 space-y-1.5">
-        <RowLine label="배출계수" c={result.emissionFactor} digits={4} />
-        <RowLine label="tGHG" c={result.tGhg} digits={6} />
-        <RowLine label="GWP" c={result.gwp} digits={0} />
+        <RowLine species={title} label="배출계수" c={result.emissionFactor} digits={4} />
+        <RowLine species={title} label="tGHG" c={result.tGhg} digits={6} />
+        <RowLine species={title} label="GWP" c={result.gwp} digits={0} />
         <div className="border-t border-border pt-1.5">
-          <RowLine label="tCO2eq" c={result.tCo2eq} digits={6} emphasis />
+          <RowLine species={title} label="tCO2eq" c={result.tCo2eq} digits={6} emphasis />
         </div>
       </div>
     </div>
@@ -515,11 +521,14 @@ function SpeciesCard({ title, result }: { title: string; result: Scope1SpeciesRe
 }
 
 function RowLine({
+  species,
   label,
   c,
   digits,
   emphasis = false,
 }: {
+  /** breadcrumb 에서 종을 구분하려는 접두 · 예 "CO₂" */
+  species?: string;
   label: string;
   c: Calculated | MaybeCalculated;
   digits: number;
@@ -528,7 +537,13 @@ function RowLine({
   return (
     <div className="flex items-baseline justify-between gap-2">
       <span className="text-xs text-text-muted">{label}</span>
-      <Cell calculated={c} digits={digits} size="sm" emphasis={emphasis} />
+      <Cell
+        calculated={c}
+        digits={digits}
+        size="sm"
+        emphasis={emphasis}
+        provenanceLabel={species ? `${species} · ${label}` : label}
+      />
     </div>
   );
 }

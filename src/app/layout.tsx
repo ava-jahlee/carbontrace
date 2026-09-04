@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, IBM_Plex_Sans_KR, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import { ProvenanceProvider } from "@/components/provenance/context";
+import { ProvenancePanel } from "@/components/provenance/ProvenancePanel";
 
 // ─────────────────────────────────────────────────────────────
 // 폰트 시스템 · IBM Plex 삼종 통일 (workspace DESIGN.md · 세리프 안티)
@@ -43,7 +45,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${plexSans.variable} ${plexSansKR.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-bg text-text">
-        {children}
+        <ProvenanceProvider>
+          {children}
+          <ProvenancePanel />
+        </ProvenanceProvider>
       </body>
     </html>
   );
