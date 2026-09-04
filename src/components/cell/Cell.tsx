@@ -21,6 +21,7 @@
 import { useState } from "react";
 import type { Calculated, CalculatedInput } from "@/lib/calc/types";
 import type { PrimarySource, SourceMaturity } from "@/data/sources";
+import { isWarningPrimarySource } from "@/lib/audit/summary";
 
 export interface CellProps {
   /** 표시할 계산 결과. null 이면 "-" 표기. */
@@ -69,6 +70,11 @@ export function Cell({ calculated, digits = 4, label, size = "md", emphasis = fa
   const sizeCls = size === "lg" ? "text-2xl" : size === "sm" ? "text-sm" : "text-base";
   const emphCls = emphasis ? "text-emerald-700 dark:text-emerald-400" : "";
 
+  // 첫 depth measurement input 중 warning 이 있는지 (팝오버 열기 전 사전 표시)
+  const hasDirectWarning = calculated.inputs.some(
+    (i) => i.kind === "measurement" && isWarningPrimarySource(i.measurement.primarySource),
+  );
+
   return (
     <span className="relative inline-flex items-baseline gap-1 group align-baseline">
       {label && <span className="text-xs text-neutral-500 mr-1">{label}</span>}
@@ -76,6 +82,15 @@ export function Cell({ calculated, digits = 4, label, size = "md", emphasis = fa
         {formatNumber(calculated.value, digits)}
       </span>
       <span className="text-xs text-neutral-500">{calculated.unit}</span>
+      {hasDirectWarning && (
+        <span
+          className="ml-1 inline-flex h-4 items-center rounded border border-amber-400 bg-amber-100 px-1 text-[10px] font-semibold text-amber-900 dark:border-amber-600 dark:bg-amber-900/40 dark:text-amber-200"
+          title="이 값에 warning primary source 가 사용됨. 팝오버 근거 확인 필요."
+          aria-label="warning primary source"
+        >
+          ⚠
+        </span>
+      )}
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}

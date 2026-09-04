@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Cell } from "@/components/cell/Cell";
+import { AuditSummaryCard } from "@/components/audit/AuditSummary";
 import { FUELS } from "@/data/factors/fuels.gen";
 import {
   countOverrides,
@@ -10,6 +11,7 @@ import {
   type DataProfile,
 } from "@/data/factors/corrections";
 import { calculateScope1 } from "@/lib/calc/scope1";
+import { summarizeAll } from "@/lib/audit/summary";
 import type { GwpStandard, Tier } from "@/lib/calc/types";
 
 export function Scope1Calculator() {
@@ -227,6 +229,8 @@ function ResultView({
           {result.fuelName} · 사용량 {amount} {activityUnit}
         </div>
       </div>
+
+      <AuditSummaryCard summary={summarizeAll([result.totalCo2eq])} />
 
       <div className="rounded-xl border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900">
         <h3 className="text-sm font-semibold text-neutral-500">공통 계수</h3>

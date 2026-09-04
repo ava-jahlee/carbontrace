@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { Cell } from "@/components/cell/Cell";
+import { AuditSummaryCard } from "@/components/audit/AuditSummary";
+import { summarizeAll } from "@/lib/audit/summary";
 import { calculateScope2, type Scope2Input, type Scope2Result, type Scope2SpeciesResult } from "@/lib/calc/scope2";
 import type { Calculated, GwpStandard, MaybeCalculated } from "@/lib/calc/types";
 import type {
@@ -253,6 +255,8 @@ function ResultView({
           {result.sourceLabel} · 사용량 {amount} {activityUnit}
         </div>
       </div>
+
+      <AuditSummaryCard summary={summarizeAll([result.totalCo2eq])} />
 
       <div className="grid gap-4 md:grid-cols-3">
         <SpeciesCard title="CO₂" result={result.co2} />
