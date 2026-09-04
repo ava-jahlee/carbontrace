@@ -40,12 +40,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# ¿ø¹®¼­ Ä³½Ã (°¨»çÀÚ´Â sources.ts URL ·Î Á¢±Ù)
-# PDF/TXT µî ´ë¿ë·® ? IPCC ¿øº» ÀúÀÛ±Ç ¹®Á¦µµ ÇÇÇÔ
+# ì›ë¬¸ì„œ ìºì‹œ (ê°ì‚¬ìëŠ” sources.ts URL ë¡œ ì ‘ê·¼)
+# PDF/TXT ë“± ëŒ€ìš©ëŸ‰ ? IPCC ì›ë³¸ ì €ì‘ê¶Œ ë¬¸ì œë„ í”¼í•¨
 docs/refs/
 
-# git ÀÓ½Ã Ä¿¹Ô ¸Ş½ÃÁö ÆÄÀÏ
+# git ì„ì‹œ ì»¤ë°‹ ë©”ì‹œì§€ íŒŒì¼
 .git-commit-msg.tmp
 
-# dev server ·Î±×
+# dev server ë¡œê·¸
 .dev.log

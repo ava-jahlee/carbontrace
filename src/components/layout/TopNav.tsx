@@ -15,13 +15,14 @@ interface TopNavProps {
    * 현재 페이지 (활성 링크 accent 처리용).
    * fuel-combustion · refrigerant 둘 다 scope1 로 hoist (Scope 1 하위 카테고리).
    */
-  active?: "home" | "scope1" | "scope2" | "scope3" | "docs" | "facility";
+  active?: "home" | "scope1" | "scope2" | "scope3" | "inventory" | "docs" | "facility";
 }
 
 const NAV_ITEMS = [
   { href: "/scope1", label: "Scope 1", key: "scope1" as const },
   { href: "/scope2", label: "Scope 2", key: "scope2" as const },
   { href: "/scope3", label: "Scope 3", key: "scope3" as const },
+  { href: "/inventory", label: "Inventory", key: "inventory" as const },
   { href: "/docs", label: "Docs", key: "docs" as const },
 ];
 
