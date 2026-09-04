@@ -28,20 +28,13 @@ const scope2: Category[] = [
 ];
 
 const scope3: Category[] = [
-  { name: "Cat 1. 구매 재화 · 서비스", detail: "건축 자재 (시멘트·철강·유리·목재), 사무기기 · 소모품 embodied carbon", status: "planned", source: "GHG Protocol Scope 3 · UK BEIS · ecoinvent" },
-  { name: "Cat 2. 자본재", detail: "건물 자체 embodied carbon (설계 시)", status: "planned" },
-  { name: "Cat 3. 연료·에너지 관련 · Scope 1/2 미포함", detail: "연료 upstream (well-to-tank) · 전력·열 T&D loss", status: "planned", source: "IEA · UK BEIS · KEPCO T&D 손실률" },
+  { name: "Cat 1-15. 15 카테고리 카탈로그", detail: "정의 · 방법론 · 원문서 카탈로그 완성 (/scope3) · 계산 엔진은 카테고리별로 순차 구현", status: "in-progress", source: "GHG Protocol Scope 3 Standard · NIER 지침 v1.0 (2024.12)" },
+  { name: "Cat 3. 연료·에너지 관련 · Scope 1/2 미포함", detail: "우선 확장 후보 · Scope 1·2 이미 있으므로 well-to-tank + T&D loss 계수만 추가", status: "planned", source: "IEA · UK BEIS · KEPCO T&D 손실률" },
+  { name: "Cat 6. 출장", detail: "실무 자주 사용 · 항공 (좌석 등급별) · 철도 · 자동차", status: "planned", source: "GHG Protocol · UK BEIS · GLEC" },
+  { name: "Cat 7. 통근", detail: "직원 통근 (자동차 · 대중교통 · 도보 · 재택근무)", status: "planned" },
   { name: "Cat 4. Upstream 물류", detail: "자재 운송 (건축 시 · 소모품 배송)", status: "planned" },
-  { name: "Cat 5. 폐기물 처리", detail: "일반폐기물 · 재활용 · 하수 처리", status: "planned", source: "IPCC 2006 Vol.5" },
-  { name: "Cat 6. 출장", detail: "항공 · 철도 · 자동차 · 숙박", status: "planned", source: "GHG Protocol · GLEC" },
-  { name: "Cat 7. 통근", detail: "직원 통근 (자동차 · 대중교통 · 도보)", status: "planned" },
-  { name: "Cat 8. Upstream 임대 자산", detail: "임차 건물의 Scope 1/2 (임대 건물이 있는 경우)", status: "planned" },
-  { name: "Cat 9. Downstream 물류", detail: "일반적으로 건물 계산에는 미해당", status: "planned" },
-  { name: "Cat 10-11. 판매 재화 처리·사용", detail: "일반적으로 건물 계산에는 미해당", status: "planned" },
-  { name: "Cat 12. 판매 재화 폐기", detail: "일반적으로 건물 계산에는 미해당", status: "planned" },
-  { name: "Cat 13. Downstream 임대 자산", detail: "임대인 관점 (자신이 임대하는 건물의 임차인 배출량)", status: "planned" },
-  { name: "Cat 14. 프랜차이즈", detail: "프랜차이즈 본사 관점", status: "planned" },
-  { name: "Cat 15. 투자", detail: "금융업 · PCAF 방법론", status: "planned", source: "PCAF Global GHG Accounting Standard" },
+  { name: "Cat 5. 폐기물 처리", detail: "일반폐기물 · 재활용 · 하수 처리", status: "planned", source: "IPCC 2006 Vol.5 · 한국환경공단" },
+  { name: "Cat 15. 투자", detail: "금융업 · PCAF 6개 자산군별 방법론", status: "planned", source: "PCAF Global Standard 2nd Ed. (2022)" },
 ];
 
 const ippu: Category[] = [
@@ -117,15 +110,16 @@ export default function RoadmapPage() {
           </div>
         </header>
 
-        {/* v0.4 요약 */}
+        {/* v0.6 요약 */}
         <div className="mt-8 rounded-md border border-verified/40 bg-verified-bg p-4">
           <div className="font-mono text-[10px] uppercase tracking-widest text-verified">
-            v0.4 · current
+            v0.6 · current
           </div>
           <ul className="mt-2 space-y-1 text-xs text-text-muted">
             <li>· Scope 1 · 연료 연소 (63 연료 · 3 티어 · 4 GWP 판 · 3 데이터 프로파일)</li>
             <li>· Scope 2 · 전력 · KDHC 열 · 국가 통합 열</li>
             <li>· Scope 1 fugitive · 냉매 · F-gas (HFC · 블렌드 · SF6 · NF3)</li>
+            <li>· Scope 3 · 15 카테고리 카탈로그 (정의 · 방법론 · 원문서 · 계산기 순차 구현)</li>
           </ul>
         </div>
 

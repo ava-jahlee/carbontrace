@@ -45,10 +45,17 @@ const CATALOG: CatalogItem[] = [
     tag: "scope_1 / fugitive / 1B",
   },
   {
+    href: "/scope3",
+    title: "Scope 3 · 기타 간접",
+    subtitle: "Corporate value chain · 15 categories",
+    detail: "GHG Protocol Standard · NIER v1.0 · Upstream 1-8 · Downstream 9-15",
+    tag: "scope_3 / value_chain",
+  },
+  {
     href: "/roadmap",
     title: "확장 로드맵",
-    subtitle: "Scope 3 · IPPU · future scope",
-    detail: "GHG Protocol 15 카테고리 · IPPU 5 · PCAF · GLEC",
+    subtitle: "IPPU · future scope",
+    detail: "GHG Protocol · IPCC 2006 Vol.3 · PCAF · GLEC",
     tag: "roadmap / planned",
   },
 ];
@@ -89,7 +96,7 @@ const DOC_LINKS: DocLink[] = [
     href: "https://github.com/ava-jahlee/carbontrace/blob/main/docs/CHANGELOG.md",
     tag: "log",
     title: "Changelog",
-    hint: "버전별 릴리스 노트 · v0.1 → v0.5",
+    hint: "버전별 릴리스 노트 · v0.1 → v0.6",
   },
   {
     href: "https://github.com/ava-jahlee/carbontrace",
@@ -197,7 +204,7 @@ export default function Home() {
           <div className="mb-8 flex items-baseline justify-between border-b border-border-strong pb-3">
             <h2 className="text-base font-semibold text-text">Catalog</h2>
             <span className="font-mono text-[11px] uppercase tracking-widest text-text-dim">
-              4 items
+              5 items
             </span>
           </div>
           <ul className="grid gap-px bg-border sm:grid-cols-2" style={{ border: "1px solid var(--border)" }}>
@@ -257,7 +264,7 @@ export default function Home() {
         {/* ─── 푸터 · sources ─── */}
         <footer className="mt-24 border-t border-border pt-6 font-mono text-[10px] uppercase tracking-widest text-text-dim">
           <div>src · GHGCalc_V0m_lja.xlsm · parity 137/137</div>
-          <div className="mt-1">v 0.5 · 2026-09-04</div>
+          <div className="mt-1">v 0.6 · 2026-09-04</div>
         </footer>
       </main>
     </CornerMetaFrame>

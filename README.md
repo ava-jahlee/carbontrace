@@ -2,8 +2,8 @@
 
 > 온실가스 배출량 산정 도구. **모든 수치에는 근거가 필요합니다.**
 >
-> IPCC 2006 GL, 온실가스 배출권거래제 (K-ETS) 지침, GIR 국가고유 배출계수, KDHC 지사별 실측을 그대로 따릅니다.  
-> v0.5 · Scope 1 (연료 · 냉매) + Scope 2 (전력 · 열) + 데이터 프로파일 + 확장성 로드맵.
+> IPCC 2006 GL, 온실가스 배출권거래제 (K-ETS) 지침, GIR 국가고유 배출계수, KDHC 지사별 실측, GHG Protocol Scope 3 표준을 그대로 따릅니다.  
+> v0.6 · Scope 1 (연료 · 냉매) + Scope 2 (전력 · 열) + Scope 3 (15 카테고리 카탈로그) + 데이터 프로파일.
 
 ---
 
@@ -67,7 +67,7 @@ Scope 2 는 CH4/N2O 도 완전 계산하므로 총합 tCO2eq 는 xlsm 원본 (CO
 
 ---
 
-## 지금 담긴 범위 (v0.5)
+## 지금 담긴 범위 (v0.6)
 
 - **Scope 1** — 1A4 기타 (건물) 고정연소 · 1B fugitive (냉매/F-gas)
 - **Scope 2** — 외부 공급 전기·열 간접 배출
@@ -111,6 +111,24 @@ Scope 2 는 CH4/N2O 도 완전 계산하므로 총합 tCO2eq 는 xlsm 원본 (CO
 
 Scope 3 15개 카테고리 · IPPU 5개 카테고리 · 확장 예정 항목 목록 페이지.
 각 항목에 상태 (완료/진행/예정) · 근거 문서 (GHG Protocol · IPCC Vol.3 · PCAF 등) 명시.
+
+### Scope 3 · 15 카테고리 카탈로그 (v0.6 신규 · `/scope3`)
+
+GHG Protocol Corporate Value Chain (Scope 3) Standard (2011) 의 15 카테고리를 그대로 옮긴 카탈로그.
+각 카테고리마다 정의 · 대표 활동 · 방법론 (rank 순) · 원문서를 정리.
+
+- **Upstream 1-8** · 구매 재화 · 자본재 · 연료·에너지 관련 · 물류 · 폐기물 · 출장 · 통근 · 임차 자산
+- **Downstream 9-15** · 하류 물류 · 후속 가공 · 제품 사용 · 폐기 · 임대 자산 · 프랜차이즈 · 투자
+
+각 카테고리 상세 페이지 (`/scope3/[cat]`) 에서 방법론 (rank 1 공급자 특정 → rank 4 지출 기반) 과 원문서 링크 확인 가능.
+계산 엔진은 카테고리별로 순차 구현 예정 (v0.6 은 스캐폴딩만).
+
+**원문서 카탈로그 (4종 신규):**
+
+- **GHG Protocol Scope 3 Standard** (2011) · WRI + WBCSD · 카테고리 정의·요구사항
+- **GHG Protocol Scope 3 Calculation Guidance** (2013 v1.0) · WRI + WBCSD + Carbon Trust · 실무 계산 방법
+- **NIER Scope 3 가이드라인** (2024.12 v1.0) · 국립환경과학원 · NIER-GP2024-103 · 313p 국내 지침
+- **PCAF Global Standard** (2022 2nd ed.) · Cat 15 Investments 전용 · 6개 자산군별 방법론
 
 ## 이전 범위 (v0.1)
 

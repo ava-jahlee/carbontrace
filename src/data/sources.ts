@@ -27,6 +27,9 @@ export type SourceKind =
   | "kets-guideline"   // 온실가스 배출권거래제의 배출량 보고 및 인증에 관한 지침 (환경부 고시)
   | "national-inventory" // 국가 온실가스 인벤토리 보고서 (NIR)
   | "kdhc"             // 한국지역난방공사 (Korea District Heating Corporation)
+  | "ghg-protocol"     // GHG Protocol (WRI + WBCSD) · Corporate Standard · Scope 3 시리즈
+  | "nier"             // 국립환경과학원 (National Institute of Environmental Research) · 환경부 산하
+  | "pcaf"             // Partnership for Carbon Accounting Financials · 금융업 Scope 3
   | "user-input"       // 사업자 T3 직접 입력
   | "constant"         // 물리 상수 / 단위 환산 계수
   | "convention";      // IPCC 관례 (예: CH4·N2O 는 산화계수 미적용)
@@ -412,6 +415,80 @@ export const IPCC_2006_VOL3_CH7: PrimarySource = {
   note: "냉매 배출량 산정 = 냉매 유출량 (kg) × GWP (kgCO2eq/kg). Tier 1a: 초기 충전량 × 기본 유출률 (연간 · 폐기). Tier 2/3: 물질수지법 (사업장 실측). 건물 냉방·냉장 설비의 Scope 1 fugitive 배출로 분류.",
 };
 
+// ─────────────────────────────────────────────────────────────
+// Scope 3 · 원문서 카탈로그 (v0.6 신규)
+// ─────────────────────────────────────────────────────────────
+
+/**
+ * GHG Protocol · Corporate Value Chain (Scope 3) Accounting and Reporting Standard
+ * — Scope 3 15 카테고리 정의 · 요구사항 · 보고 형식의 근본 표준.
+ *   실제 계산 방법은 별도 Calculation Guidance (2013) 참조.
+ */
+export const GHG_PROTOCOL_SCOPE3_STANDARD: PrimarySource = {
+  kind: "ghg-protocol",
+  docId: "ghg-protocol-scope3-standard-2011",
+  doc: "Corporate Value Chain (Scope 3) Accounting and Reporting Standard",
+  publisher: "World Resources Institute (WRI) + World Business Council for Sustainable Development (WBCSD)",
+  edition: "2011",
+  part: "Full Standard (152p) · Chapter 5 (Setting the Boundary) · Chapter 6 (Categorizing Emissions)",
+  table: "Table 5.4 (Scope 3 Categories · 15 categories overview)",
+  url: "https://ghgprotocol.org/corporate-value-chain-scope-3-standard",
+  maturity: "documented",
+  reviewedAt: "2026-09-04",
+  note: "Scope 3 15 카테고리 (Upstream 1-8 · Downstream 9-15) 의 정의 · 경계 · 요구사항의 근본 표준. Corporate Standard(2004) 의 후속 표준. 실제 카테고리별 계산 방법은 별도 Technical Guidance(2013) 참조.",
+};
+
+/**
+ * GHG Protocol · Technical Guidance for Calculating Scope 3 Emissions (v1.0)
+ * — 15 카테고리 각각의 실무 계산 방법 · 데이터 소스 · 배출계수 참조표.
+ */
+export const GHG_PROTOCOL_SCOPE3_CALC_GUIDANCE: PrimarySource = {
+  kind: "ghg-protocol",
+  docId: "ghg-protocol-scope3-calc-guidance-2013",
+  doc: "Technical Guidance for Calculating Scope 3 Emissions (version 1.0)",
+  publisher: "WRI + WBCSD (in partnership with Carbon Trust)",
+  edition: "2013 · v1.0 (182p)",
+  part: "Chapter 1 (Introduction) · Chapter 2-16 (카테고리별 상세 방법론)",
+  url: "https://ghgprotocol.org/scope-3-calculation-guidance-2",
+  maturity: "documented",
+  reviewedAt: "2026-09-04",
+  note: "각 카테고리(Cat 1-15)에 대해 여러 방법론 (spend-based · average-data · supplier-specific · hybrid 등) 을 순차 제시. 방법론 선택 순서: 사업장 실측 우선 → 산업 평균값 → 지출 기반. 저자: WRI+WBCSD 공동 · Carbon Trust 파트너십. Copyright © 2013.",
+};
+
+/**
+ * 국립환경과학원 · Scope 3 온실가스 배출량 산정 및 보고 가이드라인 (v1.0)
+ * — 한국 실무자 대상 국내 지침서. GHG Protocol 3개 표준 기반 · 한국 상황 (배출권거래제·NIR·PCAF)
+ *   반영. 상이할 경우 GHG Protocol 우선.
+ */
+export const NIER_SCOPE3_GUIDELINE: PrimarySource = {
+  kind: "nier",
+  docId: "nier-scope3-guideline-2024",
+  doc: "Scope 3 온실가스 배출량 산정 및 보고 가이드라인 (v1.0)",
+  publisher: "국립환경과학원 (NIER · 환경부 산하)",
+  edition: "2024.12 · v1.0 · 발간등록번호 NIER-GP2024-103 (정부간행물 11-1480523-005587-01)",
+  part: "총 313p · 카테고리별 산정 방법 · 데이터 수집 · 국내 사례",
+  maturity: "documented",
+  reviewedAt: "2026-09-04",
+  note: "한국 실무자용 국내 지침서 · 2024년 12월 발간 (최신). 근거 국제 표준 3종: (1) GHG Protocol Corporate Accounting and Reporting Standard(2004) (2) Corporate Value Chain(Scope 3) Standard(2011) (3) Technical Guidance for Calculation Scope 3 Emissions v1.0(2013). GHG Protocol 과 상이할 경우 GHG Protocol 우선 적용. 감사자·국내 실무자 우선 참조 문서.",
+};
+
+/**
+ * PCAF · The Global GHG Accounting and Reporting Standard for the Financial Industry
+ * — Scope 3 Cat 15 Investments (금융업 · 대출·투자 포트폴리오 배출량) 유일한 산업별 표준.
+ */
+export const PCAF_STANDARD: PrimarySource = {
+  kind: "pcaf",
+  docId: "pcaf-global-standard-2022",
+  doc: "The Global GHG Accounting and Reporting Standard for the Financial Industry · Part A: Financed Emissions",
+  publisher: "Partnership for Carbon Accounting Financials (PCAF)",
+  edition: "2nd Edition · 2022-12",
+  part: "Part A (Financed Emissions) · 6 asset classes (Listed equity · Business loans · Project finance · Commercial real estate · Mortgages · Motor vehicle loans)",
+  url: "https://carbonaccountingfinancials.com/en/standard",
+  maturity: "documented",
+  reviewedAt: "2026-09-04",
+  note: "Scope 3 Cat 15 Investments 계산의 국제 표준. Attribution factor = (금융기관 참여도) / (자산 총가치) 로 대출·투자 대상의 Scope 1+2 (선택적 3) 배출량을 배분. 6개 자산군별 상세 방법론. GHG Protocol Scope 3 Standard 는 Cat 15 계산 방법을 명시하지 않고 PCAF 로 위임. 국내 금융업체도 채택 증가 (KB금융지주·신한금융지주 등).",
+};
+
 /**
  * 카탈로그 전체 (UI 등에서 목록 조회에 사용).
  */
@@ -433,6 +510,10 @@ export const SOURCES = {
   GIR_POWER_2022,
   GIR_POWER_LATEST,
   KETS_HEAT_EF,
+  GHG_PROTOCOL_SCOPE3_STANDARD,
+  GHG_PROTOCOL_SCOPE3_CALC_GUIDANCE,
+  NIER_SCOPE3_GUIDELINE,
+  PCAF_STANDARD,
 } as const;
 
 export type SourceKey = keyof typeof SOURCES;

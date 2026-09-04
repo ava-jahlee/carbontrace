@@ -4,6 +4,52 @@ carbontrace 는 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 형식�
 
 ---
 
+## v0.6 · 2026-09-04 · Scope 3 · 15 카테고리 카탈로그 스캐폴딩
+
+**GHG Protocol Corporate Value Chain (Scope 3) Standard 의 15 카테고리를 감사 가능한 카탈로그 형태로 스캐폴딩.**
+계산 엔진은 카테고리별로 순차 구현 예정. 이번 릴리스는 정의·방법론·원문서 정리에 집중.
+
+### Added
+
+- [`src/data/sources.ts`](../src/data/sources.ts) · 원문서 4종 신규
+  - `GHG_PROTOCOL_SCOPE3_STANDARD` (2011) · WRI + WBCSD · 15 카테고리 근본 정의
+  - `GHG_PROTOCOL_SCOPE3_CALC_GUIDANCE` (2013 v1.0) · 182p · 실무 계산 방법
+  - `NIER_SCOPE3_GUIDELINE` (2024.12 v1.0) · 313p · 국내 지침 · NIER-GP2024-103
+  - `PCAF_STANDARD` (2022 2nd ed.) · Cat 15 Investments 전용 · 6 자산군 방법론
+- 새 `SourceKind` 3종: `ghg-protocol` · `nier` · `pcaf`
+- [`src/data/scope3.ts`](../src/data/scope3.ts) 신규 · 15 카테고리 카탈로그
+  - `Scope3Category` · `Scope3Methodology` 타입
+  - 각 카테고리: 영문·한글 이름 · 정의 · 건물 컨텍스트 · 대표 활동 · 방법론 (rank 1-4) · 원문서
+  - 총 15 카테고리 × 평균 2.7 방법론 = **41 개 (카테고리 · 방법론) 조합** 카탈로그화
+- [`/scope3`](../src/app/scope3/page.tsx) 랜딩 페이지 신규
+  - Upstream (1-8) · Downstream (9-15) 두 섹션 · 2 열 grid
+  - v0.6 스캐폴딩 안내 박스 · 방법 투명성 원칙 명시
+  - 근본 원문서 4종 카탈로그 하단 배치
+- [`/scope3/[cat]`](../src/app/scope3/[cat]/page.tsx) 카테고리 상세 페이지 (SSG · 15 경로 자동 생성)
+  - 정의 · 건물 컨텍스트 · 대표 활동 · 방법론 목록 (rank 순) · 원문서
+  - 각 방법론 · precision rank + 구현 상태 (`stub` · `partial` · `complete`)
+  - 참조 자료 리스트 (GHG Protocol · NIER · PCAF)
+
+### Changed
+
+- `TopNav` · Scope 3 링크 추가 (4 → 5 items) · default meta v0.5 → v0.6
+- 랜딩 `page.tsx`
+  - Catalog 4 → 5 items (Scope 3 · 기타 간접 카드 추가)
+  - Roadmap 카드 detail 조정 (Scope 3 는 자기 페이지 있으므로 IPPU 위주로)
+  - Docs · Changelog hint · v0.1 → v0.5 → v0.6
+  - footer v 0.5 → v 0.6
+- `roadmap/page.tsx`
+  - Scope 3 섹션 리셋: 15 카테고리 나열 → 카탈로그 링크 + 우선 확장 후보 (Cat 3·6·7·4·5·15) 7 항목으로 정리
+  - v0.4 current → v0.6 current · Scope 3 카탈로그 항목 추가
+- `README.md` · 버전 v0.5 → v0.6 · Scope 3 섹션 신규
+
+### Verified
+
+- `npm run build` · 통과 · `/scope3/[cat]` 15 경로 SSG 생성 (cat-01-purchased-goods ~ cat-15-investments)
+- 랜딩 · `/scope3` · `/scope3/cat-06-business-travel` 브라우저 확인
+
+---
+
 ## v0.5 · 2026-09-04 · 문서화 완성 · xlsm 오류 정정 릴리스
 
 **감사자·개발자·릴리스 관리자가 실제로 쓸 수 있는 형태로 문서 체계를 정리했습니다.** 코드 변경은 없고 문서·메타만.
