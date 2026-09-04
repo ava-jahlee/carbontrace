@@ -29,7 +29,7 @@ export default function Scope2Page() {
             Scope 2 · 외부 공급 전기·열
           </h1>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">
-            전력 (GIR 승인 배출계수) · 지역난방 열 (KDHC 지사별 · K-ETS 계획기간 3기/4기).
+            전력은 GIR 승인 배출계수, 지역난방 열은 KDHC 지사별 값과 K-ETS 계획기간 3기·4기 값을 사용합니다.
           </p>
         </header>
 

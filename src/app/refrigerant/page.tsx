@@ -29,7 +29,7 @@ export default function RefrigerantPage() {
             냉매 · F-gas · Scope 1 fugitive
           </h1>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">
-            IPCC 2006 Vol.3 Ch.7 · Tier 1a screening. 건물 냉방/냉장 설비에서 발생하는 냉매 유출 배출량.
+            건물 냉방·냉장 설비에서 새어 나온 냉매의 배출량을 산정합니다. IPCC 2006 Vol.3 Ch.7 Tier 1a screening 방법입니다.
           </p>
         </header>
 

@@ -74,7 +74,7 @@ export default function Home() {
           </h1>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-text-muted">
             온실가스 배출량 산정 도구.{" "}
-            <span className="text-text">모든 숫자가 근거를 달고 다닌다.</span>
+            <span className="text-text">모든 수치에는 근거가 필요합니다.</span>
           </p>
         </header>
 
@@ -85,17 +85,17 @@ export default function Home() {
           </div>
           <div className="space-y-4 text-sm leading-relaxed text-text-muted">
             <p>
-              IPCC 2006 GL · K-ETS 지침에 기반한 계산 엔진이지만, 이 도구의 진짜 지향은{" "}
-              <span className="font-medium text-text">감사 가능성 (auditability)</span> 에 있다.
+              IPCC 2006 GL 과 K-ETS 지침을 그대로 따르는 계산 엔진입니다.{" "}
+              <span className="font-medium text-text">감사 가능성 (auditability)</span>이 이 도구의 핵심입니다.
             </p>
             <p>
               결과 값 옆의{" "}
               <span className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-border-strong font-mono text-[9px] text-text-muted">
                 i
               </span>{" "}
-              를 누르면, 그 값이 어떤 수식에서 어떤 계수를 대입해 나왔는지, 그리고 각 계수가{" "}
-              <span className="text-text">어느 원문서 (IPCC PDF · GIR 공식자료 · K-ETS 지침)</span>{" "}
-              에서 왔는지가 열린다. 링크를 눌러 원문서로 바로 이동해 값을 재확인할 수 있다. 파생값은 다시 파고들 수 있어, 엑셀 셀 클릭 감사성을 웹에서 재현한다.
+              를 누르면 그 값을 만든 수식과 각 계수를 볼 수 있습니다. 계수마다{" "}
+              <span className="text-text">원문서 (IPCC PDF · GIR 공식자료 · K-ETS 지침)</span>{" "}
+              링크가 붙어 있어 값을 곧바로 재확인할 수 있습니다. 파생값도 다시 파고들 수 있어, 엑셀 셀 클릭 감사성을 웹에서 그대로 살렸습니다.
             </p>
             <p className="font-mono text-[11px] uppercase tracking-wider text-text-dim">
               [verified] · [documented] · [asserted] · [pending]

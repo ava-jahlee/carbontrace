@@ -207,7 +207,7 @@ function ResultView({
   if (result === null) {
     return (
       <div className="rounded-sm border border-border bg-surface-2 p-4 text-sm text-text-muted">
-        사용량을 입력하세요.
+        사용량을 입력해 주세요.
       </div>
     );
   }

@@ -31,7 +31,7 @@ export default function Scope1Page() {
             Scope 1 · 연료 연소 직접 배출
           </h1>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">
-            1A. 에너지 › 1A4. 기타 · 고정연소. IPCC 2006 GL · 온실가스 배출권거래제 지침.
+            1A. 에너지 · 1A4. 기타 (고정연소). IPCC 2006 GL 과 온실가스 배출권거래제 지침을 그대로 따릅니다.
           </p>
         </header>
 

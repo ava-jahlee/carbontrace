@@ -33,7 +33,7 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "carbontrace — 감사 가능한 온실가스 배출량 계산기",
   description:
-    "IPCC 2006 GL · K-ETS 지침 기반 온실가스 배출량 산정. 모든 숫자가 근거를 달고 다닌다.",
+    "IPCC 2006 GL 과 K-ETS 지침을 그대로 따르는 온실가스 배출량 산정 도구. 모든 수치에는 근거가 필요합니다.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

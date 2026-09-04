@@ -134,7 +134,7 @@ export function Scope2Calculator() {
                 </Field>
                 <div className="rounded-sm border border-warn-border bg-warn-bg px-2 py-1.5 text-[11px] text-warn">
                   <span className="font-mono text-[10px] uppercase tracking-widest">[needs-review]</span>
-                  {" "}국가 통합 열 3종 값은 원출처 미상. KDHC 지사별 값 사용 권장.
+                  {" "}국가 통합 열 3종은 원출처를 아직 확인하지 못했습니다. KDHC 지사별 값을 쓰는 편이 안전합니다.
                 </div>
               </>
             )}
@@ -227,7 +227,7 @@ function ResultView({
   if (result === null) {
     return (
       <div className="rounded-sm border border-border bg-surface-2 p-4 text-sm text-text-muted">
-        사용량을 입력하세요.
+        사용량을 입력해 주세요.
       </div>
     );
   }

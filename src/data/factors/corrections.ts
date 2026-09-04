@@ -26,11 +26,11 @@ export const DATA_PROFILE_LABELS: Record<DataProfile, string> = {
 
 export const DATA_PROFILE_DESC: Record<DataProfile, string> = {
   "xlsm-original":
-    "원본 xlsm (GHGCalc_V0m_lja) 이 저장한 값 그대로. 파리티 테스트 통과 상태. xlsm 원본 오류 (등유·항공유 뒤바꿈 등) 도 함께 유지되지만 UI 에는 ⚠ warning 배지가 표시된다.",
+    "원본 xlsm (GHGCalc_V0m_lja) 이 저장한 값을 그대로 씁니다. 파리티 테스트를 통과한 상태입니다. xlsm 원본 오류 (등유·항공유 뒤바꿈 등) 도 함께 남아 있지만, UI 에서는 ⚠ warning 배지로 표시해 드립니다.",
   "xlsm-corrected":
-    "xlsm 원본이 잘못 넣은 값들을 정정. 등유·항공유 T2 tC 뒤바꿈 원상복구 + T2 CH4/N2O 오작성을 IPCC Table 2.5 값으로 정정. 국가고유 배출계수 자체는 xlsm 이 담은 판 (GIR 2017년 승인) 유지.",
+    "xlsm 원본이 잘못 넣은 값을 정정합니다. 등유·항공유 T2 tC 뒤바꿈을 원상복구하고, T2 CH4/N2O 오작성은 IPCC Table 2.5 값으로 되돌립니다. 국가고유 배출계수 자체는 xlsm 이 담은 판 (GIR 2017년 승인) 을 유지합니다.",
   "gir22-latest":
-    "xlsm 정정 + GIR 2022.1 공표 최신 국가고유 배출계수 반영. 경유 20.111 → 20.090 · 도시가스LNG 15.272 → 15.236 등 최신값 25개 반영. 배출권거래제 최신 실무에 가장 부합.",
+    "xlsm 정정에 더해 GIR 2022.1 공표 최신 국가고유 배출계수를 반영합니다. 경유 20.111 → 20.090, 도시가스LNG 15.272 → 15.236 등 최신값 25개를 반영해, 배출권거래제 최신 실무와 가장 잘 맞습니다.",
 };
 
 /** override 는 값 하나만 바꾸는 게 아니라 primarySource 도 새로 지정. */

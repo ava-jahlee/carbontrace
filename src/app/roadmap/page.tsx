@@ -111,8 +111,8 @@ export default function RoadmapPage() {
           </div>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-text">확장성 로드맵</h1>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">
-            carbontrace 는 건물 온실가스 계산기지만, 감사 가능 원칙과 primary source 카탈로그를 그대로 유지하며
-            Scope 3 · IPPU · F-gas 까지 확장 가능하도록 설계됨.
+            carbontrace 는 건물용 온실가스 계산기지만, 같은 감사 원칙과 primary source 카탈로그 위에서
+            Scope 3 · IPPU · F-gas 까지 확장할 수 있도록 만들었습니다.
           </p>
         </header>
 
@@ -122,8 +122,8 @@ export default function RoadmapPage() {
             v0.4 · current
           </div>
           <ul className="mt-2 space-y-1 text-xs text-text-muted">
-            <li>· Scope 1 (연료 연소 · 63 연료 · 3 티어 · 4 GWP 판 · 3 데이터 프로파일)</li>
-            <li>· Scope 2 (전력 · KDHC 열 · 국가 통합 열)</li>
+            <li>· Scope 1 · 연료 연소 (63 연료 · 3 티어 · 4 GWP 판 · 3 데이터 프로파일)</li>
+            <li>· Scope 2 · 전력 · KDHC 열 · 국가 통합 열</li>
             <li>· Scope 1 fugitive · 냉매 · F-gas (HFC · 블렌드 · SF6 · NF3)</li>
           </ul>
         </div>

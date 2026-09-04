@@ -72,7 +72,7 @@ export function RefrigerantCalculator() {
                 onChange={(e) => setLeakedKg(e.target.value)}
                 className="w-full rounded-sm border border-border bg-surface px-2 py-1.5 text-sm tabular-nums text-text"
               />
-              <p className="mt-1 text-[11px] text-text-muted">사업자 실측 (연간 재충전량 + 폐기 시 손실).</p>
+              <p className="mt-1 text-[11px] text-text-muted">연간 재충전량과 폐기 시 손실을 사업자가 실측한 값을 넣어 주세요.</p>
             </Field>
 
             <Field label="GWP 판" hint="assessment">
@@ -95,7 +95,7 @@ export function RefrigerantCalculator() {
       <section className="space-y-6">
         {!result && (
           <div className="rounded-sm border border-border bg-surface-2 p-4 text-sm text-text-muted">
-            유출량을 입력하세요.
+            유출량을 입력해 주세요.
           </div>
         )}
         {result && "error" in result && (

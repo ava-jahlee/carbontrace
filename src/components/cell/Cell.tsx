@@ -70,7 +70,7 @@ export function Cell({ calculated, digits = 4, label, size = "md", emphasis = fa
       {hasDirectWarning && (
         <span
           className="ml-1 inline-flex h-4 items-center rounded-sm border border-warn-border bg-warn-bg px-1 font-mono text-[10px] font-medium tracking-tight text-warn"
-          title="이 값에 warning primary source 가 사용됨. 팝오버 근거 확인 필요."
+          title="이 값을 만든 근거 중 확인이 필요한 항목이 있습니다. 팝오버를 열어 원문서를 확인해 주세요."
           aria-label="warning primary source"
         >
           [warn]
@@ -237,10 +237,10 @@ function MaturityBadge({ maturity }: { maturity: SourceMaturity }) {
   // mono 대괄호 · muted 색 (workspace DESIGN.md 5.1 뱃지 관용구)
   const label = `[${maturity}]`;
   const title =
-    maturity === "verified" ? "원문서 · 표 · 페이지 · 행까지 확인 완료"
-    : maturity === "documented" ? "원문서 · 표 확인 완료 (페이지 · 행은 추후 명시)"
-    : maturity === "asserted" ? "문서명 · 표는 알지만 원문 재확인 예정"
-    : "원문서 재추적 미완료";
+    maturity === "verified" ? "원문서의 표·페이지·행까지 확인을 마쳤습니다."
+    : maturity === "documented" ? "원문서와 표는 확인을 마쳤습니다. 페이지와 행은 추후 명시할 예정입니다."
+    : maturity === "asserted" ? "문서명과 표는 알지만 원문 재확인이 남아 있습니다."
+    : "아직 원문서 재추적을 하지 않았습니다.";
   const cls =
     maturity === "verified" ? "text-verified border-verified/40 bg-verified-bg"
     : maturity === "documented" ? "text-documented border-documented/40 bg-documented-bg"
@@ -279,7 +279,7 @@ function PrimarySourceCard({ ps }: { ps: PrimarySource }) {
         {isWarning && (
           <span
             className="inline-block rounded-sm border border-warn-border bg-warn-bg px-1 py-0 font-mono text-[10px] leading-4 tracking-tight text-warn"
-            title="원본 xlsm 오작성 또는 원출처 불명 · 감사 시 재확인 필요"
+            title="원본 xlsm 에 오작성이 있거나 원출처를 아직 확인하지 못했습니다. 감사할 때 재확인이 필요합니다."
           >
             [needs-review]
           </span>
