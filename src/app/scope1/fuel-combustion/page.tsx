@@ -25,10 +25,7 @@ export default function FuelCombustionPage() {
         </div>
 
         <header className="border-b border-border pb-8">
-          <div className="font-mono text-[11px] uppercase tracking-widest text-accent-soft">
-            scope_1 · direct emissions · stationary
-          </div>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-text sm:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight text-text sm:text-5xl">
             연료 연소 <span className="text-accent">·</span> Fuel combustion
           </h1>
           <div className="mt-4 max-w-2xl space-y-1 text-sm leading-relaxed text-pretty">

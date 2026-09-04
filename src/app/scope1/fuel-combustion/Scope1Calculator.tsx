@@ -34,6 +34,14 @@ export function Scope1Calculator() {
   const [gwpStandard, setGwpStandard] = useState<GwpStandard>("SAR");
   const [dataProfile, setDataProfile] = useState<DataProfile>("xlsm-original");
 
+  // T3 사용자 입력 (사업장 실측치). Tier 가 T3 일 때만 UI 노출·값 사용.
+  // 원 xlsm 관례: efTier=T3 이면 산화계수도 T3 (Main!F15 = E15) · 그래서 4개 값이 같이 나옴.
+  const [ovrHeat, setOvrHeat] = useState<string>("");
+  const [ovrCO2, setOvrCO2] = useState<string>("");
+  const [ovrCH4, setOvrCH4] = useState<string>("");
+  const [ovrN2O, setOvrN2O] = useState<string>("");
+  const [ovrOx, setOvrOx] = useState<string>("");
+
   // 시설이 바뀌면 · 현재 Tier 가 최소치 미달이면 자동으로 올림.
   useEffect(() => {
     if (!mins) return;
@@ -47,6 +55,20 @@ export function Scope1Calculator() {
   const result = useMemo(() => {
     const amt = parseFloat(amount);
     if (!Number.isFinite(amt)) return null;
+
+    // T3 override 값들 · 해당 tier 가 T3 일 때만 파싱해서 넘김.
+    const parseNum = (s: string) => {
+      const n = parseFloat(s);
+      return Number.isFinite(n) ? n : undefined;
+    };
+    const overrides = {
+      heatFactor: heatTier === "T3" ? parseNum(ovrHeat) : undefined,
+      efCO2: efTier === "T3" ? parseNum(ovrCO2) : undefined,
+      efCH4: efTier === "T3" ? parseNum(ovrCH4) : undefined,
+      efN2O: efTier === "T3" ? parseNum(ovrN2O) : undefined,
+      oxidation: efTier === "T3" ? parseNum(ovrOx) : undefined,
+    };
+
     return calculateScope1({
       fuelId,
       amount: amt,
@@ -54,8 +76,9 @@ export function Scope1Calculator() {
       efTier,
       gwpStandard,
       dataProfile,
+      overrides,
     });
-  }, [fuelId, amount, heatTier, efTier, gwpStandard, dataProfile]);
+  }, [fuelId, amount, heatTier, efTier, gwpStandard, dataProfile, ovrHeat, ovrCO2, ovrCH4, ovrN2O, ovrOx]);
 
   const grouped = useMemo(() => {
     const g = new Map<string, typeof FUELS>();
@@ -68,14 +91,14 @@ export function Scope1Calculator() {
   }, []);
 
   return (
-    <div className="mt-10">
+    <div className="mt-6">
       <FacilityContextBanner showTiers />
 
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
       {/* ═══ 좌: 입력 (subtle wash · workspace DESIGN.md 4.2) ═══ */}
       <aside className="lg:sticky lg:top-6 lg:self-start">
         <div className="rounded-md border border-border bg-surface-2 p-5">
-          <SectionHeader title="입력" hint="control panel" />
+          <SectionHeader title="입력" />
 
           <div className="mt-4 space-y-4">
             <Field label="연료" hint="fuel">
@@ -123,6 +146,49 @@ export function Scope1Calculator() {
               </Field>
             </div>
 
+            {/* ─ T3 사용자 입력 (사업장 실측치) ─ */}
+            {heatTier === "T3" && (
+              <OverrideField
+                label="열량계수"
+                hint={fuel?.heat.unit ?? "MJ/kg"}
+                value={ovrHeat}
+                onChange={setOvrHeat}
+                placeholder="사업장 실측 열량계수"
+              />
+            )}
+            {efTier === "T3" && (
+              <div className="rounded-sm border border-accent/40 bg-accent/[0.04] p-3 space-y-3">
+                <div className="text-[11px] text-text-muted">
+                  배출 T3 · 사업장 실측 배출계수 · 산화계수를 입력합니다.
+                </div>
+                <OverrideField
+                  label="배출계수 CO₂"
+                  hint="kgGHG/TJ"
+                  value={ovrCO2}
+                  onChange={setOvrCO2}
+                />
+                <OverrideField
+                  label="배출계수 CH₄"
+                  hint="kgGHG/TJ"
+                  value={ovrCH4}
+                  onChange={setOvrCH4}
+                />
+                <OverrideField
+                  label="배출계수 N₂O"
+                  hint="kgGHG/TJ"
+                  value={ovrN2O}
+                  onChange={setOvrN2O}
+                />
+                <OverrideField
+                  label="산화계수"
+                  hint="0 – 1"
+                  value={ovrOx}
+                  onChange={setOvrOx}
+                  placeholder="예 · 0.99"
+                />
+              </div>
+            )}
+
             <Field label="기준" hint="GWP ver.">
               <select
                 value={gwpStandard}
@@ -138,7 +204,7 @@ export function Scope1Calculator() {
 
             <Field
               label="데이터 프로파일"
-              hint={`profile · ${countOverrides(dataProfile)} overrides`}
+              hint={`${countOverrides(dataProfile)} overrides`}
             >
               <select
                 value={dataProfile}
@@ -156,10 +222,7 @@ export function Scope1Calculator() {
 
             {fuel && (
               <div className="rounded-sm border border-border bg-surface p-3 text-[11px] text-text-muted">
-                <div className="font-mono text-[10px] uppercase tracking-widest text-text-dim">
-                  fuel meta
-                </div>
-                <div className="mt-1">분류 · {fuel.category ?? "—"}</div>
+                <div>분류 · {fuel.category ?? "—"}</div>
                 <div>상온 · {fuel.state ?? "—"}</div>
               </div>
             )}
@@ -168,7 +231,7 @@ export function Scope1Calculator() {
       </aside>
 
       {/* ═══ 우: 결과 ═══ */}
-      <section className="space-y-6">
+      <section className="space-y-4">
         <ResultView
           result={result}
           amount={amount}
@@ -181,9 +244,6 @@ export function Scope1Calculator() {
         {/* ═ VI · 인벤토리에 추가 ═ */}
         {result && !("error" in result) && (
           <div className="border-t border-border pt-5">
-            <div className="mb-3 font-mono text-[10px] uppercase tracking-widest text-text-dim">
-              add to inventory
-            </div>
             <AddToInventoryButton
               defaultLabel={defaultInventoryLabel(facility, result.fuelName)}
               getDraft={(label): InventoryDraft => ({
@@ -232,6 +292,35 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
       </div>
       {children}
     </div>
+  );
+}
+
+/** T3 사용자 입력 헬퍼 · Field + number input 한 세트. */
+function OverrideField({
+  label,
+  hint,
+  value,
+  onChange,
+  placeholder,
+}: {
+  label: string;
+  hint: string;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+}) {
+  return (
+    <Field label={label} hint={hint}>
+      <input
+        type="number"
+        value={value}
+        min={0}
+        step="any"
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-sm border border-border bg-surface px-2 py-1.5 text-sm tabular-nums text-text placeholder:text-text-dim"
+      />
+    </Field>
   );
 }
 
@@ -325,16 +414,12 @@ function ResultView({
 
       {/* ═ II · 결과 (1위 압도적 · one decision one screen) ═ */}
       <div>
-        <SectionHeader title="결과" hint="total emission" />
-        <div className="mt-4 rounded-md border border-border-strong bg-surface p-6">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">
-            ∑ tCO2eq
-          </div>
-          <div className="mt-2">
-            <Cell calculated={result.totalCo2eq} digits={6} size="lg" emphasis />
-          </div>
+        <SectionHeader title="결과" />
+        <div className="mt-3 rounded-md border border-border-strong bg-surface p-4">
+          <Cell calculated={result.totalCo2eq} digits={6} size="md" emphasis />
+
           {/* 요약 · 명시적 라벨 (연료·사용량·조건) */}
-          <dl className="mt-4 space-y-1 text-xs">
+          <dl className="mt-3 space-y-1 text-xs">
             <div className="flex gap-3">
               <dt className="w-12 shrink-0 font-mono text-[10px] uppercase tracking-widest text-text-dim">
                 연료
@@ -361,18 +446,18 @@ function ResultView({
         </div>
       </div>
 
-      {/* ═ III · 감사 신뢰도 ═ */}
+      {/* ═ III · 감사 신뢰도 · 접기·펴기 (기본 접힘 · 이슈 있으면 자동 펼침) ═ */}
       <div>
-        <SectionHeader title="감사 신뢰도" hint="confidence" />
-        <div className="mt-4">
+        <SectionHeader title="감사 신뢰도" />
+        <div className="mt-3">
           <AuditSummaryCard summary={summarizeAll([result.totalCo2eq])} />
         </div>
       </div>
 
       {/* ═ IV · 공통 계수 ═ */}
       <div>
-        <SectionHeader title="공통 계수" hint="shared factors" />
-        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <SectionHeader title="공통 계수" />
+        <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
           <ResultRow label="열량계수" hint="ncv" calculated={result.heatFactor} digits={4} />
           <ResultRow label="산화계수" hint="ox" calculated={result.oxidation} digits={4} />
         </div>
@@ -380,8 +465,8 @@ function ResultView({
 
       {/* ═ V · 종별 (CO2 · CH4 · N2O) ═ */}
       <div>
-        <SectionHeader title="종별 배출" hint="by species" />
-        <div className="mt-4 grid gap-4 md:grid-cols-3">
+        <SectionHeader title="종별 배출" />
+        <div className="mt-3 grid gap-3 md:grid-cols-3">
           <SpeciesCard title="CO₂" result={result.co2} />
           <SpeciesCard title="CH₄" result={result.ch4} />
           <SpeciesCard title="N₂O" result={result.n2o} />
@@ -417,16 +502,15 @@ function ResultRow({
 
 function SpeciesCard({ title, result }: { title: string; result: Scope1SpeciesResult }) {
   return (
-    <div className="rounded-md border border-border bg-surface p-4">
-      <div className="flex items-baseline justify-between border-b border-border pb-2">
-        <h3 className="text-base font-semibold text-text">{title}</h3>
-        <span className="font-mono text-[10px] uppercase tracking-widest text-text-dim">species</span>
+    <div className="rounded-md border border-border bg-surface p-3">
+      <div className="border-b border-border pb-1.5">
+        <h3 className="text-sm font-semibold text-text">{title}</h3>
       </div>
-      <div className="mt-3 space-y-2">
+      <div className="mt-2 space-y-1.5">
         <RowLine label="배출계수" c={result.emissionFactor} digits={4} />
         <RowLine label="tGHG" c={result.tGhg} digits={6} />
         <RowLine label="GWP" c={result.gwp} digits={0} />
-        <div className="border-t border-border pt-2">
+        <div className="border-t border-border pt-1.5">
           <RowLine label="tCO2eq" c={result.tCo2eq} digits={6} emphasis />
         </div>
       </div>
