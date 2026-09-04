@@ -1,3 +1,6 @@
+import { CornerMetaFrame } from "@/components/layout/CornerMeta";
+import { SectionHeader } from "@/components/layout/SectionHeader";
+
 export const metadata = {
   title: "확장성 로드맵 — carbontrace",
   description: "Scope 3 · IPPU · F-gas 향후 확장 계획.",
@@ -49,74 +52,106 @@ const ippu: Category[] = [
 ];
 
 function StatusBadge({ s }: { s: Category["status"] }) {
-  const label =
-    s === "done" ? "완료" : s === "in-progress" ? "진행" : "예정";
+  const label = s === "done" ? "[done]" : s === "in-progress" ? "[wip]" : "[planned]";
   const cls =
     s === "done"
-      ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-700"
+      ? "text-verified border-verified/40 bg-verified-bg"
       : s === "in-progress"
-      ? "bg-amber-50 text-amber-800 border-amber-300 dark:bg-amber-900/30 dark:text-amber-200 dark:border-amber-700"
-      : "bg-neutral-100 text-neutral-600 border-neutral-300 dark:bg-neutral-800 dark:text-neutral-300 dark:border-neutral-700";
+      ? "text-asserted border-asserted/40 bg-asserted-bg"
+      : "text-pending border-pending/40 bg-pending-bg";
   return (
-    <span className={`inline-block rounded border px-1.5 py-[1px] text-[10px] font-medium uppercase tracking-wide ${cls}`}>
+    <span className={`inline-block rounded-sm border px-1 py-0 font-mono text-[10px] leading-4 tracking-tight ${cls}`}>
       {label}
     </span>
   );
 }
 
-function CategorySection({ title, items }: { title: string; items: Category[] }) {
+function CategoryList({ items, offset = 0 }: { items: Category[]; offset?: number }) {
   return (
-    <section className="mt-8">
-      <h2 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100">{title}</h2>
-      <ul className="mt-3 divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white dark:divide-neutral-800 dark:border-neutral-800 dark:bg-neutral-900">
-        {items.map((it, i) => (
-          <li key={i} className="flex items-start gap-3 p-3">
-            <div className="mt-0.5"><StatusBadge s={it.status} /></div>
-            <div className="min-w-0 flex-1">
-              <div className="text-sm font-medium text-neutral-800 dark:text-neutral-200">{it.name}</div>
-              <div className="mt-0.5 text-xs text-neutral-600 dark:text-neutral-400">{it.detail}</div>
-              {it.source && (
-                <div className="mt-1 text-[11px] italic text-neutral-500 dark:text-neutral-500">
-                  근거: {it.source}
-                </div>
-              )}
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <ul className="divide-y divide-border rounded-md border border-border bg-surface">
+      {items.map((it, i) => (
+        <li key={i} className="grid grid-cols-[2rem_auto_1fr] items-baseline gap-x-3 gap-y-1 p-3">
+          <span className="font-mono text-[10px] tabular-nums text-text-dim">
+            {String(i + 1 + offset).padStart(2, "0")}
+          </span>
+          <StatusBadge s={it.status} />
+          <div className="min-w-0">
+            <div className="text-sm font-medium text-text">{it.name}</div>
+            <div className="mt-0.5 text-xs text-text-muted">{it.detail}</div>
+            {it.source && (
+              <div className="mt-1 font-mono text-[10px] uppercase tracking-widest text-text-dim">
+                src · {it.source}
+              </div>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
 
 export default function RoadmapPage() {
   return (
-    <main className="mx-auto max-w-4xl px-6 py-10">
-      <div className="mb-2 flex items-center gap-2 text-xs">
-        <a href="/" className="text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200">
-          carbontrace
-        </a>
-        <span className="text-neutral-400">/</span>
-        <span className="text-neutral-800 dark:text-neutral-200">Roadmap</span>
-      </div>
-      <h1 className="text-3xl font-bold tracking-tight">확장성 로드맵</h1>
-      <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
-        carbontrace 는 건물 온실가스 계산기지만, 감사 가능 원칙과 primary source 카탈로그를 그대로 유지하며
-        Scope 3 · IPPU · F-gas 까지 확장 가능하도록 설계됨.
-      </p>
+    <CornerMetaFrame
+      tl="carbontrace"
+      tr="v0.4"
+      bl="scope_1 · 2 · 3 · IPPU"
+      br="GHG Protocol · IPCC 2006"
+    >
+      <main className="mx-auto max-w-4xl px-6 pt-12 pb-16 sm:px-10 md:px-12">
+        <div className="mb-4 flex items-baseline gap-2 font-mono text-[10px] uppercase tracking-widest text-text-muted">
+          <a href="/" className="hover:text-ink">carbontrace</a>
+          <span className="text-text-dim">/</span>
+          <span className="text-ink-dim">roadmap</span>
+        </div>
 
-      <div className="mt-6 rounded-lg border border-emerald-200 bg-emerald-50/30 px-4 py-3 text-sm text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950/20 dark:text-emerald-300">
-        <div className="font-semibold">v0.4 현재</div>
-        <ul className="mt-1 list-disc pl-4 text-xs">
-          <li>Scope 1 (연료 연소 · 63 연료 · 3 티어 · 4 GWP 판 · 3 데이터 프로파일)</li>
-          <li>Scope 2 (전력 · KDHC 열 · 국가 통합 열)</li>
-          <li>Scope 1 fugitive 냉매 · F-gas (HFC · 블렌드 · SF6 · NF3)</li>
-        </ul>
-      </div>
+        <header className="border-b border-border pb-6">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">
+            IV · future scope
+          </div>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-text">확장성 로드맵</h1>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">
+            carbontrace 는 건물 온실가스 계산기지만, 감사 가능 원칙과 primary source 카탈로그를 그대로 유지하며
+            Scope 3 · IPPU · F-gas 까지 확장 가능하도록 설계됨.
+          </p>
+        </header>
 
-      <CategorySection title="Scope 1 · 직접 배출" items={scope1} />
-      <CategorySection title="Scope 2 · 외부 공급 에너지 간접 배출" items={scope2} />
-      <CategorySection title="Scope 3 · 기타 간접 배출 (GHG Protocol 15 카테고리)" items={scope3} />
-      <CategorySection title="IPPU · 산업 공정 및 제품 사용" items={ippu} />
-    </main>
+        {/* v0.4 요약 */}
+        <div className="mt-6 rounded-md border border-verified/40 bg-verified-bg p-4">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-verified">
+            v0.4 · current
+          </div>
+          <ul className="mt-2 space-y-1 text-xs text-text-muted">
+            <li>· Scope 1 (연료 연소 · 63 연료 · 3 티어 · 4 GWP 판 · 3 데이터 프로파일)</li>
+            <li>· Scope 2 (전력 · KDHC 열 · 국가 통합 열)</li>
+            <li>· Scope 1 fugitive · 냉매 · F-gas (HFC · 블렌드 · SF6 · NF3)</li>
+          </ul>
+        </div>
+
+        {/* Scope 1 */}
+        <div className="mt-10">
+          <SectionHeader numeral="I" title="Scope 1 · 직접 배출" hint="direct" />
+          <div className="mt-4"><CategoryList items={scope1} /></div>
+        </div>
+
+        {/* Scope 2 */}
+        <div className="mt-10">
+          <SectionHeader numeral="II" title="Scope 2 · 외부 공급 에너지" hint="purchased energy" />
+          <div className="mt-4"><CategoryList items={scope2} /></div>
+        </div>
+
+        {/* Scope 3 */}
+        <div className="mt-10">
+          <SectionHeader numeral="III" title="Scope 3 · 기타 간접" hint="GHG Protocol · 15 categories" />
+          <div className="mt-4"><CategoryList items={scope3} /></div>
+        </div>
+
+        {/* IPPU */}
+        <div className="mt-10">
+          <SectionHeader numeral="IV" title="IPPU · 산업 공정 및 제품 사용" hint="processes" />
+          <div className="mt-4"><CategoryList items={ippu} /></div>
+        </div>
+      </main>
+    </CornerMetaFrame>
   );
 }

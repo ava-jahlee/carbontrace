@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════════
+   carbontrace · 시각 시스템
+   workspace DESIGN.md · REFERENCES.md · PROFILE.md 준수
+   
+   원칙:
+   - 라이트 우선 (ivory · off-white · ink)
+   - 세리프 X · IBM Plex 삼종 통일
+   - archivio-uno 계열 코너 메타 · 카달로그 감성
+   - 성숙도 색은 muted · 이모지 X · mono 대괄호 뱃지
+   ═══════════════════════════════════════════════════════════ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ── 기본 팔레트 (ivory 톤) ────────────────────────── */
+  --bg: #fafaf7;
+  --surface: #ffffff;
+  --surface-2: #f2f2ee;      /* input 영역 subtle wash */
+  --border: #e6e5e0;
+  --border-strong: #c9c7c0;
+  --text: #171613;           /* ink */
+  --text-muted: #7f7c78;
+  --text-dim: #a8a5a0;
+  --ink: #3a3833;            /* 강조 · fill */
+  --ink-dim: #8c887f;
+
+  /* ── 성숙도 색 (muted · workspace DESIGN.md) ───────── */
+  --verified: #5c7a4e;       /* muted green */
+  --verified-bg: #eef2ea;
+  --documented: #6a6763;     /* neutral ink */
+  --documented-bg: #ededea;
+  --asserted: #8a7645;       /* muted amber */
+  --asserted-bg: #f4f0e6;
+  --pending: #a8a5a0;        /* dim */
+  --pending-bg: #efeeeb;
+
+  /* ── warning (⚠) · 원출처 확인 요망 ─────────────── */
+  --warn: #7a5a1e;
+  --warn-bg: #f7ecd2;
+  --warn-border: #d9b872;
 }
 
+/* Tailwind v4 · @theme 로 CSS 변수 → utility 클래스 매핑 */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* 팔레트 */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-text-dim: var(--text-dim);
+  --color-ink: var(--ink);
+  --color-ink-dim: var(--ink-dim);
+
+  /* 성숙도 */
+  --color-verified: var(--verified);
+  --color-verified-bg: var(--verified-bg);
+  --color-documented: var(--documented);
+  --color-documented-bg: var(--documented-bg);
+  --color-asserted: var(--asserted);
+  --color-asserted-bg: var(--asserted-bg);
+  --color-pending: var(--pending);
+  --color-pending-bg: var(--pending-bg);
+
+  /* warning */
+  --color-warn: var(--warn);
+  --color-warn-bg: var(--warn-bg);
+  --color-warn-border: var(--warn-border);
+
+  /* 폰트 (layout.tsx 에서 CSS 변수 정의) */
+  --font-sans: var(--font-sans-kr), var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ── body · 라이트 우선 · 다크 미지원 (원칙) ─────────── */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans-kr), var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";  /* Plex sans stylistic set */
+}
+
+/* mono 는 숫자 · 코드 · 뱃지 · 코너 라벨에만 명시적으로 */
+.font-mono, code, kbd, pre, samp {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+  font-feature-settings: "tnum" 1;
+}
+
+/* tabular numeric · 결과 값 (∑ tCO2eq 등) */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── 링크 base · 밑줄 dotted · ink 톤 ────────────────── */
+a {
+  color: inherit;
+  text-decoration-line: none;
+}
+a:hover {
+  color: var(--ink);
 }

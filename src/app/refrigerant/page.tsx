@@ -1,4 +1,5 @@
 import { RefrigerantCalculator } from "./RefrigerantCalculator";
+import { CornerMetaFrame } from "@/components/layout/CornerMeta";
 
 export const metadata = {
   title: "냉매 · F-gas 계산기 — carbontrace",
@@ -7,20 +8,33 @@ export const metadata = {
 
 export default function RefrigerantPage() {
   return (
-    <main className="mx-auto max-w-5xl px-6 py-10">
-      <div className="mb-2 flex items-center gap-2 text-xs">
-        <a href="/" className="text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200">
-          carbontrace
-        </a>
-        <span className="text-neutral-400">/</span>
-        <span className="text-neutral-800 dark:text-neutral-200">냉매 · F-gas</span>
-      </div>
-      <h1 className="text-3xl font-bold tracking-tight">냉매 · F-gas · Scope 1 fugitive</h1>
-      <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
-        IPCC 2006 Vol.3 Ch.7 · Tier 1a screening. 건물 냉방/냉장 설비에서 발생하는 냉매 유출 배출량.
-      </p>
+    <CornerMetaFrame
+      tl="carbontrace"
+      tr="v0.4"
+      bl="fugitive · 1B · f-gas"
+      br="IPCC 2006 Vol.3 · AR6 SM.7"
+    >
+      <main className="mx-auto max-w-6xl px-6 pt-12 pb-16 sm:px-10 md:px-12">
+        <div className="mb-4 flex items-baseline gap-2 font-mono text-[10px] uppercase tracking-widest text-text-muted">
+          <a href="/" className="hover:text-ink">carbontrace</a>
+          <span className="text-text-dim">/</span>
+          <span className="text-ink-dim">refrigerant</span>
+        </div>
 
-      <RefrigerantCalculator />
-    </main>
+        <header className="border-b border-border pb-6">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">
+            III · direct · fugitive
+          </div>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-text">
+            냉매 · F-gas · Scope 1 fugitive
+          </h1>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">
+            IPCC 2006 Vol.3 Ch.7 · Tier 1a screening. 건물 냉방/냉장 설비에서 발생하는 냉매 유출 배출량.
+          </p>
+        </header>
+
+        <RefrigerantCalculator />
+      </main>
+    </CornerMetaFrame>
   );
 }

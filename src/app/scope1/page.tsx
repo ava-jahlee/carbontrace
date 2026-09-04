@@ -1,4 +1,5 @@
 import { Scope1Calculator } from "./Scope1Calculator";
+import { CornerMetaFrame } from "@/components/layout/CornerMeta";
 
 export const metadata = {
   title: "Scope 1 계산기 — carbontrace",
@@ -7,20 +8,35 @@ export const metadata = {
 
 export default function Scope1Page() {
   return (
-    <main className="mx-auto max-w-5xl px-6 py-10">
-      <div className="mb-2 flex items-center gap-2 text-xs">
-        <a href="/" className="text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200">
-          carbontrace
-        </a>
-        <span className="text-neutral-400">/</span>
-        <span className="text-neutral-800 dark:text-neutral-200">Scope 1</span>
-      </div>
-      <h1 className="text-3xl font-bold tracking-tight">Scope 1 · 연료 연소 직접 배출</h1>
-      <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
-        1A. 에너지 › 1A4. 기타 · 고정연소.  IPCC 2006 GL & 온실가스 배출권거래제 지침.
-      </p>
+    <CornerMetaFrame
+      tl="carbontrace"
+      tr="v0.4"
+      bl="fuel_combustion · 1A4"
+      br="IPCC 2006 · K-ETS"
+    >
+      <main className="mx-auto max-w-6xl px-6 pt-12 pb-16 sm:px-10 md:px-12">
+        {/* breadcrumb · mono */}
+        <div className="mb-4 flex items-baseline gap-2 font-mono text-[10px] uppercase tracking-widest text-text-muted">
+          <a href="/" className="hover:text-ink">carbontrace</a>
+          <span className="text-text-dim">/</span>
+          <span className="text-ink-dim">scope_1</span>
+        </div>
 
-      <Scope1Calculator />
-    </main>
+        {/* 헤드 */}
+        <header className="border-b border-border pb-6">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">
+            I · direct emissions
+          </div>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-text">
+            Scope 1 · 연료 연소 직접 배출
+          </h1>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">
+            1A. 에너지 › 1A4. 기타 · 고정연소. IPCC 2006 GL · 온실가스 배출권거래제 지침.
+          </p>
+        </header>
+
+        <Scope1Calculator />
+      </main>
+    </CornerMetaFrame>
   );
 }
