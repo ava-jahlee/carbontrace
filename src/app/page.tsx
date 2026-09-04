@@ -68,6 +68,12 @@ const DOC_LINKS: DocLink[] = [
     hint: "제3자 검증기관·심사원이 특정 값을 원문서까지 역추적하는 표준 5단계",
   },
   {
+    href: "https://github.com/ava-jahlee/carbontrace/blob/main/docs/DATA-PROFILES.md",
+    tag: "data",
+    title: "데이터 프로파일 상세",
+    hint: "3 프로파일 (원본·정정·최신) · 각 정정 fuel 별 표 · 원문서 근거",
+  },
+  {
     href: "https://github.com/ava-jahlee/carbontrace/blob/main/docs/DEVELOPMENT.md",
     tag: "dev",
     title: "개발자 가이드",
@@ -75,9 +81,15 @@ const DOC_LINKS: DocLink[] = [
   },
   {
     href: "https://github.com/ava-jahlee/carbontrace/blob/main/docs/PRIMARY-SOURCE-NOTE-STANDARD.md",
-    tag: "data",
+    tag: "note",
     title: "Primary source note 표준",
     hint: "note 필드 작성 규칙 · muted · 사실 · 마침표",
+  },
+  {
+    href: "https://github.com/ava-jahlee/carbontrace/blob/main/docs/CHANGELOG.md",
+    tag: "log",
+    title: "Changelog",
+    hint: "버전별 릴리스 노트 · v0.1 → v0.5",
   },
   {
     href: "https://github.com/ava-jahlee/carbontrace",
@@ -216,7 +228,7 @@ export default function Home() {
           <div className="mb-6 flex items-baseline justify-between border-b border-border pb-3">
             <h2 className="text-base font-semibold text-text">Docs</h2>
             <span className="font-mono text-[11px] uppercase tracking-widest text-text-dim">
-              audit · dev · data
+              6 items
             </span>
           </div>
           <ul className="space-y-4">
@@ -245,7 +257,7 @@ export default function Home() {
         {/* ─── 푸터 · sources ─── */}
         <footer className="mt-24 border-t border-border pt-6 font-mono text-[10px] uppercase tracking-widest text-text-dim">
           <div>src · GHGCalc_V0m_lja.xlsm · parity 137/137</div>
-          <div className="mt-1">v 0.4 · 2026-09-04</div>
+          <div className="mt-1">v 0.5 · 2026-09-04</div>
         </footer>
       </main>
     </CornerMetaFrame>

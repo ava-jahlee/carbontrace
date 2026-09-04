@@ -3,15 +3,17 @@
 > 온실가스 배출량 산정 도구. **모든 수치에는 근거가 필요합니다.**
 >
 > IPCC 2006 GL, 온실가스 배출권거래제 (K-ETS) 지침, GIR 국가고유 배출계수, KDHC 지사별 실측을 그대로 따릅니다.  
-> v0.4 · Scope 1 (연료 · 냉매) + Scope 2 (전력 · 열) + 데이터 프로파일 + 확장성 로드맵.
+> v0.5 · Scope 1 (연료 · 냉매) + Scope 2 (전력 · 열) + 데이터 프로파일 + 확장성 로드맵.
 
 ---
 
 ## 추가 문서
 
 - [`docs/AUDIT-GUIDE.md`](./docs/AUDIT-GUIDE.md) · 감사자용 walkthrough — 제3자 검증기관·심사원이 특정 값을 원문서까지 역추적하는 방법
+- [`docs/DATA-PROFILES.md`](./docs/DATA-PROFILES.md) · 3 개 데이터 프로파일 상세 (`xlsm-original` · `xlsm-corrected` · `gir22-latest`) — 각 정정 fuel 별 표 · 원문서 근거
 - [`docs/DEVELOPMENT.md`](./docs/DEVELOPMENT.md) · 개발자 가이드 — 신규 배출원·데이터 프로파일·계수 추가 방법
 - [`docs/PRIMARY-SOURCE-NOTE-STANDARD.md`](./docs/PRIMARY-SOURCE-NOTE-STANDARD.md) · Primary source `note` 필드 작성 표준
+- [`docs/CHANGELOG.md`](./docs/CHANGELOG.md) · 버전별 릴리스 노트 (v0.1 → v0.5)
 
 ---
 
@@ -65,7 +67,7 @@ Scope 2 는 CH4/N2O 도 완전 계산하므로 총합 tCO2eq 는 xlsm 원본 (CO
 
 ---
 
-## 지금 담긴 범위 (v0.4)
+## 지금 담긴 범위 (v0.5)
 
 - **Scope 1** — 1A4 기타 (건물) 고정연소 · 1B fugitive (냉매/F-gas)
 - **Scope 2** — 외부 공급 전기·열 간접 배출
@@ -77,8 +79,7 @@ Scope 2 는 CH4/N2O 도 완전 계산하므로 총합 tCO2eq 는 xlsm 원본 (CO
 
 ### 데이터 프로파일 (v0.3 신규)
 
-원본 xlsm 은 훌륭히 만들었지만 다음 오류가 있음. carbontrace 는 원본 파리티를 지키면서
-사용자가 정정판을 선택할 수 있는 **데이터 프로파일** 을 제공.
+원본 xlsm 은 훌륭히 만들었지만 몇 가지 오작성이 남아 있고, 그 사이 GIR 국가고유 배출계수도 개정됨. carbontrace 는 원본 파리티를 지키면서 사용자가 정정판을 선택할 수 있는 **데이터 프로파일** 을 제공.
 
 | 프로파일 | override | 설명 |
 |---|---|---|
@@ -86,14 +87,14 @@ Scope 2 는 CH4/N2O 도 완전 계산하므로 총합 tCO2eq 는 xlsm 원본 (CO
 | `xlsm-corrected` | 33 건 | xlsm 오류만 정정 · GIR 국가고유는 xlsm 판 유지 |
 | `gir22-latest` | 59 건 | 정정 + GIR 2022.1 공표 최신 국가고유 배출계수 |
 
-정정 대상 (`xlsm-corrected`):
-- **등유·항공유 T2 tC 뒤바꿈 4건** — xlsm 저자가 두 값을 뒤바꿔 넣은 것. 별표 12 표 B 기준으로 원상복구
-- **석탄류 T2 N2O = 1.4 오작성 13건** — xlsm 이 Peat (이탄) 값 1.4 를 다른 석탄에도 그대로 넣음. IPCC Table 2.5 는 Peat 외 다른 석탄 모두 1.5
-- **가스류 7건** — 매립지가스·슬러지가스·고로가스·산소강철로가스·가스공장가스·코크스로가스·기타바이오가스 T2 CH4/N2O 가 xlsm 300/(1.4 or 4) → Table 2.5 기체 그룹 5/0.1
-- **아황산염 잿물 (Sulphite Lyes/Black Liquor)** — xlsm 300/4 → Table 2.5 3/2 (특수 화학 그룹)
+각 정정의 fuel 별 상세·전후값·원문서 근거는 [`docs/DATA-PROFILES.md`](./docs/DATA-PROFILES.md) 참조.
 
-추가 최신화 (`gir22-latest`):
-- GIR 2022.1 공표 국가고유 배출계수 13개 반영 (경유 · 도시가스LNG · 천연가스LNG · 휘발유 · 등유 · 항공유 · B-A/B/C유 · 프로판/부탄 · 국내무연탄 · 수입무연탄)
+요약:
+- **등유·항공유 T2 tC 뒤바꿈 4 건** · 별표 12 표 B 기준 원상복구
+- **석탄류 T2 N2O = 1.4 → 1.5 · 13 건** · IPCC Table 2.5 대조 (Peat 값 오적용)
+- **가스류 T2 CH4·N2O 재분류 · 14 건** · Table 2.5 기체 그룹 (5 / 0.1)
+- **아황산염 잿물 T2 CH4·N2O 재분류 · 2 건** · Table 2.5 특수 화학 (3 / 2)
+- **GIR 2022.1 최신 반영** · 13 fuel × 2 field = 26 건 (경유·도시가스LNG·천연가스LNG·휘발유·등유·항공유·B-A/B/C유·프로판/부탄·국내무연탄·수입무연탄)
 
 ### 냉매 · F-gas (v0.4 신규 · Scope 1 fugitive)
 

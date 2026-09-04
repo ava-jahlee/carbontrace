@@ -8,7 +8,7 @@ import Link from "next/link";
  */
 
 interface TopNavProps {
-  /** 우측 mono 라벨 (예: "v 0.4" · "scope_1 / stationary") */
+  /** 우측 mono 라벨 (예: "v 0.5" · "scope_1 / stationary") */
   meta?: string;
   /** 현재 페이지 (활성 링크 accent 처리용) */
   active?: "home" | "scope1" | "scope2" | "refrigerant" | "roadmap";
@@ -21,7 +21,7 @@ const NAV_ITEMS = [
   { href: "/roadmap", label: "Roadmap", key: "roadmap" as const },
 ];
 
-export function TopNav({ meta = "v 0.4", active }: TopNavProps) {
+export function TopNav({ meta = "v 0.5", active }: TopNavProps) {
   return (
     <nav className="flex items-baseline gap-2 border-b border-border px-6 py-5 text-sm sm:px-10 md:px-12 lg:px-16">
       <Link
