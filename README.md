@@ -3,7 +3,7 @@
 > 온실가스 배출량 산정 도구. **모든 숫자가 근거를 달고 다닌다.**
 >
 > IPCC 2006 GL · 온실가스 배출권거래제(K-ETS) 지침 · GIR 국가고유 배출계수 · KDHC 지사별 실측 기반.  
-> v0.3 · Scope 1 + Scope 2 + 데이터 프로파일 (원본 xlsm / 정정판 / GIR 최신).
+> v0.4 · Scope 1 (연료 · 냉매) + Scope 2 (전력 · 열) + 데이터 프로파일 + 확장성 로드맵.
 
 ---
 
@@ -41,7 +41,8 @@ carbontrace 의 계산 엔진 결과를 소수점 10 자리 이상 자리에서 
 
 ```bash
 npm test   # Vitest 파리티 8/8 (Scope 1) + Scope 2 14/14 + verified 61/61
-           #  + dataProfile 19/19 = 102/102 PASS
+           #  + dataProfile 19/19 + audit summary 13/13 + refrigerant 22/22
+           #  = 137/137 PASS
            # (454 measurements 승격 · xlsm 정정 override 33 건 · GIR 2022.1 최신 override 26 건)
 ```
 
@@ -56,9 +57,9 @@ Scope 2 는 CH4/N2O 도 완전 계산하므로 총합 tCO2eq 는 xlsm 원본 (CO
 
 ---
 
-## 지금 담긴 범위 (v0.3)
+## 지금 담긴 범위 (v0.4)
 
-- **Scope 1** — 1A4 기타 (건물) 고정연소
+- **Scope 1** — 1A4 기타 (건물) 고정연소 · 1B fugitive (냉매/F-gas)
 - **Scope 2** — 외부 공급 전기·열 간접 배출
   - 전력: GIR 승인 국가 온실가스 배출계수 (2017년 승인 · 2022년 승인 두 판 verified)
   - 열/스팀 (KDHC): 지사별 8개 × 계획기간 3기·4기 = 16개 실측값
@@ -85,6 +86,22 @@ Scope 2 는 CH4/N2O 도 완전 계산하므로 총합 tCO2eq 는 xlsm 원본 (CO
 
 추가 최신화 (`gir22-latest`):
 - GIR 2022.1 공표 국가고유 배출계수 13개 반영 (경유 · 도시가스LNG · 천연가스LNG · 휘발유 · 등유 · 항공유 · B-A/B/C유 · 프로판/부탄 · 국내무연탄 · 수입무연탄)
+
+### 냉매 · F-gas (v0.4 신규 · Scope 1 fugitive)
+
+건물 냉방/냉장 설비 유출 배출량. IPCC 2006 Vol.3 Ch.7 Tier 1a screening.
+
+지원 냉매 10종:
+- 단일 HFC: HFC-134a · HFC-32 · HFC-125 · HFC-143a · HFC-152a
+- 블렌드: R-410A · R-404A · R-407C
+- 기타: SF6 (전기 절연) · NF3 (반도체)
+
+각 냉매에 대해 SAR/AR4/AR5/AR6 4개 GWP 판 지원. 블렌드는 mass 비율 가중 GWP 자동 계산.
+
+### 로드맵 (v0.4 신규 · `/roadmap`)
+
+Scope 3 15개 카테고리 · IPPU 5개 카테고리 · 확장 예정 항목 목록 페이지.
+각 항목에 상태 (완료/진행/예정) · 근거 문서 (GHG Protocol · IPCC Vol.3 · PCAF 등) 명시.
 
 ## 이전 범위 (v0.1)
 

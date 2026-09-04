@@ -376,11 +376,49 @@ export const KETS_HEAT_EF: PrimarySource = {
 };
 
 /**
+ * IPCC AR6 Chapter 7 Supplementary Material · Table 7.SM.7
+ * — HFCs · PFCs · SF6 · NF3 등 F-gas 상세 GWP-100 값.
+ *   냉매 (Scope 1 fugitive) 및 IPPU 에서 사용.
+ */
+export const IPCC_AR6_TABLE_SM7: PrimarySource = {
+  kind: "ipcc-ar",
+  docId: "ipcc-ar6-2021-sm7",
+  doc: "IPCC AR6 · WG1 · Chapter 7 Supplementary Material · Table 7.SM.7",
+  publisher: "IPCC",
+  edition: "2021 (Chapter 7 SM · Table 7.SM.7)",
+  part: "Working Group I · Chapter 7 · Supplementary Material",
+  table: "Table 7.SM.7 (Emissions metrics for individual gases · GWP-20/100/500 · GTP-20/50/100)",
+  url: "https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Chapter07_SM.pdf",
+  maturity: "verified",
+  reviewedAt: "2026-09-04",
+  note: "F-gas GWP-100 상세: HFC-134a=1530 · HFC-32=771 · HFC-125=3740 · HFC-143a=5810 · HFC-152a=164 · SF6=24300 · NF3=17400. 냉매 blend (R-410A 등) 는 mass 비율 가중 합. K-ETS 실무는 여전히 SAR (1300, 650, 2800, 3800, 140, 23900) 사용.",
+};
+
+/**
+ * IPCC 2006 Guidelines Vol.3 · Chapter 7 (IPPU · Emissions of Fluorinated Substitutes for ODS)
+ * — 냉매 유출 배출량 산정 방법론. 개별 냉매 GWP 는 AR 문서 별도 참조.
+ */
+export const IPCC_2006_VOL3_CH7: PrimarySource = {
+  kind: "ipcc-2006",
+  docId: "ipcc-2006-vol3-ch7",
+  doc: "IPCC 2006 Guidelines · Vol.3 · Chapter 7 (Emissions of Fluorinated Substitutes for ODS)",
+  publisher: "IPCC",
+  edition: "2006 (Vol.3 · Chapter 7)",
+  part: "Volume 3 (Industrial Processes and Product Use) · Chapter 7",
+  table: "Section 7.5 (Refrigeration and Air Conditioning) · Tier 1a screening approach",
+  url: "https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/3_Volume3/V3_7_Ch7_ODS_Substitutes.pdf",
+  maturity: "documented",
+  reviewedAt: "2026-09-04",
+  note: "냉매 배출량 산정 = 냉매 유출량 (kg) × GWP (kgCO2eq/kg). Tier 1a: 초기 충전량 × 기본 유출률 (연간 · 폐기). Tier 2/3: 물질수지법 (사업장 실측). 건물 냉방·냉장 설비의 Scope 1 fugitive 배출로 분류.",
+};
+
+/**
  * 카탈로그 전체 (UI 등에서 목록 조회에 사용).
  */
 export const SOURCES = {
   IPCC_2006_VOL2_CH1,
   IPCC_2006_VOL2_CH2,
+  IPCC_2006_VOL3_CH7,
   KETS_ANNEX_6,
   KETS_ANNEX_12,
   GIR_EF_2017,
@@ -389,6 +427,7 @@ export const SOURCES = {
   IPCC_AR4,
   IPCC_AR5,
   IPCC_AR6,
+  IPCC_AR6_TABLE_SM7,
   KDHC_HEAT_EF,
   GIR_POWER_2017,
   GIR_POWER_2022,
