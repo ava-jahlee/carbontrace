@@ -56,6 +56,14 @@ export default function Home() {
           로드맵 (Scope 3 · IPPU) →
         </Link>
         <a
+          href="https://github.com/ava-jahlee/carbontrace/blob/main/docs/AUDIT-GUIDE.md"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center rounded-lg border border-emerald-500 bg-emerald-50 px-4 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-100 dark:border-emerald-600 dark:bg-emerald-950 dark:text-emerald-300 dark:hover:bg-emerald-900"
+        >
+          🔍 감사자용 walkthrough ↗
+        </a>
+        <a
           href="https://github.com/ava-jahlee/carbontrace"
           target="_blank"
           rel="noreferrer"

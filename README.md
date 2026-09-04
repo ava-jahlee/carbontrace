@@ -7,6 +7,14 @@
 
 ---
 
+## 추가 문서
+
+- [`docs/AUDIT-GUIDE.md`](./docs/AUDIT-GUIDE.md) · 감사자용 walkthrough — 제3자 검증기관·심사원이 특정 값을 원문서까지 역추적하는 방법
+- [`docs/DEVELOPMENT.md`](./docs/DEVELOPMENT.md) · 개발자 가이드 — 신규 배출원·데이터 프로파일·계수 추가 방법
+- [`docs/PRIMARY-SOURCE-NOTE-STANDARD.md`](./docs/PRIMARY-SOURCE-NOTE-STANDARD.md) · Primary source `note` 필드 작성 표준
+
+---
+
 ## 왜 이걸 만들었나
 
 배출량 산정은 **사업자 자기보고**다. 검증기관이 매번 원자료를 역추적해야 하고,
