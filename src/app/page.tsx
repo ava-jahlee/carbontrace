@@ -25,82 +25,26 @@ const CATALOG: CatalogItem[] = [
   {
     href: "/scope1",
     title: "Scope 1 · 직접 배출",
-    subtitle: "Direct emissions · fuel + fugitive",
+    subtitle: "우리 사업장 · 우리가 직접 태운 것",
     detail:
-      "연료 사용량 · 냉매 유출량을 입력하면 IPCC 2006 + K-ETS 방법으로 tCO₂eq 을 계산합니다.",
-    tag: "scope_1 / direct",
+      "사업장 안의 보일러 · 차량 · 냉매 유출 등 · 소유·통제하는 배출원에서 우리가 직접 낸 배출량.",
+    tag: "scope_1",
   },
   {
     href: "/scope2",
     title: "Scope 2 · 전력·열",
-    subtitle: "Purchased electricity & heat",
+    subtitle: "우리 대신 · 한전·지역난방이 태워준 것",
     detail:
-      "전력·열 사용량을 입력하면 GIR 국가고유 배출계수와 KDHC 지사별 실측치로 tCO₂eq 을 계산합니다.",
-    tag: "scope_2 / purchased_energy",
+      "사 온 전기 · 열 · 스팀. 우리가 소비했지만 실제 배출은 발전소 · 열병합 시설에서 났고 · 그 상류 배출을 우리 몫으로 인정하는 부분.",
+    tag: "scope_2",
   },
   {
     href: "/scope3",
     title: "Scope 3 · 기타 간접",
-    subtitle: "Corporate value chain · 15 categories",
+    subtitle: "우리 사업 때문에 · 다른 회사·사람이 태운 것",
     detail:
-      "협력사 · 물류 · 통근 · 투자 등 15 카테고리의 방법론 카탈로그. 계산기는 순차 구현 중입니다.",
-    tag: "scope_3 / value_chain",
-  },
-];
-
-interface DocLink {
-  href: string;
-  tag: string;
-  title: string;
-  hint: string;
-  /** true 면 외부 링크 (target=_blank) · false·미지정 이면 내부 <Link> */
-  external?: boolean;
-}
-
-const DOC_LINKS: DocLink[] = [
-  {
-    href: "/docs/audit-guide",
-    tag: "audit",
-    title: "감사자용 walkthrough",
-    hint: "제3자 검증기관·심사원이 특정 값을 원문서까지 역추적하는 표준 5단계",
-  },
-  {
-    href: "/docs/data-profiles",
-    tag: "data",
-    title: "데이터 프로파일 상세",
-    hint: "3 프로파일 (원본·정정·최신) · 각 정정 fuel 별 표 · 원문서 근거",
-  },
-  {
-    href: "/docs/development",
-    tag: "dev",
-    title: "개발자 가이드",
-    hint: "신규 배출원·데이터 프로파일 추가 5단계",
-  },
-  {
-    href: "/docs/primary-source-note",
-    tag: "note",
-    title: "Primary source note 표준",
-    hint: "note 필드 작성 규칙 · muted · 사실 · 마침표",
-  },
-  {
-    href: "/docs/changelog",
-    tag: "log",
-    title: "Changelog",
-    hint: "버전별 릴리스 노트 · v0.1 → v0.8",
-  },
-  {
-    href: "https://github.com/ava-jahlee/carbontrace/issues/new?labels=user-feedback",
-    tag: "issue",
-    title: "이슈 · 제안",
-    hint: "값·방법론에 이상이 있으면 GitHub Issues 로 제안 (오픈 커뮤니티)",
-    external: true,
-  },
-  {
-    href: "https://github.com/ava-jahlee/carbontrace",
-    tag: "repo",
-    title: "GitHub · ava-jahlee/carbontrace",
-    hint: "",
-    external: true,
+      "원재료 공급사 · 물류 · 임직원 통근 · 투자한 회사 · 우리 제품을 쓰는 사용자 등 15 카테고리. 우리가 직접 태우진 않았지만 우리 사업이 유발한 배출량.",
+    tag: "scope_3",
   },
 ];
 
@@ -215,65 +159,19 @@ export default function Home() {
                   <div className="mt-3 text-xl font-semibold tracking-tight text-text group-hover:text-ink">
                     {item.title}
                   </div>
-                  <div className="mt-1 text-xs text-text-muted">{item.subtitle}</div>
-                  <div className="mt-4 font-mono text-[11px] leading-relaxed text-text-muted">
-                    {item.detail}
+                  <div className="mt-2 text-sm font-medium text-accent">
+                    {item.subtitle}
                   </div>
+                  <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                    {item.detail}
+                  </p>
                 </Link>
               </li>
             ))}
           </ul>
         </section>
 
-        {/* ─── 감사자 · 개발자 진입 (docs) ─── */}
-        <section className="mt-24">
-          <div className="mb-6 border-b border-border pb-3">
-            <h2 className="text-base font-semibold text-text">Docs</h2>
-          </div>
-          <ul className="space-y-4">
-            {DOC_LINKS.map((doc) => {
-              const inner = (
-                <>
-                  <span className="w-14 shrink-0 font-mono text-[10px] uppercase tracking-widest text-text-dim group-hover:text-accent-soft">
-                    {doc.tag}
-                  </span>
-                  <span className="underline decoration-dotted underline-offset-4">
-                    {doc.title}
-                  </span>
-                  {doc.external && <span className="text-text-dim">↗</span>}
-                </>
-              );
-              return (
-                <li key={doc.href}>
-                  {doc.external ? (
-                    <a
-                      href={doc.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group inline-flex items-baseline gap-3 text-text hover:text-accent"
-                    >
-                      {inner}
-                    </a>
-                  ) : (
-                    <Link
-                      href={doc.href}
-                      className="group inline-flex items-baseline gap-3 text-text hover:text-accent"
-                    >
-                      {inner}
-                    </Link>
-                  )}
-                  {doc.hint && (
-                    <div className="ml-[4.25rem] mt-0.5 text-xs text-text-muted">
-                      {doc.hint}
-                    </div>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-
-        {/* ─── 푸터 ─── */}
+        {/* ─── 푸터 · v0.8 · GitHub · 제안 · admin ─── */}
         <footer className="mt-24 flex items-baseline justify-between border-t border-border pt-6 text-xs text-text-dim">
           <div>
             v 0.8 · 2026-09-04 ·{" "}
@@ -286,12 +184,22 @@ export default function Home() {
               GitHub ↗
             </a>
           </div>
-          <Link
-            href="/roadmap"
-            className="font-mono text-[10px] uppercase tracking-widest text-text-dim hover:text-accent"
-          >
-            admin
-          </Link>
+          <div className="flex items-baseline gap-6">
+            <a
+              href="https://github.com/ava-jahlee/carbontrace/issues/new?labels=user-feedback"
+              target="_blank"
+              rel="noreferrer"
+              className="font-mono text-[10px] uppercase tracking-widest text-text-dim hover:text-accent"
+            >
+              제안 ↗
+            </a>
+            <Link
+              href="/roadmap"
+              className="font-mono text-[10px] uppercase tracking-widest text-text-dim hover:text-accent"
+            >
+              admin
+            </Link>
+          </div>
         </footer>
       </main>
     </>

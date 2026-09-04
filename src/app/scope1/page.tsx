@@ -25,7 +25,7 @@ const READY: SubCategory[] = [
     nameKo: "연료 연소",
     nameEn: "Fuel combustion · stationary",
     detail:
-      "연료 종류·사용량·Tier 를 입력하면 저위발열량과 배출계수를 거쳐 tCO₂eq 을 계산합니다.",
+      "건물 안에서 태우는 도시가스 · 경유 · LPG 등. 우리 보일러 · 비상 발전기 · 주방 조리기구에서 나오는 배출.",
     status: "done",
     source: "IPCC 2006 Vol.2 Ch.2 · K-ETS 별표 12",
   },
@@ -35,7 +35,7 @@ const READY: SubCategory[] = [
     nameKo: "냉매 · F-gas",
     nameEn: "Refrigerant leakage · fugitive",
     detail:
-      "냉매 종류·연간 유출량·GWP 기준을 입력하면 GWP × 유출량으로 tCO₂eq 을 계산합니다.",
+      "냉방 · 냉장 설비에서 세어 나오는 HFC · SF6 등. 우리 설비의 유출 배출.",
     status: "done",
     source: "IPCC 2006 Vol.3 Ch.7 · AR6 Table 7.SM.7",
   },
@@ -47,7 +47,7 @@ const PLANNED: SubCategory[] = [
     ipccCode: "1A2",
     nameKo: "산업 공정 · 부지 내 연료",
     nameEn: "Manufacturing industries & construction",
-    detail: "부지 내 자재 생산 (시멘트·철강 등) 배출량 · 계산기 미구현",
+    detail: "부지 내에서 자재 (시멘트 · 철강 등) 를 직접 생산하며 태우는 연료. 지금은 미구현.",
     status: "planned",
     source: "IPCC 2006 Vol.2 Ch.2",
   },
@@ -83,14 +83,9 @@ function CardBody({ item }: { item: SubCategory }) {
         {item.nameKo}
       </div>
       <div className="mt-1 text-xs text-text-muted">{item.nameEn}</div>
-      <div className="mt-4 font-mono text-[11px] leading-relaxed text-text-muted">
+      <p className="mt-4 text-sm leading-relaxed text-text-muted">
         {item.detail}
-      </div>
-      {item.source && (
-        <div className="mt-2 font-mono text-[10px] uppercase tracking-widest text-text-dim">
-          src · {item.source}
-        </div>
-      )}
+      </p>
     </div>
   );
 }
