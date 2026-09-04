@@ -412,13 +412,13 @@ function ResultView({
         </div>
       )}
 
-      {/* ═ II · 결과 (1위 압도적 · one decision one screen) ═ */}
-      <div>
-        <SectionHeader title="결과" />
-        <div className="mt-3 rounded-md border border-border-strong bg-surface p-4">
+      {/* ═ II·III·IV · 결과 + 공통 계수 + 감사 신뢰도 · 하나의 카드로 통합 ═
+        논리적 그룹 (결과 값 + 그 값을 만든 계수 + 그 계수의 근거) 을 · 시각적으로도 하나로.
+        border-t 로 조각 구분 · 세로 뷰포트에서 "빈 박스" 문제 해소. */}
+      <div className="rounded-md border border-border-strong bg-surface">
+        {/* 결과 값 · 큰 숫자 + 조건 요약 dl */}
+        <div className="p-4">
           <Cell calculated={result.totalCo2eq} digits={6} size="md" emphasis />
-
-          {/* 요약 · 명시적 라벨 (연료·사용량·조건) */}
           <dl className="mt-3 space-y-1 text-xs">
             <div className="flex gap-3">
               <dt className="w-12 shrink-0 font-mono text-[10px] uppercase tracking-widest text-text-dim">
@@ -444,22 +444,19 @@ function ResultView({
             </div>
           </dl>
         </div>
-      </div>
 
-      {/* ═ III · 감사 신뢰도 · 접기·펴기 (기본 접힘 · 이슈 있으면 자동 펼침) ═ */}
-      <div>
-        <SectionHeader title="감사 신뢰도" />
-        <div className="mt-3">
-          <AuditSummaryCard summary={summarizeAll([result.totalCo2eq])} />
+        {/* 공통 계수 · 인라인 · 카드 없이 라벨-값 */}
+        <div className="border-t border-border px-4 py-3">
+          <div className="mb-1.5 text-[11px] font-medium text-text-muted">공통 계수</div>
+          <div className="flex flex-wrap gap-x-6 gap-y-1.5 text-xs">
+            <FactorInline label="열량계수" hint="ncv" calculated={result.heatFactor} digits={4} />
+            <FactorInline label="산화계수" hint="ox" calculated={result.oxidation} digits={4} />
+          </div>
         </div>
-      </div>
 
-      {/* ═ IV · 공통 계수 ═ */}
-      <div>
-        <SectionHeader title="공통 계수" />
-        <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-          <ResultRow label="열량계수" hint="ncv" calculated={result.heatFactor} digits={4} />
-          <ResultRow label="산화계수" hint="ox" calculated={result.oxidation} digits={4} />
+        {/* 감사 신뢰도 · 인라인 · 상세 접기 (기본 접힘 · 이슈 있으면 자동 펼침) */}
+        <div className="border-t border-border px-4">
+          <AuditSummaryCard summary={summarizeAll([result.totalCo2eq])} variant="inline" />
         </div>
       </div>
 
@@ -476,7 +473,8 @@ function ResultView({
   );
 }
 
-function ResultRow({
+/** 공통 계수를 카드 없이 인라인으로 · label · hint · value 한 줄. */
+function FactorInline({
   label,
   hint,
   calculated,
@@ -488,13 +486,11 @@ function ResultRow({
   digits?: number;
 }) {
   return (
-    <div className="flex items-baseline justify-between gap-3 rounded-sm border border-border bg-surface-2 px-3 py-2">
-      <div className="flex items-baseline gap-2">
-        <span className="text-xs text-text-muted">{label}</span>
-        {hint && (
-          <span className="font-mono text-[9px] uppercase tracking-widest text-text-dim">/ {hint}</span>
-        )}
-      </div>
+    <div className="flex items-baseline gap-2">
+      <span className="text-text-muted">{label}</span>
+      {hint && (
+        <span className="font-mono text-[9px] uppercase tracking-widest text-text-dim">/ {hint}</span>
+      )}
       <Cell calculated={calculated} digits={digits} size="sm" />
     </div>
   );

@@ -12,9 +12,14 @@ import type { AuditSummary } from "@/lib/audit/summary";
 
 interface Props {
   summary: AuditSummary;
+  /**
+   * card : 독립 카드 (border · bg 있음).
+   * inline : 상위 카드 안 조각으로 사용 · border · bg 없음.
+   */
+  variant?: "card" | "inline";
 }
 
-export function AuditSummaryCard({ summary }: Props) {
+export function AuditSummaryCard({ summary, variant = "card" }: Props) {
   const { maturityCounts: m, warnings, usedDocIds, totalMeasurements } = summary;
   const total = m.verified + m.documented + m.asserted + m.pending;
   if (total === 0) return null;
@@ -34,12 +39,19 @@ export function AuditSummaryCard({ summary }: Props) {
   const hasIssue = m.pending > 0 || m.asserted > 0 || warnings.length > 0;
   const openByDefault = hasIssue; // 이슈가 있을 때만 자동 펼침
 
+  const rootCls =
+    variant === "inline"
+      ? "group open:pb-3"
+      : "group rounded-md border border-border bg-surface open:pb-4";
+  const summaryCls =
+    variant === "inline"
+      ? "flex cursor-pointer list-none items-baseline justify-between gap-3 py-2 text-xs [&::-webkit-details-marker]:hidden"
+      : "flex cursor-pointer list-none items-baseline justify-between gap-3 p-3 text-xs [&::-webkit-details-marker]:hidden";
+  const bodyCls = variant === "inline" ? "" : "px-4";
+
   return (
-    <details
-      open={openByDefault}
-      className="group rounded-md border border-border bg-surface open:pb-4"
-    >
-      <summary className="flex cursor-pointer list-none items-baseline justify-between gap-3 p-3 text-xs [&::-webkit-details-marker]:hidden">
+    <details open={openByDefault} className={rootCls}>
+      <summary className={summaryCls}>
         <div className="flex items-baseline gap-2">
           <span
             className={
@@ -61,7 +73,7 @@ export function AuditSummaryCard({ summary }: Props) {
         </span>
       </summary>
 
-      <div className="px-4">
+      <div className={bodyCls}>
         {/* 성숙도 분포 바 · muted 톤 */}
         <div className="flex h-1.5 overflow-hidden rounded-sm bg-surface-2">
           {m.verified > 0 && (
