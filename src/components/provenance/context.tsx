@@ -3,13 +3,13 @@
 /**
  * ProvenanceContext — 전역 사이드 패널 상태.
  *
- * 왜 전역인가:
- *   계산기 페이지 안 여러 <Cell/> 이 · 값 옆 ⓘ 를 눌러 패널을 연다.
- *   패널은 항상 화면 우측 같은 자리에 열려서 · 어떤 값을 보든 위치가 안정적이다.
- *   drill down (derived input → 그 값의 근거) 은 · 인라인 확장이 아니라
- *   같은 패널 안에서 히스토리 stack 을 쌓는 방식으로 · breadcrumb + 뒤로가기로 길을 잃지 않게.
+ * 탐색은 Windows Explorer 와 같은 모델:
+ *   - stack = 지금 보고 있는 경로 (주소창 breadcrumb)
+ *   - past / future = 방문 히스토리 (← 뒤로 · → 앞으로)
+ *   - breadcrumb 클릭 = 그 폴더로 점프 · 이후 경로는 버리고 · 히스토리에 남김
  *
- * root layout 에 ProvenanceProvider 하나 두고 · 어떤 <Cell/> 이든 openProvenance() 호출.
+ * 그래서 "뒤로" 는 한 칸 상위가 아니라 · 방금 보던 화면으로 돌아간다.
+ * 상위로는 주소창의 폴더 이름을 누르면 된다.
  */
 
 import { createContext, useCallback, useContext, useState } from "react";
@@ -22,44 +22,105 @@ export interface ProvenanceEntry {
   label?: string;
 }
 
+interface NavState {
+  stack: ProvenanceEntry[];
+  past: ProvenanceEntry[][];
+  future: ProvenanceEntry[][];
+}
+
+const EMPTY: NavState = { stack: [], past: [], future: [] };
+
 interface ProvenanceContextValue {
   isOpen: boolean;
-  /** [0] 이 root · [last] 가 현재 view. drill 하면 뒤에 push. */
   stack: ProvenanceEntry[];
-  /** 새 근거 열기 (stack 리셋). Cell 의 ⓘ 클릭시 호출. */
+  canBack: boolean;
+  canForward: boolean;
+  /** 새 근거 열기 (경로·히스토리 리셋). Cell 의 ⓘ 클릭시 호출. */
   open: (calculated: Calculated, label?: string) => void;
-  /** 현재 view 위에 한 층 push. derived input drill 시 호출. */
+  /** 현재 경로 위에 한 층 push. derived input drill 시 호출. */
   drillInto: (calculated: Calculated, label?: string) => void;
-  /** 한 층 pop · 이전 depth 로. */
+  /** 히스토리 뒤로 · 방금 보던 경로로. */
   back: () => void;
-  /** 완전 닫기 · stack 비움. */
+  /** 히스토리 앞으로. */
+  forward: () => void;
+  /**
+   * 주소창 폴더 클릭 · 그 depth 로 점프 (1-based).
+   * 더 깊은 경로는 버리고 · 이전 경로는 히스토리에 남긴다.
+   */
+  goTo: (depth: number) => void;
   close: () => void;
 }
 
 const ProvenanceContext = createContext<ProvenanceContextValue | null>(null);
 
 export function ProvenanceProvider({ children }: { children: React.ReactNode }) {
-  const [stack, setStack] = useState<ProvenanceEntry[]>([]);
+  const [nav, setNav] = useState<NavState>(EMPTY);
 
   const open = useCallback((calculated: Calculated, label?: string) => {
-    setStack([{ calculated, label }]);
+    setNav({ stack: [{ calculated, label }], past: [], future: [] });
   }, []);
 
   const drillInto = useCallback((calculated: Calculated, label?: string) => {
-    setStack((prev) => [...prev, { calculated, label }]);
+    setNav((prev) => ({
+      stack: [...prev.stack, { calculated, label }],
+      past: [...prev.past, prev.stack],
+      future: [],
+    }));
   }, []);
 
   const back = useCallback(() => {
-    setStack((prev) => (prev.length > 1 ? prev.slice(0, -1) : prev));
+    setNav((prev) => {
+      if (prev.past.length === 0) return prev;
+      const previous = prev.past[prev.past.length - 1];
+      return {
+        stack: previous,
+        past: prev.past.slice(0, -1),
+        future: [prev.stack, ...prev.future],
+      };
+    });
+  }, []);
+
+  const forward = useCallback(() => {
+    setNav((prev) => {
+      if (prev.future.length === 0) return prev;
+      const next = prev.future[0];
+      return {
+        stack: next,
+        past: [...prev.past, prev.stack],
+        future: prev.future.slice(1),
+      };
+    });
+  }, []);
+
+  const goTo = useCallback((depth: number) => {
+    setNav((prev) => {
+      if (depth < 1 || depth >= prev.stack.length) return prev;
+      return {
+        stack: prev.stack.slice(0, depth),
+        past: [...prev.past, prev.stack],
+        future: [],
+      };
+    });
   }, []);
 
   const close = useCallback(() => {
-    setStack([]);
+    setNav(EMPTY);
   }, []);
 
   return (
     <ProvenanceContext.Provider
-      value={{ isOpen: stack.length > 0, stack, open, drillInto, back, close }}
+      value={{
+        isOpen: nav.stack.length > 0,
+        stack: nav.stack,
+        canBack: nav.past.length > 0,
+        canForward: nav.future.length > 0,
+        open,
+        drillInto,
+        back,
+        forward,
+        goTo,
+        close,
+      }}
     >
       {children}
     </ProvenanceContext.Provider>
@@ -70,7 +131,6 @@ export function ProvenanceProvider({ children }: { children: React.ReactNode }) 
 export function useProvenance(): ProvenanceContextValue {
   const ctx = useContext(ProvenanceContext);
   if (!ctx) {
-    // 개발 중 실수 방지 · warn 만 하고 no-op stub 반환
     if (typeof window !== "undefined") {
       // eslint-disable-next-line no-console
       console.warn("useProvenance called outside <ProvenanceProvider/>. Panel will not open.");
@@ -78,9 +138,13 @@ export function useProvenance(): ProvenanceContextValue {
     return {
       isOpen: false,
       stack: [],
+      canBack: false,
+      canForward: false,
       open: () => {},
       drillInto: () => {},
       back: () => {},
+      forward: () => {},
+      goTo: () => {},
       close: () => {},
     };
   }
